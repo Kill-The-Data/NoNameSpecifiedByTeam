@@ -52,7 +52,6 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            Debug.Log(Input.mousePosition);
 
 
             Vector2 mPos = Input.mousePosition;
