@@ -17,44 +17,51 @@ public interface ISubject
 
 public class TimerView : MonoBehaviour, IObserver
 {
-    [SerializeField] private TMP_Text _Text;
-    [SerializeField] private Timer _timer;
-    [SerializeField] private float _StartDuration;
+
+    [Header(" --- Setup ---")]
+    [Tooltip("The Text to display the remaining time on")]
+    [SerializeField] private TMP_Text m_text;
+
+    [Tooltip("How long the timer should tick for")]
+    [SerializeField] private float m_duration = 30F;
+    
+    private Timer _timer;
     private void Start()
     {
+        _timer = gameObject.AddComponent<Timer>();
+
         if (_timer) 
         {
+
+            //attach self to the newly created timer
             _timer.Attach(this);
-            _timer.StartTimer(_StartDuration);
+            //start the timer with the provided duration
+            _timer.StartTimer(m_duration);
         }
-    }
-    public void GetUpdate()
-    {
     }
 
     public void GetUpdate(ISubject subject)
     {
 
-        if (subject is Timer)
+        if (subject is Timer timer)
         {
-            Timer timer = subject as Timer;
+            //check if the timer is still active
             if (timer.GetState() == Timer.TimerState.ACTIVE) 
             {
-                float timeLeft = timer.GetTime();
-                UpdateText(timeLeft);
+                // update the text
+                UpdateText(timer.GetTime());
             }
             else if (timer.GetState() == Timer.TimerState.OUT_OF_TIME) 
             {
+                // when the timer exits set the time one last time to 0
                 UpdateText(0);
             }
-
         }
     }
+
+    //set the text to the remaining time in seconds
     private void UpdateText(float time)
     {
-        int timeRounded = Mathf.RoundToInt(time);
-        string message = timeRounded.ToString();
-
-        _Text.SetText(message);
+        m_text.SetText(Mathf.RoundToInt(time).ToString() + "s");
     }
 }

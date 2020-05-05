@@ -4,13 +4,7 @@ using UnityEngine;
 
 public class DiscordMouse : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    //Follow the mouse @see PlayerController.Update
     void Update()
     { 
         

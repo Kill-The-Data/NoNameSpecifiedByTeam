@@ -6,10 +6,11 @@ public class MotherShipCollisionHandler : MonoBehaviour
 {
     public void OnTriggerEnter(Collider other)
     {
-        if (other.transform.parent.GetComponent<PlayerCargo>())
+        //check if the Trigger Participant is the Player and if he has a PlayerCargo Component 
+        if (other.CompareTag("Player") && other.transform.parent.GetComponent<PlayerCargo>() is PlayerCargo cargo)
         {
-            PlayerCargo playerCargo = other.transform.parent.GetComponent<PlayerCargo>();
-            playerCargo.ClearCargo();
+            //clear all cargo
+            cargo.ClearCargo();
         }
     }
 }
