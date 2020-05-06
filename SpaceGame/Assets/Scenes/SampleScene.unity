@@ -1124,6 +1124,8 @@ GameObject:
   - component: {fileID: 1306308144}
   - component: {fileID: 1306308145}
   - component: {fileID: 1306308146}
+  - component: {fileID: 1306308147}
+  - component: {fileID: 1306308148}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1175,6 +1177,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_text: {fileID: 1851953749}
   m_cargoLimit: 2
+--- !u!114 &1306308147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306308143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb13a50e70a6fcf4983e0a979d413161, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_camera: {fileID: 963194227}
+  m_playerController: {fileID: 0}
+  m_border: 0.5
+  m_camSpeed: 2
+--- !u!114 &1306308148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306308143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2c18d011e618fb44a8bc7ca4e3812f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1405965079 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 1aa29c472399c96449aa76810c33aa7f,
