@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ParallaxBackground : MonoBehaviour
 {
@@ -17,7 +15,8 @@ public class ParallaxBackground : MonoBehaviour
     private Vector3 m_initialOffset;
     private Vector3 m_selfOrigPosition;
 
-
+    
+    //On setup assign the self orig position and the orig position of the driver
     void Start()
     {
         m_selfOrigPosition = transform.position;
@@ -28,6 +27,7 @@ public class ParallaxBackground : MonoBehaviour
         }
     }
 
+    //on update set the position of the target to (driver-delta * displacement) + orig-position
     void Update()
     {
         if (m_parallaxDriver)
