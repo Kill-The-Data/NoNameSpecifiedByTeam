@@ -1,48 +1,47 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-
 using csDelaunay;
 
 public class vornoiTest : MonoBehaviour
 {
-
-    // The number of polygons/sites we want
+    [Header(" --- Generation Variables --- ")]
     public int TrashAmount = 200;
-    // This is where we will store the resulting data
-    private Dictionary<Vector2f, Site> sites;
-    private List<Edge> edges;
-    public GameObject prefab;
-    public int Size = 512;
+    public int AreaDimensions = 512;
     public int zCoord = 10;
     public float offset = 1;
-    public int LloydRelaxationFactor = 1;
+
+
+    public int LloydFactor = 1;
     public bool UseloydRelaxation = false;
     public Vector2 position = new Vector2(0, 0);
+    [Header(" --- Setup trash Prefabs --- ")]
+    public List<GameObject> prefabs;
+   
+    //stores data
+    private Dictionary<Vector2f, Site> sites;
+    private List<Edge> edges;
     void Start()
     {
-        // Create your sites (lets call that the center of your polygons)
+        // Create your sites center off vornoi cells
+        //these points are used as spawn positions for the trash
         List<Vector2f> points = CreateRandomPoint();
 
         // Create the bounds of the voronoi diagram
-        // Use Rectf instead of Rect; it's a struct just like Rect and does pretty much the same,
-        // but like that it allows you to run the delaunay library outside of unity (which mean also in another tread)
-        Rectf bounds = new Rectf(0, 0, Size, Size);
+        Rectf bounds = new Rectf(0, 0, AreaDimensions, AreaDimensions);
 
         // There is a two ways you can create the voronoi diagram: with or without the lloyd relaxation
-        // Here I used it with 2 iterations of the lloyd relaxation
-        //Voronoi voronoi = new Voronoi(points, bounds, 5);
-
-        // But you could also create it without lloyd relaxtion and call that function later if you want
+        // Vornoi with lloyd relaxation 
         Voronoi voronoi = new Voronoi(points, bounds);
-        if (UseloydRelaxation) voronoi.LloydRelaxation(LloydRelaxationFactor);
+        if (UseloydRelaxation) voronoi.LloydRelaxation(LloydFactor);
 
         // Now retreive the edges from it, and the new sites position if you used lloyd relaxtion
         sites = voronoi.SitesIndexedByLocation;
-        edges = voronoi.Edges;
+        //edge calculation is not needed
+        //edges = voronoi.Edges;
 
         Display();
     }
-
+    //Creates random points
     private List<Vector2f> CreateRandomPoint()
     {
         List<Vector2f> points = new List<Vector2f>();
@@ -53,21 +52,21 @@ public class vornoiTest : MonoBehaviour
 
         return points;
     }
-
+    //Displays and creates Trash
     private void Display()
     {
-
-
-        Vector2 origin = new Vector2(position.x - Size * offset / 2, position.y - Size * offset / 2);
-        foreach (KeyValuePair<Vector2f, Site> kv in sites)
+        Vector2 origin = new Vector2(position.x - AreaDimensions * offset / 2, position.y - AreaDimensions * offset / 2);
+        foreach (Vector2f vec in sites.Keys)
         {
+            int randomIndex = UnityEngine.Random.Range(0, prefabs.Count - 1);
+
+            //random trash orientation
             float randomFloat = UnityEngine.Random.Range(0, 360);
-
             Quaternion rotation = Quaternion.Euler(0, 0, randomFloat);
-
-            Vector3 pos = new Vector3(kv.Key.x * offset + origin.x, kv.Key.y * offset + origin.y, zCoord);
-
-            GameObject trash = Instantiate(prefab, pos, rotation);
+            //position
+            Vector3 pos = new Vector3(vec.x * offset + origin.x, vec.y * offset + origin.y, zCoord);
+            //instantiate trash
+            GameObject trash = Instantiate(prefabs[randomIndex], pos, rotation);
             trash.transform.parent = this.transform;
         }
 

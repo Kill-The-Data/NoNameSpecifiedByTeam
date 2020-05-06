@@ -958,6 +958,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1160042670}
   - component: {fileID: 1160042671}
+  - component: {fileID: 1160042673}
+  - component: {fileID: 1160042672}
   m_Layer: 0
   m_Name: Debris
   m_TagString: Untagged
@@ -991,14 +993,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf7e1b262d7805743bfbd1621b5989e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TrashAmount: 200
-  prefab: {fileID: 6724801044913274290, guid: 7ee02edd1086bb943a8e62f27db65107, type: 3}
-  Size: 512
+  TrashAmount: 250
+  AreaDimensions: 256
   zCoord: 10
   offset: 0.2
-  LloydRelaxationFactor: 1
+  LloydFactor: 1
   UseloydRelaxation: 0
   position: {x: 0, y: 0}
+  prefabs:
+  - {fileID: 6724801044913274290, guid: 7ee02edd1086bb943a8e62f27db65107, type: 3}
+--- !u!114 &1160042672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160042669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6799add46c646443a495012ae30541a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isReady: 0
+  TextInfo: ' To add new kind of trash just increase the size and add a new Prefab.'
+  spaceMessage: 
+--- !u!114 &1160042673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160042669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6799add46c646443a495012ae30541a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isReady: 0
+  TextInfo: Lloyed Relaxation evens out the random distribution, the higher the factor
+    the more even the distribution.
+  spaceMessage: 
 --- !u!1 &1306308143
 GameObject:
   m_ObjectHideFlags: 0
