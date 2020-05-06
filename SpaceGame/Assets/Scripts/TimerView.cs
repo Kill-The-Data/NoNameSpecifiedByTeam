@@ -20,7 +20,7 @@ public class TimerView : MonoBehaviour, IObserver
 
     [Header(" --- Setup ---")]
     [Tooltip("The Text to display the remaining time on")]
-    [SerializeField] private TMP_Text m_text;
+    [SerializeField] private TMP_Text m_text = null;
 
     [Tooltip("How long the timer should tick for")]
     [SerializeField] private float m_duration = 30F;
