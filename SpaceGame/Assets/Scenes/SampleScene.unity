@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -864,15 +864,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6984465803667638952, guid: 3cb69fa796c094e42a5944d1d2129ad7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.75
+      objectReference: {fileID: 0}
+    - target: {fileID: -6984465803667638952, guid: 3cb69fa796c094e42a5944d1d2129ad7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.5
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3cb69fa796c094e42a5944d1d2129ad7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.7
+      value: 16.25
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3cb69fa796c094e42a5944d1d2129ad7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.43
+      value: 0.63
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3cb69fa796c094e42a5944d1d2129ad7,
         type: 3}
@@ -4044,15 +4054,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf7e1b262d7805743bfbd1621b5989e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TrashAmount: 250
+  TrashAmount: 7000
   AreaDimensions: 256
-  zCoord: 10
-  offset: 0.2
+  ZCoord: 10
+  Offset: 0.5
   LloydFactor: 1
   UseloydRelaxation: 1
   position: {x: 0, y: 0}
   prefabs:
   - {fileID: 6724801044913274290, guid: 7ee02edd1086bb943a8e62f27db65107, type: 3}
+  m_zones:
+  - Target: {fileID: 1306308144}
+    Radius: 11.12
+  - Target: {fileID: 152716602}
+    Radius: 13.7
 --- !u!114 &1160042672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4714,6 +4729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae12399490168594aaeb384d77ca2cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_showGizmos: 0
   Drag: 0.995
   Acceleration: 10
   RotationSpeed: 4
@@ -4745,6 +4761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb13a50e70a6fcf4983e0a979d413161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_showGizmos: 0
   m_camera: {fileID: 963194227}
   m_playerController: {fileID: 0}
   m_border: 0.5
@@ -4774,6 +4791,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d12dd717b36f0cd41a6bdfd26a6e7627, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_showGizmos: 0
   m_target: {fileID: 152716602}
   m_homingDeviceChild: {fileID: 861739126}
   m_radius: 4.5
