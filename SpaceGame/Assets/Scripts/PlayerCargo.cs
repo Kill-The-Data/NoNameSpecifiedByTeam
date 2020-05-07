@@ -1,20 +1,21 @@
 ﻿using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class PlayerCargo : MonoBehaviour
 {
 
     [Header(" --- Setup ---")]
-    [SerializeField] private TMP_Text m_text = null;
-    
-    
+     [SerializeField] private TMP_Text m_text = null;
+    [SerializeField] private Slider m_slider = null;
+
     [Header(" --- Cargo ---")]
     [Tooltip("How much items the Player can hold at any given time")]
     [SerializeField] private int m_cargoLimit = 2;
 
 
     private int m_spaceOccupiedImpl;
-    
+
     //whenever the occupied space is updated also update the text
     private int m_spaceOccupied
     {
@@ -22,23 +23,25 @@ public class PlayerCargo : MonoBehaviour
         set
         {
             m_spaceOccupiedImpl = value;
-            UpdateText();
+            UpdateView();
         }
     }
 
     //in the beginning update the text manually to avoid displaying "New Text"
     public void Start()
     {
-        UpdateText();
+        m_slider.maxValue = m_cargoLimit;
+        m_slider.minValue = 0;
+        UpdateView();
     }
 
-    
+
     //check if space is full and otherwise add n element to the inventory
     public void AddCargo(int amount = 1)
     {
         if (SpaceAvailable(amount))
         {
-            m_spaceOccupied+=amount;
+            m_spaceOccupied += amount;
         }
     }
 
@@ -61,9 +64,9 @@ public class PlayerCargo : MonoBehaviour
     }
 
     //update the text to reflect the status of the inventory
-    private void UpdateText()
+    private void UpdateView()
     {
-        m_text.SetText($"{m_spaceOccupied} / {m_cargoLimit}");
-
+          m_text.SetText($"{m_spaceOccupied} / {m_cargoLimit}");
+        m_slider.value = m_spaceOccupied;
     }
 }
