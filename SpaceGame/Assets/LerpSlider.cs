@@ -35,7 +35,7 @@ public class LerpSlider : MonoBehaviour
             }
             //lerp & update slider value
             float perc = m_currentLerpTime / m_lerpTime;
-            m_slider.value = Mathf.Lerp(m_slider.value, m_targetSliderValue, perc);
+            m_slider.value = LeanTween.easeOutExpo(m_slider.value, m_targetSliderValue, perc);
         }
     }
 }
