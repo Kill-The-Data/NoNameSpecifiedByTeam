@@ -141,7 +141,7 @@ public class VornoiDebrisGen : MonoBehaviour
             UnityEditor.Handles.Label(zone.Target.position+Vector3.down*zone.Radius,"Exclusion Zone for " + zone.Target.name);
         }
 
-        UnityEditor.Handles.DrawWireCube(new Vector3(position.x,position.y,0),new Vector3(AreaDimensions,AreaDimensions,0) * Offset);
+        UnityEditor.Handles.DrawWireCube(new Vector3(position.x,position.y,0) + new Vector3(AreaDimensions,AreaDimensions,0) * Offset/2,new Vector3(AreaDimensions,AreaDimensions,0) * Offset * 2);
 
     }
     #endif
