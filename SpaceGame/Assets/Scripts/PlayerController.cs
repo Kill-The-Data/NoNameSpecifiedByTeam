@@ -70,10 +70,14 @@ public class PlayerController : MonoBehaviour
         transform.position += m_speed * Time.deltaTime;
     }
 
+    #if (UNITY_EDITOR)
+
     void OnDrawGizmosSelected()
     {
         if (!m_showGizmos) return;
         UnityEditor.Handles.DrawLine(transform.position,transform.position+m_speed);
         UnityEditor.Handles.DrawWireDisc(transform.position+m_speed,Vector3.back, 0.1f);
     }
+
+    #endif
 }
