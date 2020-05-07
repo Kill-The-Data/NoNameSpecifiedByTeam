@@ -4054,12 +4054,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf7e1b262d7805743bfbd1621b5989e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_showGizmos: 1
   TrashAmount: 7000
   AreaDimensions: 256
   ZCoord: 10
   Offset: 0.5
   LloydFactor: 1
-  UseloydRelaxation: 1
+  UseLloydRelaxation: 0
   position: {x: 0, y: 0}
   prefabs:
   - {fileID: 6724801044913274290, guid: 7ee02edd1086bb943a8e62f27db65107, type: 3}
@@ -4729,7 +4730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae12399490168594aaeb384d77ca2cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_showGizmos: 0
+  m_showGizmos: 1
   Drag: 0.995
   Acceleration: 10
   RotationSpeed: 4
@@ -4761,11 +4762,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb13a50e70a6fcf4983e0a979d413161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_showGizmos: 0
+  m_showGizmos: 1
   m_camera: {fileID: 963194227}
   m_playerController: {fileID: 0}
   m_border: 0.5
-  m_camSpeed: 2
+  m_camSpeed: 5
 --- !u!114 &1306308148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4791,7 +4792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d12dd717b36f0cd41a6bdfd26a6e7627, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_showGizmos: 0
+  m_showGizmos: 1
   m_target: {fileID: 152716602}
   m_homingDeviceChild: {fileID: 861739126}
   m_radius: 4.5

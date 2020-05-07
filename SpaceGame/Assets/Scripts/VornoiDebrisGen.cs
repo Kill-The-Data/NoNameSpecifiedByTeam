@@ -6,6 +6,11 @@ using Random = UnityEngine.Random;
 
 public class VornoiDebrisGen : MonoBehaviour
 {
+
+    [Header(" --- Setup ---")]
+    [Tooltip("Whether or not to show the Gizmos for The Voronoi Params")]
+    [SerializeField] private bool m_showGizmos = false;
+
     [Header(" --- Generation Variables --- ")]
 
     [Tooltip("how much Trash to Generate")]
@@ -42,6 +47,7 @@ public class VornoiDebrisGen : MonoBehaviour
     }
 
     [Header(" --- Setup Exclusion Zones ---")] 
+
     [Tooltip("The Areas where no debris should be generated")]
     [SerializeField] private List<ExclusionZone> m_zones = new List<ExclusionZone>();
    
@@ -123,9 +129,11 @@ public class VornoiDebrisGen : MonoBehaviour
         }
 
     }
-
-    public void OnDrawGizmosSelected()
+    #if (UNITY_EDITOR)
+    public void OnDrawGizmos()
     {
+        if (!m_showGizmos) return;
+
         foreach (var zone in m_zones)
         {
             UnityEditor.Handles.color = Color.red;
@@ -136,5 +144,6 @@ public class VornoiDebrisGen : MonoBehaviour
         UnityEditor.Handles.DrawWireCube(new Vector3(position.x,position.y,0),new Vector3(AreaDimensions,AreaDimensions,0) * Offset);
 
     }
+    #endif
 
 }

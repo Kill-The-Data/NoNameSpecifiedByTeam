@@ -48,6 +48,7 @@ public class MotherShipHomingDeviceUI : MonoBehaviour
 
         m_homingDeviceChild.gameObject.SetActive(!(m_direction.magnitude < m_hideRadius));
     }
+    #if (UNITY_EDITOR)
 
     void OnDrawGizmosSelected()
     {
@@ -63,4 +64,5 @@ public class MotherShipHomingDeviceUI : MonoBehaviour
         UnityEditor.Handles.color = Color.red;
         UnityEditor.Handles.DrawWireDisc(m_target.position,Vector3.forward,0.1f);
     }
+    #endif
 }

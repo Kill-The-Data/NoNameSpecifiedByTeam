@@ -25,7 +25,7 @@ public class CamScroll : MonoBehaviour
     [SerializeField] private float m_border = 0.5F;
 
 
-    [Tooltip("how fast the camera moves to the position it should be at"), Range(0,2)]
+    [Tooltip("how fast the camera moves to the position it should be at"), Range(0,6)]
     [SerializeField] private float m_camSpeed = 1F;
 
     // Start is called before the first frame update
@@ -50,6 +50,7 @@ public class CamScroll : MonoBehaviour
             m_camera.transform.position -= m_direction * m_camSpeed * Time.deltaTime;
         }
     }
+    #if (UNITY_EDITOR)
 
     void OnDrawGizmosSelected()
     {
@@ -57,4 +58,5 @@ public class CamScroll : MonoBehaviour
         UnityEditor.Handles.DrawWireDisc(transform.position,Vector3.forward,m_border);
         UnityEditor.Handles.Label(transform.position+m_direction.normalized*m_border,"Cam Radius");
     }
+    #endif
 }
