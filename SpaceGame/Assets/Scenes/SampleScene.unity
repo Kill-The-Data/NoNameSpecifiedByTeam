@@ -4779,7 +4779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2c18d011e618fb44a8bc7ca4e3812f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AutoHide: 1
+  AutoHide: 0
 --- !u!114 &1306308149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7797,7 +7797,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 212621752}
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
