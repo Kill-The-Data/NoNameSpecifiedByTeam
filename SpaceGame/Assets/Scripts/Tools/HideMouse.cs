@@ -4,6 +4,9 @@ public class HideMouse : MonoBehaviour
 {
     void Start()
     {
-        Cursor.visible = false;
+        if(AutoHide)
+            Cursor.visible = false;
     }
+
+    public bool AutoHide;
 }
