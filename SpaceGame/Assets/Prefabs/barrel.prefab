@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3346922181004924359}
   - component: {fileID: 3346922181004924358}
   - component: {fileID: 4136278386030038823}
+  - component: {fileID: 6328869903600349120}
   m_Layer: 0
   m_Name: barrel
   m_TagString: Debris
@@ -124,3 +125,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6328869903600349120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6724801044913274290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c8deb72f5affa1488524ea71dd0738c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

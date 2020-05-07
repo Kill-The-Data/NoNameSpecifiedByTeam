@@ -12,7 +12,7 @@ public class PlayerCargo : MonoBehaviour
 
 
     [Header(" --- Tween setup ---")]
-    [Range(0,1.5f)]
+    [Range(0, 1.5f)]
     [SerializeField] private float m_tweenSpeed = 1.0f;
 
     [Header(" --- Cargo ---")]
@@ -24,10 +24,10 @@ public class PlayerCargo : MonoBehaviour
     private LerpSlider m_lerp = null;
 
     //whenever the occupied space is updated also update the text
-    private int m_spaceOccupied
+    public int m_spaceOccupied
     {
         get => m_spaceOccupiedImpl;
-        set
+        private set
         {
             m_spaceOccupiedImpl = value;
             UpdateView();
