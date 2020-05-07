@@ -9,6 +9,10 @@ public class PlayerController : MonoBehaviour
 {
     private Vector3 m_speed;
     public const float MIN_EPSILON = 0.0001f;
+
+    [Header(" --- Setup --- ")] 
+    [Tooltip("Hide or Show the gizmos")] 
+    [SerializeField] private bool m_showGizmos = false;
     
     [Header(" --- Movement --- ")]
 
@@ -20,6 +24,7 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Modify the Rotation Speed of the Spacecraft")]
     public float RotationSpeed = 2.0F;
     
+
     // Update is called once per frame
     void Update()
     {
@@ -63,5 +68,12 @@ public class PlayerController : MonoBehaviour
 
         //do euler step
         transform.position += m_speed * Time.deltaTime;
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        if (!m_showGizmos) return;
+        UnityEditor.Handles.DrawLine(transform.position,transform.position+m_speed);
+        UnityEditor.Handles.DrawWireDisc(transform.position+m_speed,Vector3.back, 0.1f);
     }
 }
