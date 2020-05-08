@@ -10,16 +10,22 @@ public class LerpSlider : MonoBehaviour
     private float m_lerpTime = 1.0f;
     private float m_currentLerpTime = 0;
     private float m_targetSliderValue = 0;
+    //the slider should not reach 0 but a value close to 0 so that it does not dissapear
+    private float m_minSliderValue = 0;
     //setup slider and lerp speed
-    public void Init(Slider slider, float lerpTime = 1.0f)
+    public void Init(Slider slider, float lerpTime = 1.0f, float minValue =0.1f)
     {
         m_slider = slider;
         m_lerpTime = lerpTime;
+        m_minSliderValue = minValue;
     }
     //Update slider target value & reset lerp time
-    public void UpdateSlider(float value)
+    public void UpdateSlider(int value)
     {
-        m_targetSliderValue = value;
+        //if slider is empty display min slider value
+        if (value == 0) m_targetSliderValue = m_minSliderValue;
+        else m_targetSliderValue = value;
+
         m_currentLerpTime = 0;
     }
     private void Update()
