@@ -13,6 +13,9 @@ public class CamScroll : MonoBehaviour
 
     [Tooltip("The camera that should be affected by the Scrolling")]
     [SerializeField] private Camera m_camera;
+
+
+  
     
     //----------- Gameplay Variables
     [Header(" --- Gameplay ---")]
@@ -21,8 +24,14 @@ public class CamScroll : MonoBehaviour
     [SerializeField] private float m_border = 0.5F;
 
 
-    [Tooltip("how fast the camera moves to the position it should be at"), Range(0,6)]
-    [SerializeField] private float m_camSpeed = 1F; 
+    [Tooltip("how fast the camera moves to the position it should be at min"), Range(0, 6)] 
+    [SerializeField] private float m_camSpeedMin = 0F;
+    
+    [Tooltip("how fast the camera moves to the position it should be at max"), Range(0,6)]
+    [SerializeField] private float m_camSpeedMax = 1F;
+
+    [Tooltip("The Dividend for the Lerp Intervall (aka how fast to go from min to max speed)")]
+    [SerializeField] private float m_criticalSection = 10F;
     
     //----------- Unexposed Variables
     private Vector3 m_direction;
@@ -44,7 +53,12 @@ public class CamScroll : MonoBehaviour
         //check if the camera center is further than the preset-distance and scroll along with the target
         if (Mathf.Abs(m_direction.magnitude) > m_border)
         {
-            m_camera.transform.position -= m_direction * (m_camSpeed * Time.deltaTime);
+            //check where on the curve we roughly are
+            var lerpFactor = Mathf.Min(Mathf.Abs(m_direction.magnitude / m_criticalSection), 1);
+            //get the value for the cameraSpeed
+            var camSpeed = Mathf.Lerp(m_camSpeedMin, m_camSpeedMax,lerpFactor);
+            //apply direction vector * speed
+            m_camera.transform.position -= m_direction * (camSpeed * Time.deltaTime);
         }
     }
     #if (UNITY_EDITOR)
