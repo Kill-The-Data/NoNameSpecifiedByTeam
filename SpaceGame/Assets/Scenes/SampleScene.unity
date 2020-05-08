@@ -862,7 +862,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CursorTexture: {fileID: 2800000, guid: a43d07af41739764baf1bb3fc3e6892b, type: 3}
   CursorMode: 0
-  HotSpot: {x: -20, y: -20}
+  HotSpot: {x: 33, y: 33}
 --- !u!4 &342716538
 Transform:
   m_ObjectHideFlags: 0
@@ -4289,6 +4289,8 @@ MonoBehaviour:
     Radius: 11.12
   - Target: {fileID: 152716602}
     Radius: 13.7
+  m_showDebrisExclusions: 0
+  m_exclusionZoneRadiusForNewDebris: 7
 --- !u!114 &1160042672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4970,7 +4972,7 @@ MonoBehaviour:
   m_slider: {fileID: 418058450}
   m_tweenSpeed: 1
   m_MinSliderValue: 0.067
-  m_cargoLimit: 3
+  m_cargoLimit: 200
 --- !u!114 &1306308147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4985,10 +4987,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_showGizmos: 1
   m_camera: {fileID: 963194227}
-  m_border: 0.75
-  m_camSpeedMin: 0
-  m_camSpeedMax: 5
-  m_criticalSection: 10
+  m_border: 0
+  m_camSpeedMin: 1
+  m_camSpeedMax: 12.6
+  m_criticalSection: 0
 --- !u!114 &1306308148
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,8 +12,6 @@ namespace csDelaunay {
 		private List<Edge> edges;
 		public List<Edge> Edges {get{return edges;}}
 
-		// TODO generalize this so it doesn't have to be a rectangle;
-		// then we can make the fractal voronois-within-voronois
 		private Rectf plotBounds;
 		public Rectf PlotBounds {get{return plotBounds;}}
 		

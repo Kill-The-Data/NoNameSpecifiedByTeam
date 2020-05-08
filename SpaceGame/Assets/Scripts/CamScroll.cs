@@ -27,7 +27,7 @@ public class CamScroll : MonoBehaviour
     [Tooltip("how fast the camera moves to the position it should be at min"), Range(0, 6)] 
     [SerializeField] private float m_camSpeedMin = 0F;
     
-    [Tooltip("how fast the camera moves to the position it should be at max"), Range(0,6)]
+    [Tooltip("how fast the camera moves to the position it should be at max"), Range(0,20)]
     [SerializeField] private float m_camSpeedMax = 1F;
 
     [Tooltip("The Dividend for the Lerp Intervall (aka how fast to go from min to max speed)")]
