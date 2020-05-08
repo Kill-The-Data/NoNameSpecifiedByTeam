@@ -54,7 +54,7 @@ public class CamScroll : MonoBehaviour
         if (Mathf.Abs(m_direction.magnitude) > m_border)
         {
             //check where on the curve we roughly are
-            var lerpFactor = Mathf.Min(Mathf.Abs(m_direction.magnitude / m_criticalSection), 1);
+            var lerpFactor = Mathf.Abs(m_direction.magnitude / m_criticalSection);
             //get the value for the cameraSpeed
             var camSpeed = Mathf.Lerp(m_camSpeedMin, m_camSpeedMax,lerpFactor);
             //apply direction vector * speed
