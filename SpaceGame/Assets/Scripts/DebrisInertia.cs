@@ -5,9 +5,10 @@ using UnityEngine;
 public class DebrisInertia : MonoBehaviour
 {
     private Quaternion m_inertia;
-    // Start is called before the first frame update
     void Start()
     {
+        
+        //create a random impulse
         m_inertia = Quaternion.AngleAxis(
             UnityEngine.Random.Range(-10, 10), 
             new Vector3(
@@ -17,10 +18,11 @@ public class DebrisInertia : MonoBehaviour
             ).normalized
         );
     }
-
-    // Update is called once per frame
     void Update()
     {
-        transform.rotation = Quaternion.Slerp(transform.rotation,transform.rotation*m_inertia,Time.deltaTime * 10) ;
+        //rotate using the random impulse
+        var rotation = transform.rotation;
+        rotation = Quaternion.Slerp(rotation,rotation*m_inertia,Time.deltaTime * 10) ;
+        transform.rotation = rotation;
     }
 }

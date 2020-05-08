@@ -10,13 +10,15 @@ public class TrashCollisionHandler : MonoBehaviour
         {
             if (!playerCargo.SpaceIsFull()) 
             {
-
-               Destroy(this.gameObject);
+                Destroy(this.gameObject);
                playerCargo.AddCargo();
             }
         }
 
         //deduplication fix for voronoi noise
+        //TODO:(algo-ryth-mix): This should probably be handled in vor-gen first, 
+        //this is a rather crude solution
+        //HACK: << marker.algo.collision2vornoise >>(problem)
         if (other.CompareTag("Debris") && other.GetComponent<TrashCollisionHandler>() is TrashCollisionHandler handler)
         {
             //make sure we don't collide twice
