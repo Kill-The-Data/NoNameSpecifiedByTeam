@@ -24,7 +24,7 @@ public class PlayerCargo : MonoBehaviour
     private LerpSlider m_lerp = null;
 
     //whenever the occupied space is updated also update the text
-    public int m_spaceOccupied
+    public int SpaceOccupied
     {
         get => m_spaceOccupiedImpl;
         private set
@@ -35,14 +35,24 @@ public class PlayerCargo : MonoBehaviour
     }
 
     //in the beginning update the text manually to avoid displaying "New Text"
+    //and setup the slider ui variables
     public void Start()
+    {
+        InitSlider();
+        UpdateView();
+    }
+
+    //Initialize the Slider
+    private void InitSlider()
     {
         m_slider.maxValue = m_cargoLimit;
         m_slider.minValue = 0;
         m_lerp = m_slider.gameObject.AddComponent<LerpSlider>();
         m_lerp.Init(m_slider, m_tweenSpeed);
-        UpdateView();
     }
+    
+    //Update the Slider & Text
+    //TODO(kukash): see below
     private void Update()
     {
         UpdateView();
@@ -53,32 +63,35 @@ public class PlayerCargo : MonoBehaviour
     {
         if (SpaceAvailable(amount))
         {
-            m_spaceOccupied += amount;
+            SpaceOccupied += amount;
         }
     }
 
     //remove all cargo from the player
     public void ClearCargo()
     {
-        m_spaceOccupied = 0;
+        SpaceOccupied = 0;
     }
 
     //check if you can insert n elements into the player inventory
     public bool SpaceAvailable(int space_to_fill = 1)
     {
-        return m_spaceOccupied + space_to_fill <= m_cargoLimit;
+        return SpaceOccupied + space_to_fill <= m_cargoLimit;
     }
 
     //check if the inventory is completely full
     public bool SpaceIsFull()
     {
-        return m_spaceOccupied >= m_cargoLimit;
+        return SpaceOccupied >= m_cargoLimit;
     }
-
-    //update the text && the slider to reflect the status of the inventory
+    
+    //update the text & the slider to reflect the status of the inventory
     private void UpdateView()
     {
-        //m_text.SetText($"{m_spaceOccupied} / {m_cargoLimit}");
-        m_lerp.UpdateSlider(m_spaceOccupied);
+        //TODO(kukash): reimplement the text and split this function up into 
+        //TODO(cont.): UpdateText() and UpdateSlider() so that the get=> property 
+        //TODO(cont.): SpaceOccupied saves us some computation time again!
+        //m_text.SetText($"{SpaceOccupied} / {m_cargoLimit}");
+        m_lerp.UpdateSlider(SpaceOccupied);
     }
 }

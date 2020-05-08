@@ -1,16 +1,18 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using csDelaunay;
 using Random = UnityEngine.Random;
 
 public class VornoiDebrisGen : MonoBehaviour
 {
-
+    //----------- Setup Variables
     [Header(" --- Setup ---")]
     [Tooltip("Whether or not to show the Gizmos for The Voronoi Params")]
     [SerializeField] private bool m_showGizmos = false;
 
+    //----------- Generation Variables
     [Header(" --- Generation Variables --- ")]
 
     [Tooltip("how much Trash to Generate")]
@@ -24,7 +26,7 @@ public class VornoiDebrisGen : MonoBehaviour
     
     [Tooltip("how big the distance between garbage-sites should be")]
     public float Offset = 1;
-
+    
 
     [Tooltip("https://www.jasondavies.com/lloyd/")]
     public int LloydFactor = 1;
@@ -34,18 +36,19 @@ public class VornoiDebrisGen : MonoBehaviour
 
     [Tooltip("The center of the Generation Area")]
     public Vector2 position = new Vector2(0, 0);
-
+    
+    //----------- Trash Setup Variables
     [Header(" --- Setup trash Prefabs --- ")]
     public List<GameObject> prefabs;
 
-
+    //----------- Exclusion Zone Setup Variables
     [Serializable]
     public class ExclusionZone
     {
         public Transform Target;
         public float Radius;
     }
-
+    
     [Header(" --- Setup Exclusion Zones ---")] 
 
     [Tooltip("The Areas where no debris should be generated")]
@@ -97,23 +100,30 @@ public class VornoiDebrisGen : MonoBehaviour
             Vector3 pos = new Vector3(vec.x * Offset + origin.x, vec.y * Offset + origin.y, ZCoord);
 
             bool stopgen = false;
-
+            
+            //check all exclusion zones
             foreach (var zone in m_zones)
             {
+                
+                //prepare collision handler
                 Vector3 test = pos;
                 test.z = 0;
 
                 Vector3 target = zone.Target.position;
                 target.z = 0;
 
-
+                //check if the distance to one of the gen-zone is to small
                 if (Vector3.Distance(test, target) < zone.Radius)
                 {
+                    //set stopgen and break the loop early
                     stopgen = true;
                     break;
                 }
             }
 
+            //TODO(algo-ryth-mix): This is where the deduplication should happen 
+            //TODO(cont.):set stopgen to avoid it
+            //HACK: << marker.algo.collision2vornoise >>(solution)
             if(stopgen) continue;
 
 
@@ -136,11 +146,13 @@ public class VornoiDebrisGen : MonoBehaviour
 
         foreach (var zone in m_zones)
         {
+            //draw the exclusion zone
             UnityEditor.Handles.color = Color.red;
             UnityEditor.Handles.DrawWireDisc(zone.Target.position,Vector3.forward,zone.Radius);
             UnityEditor.Handles.Label(zone.Target.position+Vector3.down*zone.Radius,"Exclusion Zone for " + zone.Target.name);
         }
 
+        //draw the bounding box
         UnityEditor.Handles.DrawWireCube(new Vector3(position.x,position.y,0) + new Vector3(AreaDimensions,AreaDimensions,0) * Offset/2
             ,new Vector3(AreaDimensions,AreaDimensions,0) * Offset * 2);
 
