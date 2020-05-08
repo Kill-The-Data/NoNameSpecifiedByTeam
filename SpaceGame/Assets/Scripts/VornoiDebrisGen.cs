@@ -53,13 +53,26 @@ public class VornoiDebrisGen : MonoBehaviour
 
     [Tooltip("The Areas where no debris should be generated")]
     [SerializeField] private List<ExclusionZone> m_zones = new List<ExclusionZone>();
-   
 
+    [Header(" --- DEDUPLICATION ---")]
+    [Tooltip("Whether or not to draw the Gizmos for the Debris Exclusion Zones")]
+    [SerializeField] private bool m_showDebrisExclusions = false;
+    [Tooltip("How much space each piece of debris gets on a minimal basis"), Range(0, 10)]
+    [SerializeField] private float m_exclusionZoneRadiusForNewDebris;
+
+
+    private List<ExclusionZone> m_debrisZones = null;
+    
     //stores data
     private Dictionary<Vector2f, Site> sites;
     private List<Edge> edges;
     void Start()
     {
+        //Allocate space for the debris exclusion zones, we 
+        //want to avoid collisions of debris this way
+        m_debrisZones = new List<ExclusionZone>(TrashAmount);
+        
+        
         // Create your sites center off vornoi cells
         //these points are used as spawn positions for the trash
         List<Vector2f> points = CreateRandomPoint();
@@ -120,12 +133,25 @@ public class VornoiDebrisGen : MonoBehaviour
                     break;
                 }
             }
+            
+            foreach (var zone in m_debrisZones)
+            {
+                //prepare collision handler
+                Vector3 test = pos;
+                test.z = 0;
 
-            //TODO(algo-ryth-mix): This is where the deduplication should happen 
-            //TODO(cont.):set stopgen to avoid it
-            //HACK: << marker.algo.collision2vornoise >>(solution)
+                Vector3 target = zone.Target.position;
+                target.z = 0;
+
+                //check if the distance to one of the gen-zone is to small
+                if (Vector3.Distance(test, target) < zone.Radius)
+                {
+                    //set stopgen and break the loop early
+                    stopgen = true;
+                    break;
+                }
+            }
             if(stopgen) continue;
-
 
             int randomIndex = UnityEngine.Random.Range(0, prefabs.Count - 1);
 
@@ -136,8 +162,9 @@ public class VornoiDebrisGen : MonoBehaviour
             //instantiate trash
             GameObject trash = Instantiate(prefabs[randomIndex], pos, rotation);
             trash.transform.parent = this.transform;
+            
+            m_debrisZones.Add(new ExclusionZone{Target=trash.transform,Radius = m_exclusionZoneRadiusForNewDebris});
         }
-
     }
     #if (UNITY_EDITOR)
     public void OnDrawGizmos()
@@ -152,6 +179,13 @@ public class VornoiDebrisGen : MonoBehaviour
             UnityEditor.Handles.Label(zone.Target.position+Vector3.down*zone.Radius,"Exclusion Zone for " + zone.Target.name);
         }
 
+        if(m_showDebrisExclusions && m_debrisZones != null) foreach (var zone in m_debrisZones)
+        {
+            if(!zone.Target) continue;
+            //draw the exclusion zone
+            UnityEditor.Handles.color = Color.yellow;
+            UnityEditor.Handles.DrawWireDisc(zone.Target.position,Vector3.forward,zone.Radius);
+        }
         //draw the bounding box
         UnityEditor.Handles.DrawWireCube(new Vector3(position.x,position.y,0) + new Vector3(AreaDimensions,AreaDimensions,0) * Offset/2
             ,new Vector3(AreaDimensions,AreaDimensions,0) * Offset * 2);
