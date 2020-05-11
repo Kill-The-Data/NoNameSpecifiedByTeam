@@ -41,8 +41,11 @@ public class PlayerHealth : MonoBehaviour
     
     //in the beginning update the text manually to avoid displaying "New Text"
     //and setup the slider ui variables
-    public void Start()
+
+
+    public void ResetPlayerHealth()
     {
+        Health = m_maxHealth;
         InitSlider();
         UpdateView();
     }
@@ -83,9 +86,9 @@ public class PlayerHealth : MonoBehaviour
         UpdateSlider();
         UpdateText();
     }
-    private void UpdateSlider() 
+    private void UpdateSlider()
     {
-        m_lerp.UpdateSlider(Health);
+        if (m_lerp != null) m_lerp.UpdateSlider(Health);
     }
     private void UpdateText()
     {
