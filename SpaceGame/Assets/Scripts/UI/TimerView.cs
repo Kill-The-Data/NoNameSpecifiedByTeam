@@ -26,20 +26,19 @@ public class TimerView : MonoBehaviour, IObserver
     [SerializeField] private float m_duration = 30F;
     
     private Timer _timer;
-    private void Start()
+   
+    public void InitTimer() 
     {
-        _timer = gameObject.AddComponent<Timer>();
-
-        if (_timer) 
+        if (!_timer) 
         {
-
+            _timer = gameObject.AddComponent<Timer>();
             //attach self to the newly created timer
             _timer.Attach(this);
             //start the timer with the provided duration
-            _timer.StartTimer(m_duration);
         }
-    }
+        _timer.StartTimer(m_duration);
 
+    }
     public void GetUpdate(ISubject subject)
     {
 
