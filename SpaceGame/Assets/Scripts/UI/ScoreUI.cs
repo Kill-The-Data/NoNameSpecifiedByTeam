@@ -57,6 +57,9 @@ public class ScoreUI : MonoBehaviour
     }
     private void UpdateView()
     {
+        //TODO(algo-ryth-mix): this should probably life somewhere neat
+        //TODO(cont.) preferentially not in UI code... meh
+        PlayerPrefs.SetInt("score",m_currentScore);
         m_scoreTargetText.SetText($"{m_currentScore} ");
     }
 }

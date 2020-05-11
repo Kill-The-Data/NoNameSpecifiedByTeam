@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class IngameState : StateWithView<IngameView>
 {
@@ -9,14 +7,10 @@ public class IngameState : StateWithView<IngameView>
         base.EnterState();
         InitGameState();
     }
-    public override void ExitState()
-    {
-        base.ExitState();
-    }
 
-    public void TimOut()
+    public void TimeOut()
     {
-        base.ExitState();
+        ExitState();
         fsm.ChangeState<MainMenuState>();
     }
     private void InitGameState()
@@ -31,12 +25,26 @@ public class IngameState : StateWithView<IngameView>
         GameObject player = view.GetPlayer();
         player.GetComponent<PlayerController>().ResetController();
         player.GetComponent<PlayerCargo>().ResetCargo();
-        player.GetComponent<PlayerHealth>().ResetPlayerHealth();
         
+        var playerHealth = player.GetComponent<PlayerHealth>();
+        playerHealth.ResetPlayerHealth();
 
+        //configure Death Watch
+        var deathWatch = player.GetComponent<DeathWatch>();
+        if(!deathWatch)
+            deathWatch = player.AddComponent<DeathWatch>();
+        
+        deathWatch.PlayerHealth = playerHealth;
+        deathWatch.IngameState = this;
+        
         //reset score
         view.GetScore().Reset();
 
     }
-   
+
+    public void PlayerDied()
+    {
+        ExitState();
+        fsm.ChangeState<GameOverState>();
+    }
 }

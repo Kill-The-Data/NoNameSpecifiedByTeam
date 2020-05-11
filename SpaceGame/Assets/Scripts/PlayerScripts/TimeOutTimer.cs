@@ -10,7 +10,9 @@ public class TimeOutTimer : MonoBehaviour, IObserver
     private Timer _timer;
     public void InitTimer()
     {
-        _timer = gameObject.AddComponent<Timer>();
+        _timer = gameObject.GetComponent<Timer>();
+        if(_timer) ResetTimer();
+        else _timer = gameObject.AddComponent<Timer>();
 
         if (_timer)
         {
@@ -40,7 +42,7 @@ public class TimeOutTimer : MonoBehaviour, IObserver
             {
                 // when the timer exits set the time one last time to 0
                 Debug.Log("return to menu");
-                ingameState.TimOut();
+                ingameState.TimeOut();
             }
         }
     }
