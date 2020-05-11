@@ -27,7 +27,7 @@ public class CamScroll : MonoBehaviour
     [Tooltip("how fast the camera moves to the position it should be at min"), Range(0, 6)] 
     [SerializeField] private float m_camSpeedMin = 0F;
     
-    [Tooltip("how fast the camera moves to the position it should be at max"), Range(0,6)]
+    [Tooltip("how fast the camera moves to the position it should be at max"), Range(0,20)]
     [SerializeField] private float m_camSpeedMax = 1F;
 
     [Tooltip("The Dividend for the Lerp Intervall (aka how fast to go from min to max speed)")]
@@ -54,7 +54,7 @@ public class CamScroll : MonoBehaviour
         if (Mathf.Abs(m_direction.magnitude) > m_border)
         {
             //check where on the curve we roughly are
-            var lerpFactor = Mathf.Min(Mathf.Abs(m_direction.magnitude / m_criticalSection), 1);
+            var lerpFactor = Mathf.Abs(m_direction.magnitude / m_criticalSection);
             //get the value for the cameraSpeed
             var camSpeed = Mathf.Lerp(m_camSpeedMin, m_camSpeedMax,lerpFactor);
             //apply direction vector * speed
