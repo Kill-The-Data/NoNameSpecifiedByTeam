@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4136278386030038823}
   - component: {fileID: 6328869903600349120}
   - component: {fileID: 7667920757098254899}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: barrel
   m_TagString: Debris
   m_Icon: {fileID: 0}
