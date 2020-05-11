@@ -75,4 +75,10 @@ public class PlayerController : MonoBehaviour
     }
 
     #endif
+    public Vector3 Collide(float factor = 0.95f)
+    {
+        var transfer = m_speed * factor;
+        m_speed *= 1 - factor;
+        return transfer;
+    }
 }
