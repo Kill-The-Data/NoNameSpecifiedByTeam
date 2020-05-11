@@ -38,10 +38,14 @@ public class PlayerCargo : MonoBehaviour
     }
 
     //in the beginning update the text manually to avoid displaying "New Text"
-    //and setup the slider ui variables
-    public void Start()
+    //setup the slider ui variables
+    //reset reset space occupied
+    //gets executed on ingame state enter
+    public void ResetCargo() 
     {
         InitSlider();
+
+        SpaceOccupied = 0;
         UpdateView();
     }
 

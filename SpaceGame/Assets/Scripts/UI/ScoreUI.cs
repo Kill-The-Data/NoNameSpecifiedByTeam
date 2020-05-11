@@ -18,8 +18,14 @@ public class ScoreUI : MonoBehaviour
     [SerializeField] private float m_tweenSpeed = 1.0f;
 
 
-    private int m_currentScore = 0;
+    private int m_currentScore = 0 ;
 
+    public int GetScore() => m_currentScore;
+    public void Reset()
+    {
+        m_currentScore = 0;
+        UpdateView();
+    }
     void Update()
     {
         if (Input.GetKeyDown("space")) AddScore(10);

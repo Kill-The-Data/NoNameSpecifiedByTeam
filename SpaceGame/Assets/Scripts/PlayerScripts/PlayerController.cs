@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     [Header(" --- Setup --- ")] 
     [Tooltip("Hide or Show the gizmos")] 
     [SerializeField] private bool m_showGizmos = false;
-    
     [Header(" --- Movement --- ")]
 
     [Tooltip("Modify the Drag (aka how much the Spaceship slows down"),Range(0,1)]
@@ -22,10 +21,14 @@ public class PlayerController : MonoBehaviour
     
     private Vector3 m_speed;
     public const float MIN_EPSILON = 0.0001f;
-    
+    //gets called on state enter to reset player 
+    public void ResetController()
+    {
+        transform.position = new Vector3(0, 0, transform.position.z);
+        m_speed = Vector3.zero;
+    }
     void Update()
     {
-        
         //check if the mouse is held down
         if (Input.GetMouseButton(0))
         {
