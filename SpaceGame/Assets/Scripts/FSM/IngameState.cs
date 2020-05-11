@@ -31,6 +31,8 @@ public class IngameState : StateWithView<IngameView>
         GameObject player = view.GetPlayer();
         player.GetComponent<PlayerController>().ResetController();
         player.GetComponent<PlayerCargo>().ResetCargo();
+        player.GetComponent<PlayerHealth>().ResetPlayerHealth();
+        
 
         //reset score
         view.GetScore().Reset();
