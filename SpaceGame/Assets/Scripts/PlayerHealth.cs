@@ -77,8 +77,8 @@ public class PlayerHealth : MonoBehaviour
     {
         return !IsDead();
     }
-    
-    private void UpdateView()
+
+    public void UpdateView()
     {
         UpdateSlider();
         UpdateText();
