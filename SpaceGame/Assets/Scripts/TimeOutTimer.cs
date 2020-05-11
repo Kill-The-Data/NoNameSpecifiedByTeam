@@ -5,7 +5,7 @@ using UnityEngine;
 public class TimeOutTimer : MonoBehaviour, IObserver
 {
 
-     private const float m_TimeOutDuration = 30.0f;
+     private const float m_TimeOutDuration = 5.0f;
     [SerializeField] private IngameState ingameState = null;
     private Timer _timer;
     public void InitTimer()

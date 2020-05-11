@@ -7,14 +7,11 @@ public class IngameState : StateWithView<IngameView>
     public override void EnterState()
     {
         base.EnterState();
-        //init time out
-        view.GetTimeOutTimer().InitTimer();
+        InitGameState();
     }
     public override void ExitState()
     {
         base.ExitState();
-        ResetScene();
-
     }
 
     public void TimOut()
@@ -22,12 +19,22 @@ public class IngameState : StateWithView<IngameView>
         base.ExitState();
         fsm.ChangeState<MainMenuState>();
     }
-    private void ResetScene()
+    private void InitGameState()
     {
-        //TO DO : RESET SCENE
-        //Reset player
-        //reset debris
-        //reset power ups if implemented?
+        //init time out timer
+        view.GetTimeOutTimer().InitTimer();
+
+        //init ingame timer
+        view.GetTimer().InitTimer();
+
+        //reset cargo & player pos
+        GameObject player = view.GetPlayer();
+        player.GetComponent<PlayerController>().ResetController();
+        player.GetComponent<PlayerCargo>().ResetCargo();
+
         //reset score
+        view.GetScore().Reset();
+
     }
+   
 }
