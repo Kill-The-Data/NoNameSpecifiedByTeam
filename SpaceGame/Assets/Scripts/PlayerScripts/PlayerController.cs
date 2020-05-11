@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     [Header(" --- Setup --- ")] 
     [Tooltip("Hide or Show the gizmos")] 
     [SerializeField] private bool m_showGizmos = false;
-    
     [Header(" --- Movement --- ")]
 
     [Tooltip("Modify the Drag (aka how much the Spaceship slows down"),Range(0,1)]
