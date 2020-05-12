@@ -7,20 +7,19 @@ public class DeathWatch : MonoBehaviour
     private bool m_hasStarted = false;
 
     public PlayerHealth PlayerHealth;
-    public IngameState IngameState;    
+    public State State;    
     
-    // Start is called before the first frame update
     void StartDeathWatch()
     {
         m_hasStarted = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (PlayerHealth && PlayerHealth.IsDead())
+        if (PlayerHealth && PlayerHealth.IsDead() )
         {
-            IngameState.PlayerDied();
+            if(State is IngameState ingameState)  ingameState.PlayerDied();
+            else if(State is TutorialState tutorialState) tutorialState.PlayerDied();
         }
     }
 }

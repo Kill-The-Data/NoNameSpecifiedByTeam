@@ -6,8 +6,8 @@ public class FSM : MonoBehaviour
 {
 
     private Dictionary<Type, State> m_stateMap = new Dictionary<Type, State>();
-    private State m_CurrentState = null;
-    [SerializeField] private State m_StartState = null;
+    protected State m_CurrentState = null;
+    [SerializeField] protected State m_startState = null;
 
     //init fsm on awake
     private void Awake()
@@ -18,11 +18,11 @@ public class FSM : MonoBehaviour
     //set start state 
     void Start()
     {
-        ChangeState(m_StartState.GetType());
+       ChangeState(m_startState.GetType());
     }
 
     //get all states in children
-    private void Init()
+    protected virtual void Init()
     {
         State[] states = GetComponentsInChildren<State>(true);
 
@@ -32,6 +32,7 @@ public class FSM : MonoBehaviour
             currentState.Initialize(this);
         }
     }
+    
     public void ChangeState<T>() where T : State
     {
         //delegate to change state
@@ -39,7 +40,7 @@ public class FSM : MonoBehaviour
     }
 
     //changes state
-    private void ChangeState(Type type)
+    protected void ChangeState(Type type)
     {
         //return if state is active state
         if (m_CurrentState != null && m_CurrentState.GetType() == type) return;
@@ -57,6 +58,4 @@ public class FSM : MonoBehaviour
             m_CurrentState.EnterState();
         }
     }
-
-
 }
