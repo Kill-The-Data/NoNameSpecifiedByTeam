@@ -18,7 +18,7 @@ public class FSM : MonoBehaviour
     //set start state 
     void Start()
     {
-       ChangeState(m_startState.GetType());
+        ChangeState(m_startState.GetType());
     }
 
     //get all states in children
@@ -32,7 +32,7 @@ public class FSM : MonoBehaviour
             currentState.Initialize(this);
         }
     }
-    
+
     public void ChangeState<T>() where T : State
     {
         //delegate to change state
@@ -57,5 +57,9 @@ public class FSM : MonoBehaviour
             m_CurrentState = m_stateMap[type];
             m_CurrentState.EnterState();
         }
+    }
+    public State GetCurrentState()
+    {
+        return m_CurrentState;
     }
 }
