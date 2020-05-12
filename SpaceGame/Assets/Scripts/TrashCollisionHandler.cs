@@ -18,13 +18,13 @@ public class TrashCollisionHandler : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")
+        if ((other.CompareTag("Player-Collector") || other.CompareTag("Player"))
             && other.transform.parent.GetComponent<PlayerCargo>() is PlayerCargo playerCargo
             && other.transform.parent.GetComponent<PlayerHealth>() is PlayerHealth playerHealth
             && other.transform.parent.GetComponent<PlayerController>() is PlayerController playerController
             )
         {
-            if (!playerCargo.SpaceIsFull())
+            if (!playerCargo.SpaceIsFull() && other.CompareTag("Player-Collector"))
             {
                 Destroy(this.gameObject);
                 playerCargo.AddCargo();
@@ -51,7 +51,7 @@ public class TrashCollisionHandler : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.CompareTag("Player-Collector"))
         {
             m_hasDealtDamage = false;
         }

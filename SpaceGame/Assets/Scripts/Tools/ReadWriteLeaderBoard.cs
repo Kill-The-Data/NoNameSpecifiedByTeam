@@ -52,7 +52,7 @@ public static class ReadWriteLeaderBoard
       try
       {
          //open file, if file does not exists an empty dictionary is returned
-         using (StreamReader file = new StreamReader(path))
+         using (StreamReader file = new StreamReader(AndroidUtils.GetFriendlyPath()+path))
          {
             string line;
 
@@ -83,7 +83,7 @@ public static class ReadWriteLeaderBoard
 
    private static void WriteScores(List<(string,int)> scores,string path)
    {
-      using(StreamWriter writer = new StreamWriter(path,false))
+      using(StreamWriter writer = new StreamWriter(AndroidUtils.GetFriendlyPath() + path,false))
       {
          int counter = 0;
          foreach (var (key,value) in scores)
