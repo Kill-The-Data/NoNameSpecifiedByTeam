@@ -10,7 +10,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int m_maxHealth = 100;
     [SerializeField] private TMP_Text m_text = null;
     [SerializeField] private Slider m_slider = null;
-    
+    [SerializeField] private ScreenShake m_shake = null;
+
     [Header(" --- Slider UI setup ---")]
     [Range(0, 1.5f)]
     [SerializeField] private float m_tweenSpeed = 1.0f;
@@ -63,6 +64,8 @@ public class PlayerHealth : MonoBehaviour
     {
        if(amount > 0 && Health > 0) 
            Health = Mathf.Max(Health-amount,0);
+
+        m_shake.TriggerShake();
     }
     
     public void Heal(int amount = 10)
