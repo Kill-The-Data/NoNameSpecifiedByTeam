@@ -14,9 +14,9 @@ public class CamScroll : MonoBehaviour
     [Tooltip("The camera that should be affected by the Scrolling")]
     [SerializeField] private Camera m_camera;
 
-
-  
+    [SerializeField] private ScreenShake m_shake = null;
     
+
     //----------- Gameplay Variables
     [Header(" --- Gameplay ---")]
     
@@ -41,7 +41,6 @@ public class CamScroll : MonoBehaviour
         //check if the camera was reassigned otherwise set it to the main camera
         if(m_camera == null) m_camera = Camera.main;
         if(m_camera == null) Debug.LogError("Scrolling camera does not have associated Camera set");
-        
     }
 
     void Update()
@@ -58,7 +57,12 @@ public class CamScroll : MonoBehaviour
             //get the value for the cameraSpeed
             var camSpeed = Mathf.Lerp(m_camSpeedMin, m_camSpeedMax,lerpFactor);
             //apply direction vector * speed
-            m_camera.transform.position -= m_direction * (camSpeed * Time.deltaTime);
+            m_shake.UpdateShake();
+            
+            m_camera.transform.position  -= m_direction * (camSpeed * Time.deltaTime);
+            Vector3 shakedPos = m_shake.UpdateShake();
+            m_camera.transform.position += shakedPos;
+
         }
     }
     #if (UNITY_EDITOR)

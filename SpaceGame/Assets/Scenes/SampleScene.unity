@@ -2730,7 +2730,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 2.8e-44, z: 2.3788e-41, w: 5.9e-44}
+  m_BoundingSphereOverride: {x: 0, y: 3.556e-41, z: 0, w: 9.403955e-38}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -4100,6 +4100,7 @@ GameObject:
   - component: {fileID: 963194229}
   - component: {fileID: 963194230}
   - component: {fileID: 963194231}
+  - component: {fileID: 963194232}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4367,6 +4368,21 @@ MonoBehaviour:
       data1: 0
       data2: 0
   defaultFrameSettings: 0
+--- !u!114 &963194232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60a361dae5c56dd4c8b249fe22be60a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_shakeDuration: 0.3
+  m_shakeStrength: 1
+  m_shakeDecreaseFactor: 0.5
 --- !u!1 &981784930
 GameObject:
   m_ObjectHideFlags: 0
@@ -5654,6 +5670,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_showGizmos: 1
   m_camera: {fileID: 963194227}
+  m_shake: {fileID: 963194232}
   m_border: 0
   m_camSpeedMin: 1
   m_camSpeedMax: 12.6
@@ -5713,9 +5730,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f146f4a094ff0b42aac9b262b67fceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_maxHealth: 1
+  m_maxHealth: 100
   m_text: {fileID: 625328063}
   m_slider: {fileID: 2513735493096922652}
+  m_shake: {fileID: 963194232}
   m_tweenSpeed: 1
   m_MinSliderValue: 0.1
   m_canDie: 1
