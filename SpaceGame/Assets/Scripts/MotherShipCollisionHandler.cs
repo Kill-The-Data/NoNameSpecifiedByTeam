@@ -6,7 +6,7 @@ public class MotherShipCollisionHandler : MonoBehaviour
 {
     [Header(" --- Setup ---")]
     [SerializeField] private ScoreUI m_scoreUI;
-    
+    [SerializeField] private FSM m_Fsm;
     [Header(" --- Gameplay ---")]
     [Tooltip("How much the player gets for one piece of cargo")]
     [SerializeField] private int m_scorePerCargo = 10;
@@ -21,6 +21,11 @@ public class MotherShipCollisionHandler : MonoBehaviour
             //clear all cargo
             cargo.ClearCargo();
             
+            if(m_Fsm.GetCurrentState() is TutorialState currentState) 
+            {
+                currentState.FinishTutorial();
+            }
+
         }
     }
 }
