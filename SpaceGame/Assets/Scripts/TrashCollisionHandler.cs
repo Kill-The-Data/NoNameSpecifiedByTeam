@@ -2,28 +2,58 @@
 
 public class TrashCollisionHandler : MonoBehaviour
 {
+
+    [SerializeField] private bool m_IsTutorialTrash = false;
     private bool m_destroyed = false;
+
+    private bool m_hasDealtDamage = false;
+
+    private TrashMovementController m_controller;
+
+    public void Start()
+    {
+        m_controller = GetComponent<TrashMovementController>();
+        if (m_controller == null) m_controller = gameObject.AddComponent<TrashMovementController>();
+    }
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && other.transform.parent.GetComponent<PlayerCargo>() is PlayerCargo playerCargo)
+        if ((other.CompareTag("Player-Collector") || other.CompareTag("Player"))
+            && other.transform.parent.GetComponent<PlayerCargo>() is PlayerCargo playerCargo
+            && other.transform.parent.GetComponent<PlayerHealth>() is PlayerHealth playerHealth
+            && other.transform.parent.GetComponent<PlayerController>() is PlayerController playerController
+            )
         {
-            if (!playerCargo.SpaceIsFull()) 
+            if (!playerCargo.SpaceIsFull() && other.CompareTag("Player-Collector"))
             {
+                Destroy(this.gameObject);
+                playerCargo.AddCargo();
 
-               Destroy(this.gameObject);
-               playerCargo.AddCargo();
+                if (m_IsTutorialTrash)
+                {
+                    GetComponent<nextTutorialState>()?.NextState();
+                }
+
+            }
+            else
+            {
+                if (!m_hasDealtDamage)
+                {
+                    playerHealth.TakeDamage();
+                    m_controller.Speed += playerController.Collide();
+                    m_hasDealtDamage = true;
+
+                }
+
             }
         }
+    }
 
-        //deduplication fix for voronoi noise
-        if (other.CompareTag("Debris") && other.GetComponent<TrashCollisionHandler>() is TrashCollisionHandler handler)
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player") || other.CompareTag("Player-Collector"))
         {
-            //make sure we don't collide twice
-            if (handler.m_destroyed) return;
-            m_destroyed = true;
-            
-            Destroy(this.gameObject);
+            m_hasDealtDamage = false;
         }
     }
 }
