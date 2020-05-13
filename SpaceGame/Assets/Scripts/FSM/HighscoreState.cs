@@ -48,7 +48,7 @@ public class HighscoreState : StateWithView<HighscoreView>
 
     public void OnBackToMainMenu()
     {
-        fsm.ChangeState<MainMenuState>();
+        fsm.ChangeState<FeedbackState>();
     }
     
 }
