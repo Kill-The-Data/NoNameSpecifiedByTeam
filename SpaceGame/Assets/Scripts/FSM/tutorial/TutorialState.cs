@@ -33,6 +33,7 @@ public class TutorialState : StateWithView<IngameView>
         GameObject player = view.GetPlayer();
         player.GetComponent<PlayerController>().ResetController();
         player.GetComponent<PlayerCargo>().ResetCargo();
+        view.GetScore().Reset();
 
         var playerHealth = player.GetComponent<PlayerHealth>();
         playerHealth.ResetPlayerHealth();
@@ -56,5 +57,5 @@ public class TutorialState : StateWithView<IngameView>
         ExitState();
         fsm.ChangeState<IngameState>();
     }
-   
+
 }
