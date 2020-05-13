@@ -10,7 +10,7 @@ public static class WriteFeedbackController
     {
         var now = DateTime.Now;
         var time = now.ToString("HH:mm:ss tt zz");
-        var date = now.ToString("dd-mm-yyyy");
+        var date = now.ToString("dd-MM-yyyy");
         string row = $"{date},{time},{score}";
 
         if (!File.Exists(AndroidUtils.GetFriendlyPath()+FILENAME))

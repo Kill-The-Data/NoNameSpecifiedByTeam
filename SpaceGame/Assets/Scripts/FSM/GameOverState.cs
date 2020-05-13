@@ -28,7 +28,7 @@ public class GameOverState : StateWithView<BasicView>
         }
         else
         {
-            fsm.ChangeState<MainMenuState>();
+            fsm.ChangeState<FeedbackState>();
         }
     }
 }
