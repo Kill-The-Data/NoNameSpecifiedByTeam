@@ -6009,9 +6009,9 @@ CanvasRenderer:
   m_CullTransparentMesh: 0
 --- !u!114 &1377035862 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8128718806589998932, guid: 4fe89fa0da5bae14b9a12de691e96b5a,
+  m_CorrespondingSourceObject: {fileID: 8981867854543059439, guid: f01f6369fdf53df4cb72e6432cd7a12d,
     type: 3}
-  m_PrefabInstance: {fileID: 4992358428554647556}
+  m_PrefabInstance: {fileID: 8981867853772365753}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -8052,75 +8052,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1001 &4992358428554647556
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8128718806589998934, guid: 4fe89fa0da5bae14b9a12de691e96b5a,
-        type: 3}
-      propertyPath: m_Name
-      value: StartView Tutorial
-      objectReference: {fileID: 0}
-    - target: {fileID: 8128718806589998935, guid: 4fe89fa0da5bae14b9a12de691e96b5a,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.68
-      objectReference: {fileID: 0}
-    - target: {fileID: 8128718806589998935, guid: 4fe89fa0da5bae14b9a12de691e96b5a,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8128718806589998935, guid: 4fe89fa0da5bae14b9a12de691e96b5a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8128718806589998935, guid: 4fe89fa0da5bae14b9a12de691e96b5a,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8128718806589998935, guid: 4fe89fa0da5bae14b9a12de691e96b5a,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8128718806589998935, guid: 4fe89fa0da5bae14b9a12de691e96b5a,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8128718806589998935, guid: 4fe89fa0da5bae14b9a12de691e96b5a,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8128718806589998935, guid: 4fe89fa0da5bae14b9a12de691e96b5a,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 8128718806589998935, guid: 4fe89fa0da5bae14b9a12de691e96b5a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8128718806589998935, guid: 4fe89fa0da5bae14b9a12de691e96b5a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8128718806589998935, guid: 4fe89fa0da5bae14b9a12de691e96b5a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4fe89fa0da5bae14b9a12de691e96b5a, type: 3}
 --- !u!1 &5360681573473878737
 GameObject:
   m_ObjectHideFlags: 0
@@ -9062,3 +8993,72 @@ RectTransform:
   m_AnchoredPosition: {x: -1.7900391, y: -1.3699951}
   m_SizeDelta: {x: -8.512543, y: -2.7399406}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &8981867853772365753
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8981867854025385936, guid: f01f6369fdf53df4cb72e6432cd7a12d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 8981867854025385936, guid: f01f6369fdf53df4cb72e6432cd7a12d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8981867854025385936, guid: f01f6369fdf53df4cb72e6432cd7a12d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8981867854025385936, guid: f01f6369fdf53df4cb72e6432cd7a12d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8981867854025385936, guid: f01f6369fdf53df4cb72e6432cd7a12d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8981867854025385936, guid: f01f6369fdf53df4cb72e6432cd7a12d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8981867854025385936, guid: f01f6369fdf53df4cb72e6432cd7a12d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8981867854025385936, guid: f01f6369fdf53df4cb72e6432cd7a12d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8981867854025385936, guid: f01f6369fdf53df4cb72e6432cd7a12d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8981867854025385936, guid: f01f6369fdf53df4cb72e6432cd7a12d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8981867854025385936, guid: f01f6369fdf53df4cb72e6432cd7a12d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8981867854025385937, guid: f01f6369fdf53df4cb72e6432cd7a12d,
+        type: 3}
+      propertyPath: m_Name
+      value: StartView Tutorial
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f01f6369fdf53df4cb72e6432cd7a12d, type: 3}
