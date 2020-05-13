@@ -11,4 +11,12 @@ public class MainMenuState : StateWithView<BasicView>
         if (m_SkipTutorial) fsm.ChangeState<IngameState>();
         else if (!m_SkipTutorial) fsm.ChangeState<TutorialState>();
     }
+
+    public void EnterHighScoreState()
+    {
+        PlayerPrefs.SetInt("skip_feedback_state",1);
+        fsm.ChangeState<HighscoreState>();
+    }
+    
+    
 }
