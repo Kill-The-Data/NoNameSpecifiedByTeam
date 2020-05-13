@@ -43,7 +43,7 @@ public class IngameState : StateWithView<IngameView>
         timer.Attach(deathWatch);
 
         //reset score
-        view.GetScore().Reset();
+       // view.GetScore().Reset();
 
     }
 
