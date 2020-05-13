@@ -17,7 +17,7 @@ public class IngameState : StateWithView<IngameView>
     private void InitGameState()
     {
         //init time out timer
-        view.GetTimeOutTimer().InitTimer();
+        view.GetTimeOutTimer().InitTimer(this);
 
         //init ingame timer
         view.GetTimer().InitTimer();

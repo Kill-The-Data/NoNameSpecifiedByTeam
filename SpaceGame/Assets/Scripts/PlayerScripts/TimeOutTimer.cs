@@ -5,13 +5,14 @@ using UnityEngine;
 public class TimeOutTimer : MonoBehaviour, IObserver
 {
 
-     private const float m_TimeOutDuration = 30.0f;
-    [SerializeField] private IngameState ingameState = null;
+    private const float m_TimeOutDuration = 30.0f;
+    private State m_ingameState = null;
     private Timer _timer;
-    public void InitTimer()
+    public void InitTimer(State currentState)
     {
+        m_ingameState = currentState;
         _timer = gameObject.GetComponent<Timer>();
-        if(_timer) ResetTimer();
+        if (_timer) ResetTimer();
         else _timer = gameObject.AddComponent<Timer>();
 
         if (_timer)
@@ -41,8 +42,8 @@ public class TimeOutTimer : MonoBehaviour, IObserver
             if (timer.GetState() == Timer.TimerState.OUT_OF_TIME)
             {
                 // when the timer exits set the time one last time to 0
-                Debug.Log("return to menu");
-                ingameState.TimeOut();
+                if (m_ingameState is IngameState state) state.TimeOut();
+                else if (m_ingameState is TutorialState otherState) otherState.TimeOut();
             }
         }
     }

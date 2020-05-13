@@ -23,7 +23,7 @@ public class TutorialState : StateWithView<IngameView>
     private void InitGameState()
     {
         //init time out timer
-        view.GetTimeOutTimer().InitTimer();
+        view.GetTimeOutTimer().InitTimer(this);
 
         InitPlayer();
     }
@@ -55,6 +55,6 @@ public class TutorialState : StateWithView<IngameView>
         m_TutorialFSMView.DisableView();
         ExitState();
         fsm.ChangeState<IngameState>();
-
     }
+   
 }
