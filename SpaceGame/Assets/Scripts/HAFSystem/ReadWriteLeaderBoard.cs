@@ -4,7 +4,13 @@ using System.Linq;
 
 public static class ReadWriteLeaderBoard
 {
+   
+   //the entry is seperated by a Pipe,
+   //usually no one has a pipe symbol in their name
    private const char SEP = '|';
+   
+   //we only keep 10 entries, after that we discard
+   //all scores
    private const int KEEP = 10;
    
    public static List<(string, int)> ReadScores(string path)
@@ -31,7 +37,6 @@ public static class ReadWriteLeaderBoard
 
    private static bool ScoreQualifies(int score,List<(string, int)> scores)
    {
-      
       //as long as there is space on the leaderboard, you will always make it onto the list
       if (scores.Count < 10) return true;
       
@@ -41,6 +46,7 @@ public static class ReadWriteLeaderBoard
    }
    private static List<(string,int)> SortScores(List<(string,int)> scores)
    {
+      //sort the scores by descending value of score
       return scores.OrderByDescending(x => x.Item2).ToList();
    }
    
@@ -51,14 +57,18 @@ public static class ReadWriteLeaderBoard
 
       try
       {
-         //open file, if file does not exists an empty dictionary is returned
+         //open file, if file does not exist we catch a FileNotFound and simply return an 
+         //empty list
          using (StreamReader file = new StreamReader(AndroidUtils.GetFriendlyPath()+path))
          {
             string line;
-
+            int counter = 0;
+            
             //read scores
             while ((line = file.ReadLine()) != null)
             {
+               //drop reading any more scores after we already reached KEEP amount
+               if (counter++ > KEEP) break;
                //separate line by separator
                var tokens = line.Split(SEP);
                if (tokens.Length != 2) continue;
@@ -68,16 +78,17 @@ public static class ReadWriteLeaderBoard
 
                //get score
                if (!int.TryParse(tokens[1], out int score)) continue;
-
+               
                //add to score
                scores.Add((name, score));
             }
          }
-      }catch (FileNotFoundException ex)
+      } catch (FileNotFoundException ex)
       {
+         //return a new List, and give it a capacity 
+         //of one, playing on the fact that you are probably going to insert a new score 
          return new List<(string,int)>(1);
       }
-
       return scores;
    }
 
@@ -88,9 +99,11 @@ public static class ReadWriteLeaderBoard
          int counter = 0;
          foreach (var (key,value) in scores)
          {
-            counter++;
-            if (counter > 10) break;
-            writer.WriteLine($"{key}{SEP}{value}");
+            //if the score-board already has KEEP entires, drop any others
+            if (counter++ > KEEP) break;
+            
+            //write the name (minus and SEPs we find in there) then a SEP then the value
+            writer.WriteLine($"{key.Replace(SEP, ' ')}{SEP}{value}");
          }
       }
    }

@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class FeedbackState : StateWithView<FeedbackView>
+﻿public class FeedbackState : StateWithView<FeedbackView>
 {
     public override void EnterState()
     {

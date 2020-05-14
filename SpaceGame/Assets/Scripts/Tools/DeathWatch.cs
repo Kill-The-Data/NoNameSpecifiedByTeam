@@ -1,19 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DeathWatch : MonoBehaviour, IObserver
 {
-    private bool m_hasStarted = false;
-
+    [Tooltip("Reference to the Player Health System")]
     public PlayerHealth PlayerHealth;
+    
+    [Tooltip("Reference to the currently active State")]
     public State State;
-    public Timer timer;
-
-    void StartDeathWatch()
-    {
-        m_hasStarted = true;
-    }
 
     void Update()
     {
@@ -22,20 +15,19 @@ public class DeathWatch : MonoBehaviour, IObserver
             GameOver();
         }
     }
+
+    //gets notified by timer
+    public void GetUpdate(ISubject subject)
+    {
+        if (subject is Timer t && t.GetState() == Timer.TimerState.OUT_OF_TIME)
+        {
+            GameOver();
+        }
+    }
+    
     private void GameOver()
     {
         if (State is IngameState ingameState) ingameState.PlayerDied();
         else if (State is TutorialState tutorialState) tutorialState.PlayerDied();
-    }
-    //gets notified by timer
-    public void GetUpdate(ISubject subject)
-    {
-        if (subject is Timer timer)
-        {
-            if (timer.GetState() == Timer.TimerState.OUT_OF_TIME) 
-            {
-                GameOver();
-            }
-        }
     }
 }
