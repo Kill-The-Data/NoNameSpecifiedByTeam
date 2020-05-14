@@ -2,7 +2,7 @@
 
 public class EnterNameState : StateWithView<EnterNameView>
 {
-    public void onNameEnteredComplete()
+    public void OnNameEnteredComplete()
     {
         int score = PlayerPrefs.GetInt("score");
         string name = view.GetText();

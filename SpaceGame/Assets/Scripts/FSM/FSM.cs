@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using System;
 public class FSM : MonoBehaviour
@@ -12,7 +11,6 @@ public class FSM : MonoBehaviour
     //init fsm on awake
     private void Awake()
     {
-        Debug.Log("init FSM");
         Init();
     }
     //set start state 

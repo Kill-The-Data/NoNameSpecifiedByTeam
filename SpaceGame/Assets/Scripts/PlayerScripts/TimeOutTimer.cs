@@ -32,7 +32,7 @@ public class TimeOutTimer : MonoBehaviour, IObserver
     }
     private void ResetTimer()
     {
-        _timer.StartTimer(m_TimeOutDuration);
+        _timer?.StartTimer(m_TimeOutDuration);
     }
     public void GetUpdate(ISubject subject)
     {
