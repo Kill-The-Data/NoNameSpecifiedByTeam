@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class AbstractTutorialState : StateWithView<AbstractView>
+﻿public class AbstractTutorialState : StateWithView<AbstractView>
 {
     //reference to tutorial state machine to avoid continius type casting
     protected TutorialFSM m_tFSM;

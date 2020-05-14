@@ -29,6 +29,7 @@ public class TimerView : MonoBehaviour, IObserver
    
     public void InitTimer() 
     {
+        gameObject.SetActive(true);
         if (!_timer) 
         {
             _timer = gameObject.AddComponent<Timer>();

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 public class TutorialFSM : FSM
 {
-    [SerializeField] private State m_ParentState = null;
-    // [SerializeField] private BasicTutorialState m_StartState = null;
     private Dictionary<string, State> m_stateMap = new Dictionary<string, State>();
     //loads start state
     public void InitTutorial()
@@ -47,12 +42,6 @@ public class TutorialFSM : FSM
             m_CurrentState = m_stateMap[name];
             m_CurrentState.EnterState();
         }
-    }
-    public void FinishTutorial() 
-    {
-        Debug.Log("leaving state");
-        gameObject.SetActive(false);
-        m_ParentState.ExitState();
     }
 
 }

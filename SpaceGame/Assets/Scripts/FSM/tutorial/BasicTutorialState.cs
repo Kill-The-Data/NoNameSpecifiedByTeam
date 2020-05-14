@@ -1,8 +1,4 @@
-﻿using Microsoft.Win32;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BasicTutorialState : AbstractTutorialState
 {
@@ -10,14 +6,8 @@ public class BasicTutorialState : AbstractTutorialState
     //public get & private set for state name
     public string StateName
     {
-        get
-        {
-            return m_StateName;
-        }
-        private set
-        {
-            m_StateName = value;
-        }
+        get => m_StateName;
+        private set => m_StateName = value;
     }
     //next state to be loaded
     [SerializeField] private BasicTutorialState m_NextState = null;
@@ -30,10 +20,6 @@ public class BasicTutorialState : AbstractTutorialState
         {
             m_tFSM.ChangeState(m_NextState.StateName);
         }
-    }
-    public void FinishTutorial() 
-    {
-        m_tFSM.FinishTutorial();
     }
     public override void EnterState()
     {

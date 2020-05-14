@@ -41,7 +41,7 @@ public class ScoreUI : MonoBehaviour
         tempObj.GetComponent<TMP_Text>().SetText($"+{scoreAmount}");
 
         //move score up
-        LeanTweenExt.LeanMoveLocalY(tempObj, m_SpawnPos.y + m_Yoffset, m_tweenSpeed).setEase(LeanTweenType.linear);
+        tempObj.LeanMoveLocalY(m_SpawnPos.y + m_Yoffset, m_tweenSpeed).setEase(LeanTweenType.linear);
         
         //fade score out
         LeanTween.value(tempObj, 1, 0, m_tweenSpeed).setOnUpdate((float val) =>

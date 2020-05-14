@@ -6,10 +6,9 @@ public class Timer : MonoBehaviour, ISubject
     public enum TimerState
     {
         ACTIVE,
-        OUT_OF_TIME,
-        NOT_ACTIVE,
+        OUT_OF_TIME
     }
-    private TimerState _state = TimerState.NOT_ACTIVE;
+    private TimerState _state = TimerState.OUT_OF_TIME;
     private List<IObserver> _Observers = new List<IObserver>();
     private float _TimeLeft = 0;
 
@@ -22,16 +21,12 @@ public class Timer : MonoBehaviour, ISubject
             if (_TimeLeft <= 0)
             {
                 _state = TimerState.OUT_OF_TIME;
-                Notify();
             }
-            else
-            {
-                Notify();
-            }
+            Notify();
         }
     }
-    public TimerState GetState() { return _state; }
-    public float GetTime() { return _TimeLeft; }
+    public TimerState GetState() => _state;
+    public float GetTime() => _TimeLeft;
 
     public void StartTimer(float newDuration)
     {

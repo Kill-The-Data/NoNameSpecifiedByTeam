@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TutorialState : StateWithView<IngameView>
 {
@@ -24,7 +22,7 @@ public class TutorialState : StateWithView<IngameView>
     {
         //init time out timer
         view.GetTimeOutTimer().InitTimer(this);
-
+        view.GetTimer().gameObject.SetActive(false);
         InitPlayer();
     }
     private void InitPlayer()
@@ -54,7 +52,6 @@ public class TutorialState : StateWithView<IngameView>
     public void FinishTutorial()
     {
         m_TutorialFSMView.DisableView();
-        ExitState();
         fsm.ChangeState<IngameState>();
     }
 
