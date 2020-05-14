@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 public class CustomMouse : MonoBehaviour
 {
     public Texture2D CursorTexture;

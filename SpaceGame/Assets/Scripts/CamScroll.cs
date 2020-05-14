@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SocialPlatforms;
+﻿using UnityEngine;
 
 public class CamScroll : MonoBehaviour
 {
@@ -14,6 +11,7 @@ public class CamScroll : MonoBehaviour
     [Tooltip("The camera that should be affected by the Scrolling")]
     [SerializeField] private Camera m_camera;
 
+    [Tooltip("The ScreenShake Controller")]
     [SerializeField] private ScreenShake m_shake = null;
     
 
@@ -23,14 +21,13 @@ public class CamScroll : MonoBehaviour
     [Tooltip("The offset to the sides of the view-frustum from which to start scrolling"),Range(0,2)]
     [SerializeField] private float m_border = 0.5F;
 
-
     [Tooltip("how fast the camera moves to the position it should be at min"), Range(0, 6)] 
     [SerializeField] private float m_camSpeedMin = 0F;
     
     [Tooltip("how fast the camera moves to the position it should be at max"), Range(0,20)]
     [SerializeField] private float m_camSpeedMax = 1F;
 
-    [Tooltip("The Dividend for the Lerp Intervall (aka how fast to go from min to max speed)")]
+    [Tooltip("The Dividend for the Lerp Interval (aka how fast to go from min to max speed)")]
     [SerializeField] private float m_criticalSection = 10F;
     
     //----------- Unexposed Variables
@@ -58,15 +55,21 @@ public class CamScroll : MonoBehaviour
             var camSpeed = Mathf.Lerp(m_camSpeedMin, m_camSpeedMax,lerpFactor);
             //apply direction vector * speed
             m_shake.UpdateShake();
-            
-            m_camera.transform.position  -= m_direction * (camSpeed * Time.deltaTime);
-            Vector3 shakedPos = m_shake.UpdateShake();
-            m_camera.transform.position += shakedPos;
 
+            //get
+            var position = m_camera.transform.position;
+            
+            //apply the camera-follow movement
+            position  -= m_direction * (camSpeed * Time.deltaTime);
+            
+            //apply camera shake (if any)
+            position += m_shake.UpdateShake();
+            
+            //commit
+            m_camera.transform.position = position;
         }
     }
     #if (UNITY_EDITOR)
-
     void OnDrawGizmosSelected()
     {
         //check if we should display the gizmos
