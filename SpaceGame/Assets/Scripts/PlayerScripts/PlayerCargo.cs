@@ -14,7 +14,7 @@ public class PlayerCargo : MonoBehaviour
     [Range(0, 1.5f)]
     [SerializeField] private float m_tweenSpeed = 1.0f;
     [Tooltip("The slider should never reach 0, only close to 0 so that it does not disappear")]
-    [Range(0.01f,0.2f)]
+    [Range(0.01f, 0.2f)]
     [SerializeField] private float m_MinSliderValue = 0.1f;
 
     [Header(" --- Cargo ---")]
@@ -40,12 +40,11 @@ public class PlayerCargo : MonoBehaviour
     //setup the slider ui variables
     //reset reset space occupied
     //gets executed on ingame state enter
-    public void ResetCargo() 
+    public void ResetCargo()
     {
         InitSlider();
 
         SpaceOccupied = 0;
-        UpdateView();
     }
 
     //Initialize the Slider
@@ -56,8 +55,8 @@ public class PlayerCargo : MonoBehaviour
         m_lerp = m_slider.gameObject.AddComponent<LerpSlider>();
         m_lerp.Init(m_slider, m_tweenSpeed, m_MinSliderValue);
     }
-    
- 
+
+
 
     //check if space is full and otherwise add n element to the inventory
     public void AddCargo(int amount = 1)
@@ -68,11 +67,16 @@ public class PlayerCargo : MonoBehaviour
         }
     }
 
+    public void SetFill(int amount)
+    {
+        SpaceOccupied = amount;
+    }
     //remove all cargo from the player
     public void ClearCargo()
     {
         SpaceOccupied = 0;
     }
+
 
     //check if you can insert n elements into the player inventory
     public bool SpaceAvailable(int space_to_fill = 1)
@@ -85,14 +89,14 @@ public class PlayerCargo : MonoBehaviour
     {
         return SpaceOccupied >= m_cargoLimit;
     }
-    
+
     //update the text & the slider to reflect the status of the inventory
     private void UpdateView()
     {
         UpdateSlider();
         UpdateText();
     }
-    private void UpdateSlider() 
+    private void UpdateSlider()
     {
         m_lerp.UpdateSlider(SpaceOccupied);
     }
