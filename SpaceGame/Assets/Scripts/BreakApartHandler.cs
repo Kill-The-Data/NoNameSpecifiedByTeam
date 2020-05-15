@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections;
-using Tools;
+﻿using Tools;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Diagnostics;
 using Random = UnityEngine.Random;
 
 public class BreakApartHandler : MonoBehaviour
