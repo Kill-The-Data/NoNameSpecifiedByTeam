@@ -112,7 +112,7 @@ public class VornoiDebrisGen : MonoBehaviour
             Vector3 pos = new Vector3(vec.x * Offset + origin.x, vec.y * Offset + origin.y, ZCoord);
 
             bool stopgen = false;
-            
+            if(MaximumDebrisCount.AddDebris()) continue;
             //check all exclusion zones
             foreach (var zone in m_zones)
             {
