@@ -21,7 +21,7 @@ public class DeathWatch : MonoBehaviour, IObserver
     {
         if (subject is Timer t && t.GetState() == Timer.TimerState.OUT_OF_TIME)
         {
-            GameOver();
+            PlayerHealth?.Kill();
         }
     }
     

@@ -79,6 +79,11 @@ public class PlayerHealth : MonoBehaviour
         return Health == 0 && m_canDie;
     }
 
+    public void Kill()
+    {
+        Health = 0;
+    }
+    
     public bool IsAlive()
     {
         return !IsDead();

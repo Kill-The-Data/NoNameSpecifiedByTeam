@@ -40,17 +40,15 @@ public class ScreenShake : MonoBehaviour
         {
             m_originalPos = m_CamTransform.position;
             float c = m_currentShakeDuration / m_shakeDuration;
-            Vector3 Offset = Random.insideUnitSphere * m_shakeStrength * c;
+            Vector3 Offset = Random.insideUnitSphere * (m_shakeStrength * c);
             Offset.z = m_originalPos.z;
 
             m_currentShakeDuration -= Time.deltaTime * m_shakeDecreaseFactor;
 
             return Offset;
         }
-        else
-        {
-            m_currentShakeDuration = 0;
-            return Vector3.zero;
-        }
+
+        m_currentShakeDuration = 0;
+        return Vector3.zero;
     }
 }
