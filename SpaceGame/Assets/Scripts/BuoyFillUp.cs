@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoyFillUp : MonoBehaviour
+public class BuoyFillUp : MonoBehaviour
 {
 
     [Header(" --- Boy values setup ---")]
@@ -51,5 +51,10 @@ public class BoyFillUp : MonoBehaviour
         m_Lerper.UpdateSlider(fillUp + 0.05f);
         return remainingCargo;
 
+    }
+
+    public bool Full()
+    {
+        return m_currentFillUp >= m_MaxFillUp;
     }
 }
