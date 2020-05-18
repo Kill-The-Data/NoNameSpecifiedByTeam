@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class SoundListener : MonoBehaviour , IObserver
+public class SoundListener : AUnityObserver
 {
     [SerializeField] private string m_sound;
 
@@ -13,10 +11,11 @@ public class SoundListener : MonoBehaviour , IObserver
     {
         m_clip = SoundManager.Instance.GetSound(m_sound);
         m_source = gameObject.AddComponent<AudioSource>();
+        m_source.playOnAwake = false;
         m_source.clip = m_clip;
     }
-    
-    public void GetUpdate(ISubject subject)
+
+    protected override void AGetUpdate(ISubject subject)
     {
         m_source.Play();
     }

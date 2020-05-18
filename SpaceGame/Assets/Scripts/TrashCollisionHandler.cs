@@ -122,9 +122,9 @@ public class TrashCollisionHandler : MonoBehaviour , ISubject
     private void HandleOtherTrash(Collider other)
     {
         if (other.CompareTag("Debris")
-            && other.GetComponentSafe<TrashMovementController>(out var trashController)
-            && other.GetComponentSafe<TrashCollisionHandler>(out var otherHandler)
-            && other.GetComponentSafe<BreakApartHandler>(out var breakApartHandler)
+            && other.GetComponentSafe(out TrashMovementController trashController)
+            && other.GetComponentSafe(out TrashCollisionHandler otherHandler)
+            && other.GetComponentSafe(out BreakApartHandler breakApartHandler)
             && otherHandler.enabled)
         {
             if(!otherHandler.HasTheSolution())
@@ -136,7 +136,7 @@ public class TrashCollisionHandler : MonoBehaviour , ISubject
                 trashController.Speed = speed;
 
                 breakApartHandler.MaybeBreak();
-                if (this.GetComponentSafe<BreakApartHandler>(out var selfBreakApartHandler))
+                if (this.GetComponentSafe(out BreakApartHandler selfBreakApartHandler))
                 {
                     selfBreakApartHandler.MaybeBreak();
                 }

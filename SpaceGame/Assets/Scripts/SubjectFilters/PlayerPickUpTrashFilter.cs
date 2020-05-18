@@ -14,7 +14,7 @@ namespace SubjectFilters
             }
         }
 
-        private Action<ISubject> m_observers;
+        private Action<ISubject> m_observers = delegate(ISubject s) {  };
         
         public void Notify()
         {
