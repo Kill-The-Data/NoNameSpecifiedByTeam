@@ -2,19 +2,20 @@
 
 public class MotherShipCollisionHandler : MonoBehaviour
 {
-    [Header(" --- Setup ---")]
-    private ScoreUI m_scoreUI;
-    private FSM m_Fsm;
+
+
     [Header(" --- Gameplay ---")]
     [Tooltip("How much the player gets for one piece of cargo")]
     [SerializeField] private int m_scorePerCargo = 10;
 
-    private BoyFillUp m_FillUp = null;
+    private ScoreUI m_scoreUI;
+    private FSM m_Fsm;
+    private BuoyFillUp m_FillUp = null;
 
     void Start()
     {
         FindTaggedObjects();
-        m_FillUp = GetComponent<BoyFillUp>();
+        m_FillUp = GetComponent<BuoyFillUp>();
     }
 
     //trys to find the object by its tag, please do not reuse the Tag, tag should be unique for this
@@ -37,7 +38,10 @@ public class MotherShipCollisionHandler : MonoBehaviour
 
             int leftOverCargo = m_FillUp.DropOff(cargoAmount);
 
-            int scoreGain = ((cargoAmount - leftOverCargo) * m_scorePerCargo);
+            
+            //TODO(anyone): Fix these hacks with an observer pattern or something please
+            
+           int scoreGain = ((cargoAmount - leftOverCargo) * m_scorePerCargo);
             if (scoreGain != 0) m_scoreUI.AddScore(scoreGain);
             cargo.SetFill(leftOverCargo);
 
