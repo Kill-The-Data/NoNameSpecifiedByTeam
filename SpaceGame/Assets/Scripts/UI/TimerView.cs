@@ -1,18 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
 
-public interface IObserver
-{
-     void GetUpdate(ISubject subject);
-
-}
-public interface ISubject
-{
-     void Notify();
-     void Attach(IObserver observer);
-}
-
-
 public class TimerView : MonoBehaviour, IObserver
 {
 

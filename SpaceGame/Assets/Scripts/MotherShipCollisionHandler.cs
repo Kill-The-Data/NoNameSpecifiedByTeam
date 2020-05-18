@@ -40,8 +40,7 @@ public class MotherShipCollisionHandler : MonoBehaviour
 
             
             //TODO(anyone): Fix these hacks with an observer pattern or something please
-            
-           int scoreGain = ((cargoAmount - leftOverCargo) * m_scorePerCargo);
+            int scoreGain = ((cargoAmount - leftOverCargo) * m_scorePerCargo);
             if (scoreGain != 0) m_scoreUI.AddScore(scoreGain);
             cargo.SetFill(leftOverCargo);
 

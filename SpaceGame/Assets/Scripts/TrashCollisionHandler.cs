@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using SubjectFilters;
+using UnityEngine;
 
-public class TrashCollisionHandler : MonoBehaviour
+public class TrashCollisionHandler : MonoBehaviour , ISubject
 {
 
     [SerializeField] private bool m_IsTutorialTrash = false;
@@ -9,9 +11,17 @@ public class TrashCollisionHandler : MonoBehaviour
     private bool m_hasDealtDamage = false;
 
     private TrashMovementController m_controller;
-
+    public PlayerTakeDamageFilter playerTakeDamageFilter { get; private set; }
+    public PlayerPickUpTrashFilter playerPickUpTrashFilter { get; private set; }
+    
     public void Awake()
     {
+        playerTakeDamageFilter = new PlayerTakeDamageFilter();
+        Attach(playerTakeDamageFilter);
+        
+        playerPickUpTrashFilter = new PlayerPickUpTrashFilter();
+        Attach(playerPickUpTrashFilter);
+        
         m_controller = GetComponent<TrashMovementController>();
         if (m_controller == null) m_controller = gameObject.AddComponent<TrashMovementController>();
     }
@@ -60,6 +70,8 @@ public class TrashCollisionHandler : MonoBehaviour
         //add some to the cargo
         playerCargo.AddCargo();
         
+        Notify(NotifyEvent.OnPlayerPickupTrash);
+        
         //TODO(kukash): I don't quite know how, but I am sure this can be improved
         //TODO(cont.):  probably some ObserverPattern on the PlayerCargo with Notify()
         //TODO(cont.):  on AddCargo() (and probably ClearCargo() as well)
@@ -80,7 +92,7 @@ public class TrashCollisionHandler : MonoBehaviour
             //do some speed-transfer with the barrel.
             m_controller.Speed += playerController.Collide();
             m_hasDealtDamage = true;
-
+            Notify(NotifyEvent.OnPlayerTakeDamage);
         }
     }
 
@@ -131,4 +143,23 @@ public class TrashCollisionHandler : MonoBehaviour
             }
         }
     }
+
+    public enum NotifyEvent { OnPlayerTakeDamage,OnPlayerPickupTrash}
+    public NotifyEvent State { get; private set; }
+    private Action<ISubject> m_listeners = delegate {  };
+    public void Notify()
+    {
+        m_listeners(this);
+    }
+    public void Notify(NotifyEvent evnt)
+    {
+        State = evnt;
+        Notify();
+    }
+    public void Attach(IObserver observer)
+    {
+        m_listeners += observer.GetUpdate;
+    }
 }
+
+

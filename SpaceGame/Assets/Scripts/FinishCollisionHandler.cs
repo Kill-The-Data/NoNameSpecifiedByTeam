@@ -15,7 +15,6 @@ public class FinishCollisionHandler : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-
             FinishGame();
         }
     }
