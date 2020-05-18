@@ -14,4 +14,11 @@ public class IngameView : AbstractView
 
     [SerializeField] private ScoreUI m_Score = null;
     public ScoreUI GetScore() => m_Score;
+    private PerformanceMeasure m_Performance = null;
+    public PerformanceMeasure GetPerformance() => m_Performance;
+
+    void Awake()
+    {
+        m_Performance = GetComponent<PerformanceMeasure>();
+    }
 }
