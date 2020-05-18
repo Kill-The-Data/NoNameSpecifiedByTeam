@@ -42,4 +42,9 @@ public class IngameState : StateWithView<IngameView>
     {
         fsm.ChangeState<GameOverState>();
     }
+    public void GameFinished()
+    {
+        //TO DO: ACTUALLY DO SOMETHING / CHANGE STATE
+        Debug.Log("Finished game");
+    }
 }
