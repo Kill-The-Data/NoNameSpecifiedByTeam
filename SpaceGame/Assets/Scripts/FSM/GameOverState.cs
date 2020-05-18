@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GameOverState : StateWithView<BasicView>
 {
+    
     public int Timeout = 5;
     
     public override void EnterState()

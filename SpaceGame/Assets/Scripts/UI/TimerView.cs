@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 
 public interface IObserver
@@ -29,6 +27,7 @@ public class TimerView : MonoBehaviour, IObserver
    
     public void InitTimer() 
     {
+        gameObject.SetActive(true);
         if (!_timer) 
         {
             _timer = gameObject.AddComponent<Timer>();

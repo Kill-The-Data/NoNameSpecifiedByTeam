@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class UIAlignmentTool : EditorWindow
 {
     private float axis;
 
+    //lots of nice icons
     [SerializeField] private Texture2D AlignLeftIcon;
     [SerializeField] private Texture2D AlignVCIcon;
     [SerializeField] private Texture2D AlignRightIcon;
@@ -22,6 +24,9 @@ public class UIAlignmentTool : EditorWindow
         GetWindow<UIAlignmentTool>().Show();
     }
 
+    //the items we use are sadly black in background, 
+    //which clashes with pro skin quite badly, to fix 
+    //this we simply change the color of the texture
     private void ColorTextureWhite(Texture2D tex)
     {
         List<Color> newPixels = new List<Color>();
@@ -36,17 +41,23 @@ public class UIAlignmentTool : EditorWindow
 
     private void OnEnable()
     {
-        ColorTextureWhite(AlignLeftIcon);
-        ColorTextureWhite(AlignVCIcon);
-        ColorTextureWhite(AlignRightIcon);
-        ColorTextureWhite(AlignTopIcon);
-        ColorTextureWhite(AlignHCIcon);
-        ColorTextureWhite(AlignBottomIcon);
+        //recolor the buttons only for the pro-skin, otherwise you have light-
+        //grey on white which isn't great either
+        if(EditorGUIUtility.isProSkin)
+        {
+            ColorTextureWhite(AlignLeftIcon);
+            ColorTextureWhite(AlignVCIcon);
+            ColorTextureWhite(AlignRightIcon);
+            ColorTextureWhite(AlignTopIcon);
+            ColorTextureWhite(AlignHCIcon);
+            ColorTextureWhite(AlignBottomIcon);
+        }
+        //we want out window to be quite a bit smaller than what unity allows on default
+        minSize = new Vector2(10,10);
     }
-
+    
     private void OnGUI()
     {
-        minSize = new Vector2(10,10);
         if (GUILayout.Button(AlignLeftIcon))
         {
             SelectLeftAxis();
@@ -81,15 +92,22 @@ public class UIAlignmentTool : EditorWindow
         }
     }
 
+    //these are mostly the same so only
+    //one of them is documented
     private void SelectLeftAxis()
     {
         bool first = true;
+        
+        //get all selected transforms
         foreach (var tf in Selection.transforms)
         {
             if (first){
+                //make sure the axis is not just 0
                 axis = tf.position.x;
                 first = false;
             }
+            
+            //get the left-most(min) value and set it as the axis
             axis = Mathf.Min(axis, tf.position.x);
         }
     }
@@ -132,46 +150,46 @@ public class UIAlignmentTool : EditorWindow
             axis = Mathf.Min(axis, tf.position.y);
         }
     }
+    
+    //same as above but for centering
     private void SelectCenterVAxis()
     {
-        int count = 0;
+        //reset the axis
         axis = 0;
-        foreach (var tf in Selection.transforms)
-        {
-            axis += tf.position.x;
-            count++;
-        }
-
-        axis /= count;
+        //get the center position 
+        float[] xposes = Selection.transforms.Select(tf => tf.position.x).ToArray();
+        axis = MathExtra.GetMedian(xposes);
     }
 
     private void SelectCenterHAxis()
     {
-        int count = 0;
         axis = 0;
-        foreach (var tf in Selection.transforms)
-        {
-            axis += tf.position.y;
-            count++;
-        }
-
-        axis /= count;
+        
+        float[] xposes = Selection.transforms.Select(tf => tf.position.y).ToArray();
+        axis = MathExtra.GetMedian(xposes);
     }
     
+    //align the selection on the vertical axis
     private void AlignSelectionVerticalOnAxis()
     {
+        //iterate through all selected items
         foreach (var tf in Selection.transforms)
         {
+            //change position.x and record the change so that CTRL+Z works
             var tfPosition = tf.position;
             Undo.RecordObject(tf, "Align On Axis");
             tfPosition.x = axis;
             tf.position = tfPosition;
         }
     }
+    
+    //align the selection the horizontal axis
     private void AlignSelectionHorizontalOnAxis()
     {
+        //iterate through all selected items
         foreach (var tf in Selection.transforms)
         {
+            //change position.y and record the change so that CTRL+Z works
             var tfPosition = tf.position;
             Undo.RecordObject(tf, "Align On Axis");
             tfPosition.y = axis;

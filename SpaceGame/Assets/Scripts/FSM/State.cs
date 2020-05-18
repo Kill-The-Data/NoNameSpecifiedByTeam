@@ -1,14 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class State : MonoBehaviour
 {
     protected FSM fsm { get; private set; }
 
-    public virtual void Initialize(FSM pFsm)
+    public virtual void Initialize(FSM newFsm)
     {
-        fsm = pFsm;
+        fsm = newFsm;
         gameObject.SetActive(false);
     }
     public virtual void EnterState()
