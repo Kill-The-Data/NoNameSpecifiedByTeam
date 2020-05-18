@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using csDelaunay;
+using Tools;
 using Random = UnityEngine.Random;
 
 public class VornoiDebrisGen : MonoBehaviour
@@ -159,9 +160,12 @@ public class VornoiDebrisGen : MonoBehaviour
             Quaternion rotation = Quaternion.Euler(0, 0, randomFloat);
             
             //instantiate trash
-            GameObject trash = Instantiate(prefabs[randomIndex], pos, rotation);
-            trash.transform.parent = this.transform;
             
+            GameObject trash = Instantiate(prefabs[randomIndex], pos, rotation);
+            if (this.GetComponentSafe<NotifyAddChildren>(out var nac))
+            {
+                nac.AddChild(trash);
+            }
             m_debrisZones.Add(new ExclusionZone{Target=trash.transform,Radius = m_exclusionZoneRadiusForNewDebris});
         }
     }
