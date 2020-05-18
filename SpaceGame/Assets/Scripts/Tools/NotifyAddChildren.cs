@@ -16,7 +16,7 @@ namespace Tools
             return go;
         }
         
-        private Action<ISubject> m_observers;
+        private Action<ISubject> m_observers = delegate(ISubject subject) {  };
         protected override void ANotify()
         {
             m_observers(this);

@@ -28,7 +28,11 @@ public class BreakApartHandler : MonoBehaviour
                 for (int i = 0; i < Amount; ++i)
                 {
                     if(!MaximumDebrisCount.AddDebris()) continue;
-                    var instance = Instantiate(this.gameObject, transform.parent);
+                    var instance = Instantiate(this.gameObject);
+                    if (transform.parent.GetComponentSafe(out NotifyAddChildren nac))
+                    {
+                        nac.AddChild(instance);
+                    }
 
                     float scaleDivisor = 1.0f / Amount;
 
@@ -42,10 +46,10 @@ public class BreakApartHandler : MonoBehaviour
                     float angle = Mathf.Lerp(-phiHalf, phiHalf, divisor * i);
                     var interp = RotateVectorXYPlane(angle * Mathf.Deg2Rad, n).normalized;
 
-                    if (instance.GetComponentSafe<TrashMovementController>(out var innerController))
+                    if (instance.GetComponentSafe(out TrashMovementController innerController))
                     {
                         innerController.Speed = interp.normalized * controller.Speed.magnitude;
-                        if (instance.GetComponentSafe<TrashCollisionHandler>(out var tc_handler))
+                        if (instance.GetComponentSafe(out TrashCollisionHandler tc_handler))
                         {
                             tc_handler.enabled = false;
                             innerController.StartCoroutine(CoHelper.WaitAndDo(4, () =>
@@ -80,7 +84,7 @@ public class BreakApartHandler : MonoBehaviour
     {
         var n = Vector3.left;
 
-        if (this.GetComponentSafe<TrashMovementController>(out var controller))
+        if (this.GetComponentSafe(out TrashMovementController controller))
         {
             n = -controller.Speed.normalized;
         }

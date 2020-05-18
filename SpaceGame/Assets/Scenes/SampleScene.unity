@@ -1252,7 +1252,6 @@ GameObject:
   - component: {fileID: 419504162}
   - component: {fileID: 419504161}
   - component: {fileID: 419504160}
-  - component: {fileID: 419504159}
   m_Layer: 5
   m_Name: Daily
   m_TagString: Untagged
@@ -1280,18 +1279,6 @@ RectTransform:
   m_AnchoredPosition: {x: 80, y: -15}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &419504159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 419504157}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcbf1377d99910c46a8bc6764dcfc434, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &419504160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4341,7 +4328,6 @@ GameObject:
   - component: {fileID: 994809234}
   - component: {fileID: 994809233}
   - component: {fileID: 994809232}
-  - component: {fileID: 994809231}
   m_Layer: 5
   m_Name: Alltime
   m_TagString: Untagged
@@ -4369,18 +4355,6 @@ RectTransform:
   m_AnchoredPosition: {x: 240, y: -15}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &994809231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 994809229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcbf1377d99910c46a8bc6764dcfc434, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &994809232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4819,6 +4793,7 @@ GameObject:
   - component: {fileID: 1160042671}
   - component: {fileID: 1160042673}
   - component: {fileID: 1160042672}
+  - component: {fileID: 1160042674}
   m_Layer: 0
   m_Name: Debris
   m_TagString: Untagged
@@ -4910,6 +4885,18 @@ MonoBehaviour:
   TextInfo: Lloyed Relaxation evens out the random distribution, the higher the factor
     the more even the distribution.
   spaceMessage: 
+--- !u!114 &1160042674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160042669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db8fdc558c1c4df7a8951cd900cf32f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1165822510 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1302053399125086013, guid: c2d5dbd1ea1878744b4bc4ae6bfb5ae8,
@@ -5693,6 +5680,8 @@ GameObject:
   - component: {fileID: 1306308149}
   - component: {fileID: 1306308148}
   - component: {fileID: 1306308150}
+  - component: {fileID: 1306308153}
+  - component: {fileID: 1306308152}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -5730,9 +5719,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_showGizmos: 1
-  Drag: 0.995
-  Acceleration: 10
-  RotationSpeed: 4
+  m_drag: 0.995
+  m_acceleration: 10
+  m_rotationSpeed: 4
+  m_bankingFactor: 1
+  m_spaceShipModel: {fileID: 1991044475}
 --- !u!114 &1306308146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5838,6 +5829,33 @@ MonoBehaviour:
   m_MinSliderValue: 0.1
   m_canDie: 0
   HealthImpl: 100
+--- !u!114 &1306308152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306308143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9240434cca6a4f443a82d58eb62725dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_target: {fileID: 1306308153}
+  m_debrisField: {fileID: 1160042669}
+--- !u!114 &1306308153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306308143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0adc69152b31264186d83223216552f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_sound: collision
 --- !u!4 &1311317965 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 378412494481786441, guid: c2d5dbd1ea1878744b4bc4ae6bfb5ae8,
@@ -6731,6 +6749,7 @@ GameObject:
   - component: {fileID: 1660827287}
   - component: {fileID: 1660827286}
   - component: {fileID: 1660827288}
+  - component: {fileID: 1660827289}
   m_Layer: 0
   m_Name: Global Setup
   m_TagString: Untagged
@@ -6779,6 +6798,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_maxDebrisImpl: 2046
+--- !u!114 &1660827289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660827285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87f6827dc94fa1a47aa6488e1992aac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_entries:
+  - Name: collision
+    Sound: {fileID: 8300000, guid: fba11d8f840889945a52906d4983866a, type: 3}
 --- !u!1 &1666036294
 GameObject:
   m_ObjectHideFlags: 0
@@ -8058,7 +8092,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2136812632}
   - component: {fileID: 2136812634}
-  - component: {fileID: 2136812633}
   m_Layer: 5
   m_Name: TabArea
   m_TagString: Untagged
@@ -8087,18 +8120,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -30}
   m_SizeDelta: {x: -60, y: 30}
   m_Pivot: {x: 0.5, y: 1}
---- !u!114 &2136812633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2136812631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c887d885fae1d24b8c653cb8103367c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2136812634
 MonoBehaviour:
   m_ObjectHideFlags: 0
