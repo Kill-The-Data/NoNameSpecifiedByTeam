@@ -36,7 +36,11 @@ public class TimerView : MonoBehaviour, IObserver
             //start the timer with the provided duration
         }
         _timer.StartTimer(m_duration);
+    }
 
+    public void AttachPerformanceMeasure(PerformanceMeasure performance)
+    {
+        _timer.Attach(performance);
     }
     public void GetUpdate(ISubject subject)
     {
