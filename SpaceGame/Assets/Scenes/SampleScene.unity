@@ -423,12 +423,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61ded89b226f35548acb3b9845520ef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_logPerformance: 0
+  m_currentDifficulty: 2
+  m_difficultyUpdateTimeStamp: 15
+  m_difficultyIncreaseThreshold: 0.5
+  m_difficultyDecreaseThreshold: 1.5
   m_timeLeft: 0
   m_timePassed: 0
   m_healthLeft: 0
-  m_healthLost: 0
+  m_damageTaken: 0
+  m_damageOverTimer: 0
+  m_dmgOverIntervall: 0
+  m_TimeWithoutDamage: 0
   m_score: 0
+  m_DmgTakenSinceLastUpdate: 0
 --- !u!1 &212621752
 GameObject:
   m_ObjectHideFlags: 0
@@ -9603,22 +9610,22 @@ PrefabInstance:
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 7e-45
+      value: 1.01e-43
       objectReference: {fileID: 0}
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 1.9905e-41
+      value: 4.8423092e+30
       objectReference: {fileID: 0}
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 5.9e-44
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0
+      value: 1.2179e-41
       objectReference: {fileID: 0}
     - target: {fileID: 8485707075902487550, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
