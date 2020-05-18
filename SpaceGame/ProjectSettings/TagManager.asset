@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Debris
   - Player-Collector
+  - FSM
+  - ScoreUI
   layers:
   - Default
   - TransparentFX

@@ -3,8 +3,8 @@
 public class MotherShipCollisionHandler : MonoBehaviour
 {
     [Header(" --- Setup ---")]
-    [SerializeField] private ScoreUI m_scoreUI;
-    [SerializeField] private FSM m_Fsm;
+    private ScoreUI m_scoreUI;
+    private FSM m_Fsm;
     [Header(" --- Gameplay ---")]
     [Tooltip("How much the player gets for one piece of cargo")]
     [SerializeField] private int m_scorePerCargo = 10;
@@ -13,12 +13,23 @@ public class MotherShipCollisionHandler : MonoBehaviour
 
     void Start()
     {
+        FindTaggedObjects();
         m_FillUp = GetComponent<BoyFillUp>();
+    }
+
+    //trys to find the object by its tag, please do not reuse the Tag, tag should be unique for this
+    private void FindTaggedObjects()
+    {
+        if (!m_scoreUI)
+            m_scoreUI = GameObject.FindWithTag("ScoreUI").GetComponent<ScoreUI>();
+        if (!m_Fsm)
+            m_Fsm = GameObject.FindWithTag("FSM").GetComponent<FSM>();
+
     }
     public void OnTriggerEnter(Collider other)
     {
         //check if the Trigger Participant is the Player and if he has a PlayerCargo Component 
-        if (other.CompareTag("Player") 
+        if (other.CompareTag("Player")
             && other.transform.parent.GetComponentSafe<PlayerCargo>(out var cargo))
         {
             //add score to the 
