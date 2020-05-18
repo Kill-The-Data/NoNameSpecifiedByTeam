@@ -1,15 +1,16 @@
-﻿using UnityEngine;
+﻿using Boo.Lang;
+using UnityEngine;
 using TMPro;
 
 public interface IObserver
 {
-     void GetUpdate(ISubject subject);
+    void GetUpdate(ISubject subject);
 
 }
 public interface ISubject
 {
-     void Notify();
-     void Attach(IObserver observer);
+    void Notify();
+    void Attach(IObserver observer);
 }
 
 
@@ -22,13 +23,13 @@ public class TimerView : MonoBehaviour, IObserver
 
     [Tooltip("How long the timer should tick for")]
     [SerializeField] private float m_duration = 30F;
-    
+
     private Timer _timer;
-   
-    public void InitTimer() 
+    private List<IObserver> m_Observers;
+    public void InitTimer()
     {
         gameObject.SetActive(true);
-        if (!_timer) 
+        if (!_timer)
         {
             _timer = gameObject.AddComponent<Timer>();
             //attach self to the newly created timer
@@ -36,7 +37,11 @@ public class TimerView : MonoBehaviour, IObserver
             //start the timer with the provided duration
         }
         _timer.StartTimer(m_duration);
+    }
 
+    public void AttachPerformanceMeasure(PerformanceMeasure performance)
+    {
+        _timer.Attach(performance);
     }
     public void GetUpdate(ISubject subject)
     {
@@ -44,12 +49,12 @@ public class TimerView : MonoBehaviour, IObserver
         if (subject is Timer timer)
         {
             //check if the timer is still active
-            if (timer.GetState() == Timer.TimerState.ACTIVE) 
+            if (timer.GetState() == Timer.TimerState.ACTIVE)
             {
                 // update the text
                 UpdateText(timer.GetTime());
             }
-            else if (timer.GetState() == Timer.TimerState.OUT_OF_TIME) 
+            else if (timer.GetState() == Timer.TimerState.OUT_OF_TIME)
             {
                 // when the timer exits set the time one last time to 0
                 UpdateText(0);
