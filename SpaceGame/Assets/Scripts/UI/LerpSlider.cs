@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class LerpSlider : MonoBehaviour
+public class LerpSlider : MonoBehaviour, IObserver
 {
     //target fill up
     private Slider m_slider = null;
@@ -60,13 +60,7 @@ public class LerpSlider : MonoBehaviour
         //fill up target if target value not reached
         if (m_IsRadialFillUp && m_targetFillUpRadial != null)
         {
-
-            //if (m_targetFillUpRadial.GetFloat("FILL") != m_targetSliderValue)
-            //{
-
-//            Debug.Log("filling up :" + m_targetSliderValue);
-                m_targetFillUpRadial.SetFloat("FILL", Lerp(m_targetFillUpRadial.GetFloat("FILL")));
-            //}
+            m_targetFillUpRadial.SetFloat("FILL", Lerp(m_targetFillUpRadial.GetFloat("FILL")));
         }
         else if (m_slider)
         {
@@ -74,6 +68,14 @@ public class LerpSlider : MonoBehaviour
                 m_slider.value = Lerp(m_slider.value);
         }
 
+    }
+
+    public void GetUpdate(ISubject subject)
+    {
+        if (subject is PlayerHealth health)
+        {
+            UpdateSlider(health.Health);
+        }
     }
 }
 

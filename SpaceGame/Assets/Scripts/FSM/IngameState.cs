@@ -14,12 +14,15 @@ public class IngameState : StateWithView<IngameView>
     }
     private void InitGameState()
     {
+        PerformanceMeasure playerPerformance = view.GetPerformance();
+
         //init time out timer
         view.GetTimeOutTimer().InitTimer(this);
 
         //init ingame timer
         TimerView timerView = view.GetTimer();
         timerView.InitTimer();
+        timerView.AttachPerformanceMeasure(playerPerformance);
 
         //reset cargo & player pos
         GameObject player = view.GetPlayer();
@@ -28,6 +31,8 @@ public class IngameState : StateWithView<IngameView>
 
         var playerHealth = player.GetComponent<PlayerHealth>();
         playerHealth.ResetPlayerHealth();
+        //attach performance measure
+        playerHealth.Attach(playerPerformance);
 
         //configure Death Watch
         var deathWatch = player.GetComponent<DeathWatch>();
@@ -44,7 +49,6 @@ public class IngameState : StateWithView<IngameView>
     }
     public void GameFinished()
     {
-        //TO DO: ACTUALLY DO SOMETHING / CHANGE STATE
-        Debug.Log("Finished game");
+        fsm.ChangeState<GameOverState>();
     }
 }
