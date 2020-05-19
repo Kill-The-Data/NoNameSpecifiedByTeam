@@ -7576,6 +7576,20 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 928069279}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1991044476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991044474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b857451f17b2b247a64d85c49b81af8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_parentObject: {fileID: 1306308143}
+  _timerView: {fileID: 5630395463428238593}
 --- !u!1 &1999517044
 GameObject:
   m_ObjectHideFlags: 0
@@ -9791,12 +9805,12 @@ PrefabInstance:
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 1.01e-43
+      value: 5.594e-42
       objectReference: {fileID: 0}
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 4.8423092e+30
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
@@ -9806,7 +9820,7 @@ PrefabInstance:
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 1.2179e-41
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8485707075902487550, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
