@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 2648545070457064396}
   - component: {fileID: 2648545070457064397}
   - component: {fileID: 2648545070457064385}
+  - component: {fileID: 4970535951845634372}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: BaseItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,13 +108,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd0b8bb462630e4bb9cf954fcacd24f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2648545071207613112
+--- !u!114 &4970535951845634372
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6332176128436585423}
+  m_GameObject: {fileID: 2648545070457064394}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2de99a0390b893848bae2cd3f7cc2de7, type: 3}
@@ -219,12 +220,6 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: dc447e2856aafd144830ded706b57c66, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11644b2b542456147928f304b20584a2, type: 3}
---- !u!1 &6332176128436585423 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 11644b2b542456147928f304b20584a2,
-    type: 3}
-  m_PrefabInstance: {fileID: 2648545071940803270}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7042276848171823580 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 11644b2b542456147928f304b20584a2,

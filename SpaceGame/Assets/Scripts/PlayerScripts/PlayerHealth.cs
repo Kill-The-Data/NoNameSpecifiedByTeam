@@ -80,7 +80,7 @@ public class PlayerHealth : MonoBehaviour, ISubject
     public void Heal(int amount = 10)
     {
         if (amount > 0 && Health < m_maxHealth)
-            Health = Mathf.Max(Health + amount, m_maxHealth);
+            Health = Mathf.Clamp(Health + amount, 0, m_maxHealth);
     }
 
     public bool IsDead()
