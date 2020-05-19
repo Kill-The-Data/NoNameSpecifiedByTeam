@@ -4,48 +4,51 @@ public class IngameState : StateWithView<IngameView>
 {
     public override void EnterState()
     {
-        Debug.Log("entering ingame state");
         base.EnterState();
         InitGameState();
     }
 
     public void TimeOut()
     {
-        ExitState();
         fsm.ChangeState<MainMenuState>();
     }
     private void InitGameState()
     {
+        PerformanceMeasure playerPerformance = view.GetPerformance();
+
         //init time out timer
-        view.GetTimeOutTimer().InitTimer();
+        view.GetTimeOutTimer().InitTimer(this);
 
         //init ingame timer
-        view.GetTimer().InitTimer();
+        TimerView timerView = view.GetTimer();
+        timerView.InitTimer();
+        timerView.AttachPerformanceMeasure(playerPerformance);
 
         //reset cargo & player pos
         GameObject player = view.GetPlayer();
-       // player.GetComponent<PlayerController>().ResetController();
+        // player.GetComponent<PlayerController>().ResetController();
         player.GetComponent<PlayerCargo>().ResetCargo();
-        
+
         var playerHealth = player.GetComponent<PlayerHealth>();
         playerHealth.ResetPlayerHealth();
+        //attach performance measure
+        playerHealth.Attach(playerPerformance);
 
         //configure Death Watch
         var deathWatch = player.GetComponent<DeathWatch>();
-        if(!deathWatch)
+        if (!deathWatch)
             deathWatch = player.AddComponent<DeathWatch>();
-        
+
         deathWatch.PlayerHealth = playerHealth;
         deathWatch.State = this;
-        
-        //reset score
-        view.GetScore().Reset();
-
+        timerView.gameObject.GetComponent<Timer>()?.Attach(deathWatch);
     }
-
     public void PlayerDied()
     {
-        ExitState();
+        fsm.ChangeState<GameOverState>();
+    }
+    public void GameFinished()
+    {
         fsm.ChangeState<GameOverState>();
     }
 }

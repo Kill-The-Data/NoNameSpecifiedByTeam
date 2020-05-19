@@ -24,5 +24,4 @@ public class HailOSKEditor : Editor
         }
     }
 }
-
 #endif

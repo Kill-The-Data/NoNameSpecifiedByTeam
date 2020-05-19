@@ -1,25 +1,33 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class DeathWatch : MonoBehaviour
+public class DeathWatch : MonoBehaviour, IObserver
 {
-    private bool m_hasStarted = false;
-
+    [Tooltip("Reference to the Player Health System")]
     public PlayerHealth PlayerHealth;
-    public State State;    
     
-    void StartDeathWatch()
-    {
-        m_hasStarted = true;
-    }
+    [Tooltip("Reference to the currently active State")]
+    public State State;
 
     void Update()
     {
-        if (PlayerHealth && PlayerHealth.IsDead() )
+        if (PlayerHealth && PlayerHealth.IsDead())
         {
-            if(State is IngameState ingameState)  ingameState.PlayerDied();
-            else if(State is TutorialState tutorialState) tutorialState.PlayerDied();
+            GameOver();
         }
+    }
+
+    //gets notified by timer
+    public void GetUpdate(ISubject subject)
+    {
+        if (subject is Timer t && t.GetState() == Timer.TimerState.OUT_OF_TIME)
+        {
+            PlayerHealth?.Kill();
+        }
+    }
+    
+    private void GameOver()
+    {
+        if (State is IngameState ingameState) ingameState.PlayerDied();
+        else if (State is TutorialState tutorialState) tutorialState.PlayerDied();
     }
 }

@@ -48,7 +48,13 @@ public class HighscoreState : StateWithView<HighscoreView>
 
     public void OnBackToMainMenu()
     {
-        fsm.ChangeState<MainMenuState>();
+        if (PlayerPrefs.GetInt("skip_feedback_state", 0) == 1)
+        {
+            PlayerPrefs.SetInt("skip_feedback_state", 0);
+            fsm.ChangeState<MainMenuState>();
+            return;
+        }
+        fsm.ChangeState<FeedbackState>();
     }
     
 }

@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class StateWithView<T> : State where T : AbstractView
 {
     [SerializeField] private T m_View = null;
-    protected T view { get { return m_View; } }
+    protected T view => m_View;
+
     public override void EnterState()
     {
         base.EnterState();
@@ -17,9 +16,9 @@ public abstract class StateWithView<T> : State where T : AbstractView
         view?.DisableView();
     }
 
-    public override void Initialize(FSM pFsm)
+    public override void Initialize(FSM newFSM)
     {
-        base.Initialize(pFsm);
+        base.Initialize(newFSM);
         view?.DisableView();
     }
 }

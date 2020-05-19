@@ -1,6 +1,4 @@
-﻿using System.Collections;
-
-namespace csDelaunay {
+﻿namespace csDelaunay {
 	public class Circle {
 
 		public Vector2f center;

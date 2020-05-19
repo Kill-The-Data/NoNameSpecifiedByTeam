@@ -1,12 +1,13 @@
-﻿using TMPro;
+﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : MonoBehaviour, ISubject
 {
 
-    [Header(" --- Setup --- ")] 
-    [Tooltip("The Maximum health of the player")] 
+    [Header(" --- Setup --- ")]
+    [Tooltip("The Maximum health of the player")]
     [SerializeField] private int m_maxHealth = 100;
     [SerializeField] private TMP_Text m_text = null;
     [SerializeField] private Slider m_slider = null;
@@ -16,19 +17,21 @@ public class PlayerHealth : MonoBehaviour
     [Range(0, 1.5f)]
     [SerializeField] private float m_tweenSpeed = 1.0f;
     [Tooltip("The slider should never reach 0, only close to 0 so that it does not disappear")]
-    [Range(0.01f,0.2f)]
+    [Range(0.01f, 0.2f)]
     [SerializeField] private float m_MinSliderValue = 0.1f;
 
-    [Tooltip("Whether or not the Player can die currently")] 
+    [Tooltip("Whether or not the Player can die currently")]
     [SerializeField] private bool m_canDie = true;
 
 
-    [Header(" --- Gameplay --- ")] 
+    [Header(" --- Gameplay --- ")]
     [LabelOverride("Current Health")]
     [Tooltip("The current health of the player (also the starting health)")]
     [SerializeField] private int HealthImpl = 100;
-    
-    public int Health {
+
+    private ShieldState m_shieldState = null;
+    public int Health
+    {
         get => HealthImpl;
         private set
         {
@@ -36,47 +39,69 @@ public class PlayerHealth : MonoBehaviour
             UpdateView();
         }
     }
+    public int GetMaxHealth() => m_maxHealth;
+    private List<IObserver> observers;
 
-    private LerpSlider m_lerp = null;
-
-    
     //in the beginning update the text manually to avoid displaying "New Text"
     //and setup the slider ui variables
-
+    private void Awake()
+    {
+        ResetPlayerHealth();
+    }
 
     public void ResetPlayerHealth()
     {
+        if (!m_shieldState) m_shieldState = GetComponent<ShieldState>();
+        m_shieldState?.Init();
+        observers = new List<IObserver>();
+
         Health = m_maxHealth;
         InitSlider();
         UpdateView();
     }
 
+   
     //Initialize the Slider
     private void InitSlider()
     {
         m_slider.maxValue = m_maxHealth;
         m_slider.minValue = 0;
-        m_lerp = m_slider.gameObject.AddComponent<LerpSlider>();
-        m_lerp.Init(m_slider, m_tweenSpeed, m_MinSliderValue);
+
+        LerpSlider lerper = m_slider.gameObject.AddComponent<LerpSlider>();
+        lerper.Init(m_slider, m_tweenSpeed, m_MinSliderValue);
+        Attach(lerper);
     }
-    
+
     public void TakeDamage(int amount = 10)
     {
-       if(amount > 0 && Health > 0) 
-           Health = Mathf.Max(Health-amount,0);
+        //only take dmg if no shield active
+        if (m_shieldState.IsActive)
+        {
+            m_shieldState.DeactivateShield();
+        }
+        else
+        {
+            Health = Mathf.Max(Health - amount, 0);
+        }
+
 
         m_shake.TriggerShake();
     }
-    
+
     public void Heal(int amount = 10)
     {
         if (amount > 0 && Health < m_maxHealth)
-            Health = Mathf.Max(Health + amount, m_maxHealth);
+            Health = Mathf.Clamp(Health + amount, 0, m_maxHealth);
     }
 
     public bool IsDead()
     {
         return Health == 0 && m_canDie;
+    }
+
+    public void Kill()
+    {
+        Health = 0;
     }
 
     public bool IsAlive()
@@ -86,15 +111,25 @@ public class PlayerHealth : MonoBehaviour
 
     public void UpdateView()
     {
-        UpdateSlider();
+        Notify();
         UpdateText();
     }
-    private void UpdateSlider()
-    {
-        if (m_lerp != null) m_lerp.UpdateSlider(Health);
-    }
+
     private void UpdateText()
     {
         m_text.SetText(Health != 0 ? $"{Health} / {m_maxHealth}" : "");
+    }
+
+    public void Notify()
+    {
+        foreach (IObserver observer in observers)
+        {
+            observer.GetUpdate(this);
+        }
+    }
+
+    public void Attach(IObserver observer)
+    {
+        observers?.Add(observer);
     }
 }

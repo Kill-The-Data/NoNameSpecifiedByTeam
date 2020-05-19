@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GameOverState : StateWithView<BasicView>
 {
+    
     public int Timeout = 5;
     
     public override void EnterState()
@@ -28,7 +29,7 @@ public class GameOverState : StateWithView<BasicView>
         }
         else
         {
-            fsm.ChangeState<MainMenuState>();
+            fsm.ChangeState<FeedbackState>();
         }
     }
 }

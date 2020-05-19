@@ -2,6 +2,10 @@
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
+
+// overrides the default text that would be generated out
+// of your variable name by some nicer text you can set 
+// yourself.
 public class LabelOverride : PropertyAttribute
 {
     public string label;

@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-namespace csDelaunay {
+﻿namespace csDelaunay {
 
 	// Also know as heap
 	public class HalfedgePriorityQueue {
