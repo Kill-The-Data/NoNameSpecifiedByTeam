@@ -10,7 +10,6 @@ public class CenterRotation : MonoBehaviour
     {
         Vector2 vec2 = Random.insideUnitCircle;
         m_randomRot = new Vector3(vec2.x, 1,vec2.y);
-        Debug.Log(m_randomRot);
     }
 
     // Update is called once per frame
