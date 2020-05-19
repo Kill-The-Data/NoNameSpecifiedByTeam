@@ -29,6 +29,7 @@ public class PlayerHealth : MonoBehaviour, ISubject
     [Tooltip("The current health of the player (also the starting health)")]
     [SerializeField] private int HealthImpl = 100;
 
+    private ShieldState m_shieldState = null;
     public int Health
     {
         get => HealthImpl;
@@ -50,6 +51,8 @@ public class PlayerHealth : MonoBehaviour, ISubject
 
     public void ResetPlayerHealth()
     {
+        if (!m_shieldState) m_shieldState = GetComponent<ShieldState>();
+        m_shieldState?.Init();
         observers = new List<IObserver>();
 
         Health = m_maxHealth;
@@ -71,8 +74,16 @@ public class PlayerHealth : MonoBehaviour, ISubject
 
     public void TakeDamage(int amount = 10)
     {
-        if (amount > 0 && Health > 0)
+        //only take dmg if no shield active
+        if (m_shieldState.IsActive)
+        {
+            m_shieldState.DeactivateShield();
+        }
+        else
+        {
             Health = Mathf.Max(Health - amount, 0);
+        }
+
 
         m_shake.TriggerShake();
     }
