@@ -5751,6 +5751,7 @@ GameObject:
   - component: {fileID: 1306308150}
   - component: {fileID: 1306308153}
   - component: {fileID: 1306308152}
+  - component: {fileID: 1306308154}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -5925,6 +5926,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_sound: collision
+--- !u!114 &1306308154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306308143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 371b808424c713b4c880883d430aca6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_showGizmos: 1
+  m_collectionCreators:
+  - {fileID: 1160042674}
+  m_baseZoom: 10
+  m_cameraSettings:
+  - BarrelThreshold: 6
+    ZoomLevel: 5
+  m_radius: 20
+  m_camera: {fileID: 963194227}
 --- !u!4 &1311317965 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 378412494481786441, guid: c2d5dbd1ea1878744b4bc4ae6bfb5ae8,
@@ -6866,7 +6888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206399a3ede03584a92d4622f0204eff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_maxDebrisImpl: 2046
+  m_maxDebrisImpl: 512
 --- !u!114 &1660827289
 MonoBehaviour:
   m_ObjectHideFlags: 0

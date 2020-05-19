@@ -41,7 +41,9 @@ public class ScreenShake : MonoBehaviour
             m_originalPos = m_CamTransform.position;
             float c = m_currentShakeDuration / m_shakeDuration;
             Vector3 Offset = Random.insideUnitSphere * (m_shakeStrength * c);
-            Offset.z = m_originalPos.z;
+            
+            //set z offset to 0
+            Offset.z = 0.0f;
 
             m_currentShakeDuration -= Time.deltaTime * m_shakeDecreaseFactor;
 
