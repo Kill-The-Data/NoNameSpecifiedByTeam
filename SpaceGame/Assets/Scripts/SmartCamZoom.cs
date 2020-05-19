@@ -138,7 +138,6 @@ public class SmartCamZoom : AUnityObserver
     {
         var cpos = m_camera.transform.position;
         cpos.z = Mathf.Lerp(cpos.z, -m_currentSetting, Time.deltaTime);
-        Debug.Log(cpos.z);
         m_camera.transform.position = cpos;
     }
 #if (UNITY_EDITOR)
