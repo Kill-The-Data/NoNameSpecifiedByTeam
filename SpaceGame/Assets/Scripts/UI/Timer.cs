@@ -29,7 +29,6 @@ public class Timer : MonoBehaviour, ISubject
     public float GetStartTime() => m_StartTime;
     public TimerState GetState() => m_state;
     public float GetTime() => m_TimeLeft;
-
     public void StartTimer(float newDuration)
     {
         m_StartTime = newDuration;
@@ -37,6 +36,12 @@ public class Timer : MonoBehaviour, ISubject
         m_state = TimerState.ACTIVE;
     }
 
+    public void IncreaseTimeLeft(float timeGained)
+    {
+        m_TimeLeft += timeGained;
+        Notify();
+        // TO DO: text pop up to visualize increase in time
+    }
     public void Notify()
     {
         foreach (IObserver observer in m_Observers)

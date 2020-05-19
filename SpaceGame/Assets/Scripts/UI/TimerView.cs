@@ -12,24 +12,28 @@ public class TimerView : MonoBehaviour, IObserver
     [Tooltip("How long the timer should tick for")]
     [SerializeField] private float m_duration = 30F;
 
-    private Timer _timer;
+    public Timer timer
+    {
+        get;
+        private set;
+    } = null;
     private List<IObserver> m_Observers;
     public void InitTimer()
     {
         gameObject.SetActive(true);
-        if (!_timer)
+        if (!timer)
         {
-            _timer = gameObject.AddComponent<Timer>();
+            timer = gameObject.AddComponent<Timer>();
             //attach self to the newly created timer
-            _timer.Attach(this);
+            timer.Attach(this);
             //start the timer with the provided duration
         }
-        _timer.StartTimer(m_duration);
+        timer.StartTimer(m_duration);
     }
 
     public void AttachPerformanceMeasure(PerformanceMeasure performance)
     {
-        _timer.Attach(performance);
+        timer.Attach(performance);
     }
     public void GetUpdate(ISubject subject)
     {
