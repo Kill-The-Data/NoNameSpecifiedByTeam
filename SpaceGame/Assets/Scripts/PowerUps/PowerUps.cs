@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class PowerUp : MonoBehaviour
 {
-    public virtual void ExecutePowerUp(PlayerScriptContainer pHandler)
+    public abstract void ExecutePowerUp(PlayerScriptContainer pHandler)
     {
     }
 }
