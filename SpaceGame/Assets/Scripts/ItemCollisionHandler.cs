@@ -5,10 +5,20 @@ using UnityEngine;
 
 public class ItemCollisionHandler : MonoBehaviour
 {
+
+    private PowerUp pUp = null;
+
+    private void Awake()
+    {
+        pUp = GetComponent<PowerUp>();
+    }
     public void OnTriggerEnter(Collider other)
     {
-        if (other.tag == ("Player")) 
+        if (other.tag == ("Player"))
         {
+            PlayerScriptContainer pHandler = other.GetComponent<PlayerScriptContainer>();
+            if(pHandler)
+                pUp?.ExecutePowerUp(pHandler);
         //TO DO: DO STUFF
         Destroy(transform.gameObject);
         }
