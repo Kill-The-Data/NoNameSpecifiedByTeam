@@ -58,19 +58,21 @@ public class PlayerController : MonoBehaviour
 
             //WOOP WOOP, BankAngle PullUP!
             float bankAngle = Mathf.Acos(Vector3.Dot(m_speed.normalized, dir.normalized));
+            
+            //add sign to bank-angle
             if (Vector3.Dot(Vector3.forward,Vector3.Cross(m_speed, dir))< 0)
             {
                 bankAngle = -bankAngle;
             }
             
-            
+            //lazy initialize rotation
             if (m_spaceShipModelInitialRotation == Quaternion.identity)
             {
                 m_spaceShipModelInitialRotation = m_spaceShipModel.localRotation;
             }
 
+            //set bank
             var bank = Quaternion.AngleAxis(bankAngle * m_bankingFactor, Vector3.forward);
-
             m_spaceShipModel.localRotation =
                 m_spaceShipModelInitialRotation * (bank.IsNaN() ? Quaternion.identity : bank);
                                       
