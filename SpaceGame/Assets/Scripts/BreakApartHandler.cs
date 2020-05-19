@@ -10,6 +10,9 @@ public class BreakApartHandler : MonoBehaviour
     public float Phi = 10;
     public float Chance = 0.1f;
 
+    public const float MIN_SCALE_MAGNITUDE = 0.3F;
+    
+    
     private Vector3 RotateVectorXYPlane(float angle, Vector3 target)
     {
         Vector3 result = new Vector3
@@ -22,6 +25,8 @@ public class BreakApartHandler : MonoBehaviour
 
     public void Break()
     {
+        if (this.transform.localScale.magnitude < MIN_SCALE_MAGNITUDE) return;
+        
         if (this.GetComponentSafe<TrashMovementController>(out var controller))
         {
             if(controller.Speed.magnitude > 0){
