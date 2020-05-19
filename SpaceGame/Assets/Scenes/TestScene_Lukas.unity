@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -140,6 +140,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_speed: 100
+--- !u!114 &105610793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105610791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b48010c6bd2284cbb46e7d5cf4751d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ItemType: 0
 --- !u!1001 &492296822
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -674,6 +687,7 @@ GameObject:
   - component: {fileID: 3144471095918167580}
   - component: {fileID: 3144471095918167581}
   - component: {fileID: 3144471095918167583}
+  - component: {fileID: 3144471095918167556}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -681,6 +695,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &3144471095918167556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3144471095918167555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b857451f17b2b247a64d85c49b81af8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &3144471095918167580
 Transform:
   m_ObjectHideFlags: 0
@@ -709,9 +735,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_showGizmos: 1
-  Drag: 0.995
-  Acceleration: 10
-  RotationSpeed: 4
+  m_drag: 0.995
+  m_acceleration: 10
+  m_rotationSpeed: 4
+  m_bankingFactor: 0.01
+  m_spaceShipModel: {fileID: 0}
 --- !u!114 &3144471095918167583
 MonoBehaviour:
   m_ObjectHideFlags: 0
