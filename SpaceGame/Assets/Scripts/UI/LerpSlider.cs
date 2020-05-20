@@ -14,6 +14,7 @@ public class LerpSlider : MonoBehaviour, IObserver
     //the slider should not reach 0 but a value close to 0 so that it does not dissapear
     private float m_minSliderValue = 0;
 
+    private float m_LastFIll = 0;
     //defines Fill type
     private bool m_IsRadialFillUp;
     //init for fill up bar
@@ -28,6 +29,7 @@ public class LerpSlider : MonoBehaviour, IObserver
     //init for radial fill up
     public void Init(Material mat, float lerpTime = 1.0f, float minValue = 0.1f)
     {
+        m_LastFIll = 0;
         m_targetFillUpRadial = mat;
         m_lerpTime = lerpTime;
         m_minSliderValue = minValue;
@@ -60,7 +62,9 @@ public class LerpSlider : MonoBehaviour, IObserver
         //fill up target if target value not reached
         if (m_IsRadialFillUp && m_targetFillUpRadial != null)
         {
-            m_targetFillUpRadial.SetFloat("FILL", Lerp(m_targetFillUpRadial.GetFloat("FILL")));
+            float fill = Lerp(m_LastFIll);
+            m_targetFillUpRadial.SetFloat("FILL", fill);
+            m_LastFIll = fill;
         }
         else if (m_slider)
         {
