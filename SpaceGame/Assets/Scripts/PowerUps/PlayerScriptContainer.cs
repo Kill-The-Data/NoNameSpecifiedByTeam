@@ -11,11 +11,14 @@ public class PlayerScriptContainer : MonoBehaviour
     [SerializeField] private TimerView _timerView = null;
     public Timer GetTimer => _timerView.timer;
 
-    private ShieldState _forceShield = null;
-    public ShieldState GetShieldState => _forceShield;
+    private ShieldState m_forceShield = null;
+    public ShieldState GetShieldState => m_forceShield;
+    private PlayerController m_pController = null;
+    public PlayerController GetPlayerController => m_pController;
     private void Start()
     {
         m_Health = m_parentObject.GetComponent<PlayerHealth>();
-        _forceShield = m_parentObject.GetComponent<ShieldState>();
+        m_forceShield = m_parentObject.GetComponent<ShieldState>();
+        m_pController = m_parentObject.GetComponent<PlayerController>();
     }
 }

@@ -8,6 +8,7 @@ TagManager:
   - Player-Collector
   - FSM
   - ScoreUI
+  - Reset
   layers:
   - Default
   - TransparentFX

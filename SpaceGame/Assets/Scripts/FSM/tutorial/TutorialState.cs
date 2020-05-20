@@ -24,6 +24,14 @@ public class TutorialState : StateWithView<IngameView>
         view.GetTimeOutTimer().InitTimer(this);
         view.GetTimer().gameObject.SetActive(false);
         InitPlayer();
+
+        //reset everything that is tagged with reset and has a reset script attached
+        GameObject[] resetObjs = GameObject.FindGameObjectsWithTag("Reset");
+        foreach (GameObject currentObj in resetObjs)
+        {
+            currentObj.GetComponent<AReset>()?.Reset();
+        }
+
     }
     private void InitPlayer()
     {
