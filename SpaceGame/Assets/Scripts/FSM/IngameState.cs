@@ -19,6 +19,9 @@ public class IngameState : StateWithView<IngameView>
         //init time out timer
         view.GetTimeOutTimer().InitTimer(this);
 
+        //init item spawn
+        view.GetItemSpawner().Reset();
+
         //init ingame timer
         TimerView timerView = view.GetTimer();
         timerView.InitTimer();
@@ -45,10 +48,12 @@ public class IngameState : StateWithView<IngameView>
     }
     public void PlayerDied()
     {
+        view.GetItemSpawner().Deactivate();
         fsm.ChangeState<GameOverState>();
     }
     public void GameFinished()
     {
+        view.GetItemSpawner().Deactivate();
         fsm.ChangeState<GameOverState>();
     }
 }

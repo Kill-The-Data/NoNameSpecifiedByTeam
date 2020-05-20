@@ -16,9 +16,11 @@ public class IngameView : AbstractView
     public ScoreUI GetScore() => m_Score;
     private PerformanceMeasure m_Performance = null;
     public PerformanceMeasure GetPerformance() => m_Performance;
-
+    private ItemSpawner m_Ispawner = null;
+    public ItemSpawner GetItemSpawner() => m_Ispawner;
     void Awake()
     {
         m_Performance = GetComponent<PerformanceMeasure>();
+        m_Ispawner = GetComponent<ItemSpawner>();
     }
 }

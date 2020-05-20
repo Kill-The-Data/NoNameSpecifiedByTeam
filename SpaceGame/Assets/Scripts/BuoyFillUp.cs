@@ -27,9 +27,14 @@ public class BuoyFillUp : MonoBehaviour
     }
     public void Init()
     {
-        m_Lerper = m_TargetRenderer.gameObject.AddComponent<LerpSlider>();
-        Material mat = m_TargetRenderer.material;
-        m_Lerper.Init(mat, m_tweenSpeed, m_MinSliderValue);
+        if (!m_Lerper)
+        {
+            m_Lerper = m_TargetRenderer.gameObject.AddComponent<LerpSlider>();
+            Material mat = m_TargetRenderer.material;
+            m_Lerper.Init(mat, m_tweenSpeed, m_MinSliderValue);
+        }
+        m_Lerper.UpdateSlider(0);
+        m_currentFillUp = 0;
     }
 
 
