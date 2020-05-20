@@ -116,4 +116,6 @@ public class PlayerController : MonoBehaviour
         m_speed *= 1 - factor;
         return transfer;
     }
+
+    public Vector3 GetVelocity() => m_speed;
 }
