@@ -54,6 +54,6 @@ public class IngameState : StateWithView<IngameView>
     public void GameFinished()
     {
         view.GetItemSpawner().Deactivate();
-        fsm.ChangeState<GameOverState>();
+        fsm.ChangeState<YouWonState>();
     }
 }
