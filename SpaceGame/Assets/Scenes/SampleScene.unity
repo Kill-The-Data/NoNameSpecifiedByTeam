@@ -343,12 +343,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &118379789 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8132359190296221762, guid: ec09d4fbc853b7543b40b206414778cd,
-    type: 3}
-  m_PrefabInstance: {fileID: 1598679685}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &118379790 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8132359190296221763, guid: ec09d4fbc853b7543b40b206414778cd,
@@ -5014,7 +5008,7 @@ MonoBehaviour:
     Radius: 13.7
   - Target: {fileID: 909582249}
     Radius: 13.7
-  m_showDebrisExclusions: 1
+  m_showDebrisExclusions: 0
   m_exclusionZoneRadiusForNewDebris: 7
 --- !u!114 &1160042672
 MonoBehaviour:
@@ -5867,8 +5861,8 @@ Transform:
   - {fileID: 1991044475}
   - {fileID: 861739126}
   - {fileID: 1432696952}
-  - {fileID: 118379790}
   - {fileID: 1025143135}
+  - {fileID: 118379790}
   m_Father: {fileID: 124542239}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}

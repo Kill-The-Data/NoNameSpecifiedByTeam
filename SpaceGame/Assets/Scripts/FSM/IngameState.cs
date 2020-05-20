@@ -49,6 +49,6 @@ public class IngameState : StateWithView<IngameView>
     }
     public void GameFinished()
     {
-        fsm.ChangeState<GameOverState>();
+        fsm.ChangeState<YouWonState>();
     }
 }
