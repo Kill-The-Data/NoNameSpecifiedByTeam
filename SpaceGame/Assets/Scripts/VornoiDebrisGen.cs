@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using csDelaunay;
 using Tools;
+using UnityEditor;
 using Random = UnityEngine.Random;
 
 public class VornoiDebrisGen : MonoBehaviour
@@ -36,6 +37,10 @@ public class VornoiDebrisGen : MonoBehaviour
 
     [Tooltip("The center of the Generation Area")]
     public Vector2 position = new Vector2(0, 0);
+
+
+    [Tooltip("The radius from which no-mans land begins")]
+    public float NoMansLandRadius = 2000f;
     
     //----------- Trash Setup Variables
     [Header(" --- Setup trash Prefabs --- ")]
@@ -47,13 +52,15 @@ public class VornoiDebrisGen : MonoBehaviour
     {
         public Transform Target;
         public float Radius;
+        public float OuterRadius;
+        public int AmountTrash;
     }
     
     [Header(" --- Setup Exclusion Zones ---")] 
 
     [Tooltip("The Areas where no debris should be generated")]
     [SerializeField] private List<ExclusionZone> m_zones = new List<ExclusionZone>();
-
+    
     [Header(" --- DEDUPLICATION ---")]
     [Tooltip("Whether or not to draw the Gizmos for the Debris Exclusion Zones")]
     [SerializeField] private bool m_showDebrisExclusions = false;
@@ -66,6 +73,9 @@ public class VornoiDebrisGen : MonoBehaviour
     //stores data
     private Dictionary<Vector2f, Site> sites;
     private List<Edge> edges;
+
+    private NotifyAddChildren m_childAdder;
+    
     void Start()
     {
         //Allocate space for the debris exclusion zones, we 
@@ -90,6 +100,8 @@ public class VornoiDebrisGen : MonoBehaviour
         //edge calculation is not needed
         //edges = voronoi.Edges;
 
+        m_childAdder = GetComponent<NotifyAddChildren>();
+        
         Display();
     }
     //Creates random points
@@ -98,7 +110,7 @@ public class VornoiDebrisGen : MonoBehaviour
         List<Vector2f> points = new List<Vector2f>();
         for (int i = 0; i < TrashAmount; i++)
         {
-            points.Add(new Vector2f(Random.Range(0, 512), Random.Range(0, 512)));
+            points.Add(new Vector2f(Random.Range(0, AreaDimensions * 1 /Offset), Random.Range(0, AreaDimensions * 1/Offset)));
         }
 
         return points;
@@ -106,53 +118,29 @@ public class VornoiDebrisGen : MonoBehaviour
     //Displays and creates Trash
     private void Display()
     {
+
+        Vector3 center = new Vector3(position.x + AreaDimensions, position.y + AreaDimensions, 0) * Offset / 2;
         Vector2 origin = new Vector2(position.x - AreaDimensions * Offset / 2, position.y - AreaDimensions * Offset / 2);
+        
+        
         foreach (Vector2f vec in sites.Keys)
         {
             //position
             Vector3 pos = new Vector3(vec.x * Offset + origin.x, vec.y * Offset + origin.y, ZCoord);
 
-            bool stopgen = false;
+            //check if the trash has been spawned in the death zone
+            bool inDeathZone = Vector3.Distance(center, pos) > NoMansLandRadius;
+            
             if(!MaximumDebrisCount.AddDebris()) continue;
             //check all exclusion zones
-            foreach (var zone in m_zones)
+
+            if(!inDeathZone)
             {
-                
-                //prepare collision handler
-                Vector3 test = pos;
-                test.z = 0;
-
-                Vector3 target = zone.Target.position;
-                target.z = 0;
-
-                //check if the distance to one of the gen-zone is to small
-                if (Vector3.Distance(test, target) < zone.Radius)
-                {
-                    //set stopgen and break the loop early
-                    stopgen = true;
-                    break;
-                }
+                if(!CheckGenZones(pos)) continue;
             }
-            
-            foreach (var zone in m_debrisZones)
-            {
-                //prepare collision handler
-                Vector3 test = pos;
-                test.z = 0;
+            if (!CheckNearbyDebris(pos, inDeathZone)) continue;
 
-                Vector3 target = zone.Target.position;
-                target.z = 0;
-
-                //check if the distance to one of the gen-zone is to small
-                if (Vector3.Distance(test, target) < zone.Radius)
-                {
-                    //set stopgen and break the loop early
-                    stopgen = true;
-                    break;
-                }
-            }
-            if(stopgen) continue;
-
+            //get a random piece of trash
             int randomIndex = UnityEngine.Random.Range(0, prefabs.Count - 1);
 
             //random trash orientation
@@ -160,38 +148,150 @@ public class VornoiDebrisGen : MonoBehaviour
             Quaternion rotation = Quaternion.Euler(0, 0, randomFloat);
             
             //instantiate trash
-            
-            GameObject trash = Instantiate(prefabs[randomIndex], pos, rotation);
-            if (this.GetComponentSafe<NotifyAddChildren>(out var nac))
-            {
-                nac.AddChild(trash);
-            }
+            GameObject trash = m_childAdder.AddChild(Instantiate(prefabs[randomIndex], pos, rotation));
             m_debrisZones.Add(new ExclusionZone{Target=trash.transform,Radius = m_exclusionZoneRadiusForNewDebris});
         }
     }
+
+    public bool CheckGenZones(Vector3 pos)
+    {
+        bool can_gen = false;
+        
+        foreach (var zone in m_zones)
+        {
+            Vector3 test = pos;
+            test.z = 0;
+
+            Vector3 target = zone.Target.position;
+            target.z = 0;
+
+            //get distance between station and 
+            float dist = Vector3.Distance(test,target);
+
+            //check if the trash is to close
+            if (dist < zone.Radius)
+            {
+                return false;
+            }
+                    
+            //check if the trash is just right
+            if (dist > zone.Radius && dist < zone.OuterRadius)
+            {
+                //make sure this zone can gen any more trash
+                can_gen = zone.AmountTrash --> 0;
+            }
+
+        }
+
+        return can_gen;
+    }
+    
+    public bool CheckNearbyDebris(Vector3 pos,bool inDeathZone)
+    {
+        foreach (var zone in m_debrisZones)
+        {
+
+            var radius = zone.Radius;
+            if (inDeathZone)
+            {
+                radius *= 0.5f;
+            }
+                
+            //prepare collision handler
+            Vector3 test = pos;
+            test.z = 0;
+
+            Vector3 target = zone.Target.position;
+            target.z = 0;
+
+            //check if the distance to one of the gen-zones is to small
+            if (Vector3.Distance(test, target) < radius)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+    
+    
+   
+    
     #if (UNITY_EDITOR)
+    static void drawString(string text, Vector3 worldPos, Color? colour = null) {
+        UnityEditor.Handles.BeginGUI();
+
+        Color prevColor = GUI.color;
+        if (colour.HasValue)
+        {
+            GUI.color = colour.Value;
+        }
+        
+        var view = UnityEditor.SceneView.currentDrawingSceneView;
+        Vector3 screenPos = view.camera.WorldToScreenPoint(worldPos);
+        Vector2 size = GUI.skin.label.CalcSize(new GUIContent(text));
+        GUI.Label(new Rect(screenPos.x - (size.x / 2), -screenPos.y + view.position.height -20, size.x, size.y), text);
+
+        GUI.color = prevColor;
+        
+        UnityEditor.Handles.EndGUI();
+    }
+    
     public void OnDrawGizmos()
     {
+        Vector3 center = new Vector3(position.x + AreaDimensions, position.y + AreaDimensions, 0) * Offset / 2;
+        
         if (!m_showGizmos) return;
 
         foreach (var zone in m_zones)
         {
             //draw the exclusion zone
-            UnityEditor.Handles.color = Color.red;
-            UnityEditor.Handles.DrawWireDisc(zone.Target.position,Vector3.forward,zone.Radius);
-            UnityEditor.Handles.Label(zone.Target.position+Vector3.down*zone.Radius,"Exclusion Zone for " + zone.Target.name);
+            UnityEditor.Handles.color = Color.green;
+            var targetPosition = zone.Target.position;
+            
+            UnityEditor.Handles.DrawWireDisc(targetPosition,Vector3.forward,zone.Radius);
+            UnityEditor.Handles.Label(targetPosition+Vector3.down*zone.Radius,"Exclusion Zone for " + zone.Target.name);
+            
+            if(zone.OuterRadius != 0)
+            {
+                Vector3 halfwayPoint = targetPosition + Vector3.left * (zone.Radius + zone.OuterRadius) / 2;
+                
+                UnityEditor.Handles.DrawLine(targetPosition + Vector3.left * zone.Radius,halfwayPoint + Vector3.right);
+                UnityEditor.Handles.DrawLine(halfwayPoint + Vector3.left,targetPosition + Vector3.left * zone.OuterRadius);
+
+                var centeredStyle = new GUIStyle(GUI.skin.label);
+                
+                drawString(zone.AmountTrash.ToString(),halfwayPoint,Color.green);
+                
+                UnityEditor.Handles.DrawWireDisc(targetPosition,Vector3.forward,zone.OuterRadius);
+                UnityEditor.Handles.Label(targetPosition+Vector3.down*zone.OuterRadius,"Gen Zone for " + zone.Target.name);
+            }
         }
 
         if(m_showDebrisExclusions && m_debrisZones != null) foreach (var zone in m_debrisZones)
         {
             if(!zone.Target) continue;
             //draw the exclusion zone
+            
+            var radius = zone.Radius;
+            if (Vector3.Distance(center, zone.Target.position) >= NoMansLandRadius)
+            {
+                radius *= 0.5f;
+            }
             UnityEditor.Handles.color = Color.yellow;
-            UnityEditor.Handles.DrawWireDisc(zone.Target.position,Vector3.forward,zone.Radius);
+            UnityEditor.Handles.DrawWireDisc(zone.Target.position,Vector3.forward,radius);
         }
+        
+        UnityEditor.Handles.color = Color.red;
         //draw the bounding box
         UnityEditor.Handles.DrawWireCube(new Vector3(position.x,position.y,0) + new Vector3(AreaDimensions,AreaDimensions,0) * Offset/2
             ,new Vector3(AreaDimensions,AreaDimensions,0) * Offset * 2);
+
+        UnityEditor.Handles.DrawWireDisc(
+            new Vector3(position.x, position.y, 0) + new Vector3(AreaDimensions, AreaDimensions, 0) * Offset / 2,
+            Vector3.forward,
+            NoMansLandRadius);
+
 
     }
     #endif
