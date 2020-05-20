@@ -43,9 +43,9 @@ public class TrashCollisionHandler : MonoBehaviour , ISubject
     {
         //check if other is connected to the player and get all the required components
         if ((other.CompareTag("Player-Collector") || other.CompareTag("Player"))
-            && other.transform.parent.GetComponentSafe<PlayerCargo>(out var playerCargo) 
-            && other.transform.parent.GetComponentSafe<PlayerHealth>(out var playerHealth) 
-            && other.transform.parent.GetComponentSafe<PlayerController>(out var playerController)
+            && other.transform.parent.GetComponentSafe(out PlayerCargo playerCargo) 
+            && other.transform.parent.GetComponentSafe(out PlayerHealth playerHealth) 
+            && other.transform.parent.GetComponentSafe(out PlayerController playerController)
         )
         {
             //check if the player has space in his cargo and if he collided with the cargo collider
