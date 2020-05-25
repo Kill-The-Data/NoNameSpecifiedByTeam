@@ -11,7 +11,7 @@ public class camBlurScript : MonoBehaviour
     private bool m_isActive = false;
 
     private LayerMask m_OriginalLayerMask;
-    void Start()
+    void Awake()
     {
         //get main cam
         m_MainCam = Camera.main;
@@ -40,8 +40,8 @@ public class camBlurScript : MonoBehaviour
     {
         m_BlurrObject?.SetActive(true);
         m_renderTexCam?.gameObject.SetActive(true);
-
-        m_MainCam.cullingMask = LayerMask.GetMask("Ignore Raycast");
+        if (m_MainCam)
+            m_MainCam.cullingMask = LayerMask.GetMask("Ignore Raycast");
         m_isActive = true;
 
     }
@@ -50,8 +50,8 @@ public class camBlurScript : MonoBehaviour
     {
         m_BlurrObject?.SetActive(false);
         m_renderTexCam?.gameObject.SetActive(false);
-        m_MainCam.cullingMask = m_OriginalLayerMask;
+        if (m_MainCam)
+            m_MainCam.cullingMask = m_OriginalLayerMask;
         m_isActive = false;
-
     }
 }
