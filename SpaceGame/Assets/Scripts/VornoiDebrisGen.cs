@@ -228,6 +228,11 @@ public class VornoiDebrisGen : MonoBehaviour
         }
         
         var view = UnityEditor.SceneView.currentDrawingSceneView;
+        if(view == null)
+        {
+            return;
+        }
+        
         Vector3 screenPos = view.camera.WorldToScreenPoint(worldPos);
         Vector2 size = GUI.skin.label.CalcSize(new GUIContent(text));
         GUI.Label(new Rect(screenPos.x - (size.x / 2), -screenPos.y + view.position.height -20, size.x, size.y), text);
@@ -261,7 +266,9 @@ public class VornoiDebrisGen : MonoBehaviour
 
                 var centeredStyle = new GUIStyle(GUI.skin.label);
                 
-                drawString(zone.AmountTrash.ToString(),halfwayPoint,Color.green);
+                
+                
+                drawString(zone.AmountTrash.ToString(),halfwayPoint,zone.AmountTrash > 0 ? Color.red:Color.green);
                 
                 UnityEditor.Handles.DrawWireDisc(targetPosition,Vector3.forward,zone.OuterRadius);
                 UnityEditor.Handles.Label(targetPosition+Vector3.down*zone.OuterRadius,"Gen Zone for " + zone.Target.name);
