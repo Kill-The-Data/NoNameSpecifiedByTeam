@@ -76,7 +76,7 @@ public class VornoiDebrisGen : MonoBehaviour
 
     private NotifyAddChildren m_childAdder;
     
-    void Start()
+    public void Generate()
     {
         //Allocate space for the debris exclusion zones, we 
         //want to avoid collisions of debris this way
@@ -152,8 +152,25 @@ public class VornoiDebrisGen : MonoBehaviour
             m_debrisZones.Add(new ExclusionZone{Target=trash.transform,Radius = m_exclusionZoneRadiusForNewDebris});
         }
     }
+    public void DeleteLevel()
+    {
+        //no personal space
+        m_debrisZones?.Clear();
+        
+        MaximumDebrisCount.ClearDebris();
+        
+        //doing lots of non fun stuff, let me at least make them fun
+        void Murder(GameObject go) => Destroy(go);
+        
+        //murder all children
+        for (int i = 0; i < transform.childCount; ++i)
+        {
+            Murder(transform.GetChild(i).gameObject);
+        }
 
-    public bool CheckGenZones(Vector3 pos)
+    }
+    
+    private bool CheckGenZones(Vector3 pos)
     {
         bool can_gen = false;
         
@@ -180,13 +197,11 @@ public class VornoiDebrisGen : MonoBehaviour
                 //make sure this zone can gen any more trash
                 can_gen = zone.AmountTrash --> 0;
             }
-
         }
-
         return can_gen;
     }
-    
-    public bool CheckNearbyDebris(Vector3 pos,bool inDeathZone)
+
+    private bool CheckNearbyDebris(Vector3 pos,bool inDeathZone)
     {
         foreach (var zone in m_debrisZones)
         {
@@ -210,7 +225,6 @@ public class VornoiDebrisGen : MonoBehaviour
                 return false;
             }
         }
-
         return true;
     }
     
@@ -218,7 +232,7 @@ public class VornoiDebrisGen : MonoBehaviour
    
     
     #if (UNITY_EDITOR)
-    static void drawString(string text, Vector3 worldPos, Color? colour = null) {
+    private static void DrawString(string text, Vector3 worldPos, Color? colour = null) {
         UnityEditor.Handles.BeginGUI();
 
         Color prevColor = GUI.color;
@@ -268,7 +282,7 @@ public class VornoiDebrisGen : MonoBehaviour
                 
                 
                 
-                drawString(zone.AmountTrash.ToString(),halfwayPoint,zone.AmountTrash > 0 ? Color.red:Color.green);
+                DrawString(zone.AmountTrash.ToString(),halfwayPoint,zone.AmountTrash > 0 ? Color.red:Color.green);
                 
                 UnityEditor.Handles.DrawWireDisc(targetPosition,Vector3.forward,zone.OuterRadius);
                 UnityEditor.Handles.Label(targetPosition+Vector3.down*zone.OuterRadius,"Gen Zone for " + zone.Target.name);
@@ -303,4 +317,5 @@ public class VornoiDebrisGen : MonoBehaviour
     }
     #endif
 
+   
 }

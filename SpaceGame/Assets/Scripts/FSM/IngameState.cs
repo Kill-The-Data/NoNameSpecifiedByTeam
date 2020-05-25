@@ -14,6 +14,8 @@ public class IngameState : StateWithView<IngameView>
     }
     private void InitGameState()
     {
+        view.GetLevelGen(this)?.Generate();
+        
         PerformanceMeasure playerPerformance = view.GetPerformance();
 
         //init time out timer
