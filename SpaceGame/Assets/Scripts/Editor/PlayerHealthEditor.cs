@@ -6,7 +6,6 @@ public class PlayerHealthEditor : Editor
 {
     public override void OnInspectorGUI()
     {
-        
         //get default inspector gui
         base.OnInspectorGUI();
         

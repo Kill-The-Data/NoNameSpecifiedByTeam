@@ -1,44 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System.Collections;
+using System.Threading;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
 
-
-public class UnityWebRequestAwaiter : INotifyCompletion
-{
-    private UnityWebRequestAsyncOperation asyncOp;
-    private Action continuation;
-
-    public UnityWebRequestAwaiter(UnityWebRequestAsyncOperation asyncOp)
-    {
-        this.asyncOp = asyncOp;
-        asyncOp.completed += OnRequestCompleted;
-    }
-
-    public bool IsCompleted { get { return asyncOp.isDone; } }
-
-    public void GetResult() { }
-
-    public void OnCompleted(Action continuation)
-    {
-        this.continuation = continuation;
-    }
-
-    private void OnRequestCompleted(AsyncOperation obj)
-    {
-        continuation?.Invoke();
-    }
-}
-
-public static class ExtensionMethods
-{
-    public static UnityWebRequestAwaiter GetAwaiter(this UnityWebRequestAsyncOperation asyncOp)
-    {
-        return new UnityWebRequestAwaiter(asyncOp);
-    }
-}
 
 public static class WebConfigHandler
 {
@@ -50,11 +16,18 @@ public static class WebConfigHandler
     private const int CONFIG_VERSION = 2;
     
     private static JObject m_deserializedData;
-    public static async void FetchConfig()
+    public static IEnumerator FetchConfig()
     {
         //make http request
-        var www = UnityWebRequest.Get(String.Format(CONFIG_URI_SPECIFIC,CONFIG_VERSION));
-        await www.SendWebRequest();
+
+        string request_uri = String.Format(CONFIG_URI_SPECIFIC, CONFIG_VERSION);
+        
+        var www = UnityWebRequest.Get(request_uri);
+        
+        //apparently unity want to read the www stream until the universe has ended, luckily we 
+        //can tell unity that the universe ends in exactly one second
+        www.timeout = 1;
+        yield return www.SendWebRequest();
         
         //get the response text from the request
         string response = www.downloadHandler.text;
@@ -65,12 +38,23 @@ public static class WebConfigHandler
         
         //parse the json
         m_deserializedData = JObject.Parse(response);
+        
     }
 
     public static JObject GetConfig()
     {
+        for (int i = 0; i < 10 && m_deserializedData == null; ++i)
+        {
+            Thread.Sleep(100);
+        }
         if(m_deserializedData == null)
-            FetchConfig();
+            Debug.LogWarning("Gave up waiting for www");
+        
+        return m_deserializedData;
+    }
+    
+    public static JObject UncheckedGetConfig()
+    {
         return m_deserializedData;
     }
 }
