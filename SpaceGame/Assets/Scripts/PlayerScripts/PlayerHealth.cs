@@ -7,10 +7,22 @@ public class PlayerHealth : MonoBehaviour, ISubject
 {
 
     [Header(" --- Setup --- ")]
+   
+    
+    [LabelOverride("Use Global Health")]
+    [Tooltip("Uses The Variable from the conf server instead")] 
+    [SerializeField] private bool m_overrideHealthConf = false;
+    
     [Tooltip("The Maximum health of the player")]
     [SerializeField] private int m_maxHealth = 100;
+    
+    [Tooltip("The text to display the health in")]
     [SerializeField] private TMP_Text m_text = null;
+    
+    [Tooltip("The slider to display the remaining amount of health in")]
     [SerializeField] private Slider m_slider = null;
+    
+    [Tooltip("the screenshake animation when the player takes damage")]
     [SerializeField] private ScreenShake m_shake = null;
 
     [Header(" --- Slider UI setup ---")]
@@ -46,18 +58,28 @@ public class PlayerHealth : MonoBehaviour, ISubject
     //and setup the slider ui variables
     private void Awake()
     {
-        ResetPlayerHealth();
+        ResetPlayerHealth(false);
     }
 
-    public void ResetPlayerHealth()
+    public void ResetPlayerHealth(bool is_awake = false)
     {
         if (!m_shieldState) m_shieldState = GetComponent<ShieldState>();
         m_shieldState?.Init();
         observers = new List<IObserver>();
 
+        if (m_overrideHealthConf && !is_awake)
+        {
+            if (int.TryParse(WebConfigHandler.GetConfig()?["health"].ToString(), out int h))
+            {
+                m_maxHealth = h;
+            }
+        }
+        
         Health = m_maxHealth;
         InitSlider();
         UpdateView();
+        
+       
     }
 
    

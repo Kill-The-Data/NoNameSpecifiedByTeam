@@ -6558,7 +6558,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f146f4a094ff0b42aac9b262b67fceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_maxHealth: 20
+  m_overrideHealthConf: 1
+  m_maxHealth: 100
   m_text: {fileID: 625328063}
   m_slider: {fileID: 2513735493096922652}
   m_shake: {fileID: 963194232}
