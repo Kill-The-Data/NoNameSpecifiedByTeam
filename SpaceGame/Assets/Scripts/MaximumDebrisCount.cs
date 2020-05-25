@@ -31,4 +31,9 @@ public class MaximumDebrisCount : MonoBehaviour
         m_currentDebris--;
     }
 
+    public static void ClearDebris()
+    {
+        m_currentDebris = 0;
+    }
+
 }

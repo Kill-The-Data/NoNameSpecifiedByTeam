@@ -17,5 +17,10 @@ public class PlayerHealthEditor : Editor
         {
             (target as PlayerHealth)?.UpdateView();
         }
+
+        if (GUILayout.Button("Die Already"))
+        {
+            (target as PlayerHealth)?.TakeDamage(100000);
+        }
     }
 }
