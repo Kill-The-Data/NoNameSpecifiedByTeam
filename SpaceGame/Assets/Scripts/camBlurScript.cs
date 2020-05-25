@@ -7,31 +7,30 @@ public class camBlurScript : MonoBehaviour
     [SerializeField] private GameObject m_BlurrObject = null;
 
     private Camera m_MainCam = null;
-    // private LayerMask m_blurMask = 
 
     private bool m_isActive = false;
 
     private LayerMask m_OriginalLayerMask;
-    // Start is called before the first frame update
     void Start()
     {
+        //get main cam
         m_MainCam = Camera.main;
+        //layer to go back to after blur is disabled
         m_OriginalLayerMask = m_MainCam.cullingMask;
         m_BlurrObject?.SetActive(false);
         m_renderTexCam?.gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
+        //test input
         if (Input.GetKeyDown("b"))
             ChangeBlur();
-
     }
 
+    //changes blur state
     private void ChangeBlur()
     {
-        Debug.Log("Changing blur");
         if (m_isActive)
             DeactivateBlur();
         else
@@ -43,14 +42,12 @@ public class camBlurScript : MonoBehaviour
         m_renderTexCam?.gameObject.SetActive(true);
 
         m_MainCam.cullingMask = LayerMask.GetMask("Ignore Raycast");
-      m_isActive = true;
+        m_isActive = true;
 
 }
 
 private void DeactivateBlur()
     {
-        Debug.Log("deact blur");
-
         m_BlurrObject?.SetActive(false);
         m_renderTexCam?.gameObject.SetActive(false);
         m_MainCam.cullingMask = m_OriginalLayerMask;
