@@ -54,11 +54,12 @@ public class VornoiDebrisGen : MonoBehaviour
         public float Radius;
         public float OuterRadius;
         public int AmountTrash;
+        public int InitialTrash { get; set; }
     }
     
     [Header(" --- Setup Exclusion Zones ---")] 
 
-    [Tooltip("The Areas where no debris should be generated")]
+    [Tooltip("The Areas where space-ship debris should be generated with and inner and outer radius")]
     [SerializeField] private List<ExclusionZone> m_zones = new List<ExclusionZone>();
     
     [Header(" --- DEDUPLICATION ---")]
@@ -75,6 +76,14 @@ public class VornoiDebrisGen : MonoBehaviour
     private List<Edge> edges;
 
     private NotifyAddChildren m_childAdder;
+
+    public void Awake()
+    {
+        foreach (var zone in m_zones)
+        {
+            zone.InitialTrash = zone.AmountTrash;
+        }
+    }
     
     public void Generate()
     {
@@ -156,6 +165,10 @@ public class VornoiDebrisGen : MonoBehaviour
     {
         //no personal space
         m_debrisZones?.Clear();
+        foreach (var zone in m_zones)
+        {
+            zone.AmountTrash = zone.InitialTrash;
+        }
         
         MaximumDebrisCount.ClearDebris();
         
