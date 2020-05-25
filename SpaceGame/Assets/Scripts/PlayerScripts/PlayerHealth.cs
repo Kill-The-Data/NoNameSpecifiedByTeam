@@ -69,10 +69,15 @@ public class PlayerHealth : MonoBehaviour, ISubject
 
         if (m_overrideHealthConf && !is_awake)
         {
-            if (int.TryParse(WebConfigHandler.GetConfig()?["health"].ToString(), out int h))
-            {
-                m_maxHealth = h;
-            }
+            WebConfigHandler.OnFinishDownload(JO => {
+                if (int.TryParse(JO?["health"].ToString(), out int h))
+                {
+                    m_maxHealth = h;
+                    Health = m_maxHealth;
+                    InitSlider();
+                    UpdateView();
+                }
+            });
         }
         
         Health = m_maxHealth;

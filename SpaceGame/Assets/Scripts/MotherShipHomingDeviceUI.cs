@@ -51,10 +51,13 @@ public class MotherShipHomingDeviceUI : MonoBehaviour
         //get the direction to home
         m_direction = closest;
         
-        //put the homing-device at the right position
-        var position = m_direction.normalized * m_radius;
-        m_homingDeviceChild.position = transform.position - position;
-
+        //check if the closest spacestation is actually a station
+        if(closest != Vector3.positiveInfinity)
+        {
+            //put the homing-device at the right position
+            var position = m_direction.normalized * m_radius;
+            m_homingDeviceChild.position = transform.position - position;
+        }
         //assemble the quaternion for the new rotation
         float angle = Mathf.Atan2(m_direction.normalized.y, m_direction.normalized.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.AngleAxis(angle,Vector3.forward);

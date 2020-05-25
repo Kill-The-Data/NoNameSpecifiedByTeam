@@ -9,6 +9,8 @@ public class PlayerCargo : MonoBehaviour, IObserver
     [SerializeField] private TMP_Text m_text = null;
     [SerializeField] private Slider m_slider = null;
 
+    [LabelOverride("Use Max Cargo From Web")] 
+    [SerializeField] private bool m_overrideMaxCargo;
 
     [Header(" --- Slider UI setup ---")]
     [Range(0, 1.5f)]
@@ -44,6 +46,13 @@ public class PlayerCargo : MonoBehaviour, IObserver
     {
         InitSlider();
 
+        if (m_overrideMaxCargo)
+            WebConfigHandler.OnFinishDownload(JO =>
+            {
+                if (int.TryParse(JO?["maxCargo"].ToString(), out int mCargo))
+                    m_cargoLimit = mCargo;
+            });
+        
         SpaceOccupied = 0;
     }
 
