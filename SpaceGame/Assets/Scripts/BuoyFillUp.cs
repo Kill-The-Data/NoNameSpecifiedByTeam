@@ -41,14 +41,11 @@ public class BuoyFillUp : MonoBehaviour
     public int DropOff(int dropOffAmount)
     {
 
-        Debug.Log("drop off ui");
-        Debug.Log("drop off Amount" + dropOffAmount);
 
         int remainingCargo = 0;
 
         // add cargo
         m_currentFillUp += dropOffAmount;
-        Debug.Log("c fill up" + m_currentFillUp);
 
         //set fill up to max if it exceeds max
         if (m_currentFillUp > m_MaxFillUp)
@@ -58,7 +55,6 @@ public class BuoyFillUp : MonoBehaviour
         }
         //return leftover player cargo if not all cargo can be dropped off
         float fillUp = (float)m_currentFillUp / (float)m_MaxFillUp;
-        Debug.Log("fill" + fillUp);
         m_Lerper.UpdateSlider(fillUp + 0.05f);
         return remainingCargo;
 

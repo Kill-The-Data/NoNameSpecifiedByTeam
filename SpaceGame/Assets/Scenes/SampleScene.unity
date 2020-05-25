@@ -567,7 +567,7 @@ MonoBehaviour:
   - {fileID: 809294822792969763, guid: 6dc0155962904f64994cb87d2877f087, type: 3}
   - {fileID: 3261979932069503665, guid: d200181c6ec7cb9469d586e224c8e806, type: 3}
   - {fileID: 1775517512045582781, guid: 384c4acdff45077459c9c26719a3a65b, type: 3}
-  m_spawnRate: 5
+  m_spawnRate: 8
   m_pScripts: {fileID: 1991044476}
 --- !u!1 &143198150 stripped
 GameObject:
@@ -11982,7 +11982,7 @@ PrefabInstance:
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 1.01e-43
+      value: 3.7185e-41
       objectReference: {fileID: 0}
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
@@ -11997,7 +11997,7 @@ PrefabInstance:
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 7.938e-42
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8485707075902487550, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}

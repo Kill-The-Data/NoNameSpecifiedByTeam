@@ -22,6 +22,7 @@ public class IngameView : AbstractView
     [SerializeField] private VornoiDebrisGen m_generator;
     [SerializeField] private bool m_genLevelInTutorial = false;
     
+    
     void Awake()
     {
         m_Performance = GetComponent<PerformanceMeasure>();

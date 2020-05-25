@@ -2,7 +2,7 @@
 using TMPro;
 using UnityEngine.UI;
 
-public class PlayerCargo : MonoBehaviour
+public class PlayerCargo : MonoBehaviour, IObserver
 {
 
     [Header(" --- Setup ---")]
@@ -109,6 +109,14 @@ public class PlayerCargo : MonoBehaviour
         else
         {
             m_text.SetText("");
+        }
+    }
+
+    public void GetUpdate(ISubject subject)
+    {
+        if (subject is MotherShipCollisionHandler collision)
+        {
+            SetFill(collision.LeftoverCargo);
         }
     }
 }
