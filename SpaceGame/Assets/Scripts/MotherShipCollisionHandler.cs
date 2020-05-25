@@ -1,6 +1,7 @@
-﻿using UnityEngine;
-
-public class MotherShipCollisionHandler : MonoBehaviour
+﻿using System;
+using UnityEngine;
+using System.Collections.Generic;
+public class MotherShipCollisionHandler : MonoBehaviour, ISubject
 {
 
 
@@ -8,10 +9,21 @@ public class MotherShipCollisionHandler : MonoBehaviour
     [Tooltip("How much the player gets for one piece of cargo")]
     [SerializeField] private int m_scorePerCargo = 10;
 
-    private ScoreUI m_scoreUI;
     private FSM m_Fsm;
     private BuoyFillUp m_FillUp = null;
 
+    private List<IObserver> m_Observers = null;
+
+    public int ScoreGain
+    {
+        get;
+        private set;
+    }
+    public int LeftoverCargo
+    {
+        get;
+        private set;
+    }
     void Start()
     {
         FindTaggedObjects();
@@ -21,8 +33,8 @@ public class MotherShipCollisionHandler : MonoBehaviour
     //trys to find the object by its tag, please do not reuse the Tag, tag should be unique for this
     private void FindTaggedObjects()
     {
-        if (!m_scoreUI)
-            m_scoreUI = GameObject.FindWithTag("ScoreUI").GetComponent<ScoreUI>();
+        m_Observers = new List<IObserver>();
+        m_Observers.Add(GameObject.FindWithTag("ScoreUI").GetComponent<ScoreUI>());
         if (!m_Fsm)
             m_Fsm = GameObject.FindWithTag("FSM").GetComponent<FSM>();
 
@@ -36,18 +48,35 @@ public class MotherShipCollisionHandler : MonoBehaviour
             //add score to the 
             int cargoAmount = cargo.SpaceOccupied;
 
-            int leftOverCargo = m_FillUp.DropOff(cargoAmount);
+            LeftoverCargo = m_FillUp.DropOff(cargoAmount);
 
-            
-            //TODO(anyone): Fix these hacks with an observer pattern or something please
-            int scoreGain = ((cargoAmount - leftOverCargo) * m_scorePerCargo);
-            if (scoreGain != 0) m_scoreUI.AddScore(scoreGain);
-            cargo.SetFill(leftOverCargo);
+            if (!m_Observers.Contains(cargo))
+            {
+                m_Observers.Add(cargo);
+            }
+
+
+            ScoreGain = ((cargoAmount - LeftoverCargo) * m_scorePerCargo);
+            Notify();
 
             if (m_Fsm.GetCurrentState() is TutorialState currentState)
             {
                 currentState.FinishTutorial();
             }
         }
+    }
+
+
+    public void Notify()
+    {
+        foreach (IObserver observer in m_Observers)
+        {
+            observer.GetUpdate(this);
+        }
+    }
+
+    public void Attach(IObserver observer)
+    {
+        m_Observers.Add(observer);
     }
 }

@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 1775517512045582774}
   - component: {fileID: 1775517512045582780}
   - component: {fileID: 1775517512045582771}
+  - component: {fileID: 3098857327251284389}
   m_Layer: 0
   m_Name: HealItem
-  m_TagString: Untagged
+  m_TagString: Reset
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f692b10d7641b443a933fec1553c3b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealAmount: 0
+  HealAmount: 20
 --- !u!114 &1775517512045582771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,6 +136,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_speed: 100
+--- !u!114 &3098857327251284389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775517512045582781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19f344734c38e2948a41211a696d358f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4351148426232790356
 PrefabInstance:
   m_ObjectHideFlags: 0

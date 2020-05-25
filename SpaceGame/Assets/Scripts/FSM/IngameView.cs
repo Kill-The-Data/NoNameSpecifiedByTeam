@@ -16,9 +16,25 @@ public class IngameView : AbstractView
     public ScoreUI GetScore() => m_Score;
     private PerformanceMeasure m_Performance = null;
     public PerformanceMeasure GetPerformance() => m_Performance;
+    private ItemSpawner m_Ispawner = null;
+    public ItemSpawner GetItemSpawner() => m_Ispawner;
 
+    [SerializeField] private VornoiDebrisGen m_generator;
+    [SerializeField] private bool m_genLevelInTutorial = false;
+    
+    
     void Awake()
     {
         m_Performance = GetComponent<PerformanceMeasure>();
+        m_Ispawner = GetComponent<ItemSpawner>();
+    }
+
+    public VornoiDebrisGen GetLevelDefinetly() => m_generator;
+
+    public VornoiDebrisGen GetLevelGen(StateWithView<IngameView> state)
+    {
+        if ((state is TutorialState && m_genLevelInTutorial) || (state is IngameState && !m_genLevelInTutorial))
+            return m_generator;
+        return null;
     }
 }

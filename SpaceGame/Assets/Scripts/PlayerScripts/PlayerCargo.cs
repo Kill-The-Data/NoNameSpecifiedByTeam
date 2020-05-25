@@ -2,13 +2,15 @@
 using TMPro;
 using UnityEngine.UI;
 
-public class PlayerCargo : MonoBehaviour
+public class PlayerCargo : MonoBehaviour, IObserver
 {
 
     [Header(" --- Setup ---")]
     [SerializeField] private TMP_Text m_text = null;
     [SerializeField] private Slider m_slider = null;
 
+    [LabelOverride("Use Max Cargo From Web")] 
+    [SerializeField] private bool m_overrideMaxCargo;
 
     [Header(" --- Slider UI setup ---")]
     [Range(0, 1.5f)]
@@ -44,6 +46,13 @@ public class PlayerCargo : MonoBehaviour
     {
         InitSlider();
 
+        if (m_overrideMaxCargo)
+            WebConfigHandler.OnFinishDownload(JO =>
+            {
+                if (int.TryParse(JO?["maxCargo"].ToString(), out int mCargo))
+                    m_cargoLimit = mCargo;
+            });
+        
         SpaceOccupied = 0;
     }
 
@@ -109,6 +118,14 @@ public class PlayerCargo : MonoBehaviour
         else
         {
             m_text.SetText("");
+        }
+    }
+
+    public void GetUpdate(ISubject subject)
+    {
+        if (subject is MotherShipCollisionHandler collision)
+        {
+            SetFill(collision.LeftoverCargo);
         }
     }
 }

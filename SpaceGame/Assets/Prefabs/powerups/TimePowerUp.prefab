@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 3261979932069503674}
   - component: {fileID: 5584323755314845759}
   - component: {fileID: 3261979932069503664}
+  - component: {fileID: -6408132786577565772}
   m_Layer: 0
-  m_Name: BaseItem 1
-  m_TagString: Untagged
+  m_Name: TimePowerUp
+  m_TagString: Reset
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -135,6 +136,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_timeGain: 10
+--- !u!114 &-6408132786577565772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3261979932069503665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19f344734c38e2948a41211a696d358f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2349633483266431123
 PrefabInstance:
   m_ObjectHideFlags: 0

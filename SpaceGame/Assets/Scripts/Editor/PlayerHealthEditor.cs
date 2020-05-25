@@ -6,7 +6,6 @@ public class PlayerHealthEditor : Editor
 {
     public override void OnInspectorGUI()
     {
-        
         //get default inspector gui
         base.OnInspectorGUI();
         
@@ -16,6 +15,11 @@ public class PlayerHealthEditor : Editor
         if (GUILayout.Button("Update View"))
         {
             (target as PlayerHealth)?.UpdateView();
+        }
+
+        if (GUILayout.Button("Die Already"))
+        {
+            (target as PlayerHealth)?.TakeDamage(100000);
         }
     }
 }

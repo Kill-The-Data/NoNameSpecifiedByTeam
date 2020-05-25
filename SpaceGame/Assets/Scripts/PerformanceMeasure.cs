@@ -25,7 +25,7 @@ public class PerformanceMeasure : MonoBehaviour, IObserver
     [Header("---Current Performance Output---")]
     [SerializeField] private float m_timeLeft = 0;
     [SerializeField] private float m_timePassed = 0;
-    [SerializeField] private float m_healthLeft = 0;
+    [SerializeField] private int m_healthLeft = 0;
     [SerializeField] private float m_damageTaken = 0;
     [SerializeField] private float m_damageOverTimer = 0;
     [SerializeField] private float m_dmgOverIntervall = 0;
@@ -47,6 +47,14 @@ public class PerformanceMeasure : MonoBehaviour, IObserver
     {
         m_healthLeft = 0;
         ResetTimer();
+    }
+
+    public void StoreStatsInPlayerPrefs(int lvlCompleted)
+    {
+        PlayerPrefs.SetInt("score", m_score);
+        PlayerPrefs.SetFloat("time", m_timeLeft);
+        PlayerPrefs.SetInt("health", m_healthLeft); 
+        PlayerPrefs.SetInt("goalReached", lvlCompleted);
     }
     void Update()
     {

@@ -14,10 +14,15 @@ public class IngameState : StateWithView<IngameView>
     }
     private void InitGameState()
     {
+        view.GetLevelGen(this)?.Generate();
+        
         PerformanceMeasure playerPerformance = view.GetPerformance();
 
         //init time out timer
         view.GetTimeOutTimer().InitTimer(this);
+
+        //init item spawn
+        view.GetItemSpawner().Reset();
 
         //init ingame timer
         TimerView timerView = view.GetTimer();
@@ -45,10 +50,14 @@ public class IngameState : StateWithView<IngameView>
     }
     public void PlayerDied()
     {
+        view.GetPerformance().StoreStatsInPlayerPrefs(0);
+        view.GetItemSpawner().Deactivate();
         fsm.ChangeState<GameOverState>();
     }
     public void GameFinished()
     {
-        fsm.ChangeState<GameOverState>();
+        view.GetPerformance().StoreStatsInPlayerPrefs(1);
+        view.GetItemSpawner().Deactivate();
+        fsm.ChangeState<YouWonState>();
     }
 }

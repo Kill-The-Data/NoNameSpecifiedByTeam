@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 
-public class ScoreUI : MonoBehaviour
+public class ScoreUI : MonoBehaviour, IObserver
 {
     [Header("Setup")]
     [SerializeField] private Vector2 m_SpawnPos = Vector2.zero;
@@ -15,7 +15,7 @@ public class ScoreUI : MonoBehaviour
     [SerializeField] private float m_tweenSpeed = 1.0f;
 
 
-    private int m_currentScore = 0 ;
+    private int m_currentScore = 0;
 
     public int GetScore() => m_currentScore;
     public void Reset()
@@ -39,7 +39,7 @@ public class ScoreUI : MonoBehaviour
 
         //move score up
         tempObj.LeanMoveLocalY(m_SpawnPos.y + m_Yoffset, m_tweenSpeed).setEase(LeanTweenType.linear);
-        
+
         //fade score out
         LeanTween.value(tempObj, 1, 0, m_tweenSpeed).setOnUpdate((float val) =>
         {
@@ -54,9 +54,14 @@ public class ScoreUI : MonoBehaviour
     }
     private void UpdateView()
     {
-        //TODO(algo-ryth-mix): this should probably life somewhere neat
-        //TODO(cont.) preferentially not in UI code... meh
-        PlayerPrefs.SetInt("score",m_currentScore);
-        m_scoreTargetText.SetText($"{m_currentScore} ");
+             m_scoreTargetText.SetText($"{m_currentScore} ");
+    }
+
+    public void GetUpdate(ISubject subject)
+    {
+        if (subject is MotherShipCollisionHandler mCollisionHandler)
+        {
+            AddScore(mCollisionHandler.ScoreGain);
+        }
     }
 }

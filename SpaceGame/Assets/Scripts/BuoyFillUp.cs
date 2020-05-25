@@ -21,20 +21,27 @@ public class BuoyFillUp : MonoBehaviour
     private int m_currentFillUp;
     private LerpSlider m_Lerper;
 
-    void Start()
+    void Awake()
     {
         Init();
     }
     public void Init()
     {
-        m_Lerper = m_TargetRenderer.gameObject.AddComponent<LerpSlider>();
+        if (!m_Lerper)
+        {
+            m_Lerper = m_TargetRenderer.gameObject.AddComponent<LerpSlider>();
+        }
         Material mat = m_TargetRenderer.material;
         m_Lerper.Init(mat, m_tweenSpeed, m_MinSliderValue);
+        m_currentFillUp = 0;
+        m_Lerper.UpdateSlider(0.01f);
     }
 
 
     public int DropOff(int dropOffAmount)
     {
+
+
         int remainingCargo = 0;
 
         // add cargo
