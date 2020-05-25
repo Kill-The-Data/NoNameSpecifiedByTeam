@@ -416,6 +416,8 @@ MonoBehaviour:
   m_Timer: {fileID: 5630395463428238593}
   m_Player: {fileID: 1306308143}
   m_Score: {fileID: 38796674}
+  m_generator: {fileID: 1160042671}
+  m_genLevelInTutorial: 0
 --- !u!4 &124542239
 Transform:
   m_ObjectHideFlags: 0
