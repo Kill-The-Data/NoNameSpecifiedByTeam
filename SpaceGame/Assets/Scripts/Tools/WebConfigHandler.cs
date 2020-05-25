@@ -10,23 +10,23 @@ public static class WebConfigHandler
 {
     
     //where to get the data from
-    private const string CONFIG_URI_SPECIFIC = "https://kill-the-data.github.io/config/spacegame/v{0}.json";
-    
-    //the version of the config
-    private const int CONFIG_VERSION = 2;
+    private const string CONFIG_URI_LATEST = "https://kill-the-data.github.io/config/spacegame/latest.json";
     
     private static JObject m_deserializedData;
+
+    private static bool m_downloadFinished = false;
+    private static Action<JObject> m_OnFinishedAction = delegate { };
+    
     public static IEnumerator FetchConfig()
     {
+        m_downloadFinished = false;
         //make http request
-
-        string request_uri = String.Format(CONFIG_URI_SPECIFIC, CONFIG_VERSION);
         
-        var www = UnityWebRequest.Get(request_uri);
+        var www = UnityWebRequest.Get(CONFIG_URI_LATEST);
         
-        //apparently unity want to read the www stream until the universe has ended, luckily we 
-        //can tell unity that the universe ends in exactly one second
-        www.timeout = 1;
+        //apparently unity wants to read the www stream until the universe has ended, luckily we 
+        //can tell unity that the universe ends in exactly 4 seconds
+        www.timeout = 2;
         yield return www.SendWebRequest();
         
         //get the response text from the request
@@ -38,7 +38,9 @@ public static class WebConfigHandler
         
         //parse the json
         m_deserializedData = JObject.Parse(response);
-        
+        m_downloadFinished = true;
+        m_OnFinishedAction(m_deserializedData);
+
     }
 
     public static JObject GetConfig()
@@ -52,6 +54,16 @@ public static class WebConfigHandler
         
         return m_deserializedData;
     }
+
+    public static void OnFinishDownload(Action<JObject> action)
+    {
+        if (m_downloadFinished)
+        {
+            action(m_deserializedData);
+        }
+        m_OnFinishedAction += action;
+    }
+    
     
     public static JObject UncheckedGetConfig()
     {

@@ -6475,6 +6475,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_text: {fileID: 2104199491}
   m_slider: {fileID: 782689109}
+  m_overrideMaxCargo: 1
   m_tweenSpeed: 1
   m_MinSliderValue: 0.067
   m_cargoLimit: 2
@@ -7739,6 +7740,7 @@ GameObject:
   - component: {fileID: 1660827286}
   - component: {fileID: 1660827288}
   - component: {fileID: 1660827289}
+  - component: {fileID: 1660827290}
   m_Layer: 0
   m_Name: Global Setup
   m_TagString: Untagged
@@ -7802,6 +7804,18 @@ MonoBehaviour:
   m_entries:
   - Name: collision
     Sound: {fileID: 8300000, guid: fba11d8f840889945a52906d4983866a, type: 3}
+--- !u!114 &1660827290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660827285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5c17102f1088444488a74b0cb03c5b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1666036294
 GameObject:
   m_ObjectHideFlags: 0
@@ -10058,7 +10072,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5630395463692209601
 RectTransform:
   m_ObjectHideFlags: 0
