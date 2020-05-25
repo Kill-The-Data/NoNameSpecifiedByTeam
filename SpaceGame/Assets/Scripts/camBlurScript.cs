@@ -1,7 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Net.NetworkInformation;
-using System.Security.AccessControl;
 using UnityEngine;
 
 public class camBlurScript : MonoBehaviour
