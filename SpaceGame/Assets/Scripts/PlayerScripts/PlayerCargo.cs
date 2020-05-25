@@ -116,7 +116,6 @@ public class PlayerCargo : MonoBehaviour, IObserver
     {
         if (subject is MotherShipCollisionHandler collision)
         {
-            Debug.Log("setting fill");
             SetFill(collision.LeftoverCargo);
         }
     }
