@@ -6038,10 +6038,12 @@ MonoBehaviour:
   m_showGizmos: 1
   m_collectionCreators:
   - {fileID: 1160042674}
-  m_baseZoom: 10
+  m_baseZoom: 50
   m_cameraSettings:
-  - BarrelThreshold: 6
-    ZoomLevel: 5
+  - BarrelThreshold: 3
+    ZoomLevel: 10
+  - BarrelThreshold: 1
+    ZoomLevel: 20
   m_radius: 20
   m_camera: {fileID: 963194227}
 --- !u!114 &1306308155
