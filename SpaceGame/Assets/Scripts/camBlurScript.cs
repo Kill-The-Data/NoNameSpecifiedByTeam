@@ -29,14 +29,14 @@ public class camBlurScript : MonoBehaviour
     }
 
     //changes blur state
-    private void ChangeBlur()
+    public void ChangeBlur()
     {
         if (m_isActive)
             DeactivateBlur();
         else
             ActivateBlur();
     }
-    private void ActivateBlur()
+    public void ActivateBlur()
     {
         m_BlurrObject?.SetActive(true);
         m_renderTexCam?.gameObject.SetActive(true);
@@ -44,9 +44,9 @@ public class camBlurScript : MonoBehaviour
         m_MainCam.cullingMask = LayerMask.GetMask("Ignore Raycast");
         m_isActive = true;
 
-}
+    }
 
-private void DeactivateBlur()
+    public void DeactivateBlur()
     {
         m_BlurrObject?.SetActive(false);
         m_renderTexCam?.gameObject.SetActive(false);
