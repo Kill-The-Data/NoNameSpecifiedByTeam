@@ -1,2 +1,3 @@
-xcopy .\deploy-version.txt ..\deploy-version.txt /q /y
-xcopy .\deploy-version.txt .\web-build\deploy-version.txt /q /y
+@echo off
+xcopy .\deploy-version.txt ..\ /q /y
+xcopy .\deploy-version.txt .\web-build\ /q /y
