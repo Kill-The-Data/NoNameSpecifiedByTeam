@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class camBlurScript : MonoBehaviour
+public class CamBlurScript : MonoBehaviour
 {
 
     [SerializeField] private Camera m_renderTexCam = null;

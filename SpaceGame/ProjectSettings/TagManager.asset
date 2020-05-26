@@ -9,6 +9,7 @@ TagManager:
   - FSM
   - ScoreUI
   - Reset
+  - DebrisField
   layers:
   - Default
   - TransparentFX

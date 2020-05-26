@@ -10,13 +10,13 @@ public class MainMenuState : StateWithView<BasicView>
     public override void EnterState()
     {
         ResetPlayerPrefs();
-        Camera.main.GetComponent<camBlurScript>()?.ActivateBlur();
+        Camera.main.GetComponent<CamBlurScript>()?.ActivateBlur();
         base.EnterState();
     }
 
     public override void ExitState()
     {
-        Camera.main.GetComponent<camBlurScript>()?.DeactivateBlur();
+        Camera.main.GetComponent<CamBlurScript>()?.DeactivateBlur();
         base.ExitState();
     }
 
