@@ -1,4 +1,8 @@
-﻿public static class AndroidUtils
+﻿#if UNITY_ANDROID
+using UnityEngine.AndroidJNIModule;
+#endif
+
+public static class AndroidUtils
 {
     public static string GetFriendlyPath()
     {
