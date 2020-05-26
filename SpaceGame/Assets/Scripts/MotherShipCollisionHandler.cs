@@ -9,11 +9,17 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
     [Tooltip("How much the player gets for one piece of cargo")]
     [SerializeField] private int m_scorePerCargo = 10;
 
+    [Tooltip("The Sound to play on player collision")] 
+    [SerializeField] private string m_playerSound;
+    
+    
     private FSM m_Fsm;
     private BuoyFillUp m_FillUp = null;
 
     private List<IObserver> m_Observers = null;
 
+    private AudioSource m_source;
+    
     public int ScoreGain
     {
         get;
@@ -28,6 +34,8 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
     {
         FindTaggedObjects();
         m_FillUp = GetComponent<BuoyFillUp>();
+        m_source = gameObject.AddComponent<AudioSource>();
+        m_source.clip = SoundManager.Instance.GetSound(m_playerSound);
     }
 
     //trys to find the object by its tag, please do not reuse the Tag, tag should be unique for this
@@ -45,6 +53,8 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
         if (other.CompareTag("Player")
             && other.transform.parent.GetComponentSafe<PlayerCargo>(out var cargo))
         {
+            m_source.Play();
+            
             //add score to the 
             int cargoAmount = cargo.SpaceOccupied;
 

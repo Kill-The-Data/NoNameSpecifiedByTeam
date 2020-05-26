@@ -135,6 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19ccf80c8fb65bc4584b2e93f0d4096b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_pickupSound: powerup-time
   m_timeGain: 10
 --- !u!114 &-6408132786577565772
 MonoBehaviour:

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealPowerUp : PowerUp
+public class HealPowerUp : SoundPowerUp
 {
     public int HealAmount= 0;
 
@@ -13,6 +13,7 @@ public class HealPowerUp : PowerUp
 
     public override void ExecutePowerUp(PlayerScriptContainer pHandler)
     {
+        base.ExecutePowerUp(pHandler);
         pHandler.GetPlayerHealth.Heal(HealAmount);
     }
 }

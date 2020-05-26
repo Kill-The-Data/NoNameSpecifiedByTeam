@@ -28,9 +28,26 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float m_bankingFactor = 0.01F;
     [SerializeField] private Transform m_spaceShipModel;
     private Quaternion m_spaceShipModelInitialRotation = Quaternion.identity;
+
+    [Tooltip("The sound file to play when accelerating")] 
+    [SerializeField] private string m_clip;
+
+    private static AudioSource m_source = null;
     
     private Vector3 m_speed;
     public const float MIN_EPSILON = 0.0001f;
+
+    public void Awake()
+    {
+        if (m_source == null)
+        {
+            m_source = gameObject.AddComponent<AudioSource>();
+            m_source.clip = SoundManager.Instance.GetSound(m_clip);
+            m_source.loop = true;
+            m_source.Play();
+        }
+    }
+
     //gets called on state enter to reset player 
     public void ResetController()
     {
@@ -97,6 +114,9 @@ public class PlayerController : MonoBehaviour
 
         //do euler step
         transform.position += m_speed * Time.deltaTime;
+
+
+        m_source.volume = m_speed.magnitude / 100.0f;
     }
 
     #if (UNITY_EDITOR)
