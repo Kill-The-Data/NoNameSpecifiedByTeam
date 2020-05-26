@@ -34,7 +34,6 @@ public class MotherShipHomingDeviceUI : MonoBehaviour
 
     void Update()
     {
-        Transform target;
         Vector3 closest = Vector3.positiveInfinity;
         
         foreach (BuoyFillUp buoyFillUp in m_targets)
