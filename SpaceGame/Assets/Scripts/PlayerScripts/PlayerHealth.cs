@@ -79,12 +79,10 @@ public class PlayerHealth : MonoBehaviour, ISubject
                 }
             });
         }
-        
+        Debug.Log("rest hp");
         Health = m_maxHealth;
         InitSlider();
         UpdateView();
-        
-       
     }
 
    
@@ -158,5 +156,6 @@ public class PlayerHealth : MonoBehaviour, ISubject
     public void Attach(IObserver observer)
     {
         observers?.Add(observer);
+        Notify();
     }
 }

@@ -83,8 +83,9 @@ public class LerpScore : MonoBehaviour
     //init text & vars
     public void CalculateScore(int initialScore, float timeLeft, int healthLeft, int filledBoys, int reachedGoal)
     {
+
         m_currentScore = initialScore;
-        m_timeLeft = timeLeft;
+        m_timeLeft = Mathf.RoundToInt(timeLeft);
         m_healthLeft = healthLeft;
         m_filledUp = filledBoys;
         m_finished = reachedGoal;

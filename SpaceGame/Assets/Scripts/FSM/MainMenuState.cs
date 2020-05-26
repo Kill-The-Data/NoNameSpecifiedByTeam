@@ -9,7 +9,7 @@ public class MainMenuState : StateWithView<BasicView>
 
     public override void EnterState()
     {
-
+        ResetPlayerPrefs();
         Camera.main.GetComponent<camBlurScript>()?.ActivateBlur();
         base.EnterState();
     }
