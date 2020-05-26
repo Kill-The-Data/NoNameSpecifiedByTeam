@@ -1,0 +1,10 @@
+stuff​|60
+lol​|30
+name​|20
+name​|20
+dead​|20
+​|10
+death​|10
+lol​|10
+​|10
+​|0
