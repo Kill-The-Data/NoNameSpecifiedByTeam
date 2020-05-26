@@ -7,7 +7,6 @@ using UnityEngine.PlayerLoop;
 
 public class LerpScore : MonoBehaviour
 {
-
     public enum CalculationState
     {
         START,
@@ -16,149 +15,159 @@ public class LerpScore : MonoBehaviour
         BOYS_ADDED,
         FINISHED
     }
-    public  Vector3 startPos=Vector3.zero;
-    private CalculationState m_currentState = CalculationState.START;
-    public LeanTweenType type = LeanTweenType.linear;
 
-    public float distance = 50.0f;
-
-    public TMP_Text ScoreText = null; public TMP_Text timeLeftText = null;
-    public TMP_Text HealthLeftText = null;
-    public TMP_Text ScoreGainText = null;
-    public TMP_Text buoysFilledUp = null;
-    public TMP_Text finishedText = null;
-
-
-    public float delay = 0.5f;
-    private float currentT = 0;
-    public float tweenSpeed = 1.0f;
-    // Start is called before the first frame update
+    [Header("---Setup---")]
+    [Header("-text start pos-")]
+    [SerializeField] private Vector3 m_startPos =new Vector3(0,-300,0);
+    [Header("-tween type-")]
+    [Header("---tween setup---")]
+    [SerializeField] private LeanTweenType m_type = LeanTweenType.linear;
+    [Header("-delay in between tween-")]
+    [SerializeField] private float delay = 0.5f;
+    [SerializeField] private float m_tweenSpeed = 1.0f;
+    [Header("-horizontal distance between text fields type-")]
+    [SerializeField] private float m_distance = 50.0f;
 
 
+    [Header("---Assign Text objects---")]
+    [SerializeField] private TMP_Text m_ScoreText = null;
+    [SerializeField] private TMP_Text m_timeLeftText = null;
+    [SerializeField] private TMP_Text m_HealthLeftText = null;
+    [SerializeField] private TMP_Text m_ScoreGainText = null;
+    [SerializeField] private TMP_Text m_buoysFilledUp = null;
+    [SerializeField] private TMP_Text m_finishedText = null;
+
+    //vars
     private float m_currentScore = 0;
     private float m_timeLeft = 0;
     private int m_healthLeft = 0;
     private int m_filledUp = 0;
-    private bool finished = false;
-    private bool delaying = false;
-    void Start()
-    {
-        Reset();
-        m_currentScore = 100;
-    }
+    private int m_finished = 0;
+    private bool m_delaying = false;
 
-    private void Reset()
+    private CalculationState m_currentState = CalculationState.START;
+    private float m_currentT = 0;
+
+    public void Reset()
     {
         ResetValues();
-        m_currentState = CalculationState.START;
-        if (!ScoreText) ScoreText = GetComponent<TMP_Text>();
-        ScoreText.text = m_currentScore.ToString();
+        if (m_ScoreText)
+            m_ScoreText.text = m_currentScore.ToString();
     }
 
     private void ResetValues()
     {
+        m_currentState = CalculationState.START;
         m_currentScore = 0;
         m_timeLeft = 0;
         m_healthLeft = 0;
         m_filledUp = 0;
-        finished = false;
+        m_finished = 0;
+        m_delaying = false;
     }
-    // Update is called once per frame
+
+    //update handles delay
     void Update()
     {
-        if (Input.GetKeyDown("space"))
+        if (m_delaying)
         {
-            ResetValues();
-            CalculateScore(100, 30, 50, 3, true);
-        }
-            
-
-        if (delaying)
-        {
-            currentT -= Time.deltaTime;
-            if (currentT <= 0)
+            m_currentT -= Time.deltaTime;
+            if (m_currentT <= 0)
             {
-                delaying = false;
+                m_delaying = false;
                 Calculate();
             }
         }
     }
-
-    public void CalculateScore(int initialScore, float timeLeft, int healthLeft, int filledBoys, bool reachedGoal)
+    //start of calculation
+    //init text & vars
+    public void CalculateScore(int initialScore, float timeLeft, int healthLeft, int filledBoys, int reachedGoal)
     {
         m_currentScore = initialScore;
         m_timeLeft = timeLeft;
         m_healthLeft = healthLeft;
         m_filledUp = filledBoys;
-        finished = reachedGoal;
+        m_finished = reachedGoal;
+        m_ScoreText.text = initialScore.ToString();
 
-        ScoreText.text = initialScore.ToString();
 
+        InitText(reachedGoal.ToString(), m_finishedText);
+        InitText(filledBoys.ToString(), m_buoysFilledUp);
+        InitText(m_timeLeft.ToString(), m_timeLeftText);
+        InitText(m_healthLeft.ToString(), m_HealthLeftText);
 
-        finishedText.text = reachedGoal.ToString();
-        finishedText.transform.localPosition = startPos;
-        finishedText.gameObject.SetActive(false);
-
-        buoysFilledUp.text = filledBoys.ToString();
-        buoysFilledUp.transform.localPosition = startPos;
-        buoysFilledUp.gameObject.SetActive(false);
-
-        timeLeftText.text = m_timeLeft.ToString();
-        timeLeftText.transform.localPosition = startPos;
-        timeLeftText.gameObject.SetActive(false);
-
-        HealthLeftText.text = m_healthLeft.ToString();
-        HealthLeftText.transform.localPosition = startPos;
-        HealthLeftText.gameObject.SetActive(false);
 
         AddTime();
 
     }
 
+    private void InitText(string text, TMP_Text textContainer)
+    {
+        if (textContainer)
+        {
+            textContainer.text = text;
+            textContainer.transform.parent.transform.localPosition = m_startPos;
+            textContainer.transform.parent.gameObject.SetActive(false);
+        }
+    }
+    //chages state, calcs score gain and calls add score 
     private void AddTime()
     {
         m_currentState = CalculationState.TIME_ADDED;
+
+        Debug.Log("time left" + m_timeLeft);
         int addValue = Mathf.RoundToInt(m_timeLeft * 5);
-        AddScore(timeLeftText, addValue);
+        AddScore(m_timeLeftText, addValue);
     }
 
     private void AddHealth()
     {
+        Debug.Log("health left" + m_healthLeft);
+
         m_currentState = CalculationState.HEALTH_ADDED;
         int addValue = m_healthLeft * 10;
-        AddScore(HealthLeftText, addValue);
+        AddScore(m_HealthLeftText, addValue);
     }
     private void AddFilledBoys()
     {
         m_currentState = CalculationState.BOYS_ADDED;
         int addValue = m_filledUp * 50;
-        AddScore(buoysFilledUp, addValue);
+        AddScore(m_buoysFilledUp, addValue);
     }
     private void AddFinishGoal()
     {
         m_currentState = CalculationState.FINISHED;
-        int addvalue = 0;
-        if (finished) addvalue = (int)m_currentScore;
-        AddScore(finishedText, addvalue);
+       int addvalue = (int)m_currentScore * m_finished;
+        AddScore(m_finishedText, addvalue);
     }
+
+    //moves text object
     private void AddScore(TMP_Text text, int scoreAdded)
     {
         LerpMainScore(scoreAdded);
-        text.gameObject.SetActive(true);
+        text?.gameObject.transform.parent.gameObject.SetActive(true);
         ScoreGainDisplay(scoreAdded);
-        LeanTween.moveY(text.gameObject, transform.position.y - distance * (int)m_currentState, tweenSpeed).setEase(type);
+        LeanTween.moveY(text?.gameObject.transform.parent.gameObject, transform.position.y - m_distance * (int)m_currentState, m_tweenSpeed).setEase(m_type);
         m_currentScore += scoreAdded;
     }
+    //activates delay, sets score if done
     private void Step()
     {
-        currentT = delay;
-        delaying = true;
+        if (m_currentState == CalculationState.FINISHED)
+        {
+            PlayerPrefs.SetInt("score", (int)m_currentScore);
+        }
+        m_currentT = delay;
+        m_delaying = true;
     }
-
+    //do calculation based on current calculation state
     private void Calculate()
     {
         switch (m_currentState)
         {
+            case CalculationState.START:
+                AddTime();
+                break;
             case CalculationState.TIME_ADDED:
                 AddHealth();
                 break;
@@ -170,28 +179,29 @@ public class LerpScore : MonoBehaviour
                 break;
         }
     }
-
+    //displays the gained score
     private void ScoreGainDisplay(int gain)
     {
-        ScoreGainText.text = "+ " + gain.ToString();
-        ScoreGainText.gameObject.SetActive(true);
+        m_ScoreGainText.text = "+ " + gain.ToString();
+        m_ScoreGainText.gameObject.SetActive(true);
 
-        LeanTween.value(this.gameObject, gain, 0, tweenSpeed).setEase(type).setOnUpdate((float val) =>
+        LeanTween.value(this.gameObject, gain, 0, m_tweenSpeed).setEase(m_type).setOnUpdate((float val) =>
         {
             int roundedVal = Mathf.RoundToInt(val);
-            ScoreGainText.text = "+ " + roundedVal.ToString();
-            if (roundedVal == 0) ScoreGainText.gameObject.SetActive(false);
+            m_ScoreGainText.text = "+ " + roundedVal.ToString();
+            if (roundedVal == 0) m_ScoreGainText.gameObject.SetActive(false);
         });
     }
+    //lerps current score to new score
     private void LerpMainScore(float newTargetValue)
     {
-        LeanTween.value(this.gameObject, m_currentScore, m_currentScore + newTargetValue, tweenSpeed).
-           setEase(type).setOnUpdate(UpdateText).setOnComplete(Step);
+        LeanTween.value(this.gameObject, m_currentScore, m_currentScore + newTargetValue, m_tweenSpeed).
+           setEase(m_type).setOnUpdate(UpdateText).setOnComplete(Step);
     }
     private void UpdateText(float f)
     {
         int score = Mathf.RoundToInt(f);
-        ScoreText.text = score.ToString();
+        m_ScoreText.text = score.ToString();
     }
 
 }

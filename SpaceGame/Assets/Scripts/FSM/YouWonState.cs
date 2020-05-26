@@ -23,15 +23,6 @@ public class YouWonState : StateWithView<BasicView>
 
     public void SelectView()
     {
-        int score = PlayerPrefs.GetInt("score");
-        if (ReadWriteLeaderBoard.IsOnLeaderboard(score, PlayerPrefs.GetString("hs_daily")) ||
-            ReadWriteLeaderBoard.IsOnLeaderboard(score, PlayerPrefs.GetString("hs_alltime")))
-        {
-            fsm.ChangeState<EnterNameState>();
-        }
-        else
-        {
-            fsm.ChangeState<FeedbackState>();
-        }
+        fsm.ChangeState<GameResultState>();
     }
 }
