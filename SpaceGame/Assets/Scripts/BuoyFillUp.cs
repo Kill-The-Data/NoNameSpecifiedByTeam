@@ -40,7 +40,11 @@ public class BuoyFillUp : MonoBehaviour
 
     public int DropOff(int dropOffAmount)
     {
-
+        //just return drop off if full
+        if (Full())
+        {
+            return dropOffAmount;
+        }
 
         int remainingCargo = 0;
 
@@ -48,10 +52,12 @@ public class BuoyFillUp : MonoBehaviour
         m_currentFillUp += dropOffAmount;
 
         //set fill up to max if it exceeds max
-        if (m_currentFillUp > m_MaxFillUp)
+        if (m_currentFillUp >= m_MaxFillUp)
         {
             remainingCargo = m_currentFillUp - m_MaxFillUp;
             m_currentFillUp = m_MaxFillUp;
+            //increase filled up buoys once max reached max
+            PlayerPrefs.SetInt("buoysFilled", PlayerPrefs.GetInt("buoysFilled") + 1);
         }
         //return leftover player cargo if not all cargo can be dropped off
         float fillUp = (float)m_currentFillUp / (float)m_MaxFillUp;
