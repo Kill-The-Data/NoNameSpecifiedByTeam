@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerScriptContainer : MonoBehaviour
 {
     [SerializeField] private GameObject m_parentObject;
+    public GameObject PlayerObject => m_parentObject;
 
     private PlayerHealth m_Health = null;
     public PlayerHealth GetPlayerHealth => m_Health;

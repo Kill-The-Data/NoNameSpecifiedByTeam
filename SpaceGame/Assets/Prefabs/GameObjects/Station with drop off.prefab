@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_scorePerCargo: 10
+  m_playerSound: debris-dropoff
 --- !u!114 &2445845336909643696
 MonoBehaviour:
   m_ObjectHideFlags: 0
