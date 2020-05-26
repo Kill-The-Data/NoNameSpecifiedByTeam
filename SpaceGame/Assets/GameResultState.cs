@@ -13,7 +13,7 @@ public class GameResultState : StateWithView<ScoreCalcView>
         LerpScore  scoreCalc =view.GetScoreCalc();
         scoreCalc.Reset();
         scoreCalc.CalculateScore(100, PlayerPrefs.GetFloat("time"),
-                PlayerPrefs.GetInt("health"), 0, PlayerPrefs.GetInt("goalReached"));
+                PlayerPrefs.GetInt("health"), PlayerPrefs.GetInt("buoysFilled"), PlayerPrefs.GetInt("goalReached"));
         StartCoroutine(AdvanceFSM());
 
     }
