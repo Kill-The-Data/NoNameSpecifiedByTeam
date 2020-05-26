@@ -11,6 +11,7 @@ public class ReadVersion : MonoBehaviour
     public const  int MINOR = 1;
     public static int PATCH { get; private set; }  = 0;
 
+    public const string WEBGL_ROOT = "https://kill-the-data.github.io/NoNameSpecifiedByTeam/";
     public const string VERSION_DEPLOY_PATH = "deploy-version.txt";
     
     void Awake()
@@ -35,7 +36,7 @@ public class ReadVersion : MonoBehaviour
 
 #else
         #if UNITY_WEBGL
-            StartCoroutine(SetTextAfterDownload("/"+VERSION_DEPLOY_PATH, str));
+            StartCoroutine(SetTextAfterDownload(WEBGL_ROOT+VERSION_DEPLOY_PATH, str));
         #else
             using (var stream = new StreamReader(AndroidUtils.GetFriendlyPath() + VERSION_DEPLOY_PATH))
             {

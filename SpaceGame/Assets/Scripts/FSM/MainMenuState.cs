@@ -26,5 +26,13 @@ public class MainMenuState : StateWithView<BasicView>
         fsm.ChangeState<HighscoreState>();
     }
 
+    private void ResetPlayerPrefs()
+    {
+        PlayerPrefs.SetInt("score", 0);
+        PlayerPrefs.SetFloat("time", 0);
+        PlayerPrefs.SetInt("health", 0);
+        PlayerPrefs.SetInt("goalReached",0);
+        PlayerPrefs.SetInt("buoysFilled",0);
+    }
 
 }
