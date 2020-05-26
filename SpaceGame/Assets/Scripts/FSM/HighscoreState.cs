@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 
+using System.Collections;
 public class HighscoreState : StateWithView<HighscoreView>
 {
     [SerializeField] private GameObject m_entryPrefab;
-    
+    public int Timeout = 15;
+
     public override void EnterState()
     {
         base.EnterState();
@@ -44,6 +46,14 @@ public class HighscoreState : StateWithView<HighscoreView>
                 entry.SetScore(score);
             }
         }
+        StartCoroutine(AdvanceFSM());
+
+    }
+    IEnumerator AdvanceFSM()
+    {
+        Debug.Log($"Entered Corroutine to end GameOverScreen in {Timeout} seconds");
+        yield return new WaitForSeconds(Timeout);
+        OnBackToMainMenu();
     }
 
     public void OnBackToMainMenu()
