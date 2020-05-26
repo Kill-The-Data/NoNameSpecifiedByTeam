@@ -1,1 +1,1 @@
-v0.5.1.deploy
+release/v0.5.2.deploy:  20fea91a3b

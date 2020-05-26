@@ -1,7 +1,9 @@
-﻿using System.Diagnostics;
+﻿using System.Collections;
+using System.Diagnostics;
 using System.IO;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class ReadVersion : MonoBehaviour
 {
@@ -18,24 +20,50 @@ public class ReadVersion : MonoBehaviour
         var str = GetComponent<TMP_Text>();
         
     #if UNITY_EDITOR
-        var procInfo = new ProcessStartInfo("git", "rev-parse --abbrev-ref HEAD")
-        {
-            UseShellExecute = false, RedirectStandardOutput = true
-        };
-        
-        var proc =  Process.Start(procInfo);
-        str.text = proc?.StandardOutput.ReadLine();
+
+        string commitSHA = CallApplication("git", "rev-parse HEAD").Substring(0, 10);
+        string commitName = CallApplication("git", "rev-parse --abbrev-ref HEAD");
+
+        str.text = $"{commitName}:  {commitSHA}";
 
         using (var stream = new StreamWriter(AndroidUtils.GetFriendlyPath() + VERSION_DEPLOY_PATH))
         {
             stream.WriteLine(str.text);
         }
-    #else
-        using (var stream = new StreamReader(AndroidUtils.GetFriendlyPath() + VERSION_DEPLOY_PATH))
-        {
-            str.text = stream.ReadLine();
-        }
-    #endif
+
+        CallApplication("copy-deploy-string.bat", "-find-me");
+
+#else
+        #if UNITY_WEBGL
+            StartCoroutine(SetTextAfterDownload("/"+VERSION_DEPLOY_PATH, str));
+        #else
+            using (var stream = new StreamReader(AndroidUtils.GetFriendlyPath() + VERSION_DEPLOY_PATH))
+            {
+                str.text = stream.ReadLine();
+            }
+        #endif
+#endif
 
     }
+    private IEnumerator SetTextAfterDownload(string path,TMP_Text str)
+    {
+        using (var www = UnityWebRequest.Get(path))
+        {
+            www.timeout = 1;
+            yield return www.SendWebRequest();
+            str.text = www.downloadHandler.text;
+        }
+    }
+
+    private string CallApplication(string path,string args)
+    {
+        var procInfo = new ProcessStartInfo(path, args)
+        {
+            UseShellExecute = false, RedirectStandardOutput = true, CreateNoWindow = true
+        };
+        
+        var proc =  Process.Start(procInfo);
+        return proc?.StandardOutput.ReadLine();
+    }
+    
 }

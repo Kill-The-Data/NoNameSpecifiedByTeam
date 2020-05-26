@@ -1,3 +1,0 @@
-sep=,
-Date,Time,Score
-13-05-2020,11:49:49 vorm. +02,1,F,F
