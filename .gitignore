@@ -60,3 +60,9 @@ crashlytics-build.properties
 
 # jb rider
 **/.idea/
+
+# extra stuff that is annoying
+
+SpaceGame/*.highscore.txt
+SpaceGame/feedback.csv
+**/ProjectSettings/QualitySettings.asset
