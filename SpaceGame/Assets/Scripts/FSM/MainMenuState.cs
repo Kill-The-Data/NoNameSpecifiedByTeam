@@ -9,6 +9,7 @@ public class MainMenuState : StateWithView<HighscoreView>
 
     public override void EnterState()
     {
+        view.LoadComponents();
         view.GetHighScoreDisplay()?.Load();
         ResetPlayerPrefs();
         Camera.main.GetComponent<CamBlurScript>()?.ActivateBlur();
