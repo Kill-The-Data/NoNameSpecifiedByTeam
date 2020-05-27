@@ -284,6 +284,7 @@ GameObject:
   - component: {fileID: 9093387858259460598}
   - component: {fileID: 1254058634629886716}
   - component: {fileID: 5763260453423974636}
+  - component: {fileID: 9182426598110421284}
   m_Layer: 9
   m_Name: tutorialBarrel (1)
   m_TagString: Reset
@@ -389,6 +390,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_rotationAxis: {x: 0, y: 0, z: 0}
   m_angle: 0
+--- !u!114 &9182426598110421284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9093387858259460597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17c89c67626d1124fb6e598da136a6ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9093387858826872137
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,6 +417,7 @@ GameObject:
   - component: {fileID: 9093387858826872138}
   - component: {fileID: 1522783866953690029}
   - component: {fileID: 3808363664425414969}
+  - component: {fileID: 5165568755175863596}
   m_Layer: 9
   m_Name: tutorialBarrel (2)
   m_TagString: Reset
@@ -509,6 +523,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_rotationAxis: {x: 0, y: 0, z: 0}
   m_angle: 0
+--- !u!114 &5165568755175863596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9093387858826872137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17c89c67626d1124fb6e598da136a6ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2119996414136759172
 PrefabInstance:
   m_ObjectHideFlags: 0
