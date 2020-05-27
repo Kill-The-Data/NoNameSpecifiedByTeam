@@ -27,6 +27,11 @@ public class MainMenuState : StateWithView<HighscoreView>
         fsm.ChangeState<HighscoreState>();
     }
 
+    public void EnterCreditsState()
+    {
+        fsm.ChangeState<CreditsState>();
+    }
+    
     private void ResetPlayerPrefs()
     {
         PlayerPrefs.SetInt("score", 0);
