@@ -20,14 +20,14 @@ public class LerpScoreView : MonoBehaviour
     {
         m_hiddenScoreY = m_secondScoreDisplay.transform.localPosition.y;
         m_targetScoreY = m_firstScoreDisplay.transform.localPosition.y;
-        reset();
+        Reset();
     }
 
     void Update()
     {
 
         m_TimeLeft -= Time.deltaTime;
-        if (m_t <= 0)
+        if (m_TimeLeft <= 0)
         {
             SwitchView();
             Reset();
