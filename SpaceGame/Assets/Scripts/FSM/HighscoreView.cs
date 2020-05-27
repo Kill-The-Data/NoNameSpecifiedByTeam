@@ -8,6 +8,15 @@ public class HighscoreView : AbstractView
 
     void Awake()
     {
+        FindComponents();
+    }
+
+    private void FindComponents()
+    {
         m_highscoreDisplay = GetComponent<HighScoreDisplay>();
+    }
+    public void LoadComponents()
+    {
+        FindComponents();
     }
 }
