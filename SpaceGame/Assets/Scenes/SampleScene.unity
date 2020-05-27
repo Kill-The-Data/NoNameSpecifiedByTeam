@@ -190,6 +190,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6091207290806031390}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &516635775 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 769274819444717832, guid: 77214e1db773e49429c2047e81d15455,
+    type: 3}
+  m_PrefabInstance: {fileID: 769274817973704465}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &573955624
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,6 +487,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4218050729064255387, guid: 19663be05b01fbb4c8d8a14734b428bf,
     type: 3}
   m_PrefabInstance: {fileID: 761887660}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &769450418 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 769274818288845681, guid: 77214e1db773e49429c2047e81d15455,
+    type: 3}
+  m_PrefabInstance: {fileID: 769274817973704465}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &778221521
 GameObject:
@@ -1238,6 +1250,16 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 769274818771068001, guid: 77214e1db773e49429c2047e81d15455,
+        type: 3}
+      propertyPath: m_firstScoreDisplay
+      value: 
+      objectReference: {fileID: 769450418}
+    - target: {fileID: 769274818771068001, guid: 77214e1db773e49429c2047e81d15455,
+        type: 3}
+      propertyPath: m_secondScoreDisplay
+      value: 
+      objectReference: {fileID: 516635775}
     - target: {fileID: 769274819218077986, guid: 77214e1db773e49429c2047e81d15455,
         type: 3}
       propertyPath: m_camera
