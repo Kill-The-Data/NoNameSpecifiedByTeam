@@ -54,7 +54,7 @@ public class ScoreUI : MonoBehaviour, IObserver
     }
     private void UpdateView()
     {
-             m_scoreTargetText.SetText($"{m_currentScore} ");
+        m_scoreTargetText.SetText($"{m_currentScore} ");
     }
 
     public void GetUpdate(ISubject subject)

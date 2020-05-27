@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4846783752672600223}
   - component: {fileID: 3484200727019489473}
   m_Layer: 0
-  m_Name: GameObject
-  m_TagString: ScoreUI
+  m_Name: TutorialBarrels
+  m_TagString: Reset
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

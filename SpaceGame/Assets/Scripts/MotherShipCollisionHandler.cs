@@ -1,6 +1,8 @@
-﻿using System;
+using System;
 using UnityEngine;
 using System.Collections.Generic;
+
+
 public class MotherShipCollisionHandler : MonoBehaviour, ISubject
 {
 
@@ -32,6 +34,7 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
     }
     void Start()
     {
+        m_Observers = new List<IObserver>();
         FindTaggedObjects();
         m_FillUp = GetComponent<BuoyFillUp>();
         m_source = gameObject.AddComponent<AudioSource>();
@@ -42,7 +45,8 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
     private void FindTaggedObjects()
     {
         m_Observers = new List<IObserver>();
-        m_Observers.Add(GameObject.FindWithTag("ScoreUI").GetComponent<ScoreUI>());
+        GameObject obj = GameObject.FindWithTag("ScoreUI");
+        m_Observers.Add(obj.GetComponent<ScoreUI>());
         if (!m_Fsm)
             m_Fsm = GameObject.FindWithTag("FSM").GetComponent<FSM>();
 
