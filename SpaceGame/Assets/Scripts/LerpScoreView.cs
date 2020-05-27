@@ -45,7 +45,7 @@ public class LerpScoreView : MonoBehaviour
         else
         {
             m_firstScoreDisplay.LeanMoveLocalY(m_targetScoreY, m_TweenSpeed).setEase(m_tweenType).setOnComplete(MoveBack);
-            sm_econdScoreDisplay.LeanMoveLocalY(m_targetInivsY, m_TweenSpeed).setEase(m_tweenType);
+            m_secondScoreDisplay.LeanMoveLocalY(m_targetInivsY, m_TweenSpeed).setEase(m_tweenType);
             m_firstIsVisible = true;
         }
     }
@@ -54,15 +54,15 @@ public class LerpScoreView : MonoBehaviour
     {
         if (m_firstIsVisible)
         {
-            Vector3 newPos = secondScoreDisplay.transform.localPosition;
+            Vector3 newPos = m_secondScoreDisplay.transform.localPosition;
             newPos.y = m_hiddenScoreY;
-            secondScoreDisplay.transform.localPosition = newPos;
+            m_secondScoreDisplay.transform.localPosition = newPos;
         }
         else
         {
-            Vector3 newPos = firstScoreDisplay.transform.localPosition;
+            Vector3 newPos = m_firstScoreDisplay.transform.localPosition;
             newPos.y = m_hiddenScoreY;
-            firstScoreDisplay.transform.localPosition = newPos;
+            m_firstScoreDisplay.transform.localPosition = newPos;
         }
     }
     void Reset()
