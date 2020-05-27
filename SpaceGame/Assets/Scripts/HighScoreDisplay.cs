@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HIghScoreDisplay : MonoBehaviour
+public class HighScoreDisplay : MonoBehaviour
 {
     [SerializeField] private GameObject m_prefab;
     [SerializeField] private Transform m_dailyTransform;
