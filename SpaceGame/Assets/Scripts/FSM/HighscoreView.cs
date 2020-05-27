@@ -2,10 +2,12 @@
 
 public class HighscoreView : AbstractView
 {
-    [SerializeField] private GameObject m_highscoreListView;
-    public GameObject GetHighscoreListView() => m_highscoreListView;
-    
-    [SerializeField] private GameObject m_highscoreListViewAllTime;
-    public GameObject GetHighscoreListViewAllTime() => m_highscoreListViewAllTime;
+    private HighScoreDisplay m_highscoreDisplay;
+    public HighScoreDisplay GetHighScoreDisplay() => m_highscoreDisplay;
 
+
+    void Awake()
+    {
+        m_highscoreDisplay = GetComponent<HighScoreDisplay>();
+    }
 }

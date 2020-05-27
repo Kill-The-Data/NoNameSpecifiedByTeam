@@ -52,12 +52,15 @@ public class IngameState : StateWithView<IngameView>
     {
         view.GetPerformance().StoreStatsInPlayerPrefs(0);
         view.GetItemSpawner().Deactivate();
+        Camera.main.GetComponent<CamBlurScript>().ActivateBlur();
         fsm.ChangeState<GameOverState>();
+
     }
     public void GameFinished()
     {
         view.GetPerformance().StoreStatsInPlayerPrefs(1);
         view.GetItemSpawner().Deactivate();
+        Camera.main.GetComponent<CamBlurScript>().ActivateBlur();
         fsm.ChangeState<YouWonState>();
     }
 }

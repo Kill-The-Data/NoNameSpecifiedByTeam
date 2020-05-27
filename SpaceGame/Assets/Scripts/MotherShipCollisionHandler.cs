@@ -9,17 +9,17 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
     [Tooltip("How much the player gets for one piece of cargo")]
     [SerializeField] private int m_scorePerCargo = 10;
 
-    [Tooltip("The Sound to play on player collision")] 
+    [Tooltip("The Sound to play on player collision")]
     [SerializeField] private string m_playerSound;
-    
-    
+
+
     private FSM m_Fsm;
     private BuoyFillUp m_FillUp = null;
 
     private List<IObserver> m_Observers = null;
 
     private AudioSource m_source;
-    
+
     public int ScoreGain
     {
         get;
@@ -54,7 +54,7 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
             && other.transform.parent.GetComponentSafe<PlayerCargo>(out var cargo))
         {
             m_source.Play();
-            
+
             //add score to the 
             int cargoAmount = cargo.SpaceOccupied;
 
@@ -79,10 +79,24 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
 
     public void Notify()
     {
+
+        IObserver expiredObserver = null;
+        bool foundNullObserver =false;
         foreach (IObserver observer in m_Observers)
         {
-            observer.GetUpdate(this);
+            if (observer != null)
+            {
+                observer.GetUpdate(this);
+            }
+            //remove null observers
+            else
+            {
+                expiredObserver = observer;
+                foundNullObserver=true;
+            }
         }
+       if(foundNullObserver)
+            m_Observers.Remove(expiredObserver);
     }
 
     public void Attach(IObserver observer)
