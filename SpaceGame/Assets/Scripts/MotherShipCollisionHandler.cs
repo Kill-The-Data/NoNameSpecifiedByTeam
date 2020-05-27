@@ -81,19 +81,22 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
     {
 
         IObserver expiredObserver = null;
+        bool foundNullObserver =false;
         foreach (IObserver observer in m_Observers)
         {
             if (observer != null)
             {
                 observer.GetUpdate(this);
             }
-            //remvoe null observers
+            //remove null observers
             else
             {
                 expiredObserver = observer;
+                foundNullObserver=true;
             }
         }
-        if (expiredObserver != null) m_Observers.Remove(expiredObserver);
+       if(foundNullObserver)
+            m_Observers.Remove(expiredObserver);
     }
 
     public void Attach(IObserver observer)
