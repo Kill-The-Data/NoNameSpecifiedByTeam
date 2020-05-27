@@ -2,12 +2,12 @@
 
 public class HighscoreView : AbstractView
 {
-    private HIghScoreDisplay m_highscoreDisplay;
-    public HIghScoreDisplay GetHIghScoreDisplay() => m_highscoreDisplay;
+    private HighScoreDisplay m_highscoreDisplay;
+    public HighScoreDisplay GetHighScoreDisplay() => m_highscoreDisplay;
 
 
     void Awake()
     {
-        m_highscoreDisplay = GetComponent<HIghScoreDisplay>();
+        m_highscoreDisplay = GetComponent<HighScoreDisplay>();
     }
 }
