@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using UnityEngine;
 using System.Collections.Generic;
-using System.Diagnostics;
-using Debug = UnityEngine.Debug;
+
 
 public class MotherShipCollisionHandler : MonoBehaviour, ISubject
 {
