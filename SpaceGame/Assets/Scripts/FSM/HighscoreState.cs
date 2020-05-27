@@ -8,7 +8,7 @@ public class HighscoreState : StateWithView<HighscoreView>
     public override void EnterState()
     {
         base.EnterState();
-        view.GetHIghScoreDisplay()?.Load();
+        view.GetHighScoreDisplay()?.Load();
         StartCoroutine(AdvanceFSM());
     }
     IEnumerator AdvanceFSM()

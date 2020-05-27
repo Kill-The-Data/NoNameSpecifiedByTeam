@@ -645,6 +645,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 516ecd96ddd1ff34dab8f00de007e727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1222758738 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 769274818288845681, guid: 77214e1db773e49429c2047e81d15455,
+    type: 3}
+  m_PrefabInstance: {fileID: 769274817973704465}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1291846636
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -824,6 +830,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 176a8da584649de4d9645d7beb6d644a, type: 3}
+--- !u!1 &1397041588 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 769274819444717832, guid: 77214e1db773e49429c2047e81d15455,
+    type: 3}
+  m_PrefabInstance: {fileID: 769274817973704465}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1503149026
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1238,6 +1250,16 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 769274818771068001, guid: 77214e1db773e49429c2047e81d15455,
+        type: 3}
+      propertyPath: m_firstScoreDisplay
+      value: 
+      objectReference: {fileID: 1222758738}
+    - target: {fileID: 769274818771068001, guid: 77214e1db773e49429c2047e81d15455,
+        type: 3}
+      propertyPath: m_secondScoreDisplay
+      value: 
+      objectReference: {fileID: 1397041588}
     - target: {fileID: 769274819218077986, guid: 77214e1db773e49429c2047e81d15455,
         type: 3}
       propertyPath: m_camera
@@ -1363,6 +1385,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1586128232}
+    - target: {fileID: 7939513462728195791, guid: 77214e1db773e49429c2047e81d15455,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 12.599976
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77214e1db773e49429c2047e81d15455, type: 3}
 --- !u!114 &824595285291327222 stripped
@@ -1645,17 +1672,17 @@ PrefabInstance:
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 1.436e-41
+      value: 1e-45
       objectReference: {fileID: 0}
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 0
+      value: 2.7234e-41
       objectReference: {fileID: 0}
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: NaN
+      value: 5.9e-44
       objectReference: {fileID: 0}
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
