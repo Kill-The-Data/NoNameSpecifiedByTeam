@@ -2,6 +2,7 @@
 using SubjectFilters;
 using UnityEngine;
 
+[RequireComponent(typeof(TrashMovementController))]
 public class TrashCollisionHandler : MonoBehaviour , ISubject
 {
 

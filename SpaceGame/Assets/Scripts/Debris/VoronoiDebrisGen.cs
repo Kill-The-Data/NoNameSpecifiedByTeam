@@ -6,7 +6,7 @@ using Tools;
 using UnityEditor;
 using Random = UnityEngine.Random;
 
-public class VornoiDebrisGen : MonoBehaviour
+public class VoronoiDebrisGen : MonoBehaviour
 {
     //----------- Setup Variables
     [Header(" --- Setup ---")]
@@ -62,6 +62,9 @@ public class VornoiDebrisGen : MonoBehaviour
     [Tooltip("The Areas where space-ship debris should be generated with and inner and outer radius")]
     [SerializeField] private List<ExclusionZone> m_zones = new List<ExclusionZone>();
     
+    public List<ExclusionZone> GetExclusionZones() => m_zones;
+
+    
     [Header(" --- DEDUPLICATION ---")]
     [Tooltip("Whether or not to draw the Gizmos for the Debris Exclusion Zones")]
     [SerializeField] private bool m_showDebrisExclusions = false;
@@ -70,6 +73,7 @@ public class VornoiDebrisGen : MonoBehaviour
 
 
     private List<ExclusionZone> m_debrisZones = null;
+
     
     //stores data
     private Dictionary<Vector2f, Site> sites;

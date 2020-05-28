@@ -19,7 +19,7 @@ public class IngameView : AbstractView
     private ItemSpawner m_Ispawner = null;
     public ItemSpawner GetItemSpawner() => m_Ispawner;
 
-    [SerializeField] private VornoiDebrisGen m_generator;
+    [SerializeField] private VoronoiDebrisGen m_generator;
     [SerializeField] private bool m_genLevelInTutorial = false;
     
     
@@ -29,9 +29,9 @@ public class IngameView : AbstractView
         m_Ispawner = GetComponent<ItemSpawner>();
     }
 
-    public VornoiDebrisGen GetLevelDefinetly() => m_generator;
+    public VoronoiDebrisGen GetLevelDefinetly() => m_generator;
 
-    public VornoiDebrisGen GetLevelGen(StateWithView<IngameView> state)
+    public VoronoiDebrisGen GetLevelGen(StateWithView<IngameView> state)
     {
         if ((state is TutorialState && m_genLevelInTutorial) || (state is IngameState && !m_genLevelInTutorial))
             return m_generator;
