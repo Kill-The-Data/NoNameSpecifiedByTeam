@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class BasicTutorialState : AbstractTutorialState
 {
@@ -15,15 +16,13 @@ public class BasicTutorialState : AbstractTutorialState
     //This should be called after trigger / button / event gets activated to load next state of tutorial
     public void NextState()
     {
-        ExitState();
         if (m_NextState)
         {
-            m_tFSM?.ChangeState(m_NextState.StateName);
+            m_tFSM.ChangeState(m_NextState.StateName);
         }
     }
     public override void EnterState()
     {
         view?.EnableView();
     }
-
 }
