@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(TimeOutTimer))]
 public class IngameView : AbstractView
 {
 
