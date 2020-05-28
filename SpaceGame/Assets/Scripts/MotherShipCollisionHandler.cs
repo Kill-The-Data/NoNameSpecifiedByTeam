@@ -58,26 +58,22 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
         if (other.CompareTag("Player")
             && other.transform.parent.GetComponentSafe<PlayerCargo>(out var cargo))
         {
-            m_source.Play();
-
-            //add score to the 
             int cargoAmount = cargo.SpaceOccupied;
 
             LeftoverCargo = m_FillUp.DropOff(cargoAmount);
+            if (LeftoverCargo != 0)
+                m_source.Play();
 
             if (!m_Observers.Contains(cargo))
-            {
                 m_Observers.Add(cargo);
-            }
 
 
             ScoreGain = ((cargoAmount - LeftoverCargo) * m_scorePerCargo);
             Notify();
 
             if (m_Fsm.GetCurrentState() is TutorialState currentState)
-            {
                 currentState.FinishTutorial();
-            }
+            
         }
     }
 
