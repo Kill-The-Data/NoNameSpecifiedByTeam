@@ -434,13 +434,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bea694a589574dc4ca822bbef99f54c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_spawnDist: 200
+  m_spawnDist: 300
   m_prefabList:
   - {fileID: 809294822792969763, guid: 6dc0155962904f64994cb87d2877f087, type: 3}
   - {fileID: 3261979932069503665, guid: d200181c6ec7cb9469d586e224c8e806, type: 3}
   - {fileID: 1775517512045582781, guid: 384c4acdff45077459c9c26719a3a65b, type: 3}
   m_spawnRate: 8
   m_pScripts: {fileID: 1991044476}
+  m_debrisGen: {fileID: 1160042671}
 --- !u!114 &143198153
 MonoBehaviour:
   m_ObjectHideFlags: 0

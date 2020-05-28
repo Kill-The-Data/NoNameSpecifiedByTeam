@@ -85,6 +85,11 @@ public class VoronoiDebrisGen : MonoBehaviour
     {
         foreach (var zone in m_zones)
         {
+            if (zone.Target.GetComponentSafe(out BuoyFillUp bfp))
+            {
+                zone.AmountTrash = bfp.GetMaxFillUp();
+            }
+            
             zone.InitialTrash = zone.AmountTrash;
         }
     }
