@@ -12,9 +12,16 @@ namespace Tools
             go.transform.parent = this.transform;
             LastAdded = go;
             Notify();
-
             return go;
         }
+
+        public GameObject AddFakeChild(GameObject go)
+        {
+            LastAdded = go;
+            Notify();
+            return go;
+        }
+        
         
         private Action<ISubject> m_observers = delegate(ISubject subject) {  };
         protected override void ANotify()

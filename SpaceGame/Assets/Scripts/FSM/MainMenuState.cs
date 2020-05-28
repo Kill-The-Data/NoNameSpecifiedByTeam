@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class MainMenuState : StateWithView<BasicView>
+public class MainMenuState : StateWithView<HighscoreView>
 {
     public void EnterGameState()
     {
@@ -9,14 +9,16 @@ public class MainMenuState : StateWithView<BasicView>
 
     public override void EnterState()
     {
-
-        Camera.main.GetComponent<camBlurScript>()?.ActivateBlur();
+        view.LoadComponents();
+        view.GetHighScoreDisplay()?.Load();
+        ResetPlayerPrefs();
+        Camera.main.GetComponent<CamBlurScript>()?.ActivateBlur();
         base.EnterState();
     }
 
     public override void ExitState()
     {
-        Camera.main.GetComponent<camBlurScript>()?.DeactivateBlur();
+        Camera.main.GetComponent<CamBlurScript>()?.DeactivateBlur();
         base.ExitState();
     }
 
@@ -26,6 +28,11 @@ public class MainMenuState : StateWithView<BasicView>
         fsm.ChangeState<HighscoreState>();
     }
 
+    public void EnterCreditsState()
+    {
+        fsm.ChangeState<CreditsState>();
+    }
+    
     private void ResetPlayerPrefs()
     {
         PlayerPrefs.SetInt("score", 0);

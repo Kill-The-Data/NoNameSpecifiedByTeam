@@ -14,13 +14,14 @@ public class ItemCollisionHandler : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        if (other.tag == ("Player"))
+        if (other.CompareTag("Player"))
         {
             PlayerScriptContainer pHandler = other.GetComponent<PlayerScriptContainer>();
             if(pHandler)
                 pUp?.ExecutePowerUp(pHandler);
-        //TO DO: DO STUFF
-        Destroy(transform.gameObject);
+            
+            //TO DO: DO STUFF
+            Destroy(transform.gameObject);
         }
     }
 }

@@ -34,7 +34,6 @@ public class MotherShipHomingDeviceUI : MonoBehaviour
 
     void Update()
     {
-        Transform target;
         Vector3 closest = Vector3.positiveInfinity;
         
         foreach (BuoyFillUp buoyFillUp in m_targets)
@@ -56,7 +55,8 @@ public class MotherShipHomingDeviceUI : MonoBehaviour
         {
             //put the homing-device at the right position
             var position = m_direction.normalized * m_radius;
-            m_homingDeviceChild.position = transform.position - position;
+            if(!position.IsNan())
+                m_homingDeviceChild.position = transform.position - position;
         }
         //assemble the quaternion for the new rotation
         float angle = Mathf.Atan2(m_direction.normalized.y, m_direction.normalized.x) * Mathf.Rad2Deg;

@@ -1,49 +1,21 @@
 ﻿using UnityEngine;
 
+using System.Collections;
 public class HighscoreState : StateWithView<HighscoreView>
 {
-    [SerializeField] private GameObject m_entryPrefab;
-    
+    public int Timeout = 15;
+
     public override void EnterState()
     {
         base.EnterState();
-
-        var weeklyPath = PlayerPrefs.GetString("hs_daily");
-        var weeklyScore = ReadWriteLeaderBoard.ReadScores(weeklyPath);
-        {
-            var tf = view.GetHighscoreListView().transform;
-            
-            //the first child is the heading so we skip it
-            for (int i = 1; i < tf.childCount; ++i)
-            {
-                Destroy(tf.GetChild(i).gameObject);
-            }
-            
-            foreach( var(player,score) in weeklyScore)
-            {
-                var entry = Instantiate(m_entryPrefab, tf).GetComponent<HighScoreListSetup>();
-                entry.SetPlayer(player);
-                entry.SetScore(score);
-            }
-        }
-        var alltimePath = PlayerPrefs.GetString("hs_alltime");
-        var allTimeScore = ReadWriteLeaderBoard.ReadScores(alltimePath);
-        {
-            var tf = view.GetHighscoreListViewAllTime().transform;
-            
-            //the first child is the heading so we skip it
-            for (int i = 1; i < tf.childCount; ++i)
-            {
-                Destroy(tf.GetChild(i).gameObject);
-            }
-            
-            foreach( var(player,score) in allTimeScore)
-            {
-                var entry = Instantiate(m_entryPrefab, tf).GetComponent<HighScoreListSetup>();
-                entry.SetPlayer(player);
-                entry.SetScore(score);
-            }
-        }
+        view.GetHighScoreDisplay()?.Load();
+        StartCoroutine(AdvanceFSM());
+    }
+    IEnumerator AdvanceFSM()
+    {
+        Debug.Log($"Entered Corroutine to end GameOverScreen in {Timeout} seconds");
+        yield return new WaitForSeconds(Timeout);
+        OnBackToMainMenu();
     }
 
     public void OnBackToMainMenu()

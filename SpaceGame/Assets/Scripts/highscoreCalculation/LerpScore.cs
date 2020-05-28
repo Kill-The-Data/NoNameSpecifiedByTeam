@@ -18,7 +18,7 @@ public class LerpScore : MonoBehaviour
 
     [Header("---Setup---")]
     [Header("-text start pos-")]
-    [SerializeField] private Vector3 m_startPos =new Vector3(0,-300,0);
+    [SerializeField] private Vector3 m_startPos = new Vector3(0, -300, 0);
     [Header("-tween type-")]
     [Header("---tween setup---")]
     [SerializeField] private LeanTweenType m_type = LeanTweenType.linear;
@@ -83,8 +83,9 @@ public class LerpScore : MonoBehaviour
     //init text & vars
     public void CalculateScore(int initialScore, float timeLeft, int healthLeft, int filledBoys, int reachedGoal)
     {
+
         m_currentScore = initialScore;
-        m_timeLeft = timeLeft;
+        m_timeLeft = Mathf.RoundToInt(timeLeft);
         m_healthLeft = healthLeft;
         m_filledUp = filledBoys;
         m_finished = reachedGoal;
@@ -137,7 +138,7 @@ public class LerpScore : MonoBehaviour
     private void AddFinishGoal()
     {
         m_currentState = CalculationState.FINISHED;
-       int addvalue = (int)m_currentScore * m_finished;
+        int addvalue = (int)m_currentScore * m_finished;
         AddScore(m_finishedText, addvalue);
     }
 

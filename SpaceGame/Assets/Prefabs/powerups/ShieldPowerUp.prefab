@@ -135,6 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad75689b5068f0149be93b7f56a9c097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_pickupSound: powerup-shield
 --- !u!114 &-3492245937872566719
 MonoBehaviour:
   m_ObjectHideFlags: 0

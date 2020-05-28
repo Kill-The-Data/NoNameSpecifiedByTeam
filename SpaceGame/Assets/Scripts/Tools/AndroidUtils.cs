@@ -1,5 +1,5 @@
 ﻿#if UNITY_ANDROID
-using UnityEngine.AndroidJNIModule;
+using UnityEngine;
 #endif
 
 public static class AndroidUtils

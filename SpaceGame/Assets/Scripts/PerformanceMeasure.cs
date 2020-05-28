@@ -32,7 +32,6 @@ public class PerformanceMeasure : MonoBehaviour, IObserver
     [SerializeField] private float m_TimeWithoutDamage = 0;
     [SerializeField] private int m_score = 0;
     [SerializeField] private float m_DmgTakenSinceLastUpdate = 0;
-    private int m_lastUpdateScore = 0;
 
     private float m_currentTime = 0;
 
