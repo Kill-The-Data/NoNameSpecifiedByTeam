@@ -18,7 +18,7 @@ public class BasicTutorialState : AbstractTutorialState
         ExitState();
         if (m_NextState)
         {
-            m_tFSM.ChangeState(m_NextState.StateName);
+            m_tFSM?.ChangeState(m_NextState.StateName);
         }
     }
     public override void EnterState()
