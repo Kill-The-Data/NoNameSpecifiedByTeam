@@ -1,1 +1,1 @@
-release/v0.6.0.deploy-prototype:  ac8e8ac7b2
+release/v0.6.0.deploy-prototype:  22243e01db
