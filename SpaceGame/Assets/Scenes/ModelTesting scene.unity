@@ -188,6 +188,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Directional Light
       objectReference: {fileID: 0}
+    - target: {fileID: 8485707075902487550, guid: 4bce1fd0d756d0142a56b597623e7285,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bce1fd0d756d0142a56b597623e7285, type: 3}
 --- !u!1001 &1064995573
@@ -469,9 +474,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5fb220495dc3c24795fdaf0c58672a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_scoreUI: {fileID: 0}
-  m_Fsm: {fileID: 0}
   m_scorePerCargo: 10
+  m_playerSound: 
 --- !u!65 &3144471095069137262
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -544,9 +548,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_showGizmos: 1
-  Drag: 0.995
-  Acceleration: 10
-  RotationSpeed: 4
+  m_drag: 0.995
+  m_acceleration: 10
+  m_rotationSpeed: 4
+  m_bankingFactor: 0.01
+  m_spaceShipModel: {fileID: 0}
+  m_clip: 
 --- !u!114 &3144471095918167583
 MonoBehaviour:
   m_ObjectHideFlags: 0
