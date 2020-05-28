@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(ShieldState))]
 public class PlayerHealth : MonoBehaviour, ISubject
 {
 

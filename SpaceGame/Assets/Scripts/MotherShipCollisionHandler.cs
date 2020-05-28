@@ -2,7 +2,8 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 
-
+[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(BuoyFillUp))]
 public class MotherShipCollisionHandler : MonoBehaviour, ISubject
 {
 
