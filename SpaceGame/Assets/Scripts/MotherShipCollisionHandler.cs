@@ -56,7 +56,7 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
     {
         //check if the Trigger Participant is the Player and if he has a PlayerCargo Component 
         if (other.CompareTag("Player")
-            && other.transform.parent.GetComponentSafe<PlayerCargo>(out var cargo))
+            && other.transform.parent.GetComponentSafe(out PlayerCargo cargo))
         {
             if(m_FillUp.Full()) return;
 
