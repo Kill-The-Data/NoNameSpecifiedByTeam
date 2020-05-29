@@ -56,17 +56,19 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
     {
         //check if the Trigger Participant is the Player and if he has a PlayerCargo Component 
         if (other.CompareTag("Player")
-            && other.transform.parent.GetComponentSafe<PlayerCargo>(out var cargo))
+            && other.transform.parent.GetComponentSafe(out PlayerCargo cargo))
         {
-            int cargoAmount = cargo.SpaceOccupied;
+            if(m_FillUp.Full()) return;
 
+            //get cargo
+            int cargoAmount = cargo.SpaceOccupied;
+            //drop off
             LeftoverCargo = m_FillUp.DropOff(cargoAmount);
-            if (LeftoverCargo != 0)
-                m_source.Play();
+            //play audio
+            m_source.Play();
 
             if (!m_Observers.Contains(cargo))
                 m_Observers.Add(cargo);
-
 
             ScoreGain = ((cargoAmount - LeftoverCargo) * m_scorePerCargo);
             Notify();

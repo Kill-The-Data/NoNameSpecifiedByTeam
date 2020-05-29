@@ -18,6 +18,9 @@ public class SoundManager : MonoBehaviour
 {
   [SerializeField] private List<SoundEntry> m_entries  = new List<SoundEntry>();
 
+  private static Action OnAwake = delegate {  };
+  private static bool awoken = false;
+  
   public static SoundManager Instance
   {
       get;
@@ -27,7 +30,22 @@ public class SoundManager : MonoBehaviour
   private void Awake()
   {
       Instance = this;
+      OnAwake();
+      awoken = true;
   }
+
+  public static void ExecuteOnAwake(Action action)
+  {
+      if (!awoken)
+      {
+          OnAwake += action;
+      }
+      else
+      {
+          action();
+      }
+  }
+  
   
   public AudioClip GetSound(string name)
   {
