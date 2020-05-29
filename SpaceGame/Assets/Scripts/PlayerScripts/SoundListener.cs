@@ -14,11 +14,13 @@ public class SoundListener : AUnityObserver
     
     public void Awake()
     {
-        m_clip = SoundManager.Instance.GetSound(m_sound);
-        m_source = gameObject.AddComponent<AudioSource>();
-        
-        m_source.playOnAwake = false;
-        m_source.clip = m_clip;
+        SoundManager.ExecuteOnAwake(() => {
+            m_clip = SoundManager.Instance.GetSound(m_sound);
+            m_source = gameObject.AddComponent<AudioSource>();
+            
+            m_source.playOnAwake = false;
+            m_source.clip = m_clip;
+        });
     }
 
     public void Update()
