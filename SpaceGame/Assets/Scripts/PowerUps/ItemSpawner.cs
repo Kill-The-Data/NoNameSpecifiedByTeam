@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -17,7 +16,18 @@ public class ItemSpawner : MonoBehaviour
     private PerformanceMeasure m_Measure = null;
     private bool m_active = false;
 
-    //update toimer if active
+    [SerializeField] private VoronoiDebrisGen m_debrisGen;
+
+    private List<VoronoiDebrisGen.ExclusionZone> m_zones;
+    private Camera m_camera;
+    
+    public void Start()
+    {
+        m_zones = m_debrisGen.GetExclusionZones();
+        m_camera = Camera.main;
+    }
+
+    //update timer if active
     void Update()
     {
         if (m_active)
@@ -36,23 +46,54 @@ public class ItemSpawner : MonoBehaviour
     {
         //chose item
         int index = Random.Range(0, m_prefabList.Count);
-
-        GameObject obj = Instantiate(m_prefabList[index]);
-        obj.transform.parent = this.transform;
-
+        
         //get player movement
         Vector3 playerVel = m_pScripts.GetPlayerController.GetVelocity();
+        
+        //retry 10 times to spawn an item if spawning fails due to being in an exclusion zone
+        for (int i = 10; i --> 0;)
+        {
+            
+            //gen spawn pos
+            Vector2 screenpos = Vector2.up;
+            
+            //generate random rotation
+            int randRot = Random.Range(0, 360);
+            
+            //create screenpos direction
+            screenpos = RotateVec(screenpos, randRot);
+            
+            //extend the direction
+            screenpos *= m_spawnDist;
+            
+            //center the position
+            screenpos += new Vector2(Screen.width / 2F, Screen.height / 2F);
+            
+            //transform to world position
+            Vector3 wPos = m_camera.ScreenToWorldPoint(new Vector3(screenpos.x, screenpos.y, 10));
+            wPos.z = 10;
+            
+            //match the player Speed to adjust for flybys
+            wPos += playerVel;
 
-        //gen spawn pos
-        Vector2 screenpos = Vector2.up;
-        int randRot = Random.Range(0, 360);
-        screenpos = RotateVec(screenpos, randRot);
-        screenpos *= m_spawnDist;
-        screenpos += new Vector2(Screen.width / 2, Screen.height / 2);
-        Vector3 wPos = Camera.main.ScreenToWorldPoint(new Vector3(screenpos.x, screenpos.y, 10));
-        wPos.z = 10;
-        wPos += playerVel;
-        obj.transform.position = wPos;
+            //make sure this position is outside of the exclusion zones we stole from voronoi-debris-gen 
+            bool outerLoopBreaker = false;
+            foreach (var ezones in m_zones)
+            {
+                if (Vector3.Distance(ezones.Target.position , wPos) <= ezones.Radius)
+                {
+                    outerLoopBreaker = true;
+                    break;
+                }
+            }
+            if(outerLoopBreaker) continue;
+            
+            
+            //sucesfully created a game object, return as no more powerups need to be created
+            GameObject obj = Instantiate(m_prefabList[index], this.transform, true);
+            obj.transform.position = wPos;
+            return;
+        }
     }
 
     public void Reset()
@@ -72,15 +113,12 @@ public class ItemSpawner : MonoBehaviour
     public Vector2 RotateVec(Vector2 vec, float angle)
     {
         float radians = angle * Mathf.Deg2Rad;
-        Vector2 newVec = Vector2.zero;
         float newX = vec.x * Mathf.Cos(radians) - vec.y * Mathf.Sin(radians);
         float newY = vec.x * Mathf.Sin(radians) + vec.y * Mathf.Cos(radians);
-        newVec = new Vector2(newX, newY);
+        var newVec = new Vector2(newX, newY);
         return newVec;
     }
-
-
-
+    
     private void SpawnItem()
     {
         PerformanceMeasure.Difficulty diff = m_Measure.GetDifficulty();

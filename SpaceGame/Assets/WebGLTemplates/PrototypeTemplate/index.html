@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>%UNITY_WEB_NAME%</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <script src="TemplateData/UnityProgress.js"></script>
+    <script src="%UNITY_WEBGL_LOADER_URL%"></script>
+    <script>
+      var unityInstance = UnityLoader.instantiate("unityContainer", "%UNITY_WEBGL_BUILD_URL%", {onProgress: UnityProgress});
+    </script>
+    <script
+    src="https://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+    crossorigin="anonymous"></script>
+   <script type="application/javascript">
+    var loadCounter = 0;
+    var loaded = function() {
+        if (loadCounter != 0) {
+          $('html, body').animate({
+              scrollTop: '700px'
+          }, 250);
+        }
+        loadCounter += 1;
+    }
+</script>
+  </head>
+  <body>
+    <div class="webgl-content">
+      <div id="unityContainer" style="width: %UNITY_WIDTH%px; height: %UNITY_HEIGHT%px;"></div>
+      <div class="footer">
+        <div class="webgl-logo"></div>
+        <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
+        <div class="title">SpaceGame</div>
+      </div>
+    </div>
+    <iframe style="width:640px;height:2982px;margin:0 auto;display:block;padding-top:85vh" src="https://docs.google.com/forms/d/e/1FAIpQLSf5Dui_1AhAzIq5CHAx7thhk_hBhET1ITfjFzgzQBqFqJ5Wcw/viewform?embedded=true" width="640" height="2982" frameborder="0" marginheight="0" marginwidth="0" onload="loaded()">Loading Form</iframe>
+  </body>
+</html>

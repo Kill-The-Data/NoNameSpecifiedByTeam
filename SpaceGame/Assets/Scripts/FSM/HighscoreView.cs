@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(HighScoreDisplay))]
 public class HighscoreView : AbstractView
 {
     private HighScoreDisplay m_highscoreDisplay;

@@ -41,10 +41,16 @@ public class PlayerController : MonoBehaviour
     {
         if (m_source == null)
         {
-            m_source = gameObject.AddComponent<AudioSource>();
-            m_source.clip = SoundManager.Instance.GetSound(m_clip);
-            m_source.loop = true;
-            m_source.Play();
+            GameObject go = new GameObject("AudioSourceChild");
+            go.transform.parent = transform;
+            m_source = go.AddComponent<AudioSource>();
+            
+            SoundManager.ExecuteOnAwake(() =>
+            {
+                m_source.clip = SoundManager.Instance.GetSound(m_clip);
+                m_source.loop = true;
+                m_source.Play();
+            });
         }
     }
 
