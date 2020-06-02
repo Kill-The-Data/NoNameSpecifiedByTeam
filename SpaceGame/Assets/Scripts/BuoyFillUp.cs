@@ -2,11 +2,10 @@
 
 public class BuoyFillUp : MonoBehaviour
 {
-
     [Header(" --- Boy values setup ---")]
     [SerializeField] private int m_MaxFillUp;
     public int GetMaxFillUp() => m_MaxFillUp;
-    
+
     [Header(" --- UI setup ---")]
     [Range(0, 1.5f)]
     [SerializeField] private float m_tweenSpeed = 1.0f;
@@ -53,10 +52,11 @@ public class BuoyFillUp : MonoBehaviour
         //set fill up to max if it exceeds max
         if (m_currentFillUp >= m_MaxFillUp)
         {
+
             remainingCargo = m_currentFillUp - m_MaxFillUp;
             m_currentFillUp = m_MaxFillUp;
-            //increase filled up buoys once max reached max
-            PlayerPrefs.SetInt("buoysFilled", PlayerPrefs.GetInt("buoysFilled") + 1);
+            FilledUp();
+
         }
         //return leftover player cargo if not all cargo can be dropped off
         float fillUp = (float)m_currentFillUp / (float)m_MaxFillUp;
@@ -65,6 +65,10 @@ public class BuoyFillUp : MonoBehaviour
 
     }
 
+    private void FilledUp()
+    {
+        EventSingleton.Instance?.EventHandler?.NewStationFilled();
+    }
     public bool Full()
     {
         return m_currentFillUp >= m_MaxFillUp;

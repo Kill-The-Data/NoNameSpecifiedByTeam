@@ -8,6 +8,12 @@ public class IngameState : StateWithView<IngameView>
         InitGameState();
     }
 
+    public override void ExitState()
+    {
+        base.ExitState();
+        EventSingleton.Instance?.EventHandler?.FinishGame();
+    }
+
     public void TimeOut()
     {
         fsm.ChangeState<MainMenuState>();
@@ -58,6 +64,8 @@ public class IngameState : StateWithView<IngameView>
         deathWatch.PlayerHealth = playerHealth;
         deathWatch.State = this;
         timerView.gameObject.GetComponent<Timer>()?.Attach(deathWatch);
+
+        EventSingleton.Instance?.EventHandler?.StartGame();
     }
     public void PlayerDied()
     {
