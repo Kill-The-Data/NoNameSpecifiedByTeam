@@ -52,8 +52,10 @@ public class EventHandler : MonoBehaviour
     //test input did not use space this time around
     public void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Equals))
+        #if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.Equals))
             StationFilled?.Invoke();
+        #endif
     }
 
 }
