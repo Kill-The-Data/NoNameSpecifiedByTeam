@@ -7,13 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Tip material.001
-    second: {fileID: 2100000, guid: eb2c45354baee0b458f9782fc2a49690, type: 2}
+      name: Tip material.002
+    second: {fileID: 2100000, guid: 9805e998592620347a3a54f99fef7570, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: handle  material.001
-    second: {fileID: 2100000, guid: 9805e998592620347a3a54f99fef7570, type: 2}
+      name: handle  material.003
+    second: {fileID: 2100000, guid: eb2c45354baee0b458f9782fc2a49690, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
