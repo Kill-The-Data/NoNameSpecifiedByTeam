@@ -24,8 +24,14 @@ public class TutorialState : StateWithView<IngameView>
         view.GetTimeOutTimer().InitTimer(this);
         view.GetTimer().gameObject.SetActive(false);
 
-        view.GetLevelDefinetly()?.DeleteLevel();
-        view.GetLevelGen(this)?.Generate();
+        var levelGen = view.GetLevelAlways();
+        
+        //delete level and prewarm a new one
+        levelGen.DeleteLevel();
+        levelGen.Prewarm();
+        
+        //apply the prewarm only if the tutorial is supposed to 
+        view.GetLevelIfGenerator(this)?.ApplyPrewarm();
         
         InitPlayer();
 

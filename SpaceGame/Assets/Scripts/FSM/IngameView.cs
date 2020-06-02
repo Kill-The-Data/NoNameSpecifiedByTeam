@@ -30,9 +30,9 @@ public class IngameView : AbstractView
         m_Ispawner = GetComponent<ItemSpawner>();
     }
 
-    public VoronoiDebrisGen GetLevelDefinetly() => m_generator;
+    public VoronoiDebrisGen GetLevelAlways() => m_generator;
 
-    public VoronoiDebrisGen GetLevelGen(StateWithView<IngameView> state)
+    public VoronoiDebrisGen GetLevelIfGenerator(StateWithView<IngameView> state)
     {
         if ((state is TutorialState && m_genLevelInTutorial) || (state is IngameState && !m_genLevelInTutorial))
             return m_generator;
