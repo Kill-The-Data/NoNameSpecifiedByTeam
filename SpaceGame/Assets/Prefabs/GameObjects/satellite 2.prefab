@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 7092491491546688467}
   - component: {fileID: 3553654585024649002}
   - component: {fileID: 6923904801297997502}
+  - component: {fileID: 1118756068736313287}
+  - component: {fileID: 7647696268313577190}
+  - component: {fileID: 2417698614611727837}
   m_Layer: 0
   m_Name: satellite 2
   m_TagString: Untagged
@@ -93,8 +96,47 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1118756068736313287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2985262068716217334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c8deb72f5affa1488524ea71dd0738c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_rotationAxis: {x: 0, y: 0, z: 0}
+  m_angle: 0
+--- !u!114 &7647696268313577190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2985262068716217334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5941179e66bd25641be383ea8f976d90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &2417698614611727837
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2985262068716217334}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 28.650204, y: 4.762206, z: 3.5845695}
+  m_Center: {x: 0.00030899048, y: 0.024428368, z: 0.0000166893}
