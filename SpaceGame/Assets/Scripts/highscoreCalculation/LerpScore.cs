@@ -85,7 +85,14 @@ public class LerpScore : MonoBehaviour
     {
 
         m_currentScore = initialScore;
-        m_timeLeft = Mathf.RoundToInt(timeLeft);
+        if (reachedGoal == 0)
+        {
+            m_timeLeft = 0;
+        }
+        else
+        {
+            m_timeLeft = Mathf.RoundToInt(timeLeft);
+        }
         m_healthLeft = healthLeft;
         m_filledUp = filledBoys;
         m_finished = reachedGoal;
