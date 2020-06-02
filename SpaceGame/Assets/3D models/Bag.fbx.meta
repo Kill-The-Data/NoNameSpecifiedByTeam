@@ -3,7 +3,17 @@ guid: 19ddf4794991f784b82f812833b19d7a
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: leder Material
+    second: {fileID: 2100000, guid: b7d0964941e60f14995d0ff45adb5473, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal Material.001
+    second: {fileID: 2100000, guid: 5dc7ea3b81bd73248952048a3f630b3a, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

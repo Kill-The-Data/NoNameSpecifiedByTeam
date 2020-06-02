@@ -3,7 +3,32 @@ guid: 1d1076f7a58cce4498ac028829232f40
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glass Material
+    second: {fileID: 2100000, guid: 0c6021a02fa59a54d9d90c532fe015cb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: main case Material
+    second: {fileID: 2100000, guid: 8128f97f262885140af1e42c84b0bd0c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal wings Material
+    second: {fileID: 2100000, guid: 7ed2f9c9794e0024fb408c20d1fee597, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plastic Material
+    second: {fileID: 2100000, guid: 0329337ff84c8d34fb8c99cb0e8e4f91, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small metal parts base  Material
+    second: {fileID: 2100000, guid: 463638229632782409df1a6758633a29, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

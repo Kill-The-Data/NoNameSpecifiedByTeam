@@ -3,7 +3,22 @@ guid: f0b3d7ddf3eeb2a499114e2a211b8ffb
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: arm base Material
+    second: {fileID: 2100000, guid: fd7c230eb2338234d8c6c8039e8f63b3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: base Material
+    second: {fileID: 2100000, guid: e5d5f19b46702b54788282ac7f53d5e3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: solar pannel Material
+    second: {fileID: 2100000, guid: f142de74699acee4a867b5cb8ab2723f, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

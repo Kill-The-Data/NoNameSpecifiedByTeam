@@ -3,7 +3,17 @@ guid: 94936ec2d884cef4580c714873f8edfa
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Brush Material
+    second: {fileID: 2100000, guid: 2d111195c2f92a147b5eb0a2e72225c3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: body material
+    second: {fileID: 2100000, guid: aa4beb448c83b154fa444bef7b88a334, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
