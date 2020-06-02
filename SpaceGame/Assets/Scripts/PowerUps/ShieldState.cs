@@ -19,7 +19,9 @@ public class ShieldState : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKey("space")) FadeOut();
+        #if UNITY_EDITOR
+            if (Input.GetKey("space")) FadeOut();
+        #endif
     }
     public void ActivateShield()
     {
