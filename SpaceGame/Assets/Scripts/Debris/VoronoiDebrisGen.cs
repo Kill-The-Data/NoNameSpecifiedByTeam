@@ -6,7 +6,7 @@ using Tools;
 using UnityEditor;
 using Random = UnityEngine.Random;
 
-public class VornoiDebrisGen : MonoBehaviour
+public class VoronoiDebrisGen : MonoBehaviour
 {
     //----------- Setup Variables
     [Header(" --- Setup ---")]
@@ -61,6 +61,10 @@ public class VornoiDebrisGen : MonoBehaviour
 
     [Tooltip("The Areas where space-ship debris should be generated with and inner and outer radius")]
     [SerializeField] private List<ExclusionZone> m_zones = new List<ExclusionZone>();
+
+
+    public List<ExclusionZone> GetExclusionZones() => m_zones;
+
     
     [Header(" --- DEDUPLICATION ---")]
     [Tooltip("Whether or not to draw the Gizmos for the Debris Exclusion Zones")]
@@ -70,7 +74,11 @@ public class VornoiDebrisGen : MonoBehaviour
 
 
     private List<ExclusionZone> m_debrisZones = null;
-    
+
+    private Action m_finalShow;
+    public bool WasPrewarmed => m_finalShow != null;
+
+
     //stores data
     private Dictionary<Vector2f, Site> sites;
     private List<Edge> edges;
@@ -81,11 +89,16 @@ public class VornoiDebrisGen : MonoBehaviour
     {
         foreach (var zone in m_zones)
         {
+            if (zone.Target.GetComponentSafe(out BuoyFillUp bfp))
+            {
+                zone.AmountTrash = bfp.GetMaxFillUp();
+            }
+            
             zone.InitialTrash = zone.AmountTrash;
         }
     }
     
-    public void Generate()
+    public void Generate(bool do_prewarm = false)
     {
         //Allocate space for the debris exclusion zones, we 
         //want to avoid collisions of debris this way
@@ -111,7 +124,7 @@ public class VornoiDebrisGen : MonoBehaviour
 
         m_childAdder = GetComponent<NotifyAddChildren>();
         
-        Display();
+        Display(do_prewarm);
     }
     //Creates random points
     private List<Vector2f> CreateRandomPoint()
@@ -125,7 +138,7 @@ public class VornoiDebrisGen : MonoBehaviour
         return points;
     }
     //Displays and creates Trash
-    private void Display()
+    private void Display(bool do_prewarm)
     {
 
         Vector3 center = new Vector3(position.x + AreaDimensions, position.y + AreaDimensions, 0) * Offset / 2;
@@ -158,6 +171,14 @@ public class VornoiDebrisGen : MonoBehaviour
             
             //instantiate trash
             GameObject trash = m_childAdder.AddChild(Instantiate(prefabs[randomIndex], pos, rotation));
+
+            if (do_prewarm)
+            {
+                trash.SetActive(false);
+                m_finalShow += () => trash.SetActive(true);
+            }
+            
+            
             m_debrisZones.Add(new ExclusionZone{Target=trash.transform,Radius = m_exclusionZoneRadiusForNewDebris});
         }
     }
@@ -180,7 +201,8 @@ public class VornoiDebrisGen : MonoBehaviour
         {
             Murder(transform.GetChild(i).gameObject);
         }
-
+        
+        m_finalShow = null;
     }
     
     private bool CheckGenZones(Vector3 pos)
@@ -330,5 +352,15 @@ public class VornoiDebrisGen : MonoBehaviour
     }
     #endif
 
-   
+
+    public void Prewarm()
+    {
+        Generate(do_prewarm: true);
+    }
+
+    public void ApplyPrewarm()
+    {
+        m_finalShow?.Invoke();
+    }
+    
 }

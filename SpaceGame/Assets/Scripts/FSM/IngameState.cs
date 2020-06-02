@@ -14,7 +14,18 @@ public class IngameState : StateWithView<IngameView>
     }
     private void InitGameState()
     {
-        view.GetLevelGen(this)?.Generate();
+
+        var levelGen = view.GetLevelAlways();
+        
+        //check if the level was prewarmed by the tutorial, if it was not (because the tutorial was skipped, or something simmilar)
+        //delete the previous data and make sure the prewarm the level now
+        if(!levelGen.WasPrewarmed){
+            levelGen.DeleteLevel();
+            levelGen.Prewarm();
+        }
+        
+        //apply the prewarm, only if the state is also the state where the prewarm should be applied
+        view.GetLevelIfGenerator(this)?.ApplyPrewarm();
         
         PerformanceMeasure playerPerformance = view.GetPerformance();
 

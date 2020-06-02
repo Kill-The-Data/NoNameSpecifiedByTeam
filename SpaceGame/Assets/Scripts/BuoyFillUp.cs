@@ -1,13 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BuoyFillUp : MonoBehaviour
 {
 
     [Header(" --- Boy values setup ---")]
     [SerializeField] private int m_MaxFillUp;
-
+    public int GetMaxFillUp() => m_MaxFillUp;
+    
     [Header(" --- UI setup ---")]
     [Range(0, 1.5f)]
     [SerializeField] private float m_tweenSpeed = 1.0f;

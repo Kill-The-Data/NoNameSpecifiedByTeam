@@ -25,7 +25,9 @@ public class ScoreUI : MonoBehaviour, IObserver
     }
     void Update()
     {
-        if (Input.GetKeyDown("space")) AddScore(10);
+        #if UNITY_EDITOR
+            if (Input.GetKeyDown("space")) AddScore(10);
+        #endif
     }
     public void AddScore(int scoreAmount)
     {
