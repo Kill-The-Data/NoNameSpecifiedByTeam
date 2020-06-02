@@ -163,7 +163,7 @@ public class VoronoiDebrisGen : MonoBehaviour
             if (!CheckNearbyDebris(pos, inDeathZone)) continue;
 
             //get a random piece of trash
-            int randomIndex = UnityEngine.Random.Range(0, prefabs.Count - 1);
+            int randomIndex = UnityEngine.Random.Range(0, prefabs.Count);
 
             //random trash orientation
             float randomFloat = UnityEngine.Random.Range(0, 360);
