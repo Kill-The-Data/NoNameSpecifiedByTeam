@@ -5,16 +5,21 @@ using UnityEngine.UI;
 public class FeedbackView : AbstractView
 {
     [SerializeField] private Button m_goodFeedbackButton;
+    [SerializeField] private Button m_verryGoodFeedbackButton;
+
     [SerializeField] private Button m_mediumFeedbackButton;
     [SerializeField] private Button m_badFeedbackButton;
+    [SerializeField] private Button m_verryBadFeedbackButton;
 
     [SerializeField] private Button m_backButton;
 
     public enum FV_ButtonType
     {
+        VERRY_GOOD_FEEDBACK,
         GOOD_FEEDBACK,
         MEH_FEEDBACK,
         BAD_FEEDBACK,
+        VERR_BAD_FEEDBACK,
         BACK,
     }
     
@@ -27,10 +32,14 @@ public class FeedbackView : AbstractView
             {
                 case FV_ButtonType.GOOD_FEEDBACK:
                     return m_goodFeedbackButton;
+                case FV_ButtonType.VERRY_GOOD_FEEDBACK:
+                    return m_verryGoodFeedbackButton;
                 case FV_ButtonType.MEH_FEEDBACK:
                     return m_mediumFeedbackButton;
                 case FV_ButtonType.BAD_FEEDBACK:
                     return m_badFeedbackButton;
+                case FV_ButtonType.VERR_BAD_FEEDBACK:
+                    return m_verryBadFeedbackButton;
                 case FV_ButtonType.BACK:
                     return m_backButton;
                 default:
