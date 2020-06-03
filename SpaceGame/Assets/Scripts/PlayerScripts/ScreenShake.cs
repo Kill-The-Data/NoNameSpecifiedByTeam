@@ -29,10 +29,12 @@ public class ScreenShake : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space"))
-        {
-            TriggerShake();
-        }
+        #if UNITY_EDITOR
+            if (Input.GetKeyDown("space"))
+            {
+                TriggerShake();
+            }
+        #endif
     }
     public Vector3 UpdateShake()
     {

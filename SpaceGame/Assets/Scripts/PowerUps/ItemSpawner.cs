@@ -39,7 +39,9 @@ public class ItemSpawner : MonoBehaviour
                 m_timeLeft = m_spawnRate;
             }
         }
-        if (Input.GetKeyDown("space")) InstantiateRandomItem();
+        #if UNITY_EDITOR
+            if (Input.GetKeyDown("space")) InstantiateRandomItem();
+        #endif
     }
 
     private void InstantiateRandomItem()
