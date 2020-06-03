@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Quaternion = UnityEngine.Quaternion;
@@ -32,11 +33,19 @@ public class PlayerController : MonoBehaviour
     [Tooltip("The sound file to play when accelerating")] 
     [SerializeField] private string m_clip;
 
+    [Tooltip("The particles systems to disable when there is no thrust")]
+    [SerializeField] private List<ParticleSystem> m_particles;
+    
     private static AudioSource m_source = null;
     
     private Vector3 m_speed;
     public const float MIN_EPSILON = 0.0001f;
 
+    private float m_bankAngle = 0;
+    
+    private Camera mainCamera = null;
+    private List<ParticleSystem.EmissionModule> m_emitters;
+    
     public void Awake()
     {
         if (m_source == null)
@@ -54,6 +63,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Start()
+    {
+        mainCamera = Camera.main;
+        foreach (var psystem in m_particles)
+        {
+            m_emitters.Add(psystem.emission);
+        }
+        
+    }
+
     //gets called on state enter to reset player 
     public void ResetController()
     {
@@ -65,11 +84,21 @@ public class PlayerController : MonoBehaviour
         //check if the mouse is held down
         if (Input.GetMouseButton(0))
         {
+            foreach (var emitter in m_emitters)
+            {
+                if(!emitter.enabled)
+                {
+                    var e = emitter;
+                    e.enabled = true;
+                }
+            }
+            
+            
             var pPos = transform.position;
             
             //transform the mouse position to game coordinates
             Vector2 mPos = Input.mousePosition;
-            Vector3 wPos = Camera.main.ScreenToWorldPoint(new Vector3(mPos.x,mPos.y,pPos.z));
+            Vector3 wPos = mainCamera.ScreenToWorldPoint(new Vector3(mPos.x,mPos.y,pPos.z));
             wPos.z = pPos.z;
 
             //get the relative direction
@@ -80,12 +109,14 @@ public class PlayerController : MonoBehaviour
             m_speed += dir * (m_acceleration * Time.deltaTime);
 
             //WOOP WOOP, BankAngle PullUP!
-            float bankAngle = Mathf.Acos(Vector3.Dot(m_speed.normalized, dir.normalized));
+            m_bankAngle = Mathf.Acos(Vector3.Dot(m_speed.normalized, dir.normalized));
+
+            m_bankAngle = Mathf.Max(m_bankAngle, 1) * m_bankingFactor;
             
             //add sign to bank-angle
             if (Vector3.Dot(Vector3.forward,Vector3.Cross(m_speed, dir))< 0)
             {
-                bankAngle = -bankAngle;
+                m_bankAngle = -m_bankAngle;
             }
             
             //lazy initialize rotation
@@ -93,13 +124,6 @@ public class PlayerController : MonoBehaviour
             {
                 m_spaceShipModelInitialRotation = m_spaceShipModel.localRotation;
             }
-
-            //set bank
-            var bank = Quaternion.AngleAxis(bankAngle * m_bankingFactor, Vector3.forward);
-            m_spaceShipModel.localRotation =
-                m_spaceShipModelInitialRotation * (bank.IsNaN() ? Quaternion.identity : bank);
-                                      
-            
             
             //assemble the quaternion for the new rotation
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -107,6 +131,19 @@ public class PlayerController : MonoBehaviour
 
             //rotate towards the look-direction
             transform.rotation = Quaternion.Slerp(transform.rotation,rotation,Time.deltaTime * m_rotationSpeed);
+        }
+        else
+        {
+            foreach (var emitter in m_emitters)
+            {
+                if(emitter.enabled)
+                {
+                    var e = emitter;
+                    e.enabled = false;
+                }
+            }
+
+            m_bankAngle = 0;
         }
         
         //check if the speed is above our epsilon value and apply drag if it is
@@ -121,7 +158,11 @@ public class PlayerController : MonoBehaviour
         //do euler step
         transform.position += m_speed * Time.deltaTime;
 
-
+        m_spaceShipModel.localRotation =
+            Quaternion.Slerp(
+                m_spaceShipModel.localRotation,
+                Quaternion.Euler(m_bankAngle,0,0),
+                Time.deltaTime);
         m_source.volume = m_speed.magnitude / 100.0f;
     }
 
