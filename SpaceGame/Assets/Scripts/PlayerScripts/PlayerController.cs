@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
     private float m_bankAngle = 0;
     
     private Camera mainCamera = null;
-    private List<ParticleSystem.EmissionModule> m_emitters;
+    private List<ParticleSystem.EmissionModule> m_emitters = new List<ParticleSystem.EmissionModule>();
     
     public void Awake()
     {
