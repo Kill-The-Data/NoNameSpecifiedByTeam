@@ -3,7 +3,7 @@ using SubjectFilters;
 using UnityEngine;
 
 [RequireComponent(typeof(TrashMovementController))]
-public class TrashCollisionHandler : MonoBehaviour , ISubject
+public class TrashCollisionHandler : MonoBehaviour, ISubject
 {
 
     [SerializeField] private bool m_IsTutorialTrash = false;
@@ -14,23 +14,23 @@ public class TrashCollisionHandler : MonoBehaviour , ISubject
     private TrashMovementController m_controller;
     public PlayerTakeDamageFilter playerTakeDamageFilter { get; private set; }
     public PlayerPickUpTrashFilter playerPickUpTrashFilter { get; private set; }
-    
+
     public void Awake()
     {
         playerTakeDamageFilter = new PlayerTakeDamageFilter();
         Attach(playerTakeDamageFilter);
-        
+
         playerPickUpTrashFilter = new PlayerPickUpTrashFilter();
         Attach(playerPickUpTrashFilter);
-        
+
         m_controller = GetComponent<TrashMovementController>();
         if (m_controller == null) m_controller = gameObject.AddComponent<TrashMovementController>();
     }
 
     public void OnTriggerEnter(Collider other)
     {
-       HandlePlayerEnter(other);
-       HandleTrashEnter(other);
+        HandlePlayerEnter(other);
+        HandleTrashEnter(other);
     }
 
     public void OnTriggerExit(Collider other)
@@ -44,8 +44,8 @@ public class TrashCollisionHandler : MonoBehaviour , ISubject
     {
         //check if other is connected to the player and get all the required components
         if ((other.CompareTag("Player-Collector") || other.CompareTag("Player"))
-            && other.transform.parent.GetComponentSafe(out PlayerCargo playerCargo) 
-            && other.transform.parent.GetComponentSafe(out PlayerHealth playerHealth) 
+            && other.transform.parent.GetComponentSafe(out PlayerCargo playerCargo)
+            && other.transform.parent.GetComponentSafe(out PlayerHealth playerHealth)
             && other.transform.parent.GetComponentSafe(out PlayerController playerController)
         )
         {
@@ -53,12 +53,12 @@ public class TrashCollisionHandler : MonoBehaviour , ISubject
             if (!playerCargo.SpaceIsFull() && other.CompareTag("Player-Collector"))
             {
                 //pickup the trash 
-               PickUpTrash(playerCargo);
+                PickUpTrash(playerCargo);
             }
             else
             {
                 //otherwise take damage
-                DealDamage(playerHealth,playerController);
+                DealDamage(playerHealth, playerController);
             }
         }
     }
@@ -66,13 +66,12 @@ public class TrashCollisionHandler : MonoBehaviour , ISubject
     {
         //remove the trash
         MaximumDebrisCount.RemoveDebris();
-        Destroy(this.gameObject);
-        
+
         //add some to the cargo
         playerCargo.AddCargo();
-        
+
         Notify(NotifyEvent.OnPlayerPickupTrash);
-        
+
         //TODO(kukash): I don't quite know how, but I am sure this can be improved
         //TODO(cont.):  probably some ObserverPattern on the PlayerCargo with Notify()
         //TODO(cont.):  on AddCargo() (and probably ClearCargo() as well)
@@ -80,8 +79,13 @@ public class TrashCollisionHandler : MonoBehaviour , ISubject
         {
             GetComponent<nextTutorialState>()?.NextState();
         }
+        //only destroy if not tutorail trash
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
-    private void DealDamage(PlayerHealth playerHealth,PlayerController playerController)
+    private void DealDamage(PlayerHealth playerHealth, PlayerController playerController)
     {
         if (playerHealth == null || playerController == null) return;
         //check if this specific barrel has already dealt damage to the player
@@ -89,7 +93,7 @@ public class TrashCollisionHandler : MonoBehaviour , ISubject
         {
             //deal damage to the player
             playerHealth.TakeDamage();
-            
+
             //do some speed-transfer with the barrel.
             m_controller.Speed += playerController.Collide();
             m_hasDealtDamage = true;
@@ -114,8 +118,8 @@ public class TrashCollisionHandler : MonoBehaviour , ISubject
     {
         return m_solution;
     }
-   
-    
+
+
     //Trash Interaction
     private void HandleTrashEnter(Collider other)
     {
@@ -125,11 +129,11 @@ public class TrashCollisionHandler : MonoBehaviour , ISubject
             && other.GetComponentSafe(out BreakApartHandler breakApartHandler)
             && otherHandler.enabled)
         {
-            if(!otherHandler.HasTheSolution())
+            if (!otherHandler.HasTheSolution())
             {
                 IHaveTheSolution();
                 Vector3 speed = m_controller.Speed;
-                
+
                 m_controller.Speed = trashController.Speed;
                 trashController.Speed = speed;
 
@@ -141,15 +145,15 @@ public class TrashCollisionHandler : MonoBehaviour , ISubject
             }
         }
     }
-    
+
     private void HandleTrashExit()
     {
         m_solution = false;
     }
 
-    public enum NotifyEvent { OnPlayerTakeDamage,OnPlayerPickupTrash}
+    public enum NotifyEvent { OnPlayerTakeDamage, OnPlayerPickupTrash }
     public NotifyEvent State { get; private set; }
-    private Action<ISubject> m_listeners = delegate {  };
+    private Action<ISubject> m_listeners = delegate { };
     public void Notify()
     {
         m_listeners(this);
