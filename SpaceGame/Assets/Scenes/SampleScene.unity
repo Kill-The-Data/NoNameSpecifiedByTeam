@@ -2913,7 +2913,7 @@ Material:
     - FILL: 2
     - Vector1_ACE07D8D: 1.26
     m_Colors:
-    - Color_41ED8527: {r: 0.6, g: 0.73146766, b: 1, a: 1}
+    - Color_41ED8527: {r: 0.8470589, g: 0.65882355, b: 0.36862746, a: 1}
 --- !u!1001 &928069279
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8302,6 +8302,56 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 451692425517938843, guid: c2d5dbd1ea1878744b4bc4ae6bfb5ae8,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 451692425517938843, guid: c2d5dbd1ea1878744b4bc4ae6bfb5ae8,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1657744878342244754, guid: c2d5dbd1ea1878744b4bc4ae6bfb5ae8,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1657744878342244754, guid: c2d5dbd1ea1878744b4bc4ae6bfb5ae8,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2195015590834939996, guid: c2d5dbd1ea1878744b4bc4ae6bfb5ae8,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2195015590834939996, guid: c2d5dbd1ea1878744b4bc4ae6bfb5ae8,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022429406908502268, guid: c2d5dbd1ea1878744b4bc4ae6bfb5ae8,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022429406908502268, guid: c2d5dbd1ea1878744b4bc4ae6bfb5ae8,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5861167773626936449, guid: c2d5dbd1ea1878744b4bc4ae6bfb5ae8,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5861167773626936449, guid: c2d5dbd1ea1878744b4bc4ae6bfb5ae8,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2d5dbd1ea1878744b4bc4ae6bfb5ae8, type: 3}
 --- !u!1 &2133896801
@@ -9309,7 +9359,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -226.30005, y: -26.099854}
+  m_AnchoredPosition: {x: -226.30005, y: -26.100098}
   m_SizeDelta: {x: 234.64026, y: 28.71997}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &2513735493096922652
