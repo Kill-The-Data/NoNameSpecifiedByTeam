@@ -10,6 +10,8 @@ TagManager:
   - ScoreUI
   - Reset
   - DebrisField
+  - Station
+  - Event
   layers:
   - Default
   - TransparentFX

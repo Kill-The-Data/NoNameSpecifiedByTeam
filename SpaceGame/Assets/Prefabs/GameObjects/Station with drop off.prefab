@@ -309,6 +309,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Station with drop off
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 3cb69fa796c094e42a5944d1d2129ad7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Station
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cb69fa796c094e42a5944d1d2129ad7, type: 3}
 --- !u!4 &893843195312121207 stripped
