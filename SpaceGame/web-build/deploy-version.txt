@@ -1,1 +1,1 @@
-feature/asset-setup:  e2a48f0a1a
+feature/asset-setup:  6761010b30

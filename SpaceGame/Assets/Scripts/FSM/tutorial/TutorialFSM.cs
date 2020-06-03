@@ -11,8 +11,6 @@ public class TutorialFSM : FSM
     {
         if (m_startState is BasicTutorialState state)
             ChangeState(state.StateName);
-        GameObject temp = Instantiate(m_tutorialObj);
-        temp.SetActive(true);
     }
     //overwrites FSM init, now uses specified name instead of type
     //this enables the statemachine to use multiple states with the same type
