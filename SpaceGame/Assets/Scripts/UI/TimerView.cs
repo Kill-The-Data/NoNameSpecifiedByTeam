@@ -30,7 +30,17 @@ public class TimerView : MonoBehaviour, IObserver
         }
         timer.StartTimer(m_duration);
     }
-
+    public void Update()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            timer?.Continue();
+        }
+        else
+        {
+            timer?.Pause();
+        }
+    }
     public void AttachPerformanceMeasure(PerformanceMeasure performance)
     {
         timer.Attach(performance);
