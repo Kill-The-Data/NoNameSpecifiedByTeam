@@ -10,9 +10,9 @@ public class GameResultState : StateWithView<ScoreCalcView>
     public override void EnterState()
     {
         base.EnterState();
-        LerpScore  scoreCalc =view.GetScoreCalc();
+        LerpScore scoreCalc = view.GetScoreCalc();
         scoreCalc.Reset();
-        scoreCalc.CalculateScore(100, PlayerPrefs.GetFloat("time"),
+        scoreCalc.CalculateScore(PlayerPrefs.GetInt("score"), PlayerPrefs.GetFloat("time"),
                 PlayerPrefs.GetInt("health"), PlayerPrefs.GetInt("buoysFilled"), PlayerPrefs.GetInt("goalReached"));
         StartCoroutine(AdvanceFSM());
 
