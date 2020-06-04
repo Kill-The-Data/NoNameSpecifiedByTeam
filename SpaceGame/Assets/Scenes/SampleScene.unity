@@ -2922,7 +2922,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_startState
       value: 
-      objectReference: {fileID: 987864438}
+      objectReference: {fileID: 1586128232}
     - target: {fileID: 4218050729064255387, guid: 19663be05b01fbb4c8d8a14734b428bf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5376,14 +5376,14 @@ Transform:
   - {fileID: 124542239}
   - {fileID: 824595285291327221}
   - {fileID: 1054358503}
-  - {fileID: 1749605500}
-  - {fileID: 297233728}
+  - {fileID: 369053193}
   - {fileID: 634197204}
   - {fileID: 1149030504}
-  - {fileID: 1785907657}
-  - {fileID: 1019085701}
   - {fileID: 760420980}
-  - {fileID: 369053193}
+  - {fileID: 1785907657}
+  - {fileID: 1749605500}
+  - {fileID: 1019085701}
+  - {fileID: 297233728}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
