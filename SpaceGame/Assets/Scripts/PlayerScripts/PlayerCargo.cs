@@ -21,7 +21,7 @@ public class PlayerCargo : MonoBehaviour, IObserver
 
     [Header(" --- Cargo ---")]
     [Tooltip("How much items the Player can hold at any given time")]
-    [SerializeField] private int m_cargoLimit = 2;
+    [SerializeField] private int m_cargoLimit = 3;
 
 
     private int m_spaceOccupiedImpl;
