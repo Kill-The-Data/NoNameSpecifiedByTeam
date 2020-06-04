@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Timer : MonoBehaviour, ISubject
@@ -6,7 +7,8 @@ public class Timer : MonoBehaviour, ISubject
     public enum TimerState
     {
         ACTIVE,
-        OUT_OF_TIME
+        OUT_OF_TIME,
+        PAUSED
     }
     private TimerState m_state = TimerState.OUT_OF_TIME;
     private List<IObserver> m_Observers = new List<IObserver>();
@@ -25,7 +27,14 @@ public class Timer : MonoBehaviour, ISubject
             Notify();
         }
     }
-
+    public void Pause()
+    {
+        m_state=TimerState.PAUSED;
+    }
+    public void Continue()
+    {
+        m_state = TimerState.ACTIVE;
+    }
     public float GetStartTime() => m_StartTime;
     public TimerState GetState() => m_state;
     public float GetTime() => m_TimeLeft;
