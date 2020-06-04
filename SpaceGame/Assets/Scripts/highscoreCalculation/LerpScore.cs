@@ -50,6 +50,8 @@ public class LerpScore : MonoBehaviour
 
     public void Reset()
     {
+
+        m_distance= m_distance /1080 * Screen.height;
         ResetValues();
         if (m_ScoreText)
             m_ScoreText.text = m_currentScore.ToString();
