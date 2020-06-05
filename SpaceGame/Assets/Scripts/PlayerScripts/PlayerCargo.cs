@@ -134,7 +134,7 @@ public class PlayerCargo : MonoBehaviour, IObserver
     {
         if (subject is MotherShipCollisionHandler collision)
         {
-            m_cargoVis.RemoveObj(collision.LeftoverCargo);
+            m_cargoVis?.RemoveObj(collision.LeftoverCargo);
             SetFill(collision.LeftoverCargo);
         }
     }

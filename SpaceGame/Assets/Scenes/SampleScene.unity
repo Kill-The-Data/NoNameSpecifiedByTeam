@@ -5994,6 +5994,7 @@ MonoBehaviour:
   UseLloydRelaxation: 0
   position: {x: 0, y: 0}
   NoMansLandRadius: 130
+  EasterEggDistance: 10
   prefabs:
   - {fileID: 8328469310705865685, guid: e0aef02871ba57746a7f3cc8a8e60a52, type: 3}
   - {fileID: 5080322407252891567, guid: 7e29ff2e2d54cb046a8c4392c3af4069, type: 3}
@@ -6001,6 +6002,11 @@ MonoBehaviour:
   - {fileID: 5274028647785834030, guid: 1cd3ebbf2322981468181e1d2a51f960, type: 3}
   - {fileID: 6582750916575378424, guid: 5baa027644fd42a47911679a35afc1c4, type: 3}
   - {fileID: 4380982213710771776, guid: 608397ff028ed344bad32dcc9b2ea5af, type: 3}
+  easterEggs:
+  - {fileID: 8970989272100361433, guid: 4774a5b34e5ed1b41868690a6770db7b, type: 3}
+  - {fileID: 6512097842701061201, guid: 57113823c130b844594001c107c0746f, type: 3}
+  - {fileID: 6205337384004650907, guid: 0a23c97a0a959f345a585994c248d91f, type: 3}
+  - {fileID: 3192298957541809606, guid: 4441869eb21f69347b31856ed3ae84e4, type: 3}
   m_zones:
   - Target: {fileID: 1306308144}
     Radius: 11.12
