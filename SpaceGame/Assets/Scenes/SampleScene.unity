@@ -949,6 +949,7 @@ Transform:
   - {fileID: 2029923644}
   - {fileID: 813734778}
   - {fileID: 494222328}
+  - {fileID: 2077813013}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9038,6 +9039,91 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 112826658}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2077813012
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 219079516}
+    m_Modifications:
+    - target: {fileID: 6091207290458602049, guid: e4e54d1bd4d080b4ba4a23a1a4b14365,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091207290458602049, guid: e4e54d1bd4d080b4ba4a23a1a4b14365,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091207290458602049, guid: e4e54d1bd4d080b4ba4a23a1a4b14365,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091207290458602049, guid: e4e54d1bd4d080b4ba4a23a1a4b14365,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091207290458602049, guid: e4e54d1bd4d080b4ba4a23a1a4b14365,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091207290458602049, guid: e4e54d1bd4d080b4ba4a23a1a4b14365,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091207290458602049, guid: e4e54d1bd4d080b4ba4a23a1a4b14365,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091207290458602049, guid: e4e54d1bd4d080b4ba4a23a1a4b14365,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091207290458602049, guid: e4e54d1bd4d080b4ba4a23a1a4b14365,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091207290458602049, guid: e4e54d1bd4d080b4ba4a23a1a4b14365,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091207290458602049, guid: e4e54d1bd4d080b4ba4a23a1a4b14365,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091207290458602051, guid: e4e54d1bd4d080b4ba4a23a1a4b14365,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 09b5891eb8c432d46971f06e1ef09c60, type: 2}
+    - target: {fileID: 6091207290458602053, guid: e4e54d1bd4d080b4ba4a23a1a4b14365,
+        type: 3}
+      propertyPath: m_Name
+      value: Stars
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091207290458602110, guid: e4e54d1bd4d080b4ba4a23a1a4b14365,
+        type: 3}
+      propertyPath: m_parallaxDriver
+      value: 
+      objectReference: {fileID: 1306308144}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e4e54d1bd4d080b4ba4a23a1a4b14365, type: 3}
+--- !u!4 &2077813013 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6091207290458602049, guid: e4e54d1bd4d080b4ba4a23a1a4b14365,
+    type: 3}
+  m_PrefabInstance: {fileID: 2077813012}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2104199489
 GameObject:
   m_ObjectHideFlags: 0
@@ -11090,13 +11176,18 @@ PrefabInstance:
     - target: {fileID: 6091207290458602053, guid: e4e54d1bd4d080b4ba4a23a1a4b14365,
         type: 3}
       propertyPath: m_Name
-      value: BG
+      value: Sky
       objectReference: {fileID: 0}
     - target: {fileID: 6091207290458602110, guid: e4e54d1bd4d080b4ba4a23a1a4b14365,
         type: 3}
       propertyPath: m_parallaxDriver
       value: 
       objectReference: {fileID: 1306308144}
+    - target: {fileID: 6091207290458602110, guid: e4e54d1bd4d080b4ba4a23a1a4b14365,
+        type: 3}
+      propertyPath: m_displacementFactor
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4e54d1bd4d080b4ba4a23a1a4b14365, type: 3}
 --- !u!1001 &6169750887525927937
