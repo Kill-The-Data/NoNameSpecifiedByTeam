@@ -46,6 +46,10 @@ public class VoronoiDebrisGen : MonoBehaviour
     //----------- Trash Setup Variables
     [Header(" --- Setup trash Prefabs --- ")]
     public List<GameObject> prefabs;
+    
+    [Header(" --- Setup big Obstacles --- ")]
+    public List<GameObject> obstacles;
+    
     [Header(" --- Easter eggs --- ")]
     public List<GameObject> easterEggs;
 
@@ -74,7 +78,8 @@ public class VoronoiDebrisGen : MonoBehaviour
     [SerializeField] private bool m_showDebrisExclusions = false;
     [Tooltip("How much space each piece of debris gets on a minimal basis"), Range(0, 10)]
     [SerializeField] private float m_exclusionZoneRadiusForNewDebris;
-
+    [Tooltip("How much space each piece of obstacle gets on a minimal basis"), Range(0, 30)]
+    [SerializeField] private float m_exclusionZoneRadiusForNewObstacle;
 
     private List<ExclusionZone> m_debrisZones = null;
 
@@ -184,24 +189,35 @@ public class VoronoiDebrisGen : MonoBehaviour
             }
             if (!CheckNearbyDebris(pos, inDeathZone)) continue;
 
+
+            var exclusionRadius = m_exclusionZoneRadiusForNewDebris;
+            var collection = prefabs;
+
+            if (inDeathZone)
+            {
+                if (Random.Range(0F, 1F) > 0.5F)
+                {
+                    collection = obstacles;
+                    exclusionRadius = m_exclusionZoneRadiusForNewObstacle;
+                }
+            }
+            
             //get a random piece of trash
-            int randomIndex = UnityEngine.Random.Range(0, prefabs.Count);
+            int randomIndex = UnityEngine.Random.Range(0, collection.Count);
 
             //random trash orientation
             float randomFloat = UnityEngine.Random.Range(0, 360);
             Quaternion rotation = Quaternion.Euler(0, 0, randomFloat);
 
             //instantiate trash
-            GameObject trash = m_childAdder.AddChild(Instantiate(prefabs[randomIndex], pos, rotation));
+            GameObject trash = m_childAdder.AddChild(Instantiate(collection[randomIndex], pos, rotation));
 
-            if (do_prewarm)
+            if (do_prewarm && !inDeathZone)
             {
                 trash.SetActive(false);
                 m_finalShow += () => trash.SetActive(true);
             }
-
-
-            m_debrisZones.Add(new ExclusionZone { Target = trash.transform, Radius = m_exclusionZoneRadiusForNewDebris });
+            m_debrisZones.Add(new ExclusionZone { Target = trash.transform, Radius = exclusionRadius });
         }
     }
     public void DeleteLevel()
@@ -348,18 +364,18 @@ public class VoronoiDebrisGen : MonoBehaviour
         }
 
         if (m_showDebrisExclusions && m_debrisZones != null) foreach (var zone in m_debrisZones)
-            {
-                if (!zone.Target) continue;
-                //draw the exclusion zone
+        {
+            if (!zone.Target) continue;
+            //draw the exclusion zone
 
-                var radius = zone.Radius;
-                if (Vector3.Distance(center, zone.Target.position) >= NoMansLandRadius)
-                {
-                    radius *= 0.5f;
-                }
-                UnityEditor.Handles.color = Color.yellow;
-                UnityEditor.Handles.DrawWireDisc(zone.Target.position, Vector3.forward, radius);
+            var radius = zone.Radius;
+            if (Vector3.Distance(center, zone.Target.position) >= NoMansLandRadius)
+            {
+                radius *= 0.5f;
             }
+            UnityEditor.Handles.color = Color.yellow;
+            UnityEditor.Handles.DrawWireDisc(zone.Target.position, Vector3.forward, radius);
+        }
 
         UnityEditor.Handles.color = Color.red;
         //draw the bounding box

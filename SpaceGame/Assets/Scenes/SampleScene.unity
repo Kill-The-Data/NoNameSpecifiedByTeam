@@ -6002,6 +6002,10 @@ MonoBehaviour:
   - {fileID: 5274028647785834030, guid: 1cd3ebbf2322981468181e1d2a51f960, type: 3}
   - {fileID: 6582750916575378424, guid: 5baa027644fd42a47911679a35afc1c4, type: 3}
   - {fileID: 4380982213710771776, guid: 608397ff028ed344bad32dcc9b2ea5af, type: 3}
+  obstacles:
+  - {fileID: 2217897059841504406, guid: 0d0740601c8011949b05ee24938ca024, type: 3}
+  - {fileID: 2985262068716217334, guid: baf16a2fdd7a572408469b9bbb8ffb7c, type: 3}
+  - {fileID: 390969096495704360, guid: b83ad0314103d5e4b8bd722a25077f4e, type: 3}
   easterEggs:
   - {fileID: 8970989272100361433, guid: 4774a5b34e5ed1b41868690a6770db7b, type: 3}
   - {fileID: 6512097842701061201, guid: 57113823c130b844594001c107c0746f, type: 3}
@@ -6050,6 +6054,7 @@ MonoBehaviour:
     AmountTrash: 0
   m_showDebrisExclusions: 1
   m_exclusionZoneRadiusForNewDebris: 7
+  m_exclusionZoneRadiusForNewObstacle: 25
 --- !u!114 &1160042672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9448,6 +9453,26 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4908579004366616094, guid: c2d5dbd1ea1878744b4bc4ae6bfb5ae8,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4908579004366616094, guid: c2d5dbd1ea1878744b4bc4ae6bfb5ae8,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4908579004366616094, guid: c2d5dbd1ea1878744b4bc4ae6bfb5ae8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4908579004366616094, guid: c2d5dbd1ea1878744b4bc4ae6bfb5ae8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5861167773626936449, guid: c2d5dbd1ea1878744b4bc4ae6bfb5ae8,
         type: 3}
       propertyPath: m_LocalScale.y
@@ -11222,7 +11247,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7148810408542907268}
   - component: {fileID: 7148810408542907270}
-  - component: {fileID: 7148810408542907274}
   m_Layer: 0
   m_Name: TutorialView
   m_TagString: Untagged
@@ -11230,18 +11254,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &7148810408542907274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7148810408542907273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 486f11cf2df16f04ea960239076ac66e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &7148810409042043364 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2726235740767077348, guid: edce87029ded39f43ad1212d96a1f05e,
