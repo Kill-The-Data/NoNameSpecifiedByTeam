@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 [RequireComponent(typeof(Collider))]
 [RequireComponent(typeof(BuoyFillUp))]
+[RequireComponent(typeof(AudioSource))]
 public class MotherShipCollisionHandler : MonoBehaviour, ISubject
 {
 
@@ -23,6 +24,10 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
 
     private AudioSource m_source;
 
+    //HACK:(Algo-ryth-mix): by all means try to change it
+    //numberOfHoursWastedWithThis = 2
+    private static int buoyNumber = 0;
+    
     public int ScoreGain
     {
         get;
@@ -33,13 +38,34 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
         get;
         private set;
     }
+    
     void Start()
     {
+        m_FillUp = GetComponent<BuoyFillUp>();
+        m_source = gameObject.GetComponent<AudioSource>();
+        
+        //for whatever unholy reason the first audio-source does not want to play,
+        //but we can cheat by making one of them play on awake
+        if (buoyNumber != 0)
+        {
+            m_source.playOnAwake = false;
+        }
+        ++buoyNumber;
+        
+        //also by some arcane dark ass magic,
+        //this Start() is actually somehow called before Awake()
+        //I do not know why, I do not question why, I just mentally noted it
+        // (and literally obviously, as you are reading it rn)
+        
+        
+        //also this garbage ( yes I know this is my creation )
+        SoundManager.ExecuteOnAwake(() =>
+        {
+            m_source.clip = SoundManager.Instance.GetSound(m_playerSound);
+        });
+        
         m_Observers = new List<IObserver>();
         FindTaggedObjects();
-        m_FillUp = GetComponent<BuoyFillUp>();
-        m_source = gameObject.AddComponent<AudioSource>();
-        m_source.clip = SoundManager.Instance.GetSound(m_playerSound);
     }
 
     //trys to find the object by its tag, please do not reuse the Tag, tag should be unique for this
@@ -62,6 +88,8 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
 
             //get cargo
             int cargoAmount = cargo.SpaceOccupied;
+
+            if (cargoAmount == 0) return;
             //drop off
             LeftoverCargo = m_FillUp.DropOff(cargoAmount);
             //play audio
