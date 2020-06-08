@@ -28,7 +28,7 @@ public class EventHandler : MonoBehaviour
     }
     private void Init()
     {
-        StationFilled = OnStationFilled;
+        StationFilled += OnStationFilled;
     }
 
     public void FinishGame()
