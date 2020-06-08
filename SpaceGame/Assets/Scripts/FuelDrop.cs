@@ -57,10 +57,14 @@ public class FuelDrop : MonoBehaviour
             parentObj.transform.position = this.transform.position;
             Obj.transform.parent = parentObj.transform;
             Obj.transform.localPosition = Vector3.zero;
-
+            
             //get animator component & trigger it
-            Animator a = GetComponent<Animator>();
-            a?.SetTrigger("playDropOff");
+
+            var anim = GetComponent<Animator>();
+            if (anim)
+            {
+                anim.SetTrigger("playDropOff");
+            }
         }
     }
 }
