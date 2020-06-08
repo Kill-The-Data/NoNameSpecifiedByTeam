@@ -13470,6 +13470,7 @@ GameObject:
   - component: {fileID: 8119748708143194468}
   - component: {fileID: 8119748708143194469}
   - component: {fileID: 8119748708143194472}
+  - component: {fileID: 8119748708143194473}
   m_Layer: 0
   m_Name: stationLarge
   m_TagString: Reset
@@ -13651,6 +13652,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8119748708143194473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8119748708143194467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f1dc48d820f90c4dabf0cf600d17313, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_offset: {x: 0, y: 0, z: 0}
+  m_fuelPrefab: {fileID: 3261979932069503665, guid: 720079783dd432d4daf1b7c95185cff9,
+    type: 3}
 --- !u!33 &8119748708143194521
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -13889,6 +13905,7 @@ GameObject:
   - component: {fileID: 8119748708276461612}
   - component: {fileID: 8119748708276461613}
   - component: {fileID: 8119748708276461616}
+  - component: {fileID: 8119748708276461617}
   m_Layer: 0
   m_Name: stationLarge
   m_TagString: Reset
@@ -14070,6 +14087,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8119748708276461617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8119748708276461611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f1dc48d820f90c4dabf0cf600d17313, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_offset: {x: 0, y: 0, z: 0}
+  m_fuelPrefab: {fileID: 3261979932069503665, guid: 720079783dd432d4daf1b7c95185cff9,
+    type: 3}
 --- !u!4 &8119748708280729661
 Transform:
   m_ObjectHideFlags: 0
@@ -15164,6 +15196,7 @@ GameObject:
   - component: {fileID: 8119748709645201017}
   - component: {fileID: 8119748709645200966}
   - component: {fileID: 8119748709645200965}
+  - component: {fileID: 8119748709645200968}
   m_Layer: 0
   m_Name: stationLarge
   m_TagString: Reset
@@ -15295,6 +15328,21 @@ Transform:
   m_Father: {fileID: 8119748708984470762}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8119748709645200968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8119748709645200964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f1dc48d820f90c4dabf0cf600d17313, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_offset: {x: 0, y: 0, z: 0}
+  m_fuelPrefab: {fileID: 3261979932069503665, guid: 720079783dd432d4daf1b7c95185cff9,
+    type: 3}
 --- !u!135 &8119748709645201016
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -15975,6 +16023,7 @@ GameObject:
   - component: {fileID: 8119748710004711554}
   - component: {fileID: 8119748710004711555}
   - component: {fileID: 8119748710004711558}
+  - component: {fileID: 8119748710004711560}
   m_Layer: 0
   m_Name: stationLarge
   m_TagString: Reset
@@ -16164,6 +16213,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8119748710004711553}
   m_Mesh: {fileID: 8034776613121328539, guid: 9e957f2e6c75118468ecc63b26de4fe8, type: 3}
+--- !u!114 &8119748710004711560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8119748710004711553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f1dc48d820f90c4dabf0cf600d17313, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_offset: {x: 0, y: 0, z: 0}
+  m_fuelPrefab: {fileID: 3261979932069503665, guid: 720079783dd432d4daf1b7c95185cff9,
+    type: 3}
 --- !u!1 &8119748710038374040
 GameObject:
   m_ObjectHideFlags: 0
@@ -16359,6 +16423,7 @@ GameObject:
   - component: {fileID: 8119748710095290152}
   - component: {fileID: 8119748710095290153}
   - component: {fileID: 8119748710095290168}
+  - component: {fileID: 8119748710095290169}
   m_Layer: 0
   m_Name: stationLarge
   m_TagString: Reset
@@ -16462,6 +16527,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8119748710095290169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8119748710095290167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f1dc48d820f90c4dabf0cf600d17313, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_offset: {x: 0, y: 0, z: 0}
+  m_fuelPrefab: {fileID: 3261979932069503665, guid: 720079783dd432d4daf1b7c95185cff9,
+    type: 3}
 --- !u!1 &8119748710138879177
 GameObject:
   m_ObjectHideFlags: 0
