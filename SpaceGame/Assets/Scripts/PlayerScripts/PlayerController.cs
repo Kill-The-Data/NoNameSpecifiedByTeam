@@ -79,10 +79,18 @@ public class PlayerController : MonoBehaviour
         transform.position = new Vector3(0, 0, transform.position.z);
         m_speed = Vector3.zero;
     }
+
+    private bool m_isEnabled = true;
+
+    public void Disable() => m_isEnabled = false;
+    public void Enable() => m_isEnabled = true;
+    
+    
     void Update()
     {
-        //check if the mouse is held down
-        if (Input.GetMouseButton(0))
+        //check if the mouse is held down & check if
+        //Input is currently enabled
+        if (Input.GetMouseButton(0) && m_isEnabled)
         {
             foreach (var emitter in m_emitters)
             {
