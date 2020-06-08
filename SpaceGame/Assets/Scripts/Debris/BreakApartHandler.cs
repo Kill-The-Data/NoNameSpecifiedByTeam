@@ -68,8 +68,6 @@ public class BreakApartHandler : MonoBehaviour
                         Destroy(instance.GetComponent(typeof(TrashCollisionHandler)));
                     }
                 }
-                //for testing
-                //later this should be handled by a timer
             }
             MaximumDebrisCount.RemoveDebris();
             Destroy(this.gameObject);
