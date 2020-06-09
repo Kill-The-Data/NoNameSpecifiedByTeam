@@ -48,10 +48,9 @@ public class PlayerCargo : MonoBehaviour, IObserver
         InitSlider();
 
         if (m_overrideMaxCargo)
-            WebConfigHandler.OnFinishDownload(JO =>
+            WebConfigHandler.OnFinishDownload(o =>
             {
-                if (int.TryParse(JO?["maxCargo"].ToString(), out int mCargo))
-                    m_cargoLimit = mCargo;
+                o.ExtractInt("max_cargo", value => m_cargoLimit = value);
             });
 
         SpaceOccupied = 0;

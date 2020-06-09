@@ -10,6 +10,8 @@ public class ObstacleCollisionHandler : MonoBehaviour , ISubject
     [LabelOverride("Sound on Collision")]
     [SerializeField] private string m_soundId ="collision";
 
+    private int m_damage = 10;
+    
     private AudioSource m_audioSource;
     
     public void Awake()
@@ -19,6 +21,11 @@ public class ObstacleCollisionHandler : MonoBehaviour , ISubject
         SoundManager.ExecuteOnAwake(manager =>
         {
             m_audioSource.clip = manager.GetSound(m_soundId);
+        });
+        
+        WebConfigHandler.OnFinishDownload(o =>
+        {
+            o.ExtractInt("obstacle_damage", v => m_damage = v);
         });
         
     }
@@ -62,7 +69,7 @@ public class ObstacleCollisionHandler : MonoBehaviour , ISubject
 
         if (!m_hasDealtDamage)
         {
-            health.TakeDamage();
+            health.TakeDamage(m_damage);
             
             //make the factor so big you actually bounce back
             controller.Collide(1.4f);
