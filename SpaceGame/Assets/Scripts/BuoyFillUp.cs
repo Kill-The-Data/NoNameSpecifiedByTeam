@@ -22,6 +22,12 @@ public class BuoyFillUp : MonoBehaviour
     void Awake()
     {
         Init();
+        WebConfigHandler.OnFinishDownload(o =>
+        {
+            o.ExtractInt("buoy_cargo", value => m_MaxFillUp = value);
+        });
+        
+        
     }
     public void Init()
     {

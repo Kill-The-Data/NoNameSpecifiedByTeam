@@ -14,6 +14,8 @@ public class TrashCollisionHandler : MonoBehaviour, ISubject
     public PlayerTakeDamageFilter playerTakeDamageFilter { get; private set; }
     public PlayerPickUpTrashFilter playerPickUpTrashFilter { get; private set; }
 
+    private int m_damage = 10;
+    
     public void Awake()
     {
         playerTakeDamageFilter = new PlayerTakeDamageFilter();
@@ -24,6 +26,8 @@ public class TrashCollisionHandler : MonoBehaviour, ISubject
 
         m_controller = GetComponent<TrashMovementController>();
         if (m_controller == null) m_controller = gameObject.AddComponent<TrashMovementController>();
+        
+        WebConfigHandler.OnFinishDownload(o => o.ExtractInt("debris_damage", v => m_damage = v));
     }
 
     public void OnTriggerEnter(Collider other)
