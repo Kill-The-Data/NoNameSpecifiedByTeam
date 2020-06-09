@@ -7911,6 +7911,23 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 516490101}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1145414857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145414856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95bfdbc7b4c57654ab5a90fdac008552, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MaxFillUp: 0
+  m_tweenSpeed: 1
+  m_MinSliderValue: 0.1
+  m_TargetRenderer: {fileID: 0}
+  abort: 1
 --- !u!224 &1149030504 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2764872169706729290, guid: 7b173fc7392438746a80d01bf86c017c,
@@ -8782,8 +8799,6 @@ MonoBehaviour:
   - {fileID: 8119748709384501485}
   - {fileID: 8119748709389775833}
   - {fileID: 8119748709508577253}
-  m_IsGoalHomingDevice: 0
-  m_goalObject: {fileID: 0}
   m_homingDeviceChild: {fileID: 861739126}
   m_radius: 6.5
   m_hideRadius: 12
@@ -8900,9 +8915,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_showGizmos: 0
-  m_targets: []
-  m_IsGoalHomingDevice: 1
-  m_goalObject: {fileID: 1145414856}
+  m_targets:
+  - {fileID: 1145414857}
   m_homingDeviceChild: {fileID: 11187688}
   m_radius: 8.5
   m_hideRadius: 10
@@ -14812,6 +14826,7 @@ MonoBehaviour:
   m_tweenSpeed: 1
   m_MinSliderValue: 0.1
   m_TargetRenderer: {fileID: 8119748708769422672}
+  abort: 0
 --- !u!33 &8119748708276461601
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -15114,6 +15129,7 @@ MonoBehaviour:
   m_tweenSpeed: 1
   m_MinSliderValue: 0.1
   m_TargetRenderer: {fileID: 8119748708226279054}
+  abort: 0
 --- !u!1 &8119748708313463969
 GameObject:
   m_ObjectHideFlags: 0
@@ -15880,6 +15896,7 @@ MonoBehaviour:
   m_tweenSpeed: 1
   m_MinSliderValue: 0.1
   m_TargetRenderer: {fileID: 8119748709161760447}
+  abort: 0
 --- !u!114 &8119748709389775833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15896,6 +15913,7 @@ MonoBehaviour:
   m_tweenSpeed: 1
   m_MinSliderValue: 0.1
   m_TargetRenderer: {fileID: 8119748709530828672}
+  abort: 0
 --- !u!4 &8119748709415304321
 Transform:
   m_ObjectHideFlags: 0
@@ -15945,6 +15963,7 @@ MonoBehaviour:
   m_tweenSpeed: 1
   m_MinSliderValue: 0.1
   m_TargetRenderer: {fileID: 8119748709801824128}
+  abort: 0
 --- !u!4 &8119748709530015024
 Transform:
   m_ObjectHideFlags: 0
@@ -17688,22 +17707,22 @@ PrefabInstance:
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0.000000044499274
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 6.28e-43
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 6.43e-43
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 8485707075902487550, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
