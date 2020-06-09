@@ -35,20 +35,8 @@ public class ShieldState : MonoBehaviour
     public  void DeactivateShield() { FadeOut();}
     private void FadeOut()
     {
-
         ForceShield.GetComponent<Dissolve>()?.StartDissolve();
         IsActive = false;
-        //fade out
-        //LeanTween.value(ForceShield, 1, 0, fadeSpeed).setOnUpdate((float val) =>
-        //{
-        //    ForceShield.GetComponent<Renderer>().material.SetFloat("Alpha", val);
-        //    //set unactive once alpha reaches 0
-        //    if (val <= 0)
-        //    {
-        //        ForceShield.SetActive(false);
-        //        IsActive = false;
-        //    }
-        //});
     }
 
 }
