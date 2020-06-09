@@ -41,7 +41,6 @@ public class TutorialState : StateWithView<IngameView>
         {
             currentObj.GetComponent<AReset>()?.Reset();
         }
-
     }
     private void InitPlayer()
     {
