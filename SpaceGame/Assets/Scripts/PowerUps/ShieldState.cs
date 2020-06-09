@@ -26,6 +26,7 @@ public class ShieldState : MonoBehaviour
     public void ActivateShield()
     {
         IsActive = true;
+        ForceShield.GetComponent<Renderer>().material.SetFloat("TIME", 1);
 
         ForceShield.SetActive(true);
         Material mat = ForceShield.GetComponent<Renderer>().material;
@@ -34,17 +35,8 @@ public class ShieldState : MonoBehaviour
     public  void DeactivateShield() { FadeOut();}
     private void FadeOut()
     {
-        //fade out
-        LeanTween.value(ForceShield, 1, 0, fadeSpeed).setOnUpdate((float val) =>
-        {
-            ForceShield.GetComponent<Renderer>().material.SetFloat("Alpha", val);
-            ////set unactive once alpha reaches 0
-            if (val <= 0)
-            {
-                ForceShield.SetActive(false);
-                IsActive = false;
-            }
-        });
+        ForceShield.GetComponent<Dissolve>()?.StartDissolve();
+        IsActive = false;
     }
 
 }
