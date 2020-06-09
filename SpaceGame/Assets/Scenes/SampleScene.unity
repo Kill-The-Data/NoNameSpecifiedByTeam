@@ -484,7 +484,7 @@ Transform:
   m_GameObject: {fileID: 66151303}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 861739126}
   m_RootOrder: 0
@@ -528,8 +528,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 179f271ac4795874c925ecbffe1ea319, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 41dbccdefbf4002448dc49a32a34ee1a, type: 3}
+  m_Color: {r: 0.73333335, g: 0.87058824, b: 0.9411765, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3670,12 +3670,12 @@ PrefabInstance:
     - target: {fileID: 895258948676774764, guid: cf02c66304ead144691c1a1fe756f3b0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 137.6
+      value: 168.5
       objectReference: {fileID: 0}
     - target: {fileID: 895258948676774764, guid: cf02c66304ead144691c1a1fe756f3b0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 125.2
+      value: 193.1
       objectReference: {fileID: 0}
     - target: {fileID: 895258948676774764, guid: cf02c66304ead144691c1a1fe756f3b0,
         type: 3}
@@ -3730,7 +3730,7 @@ PrefabInstance:
     - target: {fileID: 895258948676774767, guid: cf02c66304ead144691c1a1fe756f3b0,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf02c66304ead144691c1a1fe756f3b0, type: 3}
@@ -4684,7 +4684,7 @@ Transform:
   m_GameObject: {fileID: 695660369}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 11187688}
   m_RootOrder: 0
@@ -4728,8 +4728,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 179f271ac4795874c925ecbffe1ea319, type: 3}
-  m_Color: {r: 0.9433962, g: 0.51021624, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 73dc73ac7acd2c549afa7eaad4bdc34b, type: 3}
+  m_Color: {r: 0.9411765, g: 0.5294118, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -7905,6 +7905,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1142123357}
   m_CullTransparentMesh: 0
+--- !u!1 &1145414856 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 895258948676774767, guid: cf02c66304ead144691c1a1fe756f3b0,
+    type: 3}
+  m_PrefabInstance: {fileID: 516490101}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1149030504 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2764872169706729290, guid: 7b173fc7392438746a80d01bf86c017c,
@@ -8050,13 +8056,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_showGizmos: 1
   TrashAmount: 7000
-  AreaDimensions: 350
+  AreaDimensions: 400
   ZCoord: 10
   Offset: 0.5
   LloydFactor: 1
   UseLloydRelaxation: 0
-  position: {x: 11.09, y: -14}
-  NoMansLandRadius: 155
+  position: {x: 4.34, y: -14}
+  NoMansLandRadius: 170.13
   EasterEggDistance: 10
   prefabs:
   - {fileID: 8328469310705865685, guid: e0aef02871ba57746a7f3cc8a8e60a52, type: 3}
@@ -8651,6 +8657,7 @@ GameObject:
   - component: {fileID: 1306308155}
   - component: {fileID: 1306308158}
   - component: {fileID: 1306308157}
+  - component: {fileID: 1306308156}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -8775,9 +8782,11 @@ MonoBehaviour:
   - {fileID: 8119748709384501485}
   - {fileID: 8119748709389775833}
   - {fileID: 8119748709508577253}
+  m_IsGoalHomingDevice: 0
+  m_goalObject: {fileID: 0}
   m_homingDeviceChild: {fileID: 861739126}
-  m_radius: 6
-  m_hideRadius: 10
+  m_radius: 6.5
+  m_hideRadius: 12
 --- !u!114 &1306308150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8878,6 +8887,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ForceShield: {fileID: 1718170001}
   fadeSpeed: 0.5
+--- !u!114 &1306308156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306308143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d12dd717b36f0cd41a6bdfd26a6e7627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_showGizmos: 0
+  m_targets: []
+  m_IsGoalHomingDevice: 1
+  m_goalObject: {fileID: 1145414856}
+  m_homingDeviceChild: {fileID: 11187688}
+  m_radius: 8.5
+  m_hideRadius: 10
 --- !u!114 &1306308157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17660,17 +17688,17 @@ PrefabInstance:
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 3.0218e-41
+      value: 0.000000044499274
       objectReference: {fileID: 0}
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 0
+      value: 6.28e-43
       objectReference: {fileID: 0}
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 0
+      value: 6.43e-43
       objectReference: {fileID: 0}
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
