@@ -16,6 +16,8 @@ public class EventHandler : MonoBehaviour
     public event Action StationFilled;
     public event Action GameStart;
     public event Action GameFinished;
+    
+    
     void Awake()
     {
         InitSingleton();
