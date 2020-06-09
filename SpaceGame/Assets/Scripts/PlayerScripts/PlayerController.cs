@@ -54,9 +54,9 @@ public class PlayerController : MonoBehaviour
             go.transform.parent = transform;
             m_source = go.AddComponent<AudioSource>();
             
-            SoundManager.ExecuteOnAwake(() =>
+            SoundManager.ExecuteOnAwake(manager =>
             {
-                m_source.clip = SoundManager.Instance.GetSound(m_clip);
+                m_source.clip = manager.GetSound(m_clip);
                 m_source.loop = true;
                 m_source.Play();
             });

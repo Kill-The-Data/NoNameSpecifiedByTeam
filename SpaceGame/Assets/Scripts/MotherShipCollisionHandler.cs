@@ -59,9 +59,9 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
         
         
         //also this garbage ( yes I know this is my creation )
-        SoundManager.ExecuteOnAwake(() =>
+        SoundManager.ExecuteOnAwake(manager =>
         {
-            m_source.clip = SoundManager.Instance.GetSound(m_playerSound);
+            m_source.clip = manager.GetSound(m_playerSound);
         });
         
         m_Observers = new List<IObserver>();
