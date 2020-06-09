@@ -43,4 +43,13 @@ public class PlayerCargoVisual : MonoBehaviour
             if (amount <= i)
                 Destroy(m_targetParent.transform.GetChild(i).gameObject);
     }
+
+    public void Reset()
+    {
+        for (int i = 0; i < m_targetParent.transform.childCount; ++i)
+        {
+            Destroy(m_targetParent.transform.GetChild(i).gameObject);
+        }
+    }
+    
 }
