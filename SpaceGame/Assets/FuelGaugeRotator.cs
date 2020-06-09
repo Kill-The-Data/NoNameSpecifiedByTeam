@@ -19,7 +19,7 @@ public class FuelGaugeRotator : MonoBehaviour
     {
         //update rotation && fill
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.AngleAxis(-180 * amount, Vector3.forward), Time.deltaTime);
-        m_Slider.fillAmount = m_radialFillAmount * 0.5f;
+        m_Slider.fillAmount = amount * 0.5f;
 
     }
 }
