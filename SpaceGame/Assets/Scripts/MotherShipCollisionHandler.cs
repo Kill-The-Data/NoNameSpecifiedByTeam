@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -24,8 +25,10 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
 
     private AudioSource m_source;
 
+    private static AudioSource m_cursedAudioSource;
+    
     //HACK:(Algo-ryth-mix): by all means try to change it
-    //numberOfHoursWastedWithThis = 2
+    //numberOfHoursWastedWithThis = 4
     private static int buoyNumber = 0;
     
     public int ScoreGain
@@ -43,15 +46,20 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
     {
         m_FillUp = GetComponent<BuoyFillUp>();
         m_source = gameObject.GetComponent<AudioSource>();
-        
+        /*
         //for whatever unholy reason the first audio-source does not want to play,
         //but we can cheat by making one of them play on awake
         if (buoyNumber != 0)
         {
             m_source.playOnAwake = false;
         }
-        ++buoyNumber;
+        else
+        {
+            m_cursedAudioSource = m_source;
+        }
         
+        ++buoyNumber;
+        */
         //also by some arcane dark ass magic,
         //this Start() is actually somehow called before Awake()
         //I do not know why, I do not question why, I just mentally noted it
@@ -59,9 +67,9 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
         
         
         //also this garbage ( yes I know this is my creation )
-        SoundManager.ExecuteOnAwake(() =>
+        SoundManager.ExecuteOnAwake(manager =>
         {
-            m_source.clip = SoundManager.Instance.GetSound(m_playerSound);
+            m_source.clip = manager.GetSound(m_playerSound);
         });
         
         m_Observers = new List<IObserver>();
@@ -78,6 +86,22 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
             m_Fsm = GameObject.FindWithTag("FSM").GetComponent<FSM>();
 
     }
+
+    private IEnumerator MuteAudio()
+    {
+        //as we all know exorcism takes some while
+        yield return new WaitForSeconds(3);
+
+        //and you are healed
+        m_source.volume = 0;
+    }
+
+    private void Update()
+    {
+        if(m_source.isPlaying)
+            Debug.Log(this.transform.parent);
+    }
+
     public void OnTriggerEnter(Collider other)
     {
         //check if the Trigger Participant is the Player and if he has a PlayerCargo Component 
@@ -92,9 +116,13 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
             if (cargoAmount == 0) return;
             //drop off
             LeftoverCargo = m_FillUp.DropOff(cargoAmount);
-            //play audio
-            m_source.Play();
 
+            
+            //play audio
+            m_source.volume = 0.5f;
+            m_source.Play();
+            StartCoroutine(MuteAudio());
+            
             if (!m_Observers.Contains(cargo))
                 m_Observers.Add(cargo);
 
@@ -106,8 +134,7 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
             
         }
     }
-
-
+    
     public void Notify()
     {
 

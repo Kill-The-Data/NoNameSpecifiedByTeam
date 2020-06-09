@@ -18,7 +18,7 @@ public class SoundManager : MonoBehaviour
 {
   [SerializeField] private List<SoundEntry> m_entries  = new List<SoundEntry>();
 
-  private static Action OnAwake = delegate {  };
+  private static Action<SoundManager> OnAwake = delegate {  };
   private static bool awoken = false;
   
   public static SoundManager Instance
@@ -30,11 +30,24 @@ public class SoundManager : MonoBehaviour
   private void Awake()
   {
       Instance = this;
-      OnAwake();
+      OnAwake(this);
       awoken = true;
   }
 
+  [Obsolete("use ExecuteOnAwake with parameter in action")]
   public static void ExecuteOnAwake(Action action)
+  {
+      if (!awoken)
+      {
+          OnAwake += x => action();
+      }
+      else
+      {
+          action();
+      }
+  }
+
+  public static void ExecuteOnAwake(Action<SoundManager> action)
   {
       if (!awoken)
       {
@@ -42,9 +55,10 @@ public class SoundManager : MonoBehaviour
       }
       else
       {
-          action();
+          action(SoundManager.Instance);
       }
   }
+  
   
   
   public AudioClip GetSound(string name)
