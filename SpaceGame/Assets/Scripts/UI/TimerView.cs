@@ -9,9 +9,14 @@ public class TimerView : MonoBehaviour, IObserver
     [Tooltip("The Text to display the remaining time on")]
     [SerializeField] private TMP_Text m_text = null;
 
+    [Tooltip("The Needle of the Fuel Gauge")]
+    [SerializeField] private FuelGaugeRotator m_rotator;
+
     [Tooltip("How long the timer should tick for")]
     [SerializeField] private float m_duration = 30F;
 
+    private const float INITIAL_AMOUNT_OF_FUEL = 60;
+    
     public Timer timer
     {
         get;
@@ -30,7 +35,17 @@ public class TimerView : MonoBehaviour, IObserver
         }
         timer.StartTimer(m_duration);
     }
-
+    public void Update()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            timer?.Continue();
+        }
+        else
+        {
+            timer?.Pause();
+        }
+    }
     public void AttachPerformanceMeasure(PerformanceMeasure performance)
     {
         timer.Attach(performance);
@@ -57,6 +72,7 @@ public class TimerView : MonoBehaviour, IObserver
     //set the text to the remaining time in seconds
     private void UpdateText(float time)
     {
-        m_text.SetText(Mathf.RoundToInt(time).ToString() + "s");
+        m_text.SetText(Mathf.RoundToInt(time).ToString() + "L");
+        m_rotator.SetPercentage(time / INITIAL_AMOUNT_OF_FUEL);
     }
 }

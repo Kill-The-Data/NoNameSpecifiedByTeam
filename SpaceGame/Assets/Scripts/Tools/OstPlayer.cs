@@ -20,4 +20,10 @@ public class OstPlayer : MonoBehaviour
     {
         m_source.volume = Volume / 25.0f;
     }
+
+    public void AdjustVolume(System.Single v)
+    {
+        Volume = v;
+    }
+    
 }

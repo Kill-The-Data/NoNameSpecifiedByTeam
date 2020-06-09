@@ -8,8 +8,9 @@ public class PlayerCargo : MonoBehaviour, IObserver
     [Header(" --- Setup ---")]
     [SerializeField] private TMP_Text m_text = null;
     [SerializeField] private Slider m_slider = null;
+    [SerializeField] private PlayerCargoVisual m_cargoVis = null;
 
-    [LabelOverride("Use Max Cargo From Web")] 
+    [LabelOverride("Use Max Cargo From Web")]
     [SerializeField] private bool m_overrideMaxCargo;
 
     [Header(" --- Slider UI setup ---")]
@@ -21,7 +22,7 @@ public class PlayerCargo : MonoBehaviour, IObserver
 
     [Header(" --- Cargo ---")]
     [Tooltip("How much items the Player can hold at any given time")]
-    [SerializeField] private int m_cargoLimit = 2;
+    [SerializeField] private int m_cargoLimit = 3;
 
 
     private int m_spaceOccupiedImpl;
@@ -52,7 +53,7 @@ public class PlayerCargo : MonoBehaviour, IObserver
                 if (int.TryParse(JO?["maxCargo"].ToString(), out int mCargo))
                     m_cargoLimit = mCargo;
             });
-        
+
         SpaceOccupied = 0;
     }
 
@@ -74,6 +75,14 @@ public class PlayerCargo : MonoBehaviour, IObserver
         {
             SpaceOccupied += amount;
         }
+    }
+    public void AddCargo(GameObject obj, int amount = 1)
+    {
+        if (SpaceAvailable(amount))
+        {
+            SpaceOccupied += amount;
+        }
+        m_cargoVis?.InstantiateObj(obj);
     }
 
     public void SetFill(int amount)
@@ -125,6 +134,7 @@ public class PlayerCargo : MonoBehaviour, IObserver
     {
         if (subject is MotherShipCollisionHandler collision)
         {
+            m_cargoVis?.RemoveObj(collision.LeftoverCargo);
             SetFill(collision.LeftoverCargo);
         }
     }

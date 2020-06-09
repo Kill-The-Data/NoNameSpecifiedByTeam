@@ -56,6 +56,7 @@ public class ScoreUI : MonoBehaviour, IObserver
     }
     private void UpdateView()
     {
+        PlayerPrefs.SetInt("score",m_currentScore);
         m_scoreTargetText.SetText($"{m_currentScore} ");
     }
 

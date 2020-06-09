@@ -19,28 +19,34 @@ public static class WebConfigHandler
     
     public static IEnumerator FetchConfig()
     {
-        m_downloadFinished = false;
-        //make http request
-        
-        var www = UnityWebRequest.Get(CONFIG_URI_LATEST);
-        
-        //apparently unity wants to read the www stream until the universe has ended, luckily we 
-        //can tell unity that the universe ends in exactly 4 seconds
-        www.timeout = 2;
-        yield return www.SendWebRequest();
-        
-        //get the response text from the request
-        string response = www.downloadHandler.text;
-        
-        //clean the response (apparently "real" json is not supposed to have newlines in it ... ew
-        response = response.Replace("\n","");
-        response = response.Replace("\r","");
-        
-        //parse the json
-        m_deserializedData = JObject.Parse(response);
-        m_downloadFinished = true;
-        m_OnFinishedAction(m_deserializedData);
-
+        for(int i = 0; i < 4 ; ++i)
+        {
+            m_downloadFinished = false;
+            //make http request
+            
+            var www = UnityWebRequest.Get(CONFIG_URI_LATEST);
+            
+            //apparently unity wants to read the www stream until the universe has ended, luckily we 
+            //can tell unity that the universe ends in exactly 8 seconds ( 4 * 2 )
+            www.timeout = 2;
+            yield return www.SendWebRequest();
+            
+            //get the response text from the request
+            string response = www.downloadHandler.text;
+            
+            //clean the response (apparently "real" json is not supposed to have newlines in it ... ew
+            response = response.Replace("\n","");
+            response = response.Replace("\r","");
+            
+            if(!String.IsNullOrEmpty(response)) {
+            
+                //parse the json
+                m_deserializedData = JObject.Parse(response);
+                m_downloadFinished = true;
+                m_OnFinishedAction(m_deserializedData);
+                yield break;
+            }
+        }
     }
 
     public static JObject GetConfig()

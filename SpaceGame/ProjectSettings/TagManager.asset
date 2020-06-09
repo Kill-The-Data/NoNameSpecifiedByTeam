@@ -12,6 +12,7 @@ TagManager:
   - DebrisField
   - Station
   - Event
+  - EasterEgg
   layers:
   - Default
   - TransparentFX

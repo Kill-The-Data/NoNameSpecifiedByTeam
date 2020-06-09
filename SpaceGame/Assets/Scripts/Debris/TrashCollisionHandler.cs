@@ -5,7 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(TrashMovementController))]
 public class TrashCollisionHandler : MonoBehaviour, ISubject
 {
-
     [SerializeField] private bool m_IsTutorialTrash = false;
     private bool m_destroyed = false;
 
@@ -68,7 +67,7 @@ public class TrashCollisionHandler : MonoBehaviour, ISubject
         MaximumDebrisCount.RemoveDebris();
 
         //add some to the cargo
-        playerCargo.AddCargo();
+        playerCargo.AddCargo(this.gameObject);
 
         Notify(NotifyEvent.OnPlayerPickupTrash);
 

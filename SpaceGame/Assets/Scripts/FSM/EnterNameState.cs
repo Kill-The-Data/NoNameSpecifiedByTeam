@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class EnterNameState : StateWithView<EnterNameView>
 {
@@ -12,6 +13,16 @@ public class EnterNameState : StateWithView<EnterNameView>
         
         fsm.ChangeState<HighscoreState>();
     }
-    
-    
+
+    public void Update()
+    {
+        if (view.GetText().Length < 2 || view.GetText().Length > 15)
+        {
+            view.DisableButton();
+        }
+        else
+        {
+            view.EnableButton();
+        }
+    }
 }

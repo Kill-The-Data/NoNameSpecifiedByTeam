@@ -15,11 +15,11 @@ public class FeedbackView : AbstractView
 
     public enum FV_ButtonType
     {
-        VERRY_GOOD_FEEDBACK,
+        VERY_GOOD_FEEDBACK,
         GOOD_FEEDBACK,
         MEH_FEEDBACK,
         BAD_FEEDBACK,
-        VERR_BAD_FEEDBACK,
+        VERY_BAD_FEEDBACK,
         BACK,
     }
     
@@ -32,13 +32,13 @@ public class FeedbackView : AbstractView
             {
                 case FV_ButtonType.GOOD_FEEDBACK:
                     return m_goodFeedbackButton;
-                case FV_ButtonType.VERRY_GOOD_FEEDBACK:
+                case FV_ButtonType.VERY_GOOD_FEEDBACK:
                     return m_verryGoodFeedbackButton;
                 case FV_ButtonType.MEH_FEEDBACK:
                     return m_mediumFeedbackButton;
                 case FV_ButtonType.BAD_FEEDBACK:
                     return m_badFeedbackButton;
-                case FV_ButtonType.VERR_BAD_FEEDBACK:
+                case FV_ButtonType.VERY_BAD_FEEDBACK:
                     return m_verryBadFeedbackButton;
                 case FV_ButtonType.BACK:
                     return m_backButton;
