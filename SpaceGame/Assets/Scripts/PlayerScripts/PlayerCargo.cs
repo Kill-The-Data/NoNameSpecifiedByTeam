@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using TMPro;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerCargo : MonoBehaviour, IObserver
@@ -119,14 +119,7 @@ public class PlayerCargo : MonoBehaviour, IObserver
     }
     private void UpdateText()
     {
-        if (SpaceOccupied != 0)
-        {
-            m_text.SetText($"{SpaceOccupied} / {m_cargoLimit}");
-        }
-        else
-        {
-            m_text.SetText("");
-        }
+        m_text.SetText($"{SpaceOccupied} / {m_cargoLimit}");
     }
 
     public void GetUpdate(ISubject subject)
