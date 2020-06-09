@@ -64,7 +64,7 @@ public class IngameState : StateWithView<IngameView>
         deathWatch.PlayerHealth = playerHealth;
         deathWatch.State = this;
         timerView.gameObject.GetComponent<Timer>()?.Attach(deathWatch);
-
+        
         EventSingleton.Instance?.EventHandler?.StartGame();
     }
     public void PlayerDied()

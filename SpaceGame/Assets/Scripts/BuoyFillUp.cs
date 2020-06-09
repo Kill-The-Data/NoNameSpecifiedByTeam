@@ -18,13 +18,20 @@ public class BuoyFillUp : MonoBehaviour
 
     private int m_currentFillUp;
     private LerpSlider m_Lerper;
-
+    [SerializeField]private bool abort = false;
     void Awake()
     {
         Init();
+        WebConfigHandler.OnFinishDownload(o =>
+        {
+            o.ExtractInt("buoy_cargo", value => m_MaxFillUp = value);
+        });
+        
+        
     }
     public void Init()
     {
+        if (abort) return;
         if (!m_Lerper)
         {
             m_Lerper = m_TargetRenderer.gameObject.AddComponent<LerpSlider>();
@@ -38,6 +45,7 @@ public class BuoyFillUp : MonoBehaviour
 
     public int DropOff(int dropOffAmount)
     {
+        if (abort) return 0;
         //just return drop off if full
         if (Full())
         {
@@ -67,10 +75,12 @@ public class BuoyFillUp : MonoBehaviour
 
     private void FilledUp()
     {
+        if (abort) return;
         EventSingleton.Instance?.EventHandler?.NewStationFilled();
     }
     public bool Full()
     {
+        if (abort) return false;
         return m_currentFillUp >= m_MaxFillUp;
     }
 }

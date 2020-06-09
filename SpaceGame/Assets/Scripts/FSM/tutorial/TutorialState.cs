@@ -41,7 +41,6 @@ public class TutorialState : StateWithView<IngameView>
         {
             currentObj.GetComponent<AReset>()?.Reset();
         }
-
     }
     private void InitPlayer()
     {
@@ -49,6 +48,7 @@ public class TutorialState : StateWithView<IngameView>
         GameObject player = view.GetPlayer();
         player.GetComponent<PlayerController>().ResetController();
         player.GetComponent<PlayerCargo>().ResetCargo();
+        player.GetComponentInChildren<PlayerCargoVisual>().Reset();
         view.GetScore().Reset();
 
         var playerHealth = player.GetComponent<PlayerHealth>();
