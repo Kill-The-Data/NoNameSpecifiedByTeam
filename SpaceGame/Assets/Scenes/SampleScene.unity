@@ -6674,6 +6674,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8972156273836180054, guid: a6f62818e6959974e8d217320b5e3ff0,
+        type: 3}
+      propertyPath: m_targetInivsY
+      value: 600
+      objectReference: {fileID: 0}
     - target: {fileID: 8972156274392606157, guid: a6f62818e6959974e8d217320b5e3ff0,
         type: 3}
       propertyPath: m_textInfo.characterCount
