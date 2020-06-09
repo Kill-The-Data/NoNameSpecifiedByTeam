@@ -72,7 +72,7 @@ public class TimerView : MonoBehaviour, IObserver
     //set the text to the remaining time in seconds
     private void UpdateText(float time)
     {
-        m_text.SetText(Mathf.RoundToInt(time).ToString() + "s");
+        m_text.SetText(Mathf.RoundToInt(time).ToString() + "L");
         m_rotator.SetPercentage(time / INITIAL_AMOUNT_OF_FUEL);
     }
 }
