@@ -2125,6 +2125,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_fillUp: {fileID: 8119748709384501485}
+  emptyState:
+    BlinkState: 0
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  partiallyFilledState:
+    BlinkState: 0
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  filledState:
+    BlinkState: 0
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  m_onIntensity: 1
+  m_blinkPeriod: 1
+  m_onTime: 0.5
 --- !u!108 &336879397
 Light:
   m_ObjectHideFlags: 0
@@ -4667,6 +4679,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_fillUp: {fileID: 8119748708297148024}
+  emptyState:
+    BlinkState: 0
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  partiallyFilledState:
+    BlinkState: 0
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  filledState:
+    BlinkState: 0
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  m_onIntensity: 1
+  m_blinkPeriod: 1
+  m_onTime: 0.5
 --- !u!108 &683526884
 Light:
   m_ObjectHideFlags: 0
@@ -5087,6 +5111,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_fillUp: {fileID: 8119748708275394242}
+  emptyState:
+    BlinkState: 0
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  partiallyFilledState:
+    BlinkState: 0
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  filledState:
+    BlinkState: 0
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  m_onIntensity: 1
+  m_blinkPeriod: 1
+  m_onTime: 0.5
 --- !u!108 &749565372
 Light:
   m_ObjectHideFlags: 0
@@ -6886,6 +6922,71 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Reset
+      objectReference: {fileID: 0}
+    - target: {fileID: 6408570136632102789, guid: a7ece3eee5d4b4a42946cdfda577b32d,
+        type: 3}
+      propertyPath: emptyState.Color.r
+      value: 0.9960785
+      objectReference: {fileID: 0}
+    - target: {fileID: 6408570136632102789, guid: a7ece3eee5d4b4a42946cdfda577b32d,
+        type: 3}
+      propertyPath: emptyState.Color.g
+      value: 0.34117648
+      objectReference: {fileID: 0}
+    - target: {fileID: 6408570136632102789, guid: a7ece3eee5d4b4a42946cdfda577b32d,
+        type: 3}
+      propertyPath: emptyState.Color.b
+      value: 0.21568629
+      objectReference: {fileID: 0}
+    - target: {fileID: 6408570136632102789, guid: a7ece3eee5d4b4a42946cdfda577b32d,
+        type: 3}
+      propertyPath: partiallyFilledState.BlinkState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6408570136632102789, guid: a7ece3eee5d4b4a42946cdfda577b32d,
+        type: 3}
+      propertyPath: partiallyFilledState.Color.r
+      value: 0.6156863
+      objectReference: {fileID: 0}
+    - target: {fileID: 6408570136632102789, guid: a7ece3eee5d4b4a42946cdfda577b32d,
+        type: 3}
+      propertyPath: partiallyFilledState.Color.g
+      value: 0.40000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 6408570136632102789, guid: a7ece3eee5d4b4a42946cdfda577b32d,
+        type: 3}
+      propertyPath: partiallyFilledState.Color.b
+      value: 0.003921569
+      objectReference: {fileID: 0}
+    - target: {fileID: 6408570136632102789, guid: a7ece3eee5d4b4a42946cdfda577b32d,
+        type: 3}
+      propertyPath: filledState.BlinkState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6408570136632102789, guid: a7ece3eee5d4b4a42946cdfda577b32d,
+        type: 3}
+      propertyPath: emptyState.BlinkState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6408570136632102789, guid: a7ece3eee5d4b4a42946cdfda577b32d,
+        type: 3}
+      propertyPath: filledState.Color.r
+      value: 0.081135236
+      objectReference: {fileID: 0}
+    - target: {fileID: 6408570136632102789, guid: a7ece3eee5d4b4a42946cdfda577b32d,
+        type: 3}
+      propertyPath: filledState.Color.g
+      value: 0.764151
+      objectReference: {fileID: 0}
+    - target: {fileID: 6408570136632102789, guid: a7ece3eee5d4b4a42946cdfda577b32d,
+        type: 3}
+      propertyPath: filledState.Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6408570136632102789, guid: a7ece3eee5d4b4a42946cdfda577b32d,
+        type: 3}
+      propertyPath: m_onIntensity
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9047126932015774337, guid: a7ece3eee5d4b4a42946cdfda577b32d,
         type: 3}
@@ -8984,6 +9085,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_fillUp: {fileID: 8119748709389775833}
+  emptyState:
+    BlinkState: 0
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  partiallyFilledState:
+    BlinkState: 0
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  filledState:
+    BlinkState: 0
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  m_onIntensity: 1
+  m_blinkPeriod: 1
+  m_onTime: 0.5
 --- !u!108 &1243337646
 Light:
   m_ObjectHideFlags: 0
@@ -13082,6 +13195,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_fillUp: {fileID: 8119748709508577253}
+  emptyState:
+    BlinkState: 0
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  partiallyFilledState:
+    BlinkState: 0
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  filledState:
+    BlinkState: 0
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  m_onIntensity: 1
+  m_blinkPeriod: 1
+  m_onTime: 0.5
 --- !u!108 &2075939594
 Light:
   m_ObjectHideFlags: 0
