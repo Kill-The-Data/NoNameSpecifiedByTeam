@@ -16,6 +16,9 @@ public class EventHandler : MonoBehaviour
     public event Action StationFilled;
     public event Action GameStart;
     public event Action GameFinished;
+    public event Action TutorialStart;
+
+
     void Awake()
     {
         InitSingleton();
@@ -28,7 +31,7 @@ public class EventHandler : MonoBehaviour
     }
     private void Init()
     {
-        StationFilled = OnStationFilled;
+        StationFilled += OnStationFilled;
     }
 
     public void FinishGame()
@@ -45,6 +48,11 @@ public class EventHandler : MonoBehaviour
         PlayerPrefs.SetInt(("buoysFilled"), (PlayerPrefs.GetInt("buoysFilled") + 1));
     }
 
+    public void StartTutorial()
+    {
+        TutorialStart?.Invoke();
+    }
+    
     public void StartGame()
     {
         GameStart?.Invoke();
