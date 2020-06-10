@@ -48,9 +48,12 @@ public class PlayerController : MonoBehaviour
     
     private Camera mainCamera = null;
     private List<ParticleSystem.EmissionModule> m_emitters = new List<ParticleSystem.EmissionModule>();
+
+    private float m_setDrag;
     
     public void Awake()
     {
+        m_setDrag = m_drag;
         if (m_source == null)
         {
             GameObject go = new GameObject("AudioSourceChild");
@@ -208,4 +211,16 @@ public class PlayerController : MonoBehaviour
     }
 
     public Vector3 GetVelocity() => m_speed;
+
+    public void InitCutscene()
+    {
+        m_drag = 0.95f;
+        Disable();
+    }
+
+    public void StopCutscene()
+    {
+        m_drag = m_setDrag;
+        Enable();
+    }
 }
