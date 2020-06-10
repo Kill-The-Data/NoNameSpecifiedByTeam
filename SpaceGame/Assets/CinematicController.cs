@@ -22,9 +22,9 @@ public class CinematicController : MonoBehaviour
     {
 
 #if UNITY_EDITOR
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("1"))
             LerpIn();
-        if (Input.GetKeyDown("="))
+        if (Input.GetKeyDown("2"))
             LerpOut();
 #endif
     }
