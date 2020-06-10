@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(GoalReachedHandler))]
 public class FinishCollisionHandler : MonoBehaviour
 {
-
-    private FSM m_FSM =null;
+    private GoalReachedHandler m_goalReachedHandler = null;
 
     private void Start()
     {
-        m_FSM = GameObject.FindGameObjectWithTag("FSM")?.GetComponent<FSM>();
+        m_goalReachedHandler = GetComponent<GoalReachedHandler>();
     }
     public void OnTriggerEnter(Collider other)
     {
@@ -20,14 +20,6 @@ public class FinishCollisionHandler : MonoBehaviour
 
     private void FinishGame()
     {
-        Debug.Log("Finishing Game");
-        if (m_FSM)
-        {
-            State currentState = m_FSM.GetCurrentState();
-            if(currentState is IngameState ingameState)
-                ingameState.GameFinished();
-        }
+        m_goalReachedHandler.OnGoalReached();
     }
-
-
 }
