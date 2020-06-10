@@ -10,8 +10,7 @@ public class MotherShipHomingDeviceUI : MonoBehaviour
     [SerializeField] private bool m_showGizmos = false;
 
     [Tooltip("The Motherships to home")]
-    [SerializeField] private List<BuoyFillUp> m_targets = new List<BuoyFillUp>(1);  
-    
+    [SerializeField] private List<BuoyFillUp> m_targets = new List<BuoyFillUp>(1);
     [Tooltip("The child that should be the homing device")]
     [SerializeField]  Transform m_homingDeviceChild = null;
 
@@ -29,7 +28,7 @@ public class MotherShipHomingDeviceUI : MonoBehaviour
 
     void Start()
     {
-        if(m_targets.Count == 0) Debug.LogError("Homing needs something to home");
+        if(m_targets.Count == 0) Debug.LogError("homing device is homeless, pls give home");
     }
 
     void Update()
@@ -46,7 +45,6 @@ public class MotherShipHomingDeviceUI : MonoBehaviour
                 closest = dist;
             }
         }
-        
         //get the direction to home
         m_direction = closest;
         

@@ -53,7 +53,7 @@ public class PlayerHealth : MonoBehaviour, ISubject
         }
     }
     public int GetMaxHealth() => m_maxHealth;
-    private List<IObserver> observers;
+    private List<IObserver> observers = new List<IObserver>();
 
     //in the beginning update the text manually to avoid displaying "New Text"
     //and setup the slider ui variables
@@ -70,14 +70,13 @@ public class PlayerHealth : MonoBehaviour, ISubject
 
         if (m_overrideHealthConf && !is_awake)
         {
-            WebConfigHandler.OnFinishDownload(JO => {
-                if (int.TryParse(JO?["health"].ToString(), out int h))
-                {
-                    m_maxHealth = h;
+            WebConfigHandler.OnFinishDownload(o => {
+                o.ExtractInt("health", v => {
+                    m_maxHealth = v;
                     Health = m_maxHealth;
                     InitSlider();
                     UpdateView();
-                }
+                });
             });
         }
         Debug.Log("rest hp");
@@ -150,7 +149,7 @@ public class PlayerHealth : MonoBehaviour, ISubject
     {
         foreach (IObserver observer in observers)
         {
-            observer.GetUpdate(this);
+            observer?.GetUpdate(this);
         }
     }
 
