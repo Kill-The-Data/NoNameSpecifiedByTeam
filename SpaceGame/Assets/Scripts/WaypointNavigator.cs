@@ -4,9 +4,9 @@
 public class WaypointNavigator : MonoBehaviour
 {
 
-    [SerializeField] private Waypoint m_start;
+    [SerializeField] protected Waypoint m_start;
 
-    private Waypoint m_current;
+    protected Waypoint m_current;
 
     private NPCController m_controller;
 
