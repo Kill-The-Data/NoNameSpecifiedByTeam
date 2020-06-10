@@ -1,47 +1,86 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
+[RequireComponent(typeof(Renderer))]
 public class Dissolve : MonoBehaviour
 {
-    private bool m_IsDissolving = false;
-    [SerializeField]private float m_dissolveSpeed = 0.5f;
-    [SerializeField] private float m_startValue = 1.0f;
+    private enum State
+    {
+        DISSOLVE,
+        REVERSE_DISSOLVE,
+        DISSABLED
+    }
+    [SerializeField] private float m_dissolveSpeed = 0.5f;
     private Renderer m_R;
     private float m_currentValue = 0;
-    private void Start()
-    {
-        m_R = GetComponent<Renderer>();
-    }
+    [SerializeField] private MeshRenderer m_Renderer=null;
+    
+    private State m_currentState = State.DISSABLED;
 
     void Update()
     {
-        if (m_IsDissolving)
+        //return if dissabled
+        if (m_currentState == State.DISSABLED) return;
+        //decrease value if dissolve
+        if (m_currentState == State.DISSOLVE)
         {
             m_currentValue -= Time.deltaTime * m_dissolveSpeed;
-
-            m_R.material.SetFloat("TIME", m_currentValue);
-
+            //dissable if 0 is reached
             if (m_currentValue <= 0)
+            {
                 FinishDissolve();
+                gameObject.SetActive(false);
+            }
         }
+        //increase value if reverse
+        else if (m_currentState == State.REVERSE_DISSOLVE)
+        {
+            Debug.Log(m_currentValue);
+            m_currentValue += Time.deltaTime * m_dissolveSpeed;
+            //disable if max is reached
+            if (m_currentValue >= 1)
+            {
+                FinishDissolve();
+            }
+        }
+        UpdateRendere();
     }
+
     private void FinishDissolve()
     {
-        m_IsDissolving = false;
-        gameObject.SetActive(false);
+        m_currentState = State.DISSABLED;
+        SetDissolveActive();
     }
 
-    //activates dissolving
+    //activates reverse dissolve -> is used for enabling shader
+    public void StartReverseDissolve()
+    {
+        m_currentState = State.REVERSE_DISSOLVE;
+        m_currentValue = 0;
+        SetDissolveActive();
+        UpdateRendere();
+    }
     public void StartDissolve()
     {
-        //only do stuff if you found renderer
-        if (m_R)
-        {
-            m_IsDissolving = true;
-            m_currentValue = m_startValue;
-            m_R.material.SetFloat("TIME", m_currentValue);
-            m_R.material.SetInt("DISSOLVE", 1);
-        }
+        m_currentState = State.DISSOLVE;
+        m_currentValue = 1;
+        SetDissolveActive();
+        UpdateRendere();
     }
+    //shader update functions
+    private void SetDissolveActive()
+    {
+        foreach (Material m in m_Renderer.materials)
+            m.SetInt("DISSOLVE", 1);
+    }
+    private void SetDissolveNonActive()
+    {
+        foreach (Material m in m_Renderer.materials)
+            m.SetInt("DISSOLVE", 0);
+      }
+    private void UpdateRendere()
+    {
+        foreach (Material m in m_Renderer.materials)
+            m.SetFloat("TIME", m_currentValue);
+    }
+
+  
 }
