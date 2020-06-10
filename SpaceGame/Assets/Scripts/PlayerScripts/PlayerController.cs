@@ -48,9 +48,12 @@ public class PlayerController : MonoBehaviour
     
     private Camera mainCamera = null;
     private List<ParticleSystem.EmissionModule> m_emitters = new List<ParticleSystem.EmissionModule>();
+
+    private float m_setDrag;
     
     public void Awake()
     {
+        m_setDrag = m_drag;
         if (m_source == null)
         {
             GameObject go = new GameObject("AudioSourceChild");
@@ -82,10 +85,18 @@ public class PlayerController : MonoBehaviour
         transform.position = new Vector3(0, 0, transform.position.z);
         m_speed = Vector3.zero;
     }
+
+    private bool m_isEnabled = true;
+
+    public void Disable() => m_isEnabled = false;
+    public void Enable() => m_isEnabled = true;
+    
+    
     void Update()
     {
-        //check if the mouse is held down
-        if (Input.GetMouseButton(0))
+        //check if the mouse is held down & check if
+        //Input is currently enabled
+        if (Input.GetMouseButton(0) && m_isEnabled)
         {
             foreach (var emitter in m_emitters)
             {
@@ -200,4 +211,16 @@ public class PlayerController : MonoBehaviour
     }
 
     public Vector3 GetVelocity() => m_speed;
+
+    public void InitCutscene()
+    {
+        m_drag = 0.95f;
+        Disable();
+    }
+
+    public void StopCutscene()
+    {
+        m_drag = m_setDrag;
+        Enable();
+    }
 }
