@@ -27,7 +27,7 @@ public class LerpScore : MonoBehaviour
     [SerializeField] private float m_tweenSpeed = 1.0f;
     [Header("-horizontal distance between text fields type-")]
     [SerializeField] private float m_Distance = 50.0f;
-     private float m_actualDist = 50.0f;
+    private float m_actualDist = 0;
 
 
     [Header("---Assign Text objects---")]
