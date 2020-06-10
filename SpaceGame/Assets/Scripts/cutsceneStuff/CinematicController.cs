@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class CinematicController : MonoBehaviour
 {
@@ -13,6 +14,12 @@ public class CinematicController : MonoBehaviour
     [SerializeField] private float m_TweenSpeed = 0.75f;
     [SerializeField] private LeanTweenType m_TweenType = LeanTweenType.linear;
 
+    [Header("Setup Externs")]
+    [Tooltip("this is required to stop the player from moving in a cutscene")]
+    [SerializeField] private PlayerController m_playerController;
+
+    [SerializeField] private List<GameObject> m_stuffToDisable;
+    
     void Start()
     {
         Reset();
@@ -32,16 +39,21 @@ public class CinematicController : MonoBehaviour
     //THIS DOES ONLY WORK FOR FIXED RESOLUTION 
     private void LerpIn()
     {
+        m_stuffToDisable.ForEach(x => x.SetActive(false));
+        m_playerController.InitCutscene();
         m_UpperBar.LeanMoveY(Screen.height - m_YPos, m_TweenSpeed).setEase(m_TweenType);
         m_LowerBar.LeanMoveY(m_YPos, m_TweenSpeed).setEase(m_TweenType);
     }
     private void LerpOut()
     {
+        m_stuffToDisable.ForEach(x => x.SetActive(true));
+        m_playerController.StopCutscene();
         m_UpperBar.LeanMoveY(Screen.height + m_YPos, m_TweenSpeed).setEase(m_TweenType);
         m_LowerBar.LeanMoveY(-m_YPos, m_TweenSpeed).setEase(m_TweenType);
     }
     private void Reset()
     {
+        m_playerController.StopCutscene();
         m_YPos = m_offset * Screen.height / 1080;
       
         m_UpperBar.transform.position = new Vector3(Screen.width / 2, Screen.height + m_YPos, 0);
