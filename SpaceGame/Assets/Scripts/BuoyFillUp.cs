@@ -83,4 +83,24 @@ public class BuoyFillUp : MonoBehaviour
         if (abort) return false;
         return m_currentFillUp >= m_MaxFillUp;
     }
+
+    public bool Empty()
+    {
+        if (abort) return true;
+        return m_currentFillUp == 0;
+    }
+
+    public enum BuoyCargoState
+    {
+        FULL,
+        EMPTY,
+        PARTIAL
+    }
+
+    public BuoyCargoState GetState()
+    {
+        if (Full()) return BuoyCargoState.FULL;
+        if (Empty()) return BuoyCargoState.EMPTY;
+        return BuoyCargoState.PARTIAL;
+    }
 }
