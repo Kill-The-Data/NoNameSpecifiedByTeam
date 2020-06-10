@@ -53,7 +53,7 @@ public class PlayerHealth : MonoBehaviour, ISubject
         }
     }
     public int GetMaxHealth() => m_maxHealth;
-    private List<IObserver> observers;
+    private List<IObserver> observers = new List<IObserver>();
 
     //in the beginning update the text manually to avoid displaying "New Text"
     //and setup the slider ui variables
@@ -149,7 +149,7 @@ public class PlayerHealth : MonoBehaviour, ISubject
     {
         foreach (IObserver observer in observers)
         {
-            observer.GetUpdate(this);
+            observer?.GetUpdate(this);
         }
     }
 
