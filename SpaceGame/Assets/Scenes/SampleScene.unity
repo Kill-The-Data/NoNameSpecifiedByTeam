@@ -1041,6 +1041,7 @@ MonoBehaviour:
   m_offset: 69
   m_TweenSpeed: 0.75
   m_TweenType: 1
+  m_playerController: {fileID: 1306308145}
 --- !u!1 &124542237
 GameObject:
   m_ObjectHideFlags: 0
