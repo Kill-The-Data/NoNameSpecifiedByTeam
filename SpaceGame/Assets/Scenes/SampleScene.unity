@@ -7125,6 +7125,10 @@ PrefabInstance:
       propertyPath: m_MaxFillUp
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1478705686, guid: a7ece3eee5d4b4a42946cdfda577b32d, type: 3}
+      propertyPath: NoWebConfig
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2137485633, guid: a7ece3eee5d4b4a42946cdfda577b32d, type: 3}
       propertyPath: m_scoreUI
       value: 
@@ -8986,6 +8990,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MaxFillUp: 0
+  NoWebConfig: 0
   m_tweenSpeed: 1
   m_MinSliderValue: 0.1
   m_TargetRenderer: {fileID: 0}
@@ -9907,6 +9912,7 @@ MonoBehaviour:
   m_particles:
   - {fileID: 1404826794}
   - {fileID: 1185262385}
+  m_ignoreRadius: 0.15
 --- !u!114 &1306308146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12872,9 +12878,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_dissolveSpeed: 0.5
-  m_R_1: {fileID: 0}
-  m_R_2: {fileID: 0}
-  mr: {fileID: 1837087532}
+  m_Renderer: {fileID: 1837087532}
 --- !u!23 &1837087532 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -1504981713932161579, guid: ef1d332d05bfabc46832b21f93a88d99,
@@ -16452,6 +16456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MaxFillUp: 4
+  NoWebConfig: 0
   m_tweenSpeed: 1
   m_MinSliderValue: 0.1
   m_TargetRenderer: {fileID: 8119748708769422672}
@@ -16852,6 +16857,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MaxFillUp: 4
+  NoWebConfig: 0
   m_tweenSpeed: 1
   m_MinSliderValue: 0.1
   m_TargetRenderer: {fileID: 8119748708226279054}
@@ -17619,6 +17625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MaxFillUp: 4
+  NoWebConfig: 0
   m_tweenSpeed: 1
   m_MinSliderValue: 0.1
   m_TargetRenderer: {fileID: 8119748709161760447}
@@ -17636,6 +17643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MaxFillUp: 4
+  NoWebConfig: 0
   m_tweenSpeed: 1
   m_MinSliderValue: 0.1
   m_TargetRenderer: {fileID: 8119748709530828672}
@@ -17686,6 +17694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MaxFillUp: 4
+  NoWebConfig: 0
   m_tweenSpeed: 1
   m_MinSliderValue: 0.1
   m_TargetRenderer: {fileID: 8119748709801824128}
