@@ -1243,6 +1243,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Reset
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: ef1d332d05bfabc46832b21f93a88d99,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef1d332d05bfabc46832b21f93a88d99, type: 3}
 --- !u!114 &143198153
@@ -14004,10 +14009,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_start: {fileID: 1752511933}
-  move: 0
-  cam: {fileID: 1306308147}
-  camZoom: {fileID: 1306308154}
-  npc: {fileID: 2029923643}
+  m_camScroll: {fileID: 1306308147}
+  m_camZoom: {fileID: 1306308154}
 --- !u!114 &2029923643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20292,17 +20295,17 @@ PrefabInstance:
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 138.33032
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 6.81e-43
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 3.5647583e-24
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}

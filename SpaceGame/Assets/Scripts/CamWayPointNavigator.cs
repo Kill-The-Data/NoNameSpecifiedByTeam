@@ -5,17 +5,13 @@ public class CamWayPointNavigator : WaypointNavigator
     private bool m_move = false;
     [SerializeField] private CamScroll m_camScroll;
     [SerializeField] private SmartCamZoom m_camZoom;
-    private NPCController m_npc;
-    //get npc script
-    private void Start()
-    {
-        m_npc = GetComponent<NPCController>();
-    }
+
+
     protected override void Update()
     {
         //= is + on german keyboard layout
 #if UNITY_EDITOR
-        if (Input.GetKeyDown("=")) StartRide();
+        if (Input.GetKeyDown("3")) StartRide();
 #endif
         if (m_move)
         {
@@ -25,6 +21,7 @@ public class CamWayPointNavigator : WaypointNavigator
     //disable cam controle scripts && set bool true
     public void StartRide()
     {
+        m_current = m_start;
         m_camScroll.enabled = false;
         m_camZoom.enabled = false;
         m_move = true;
