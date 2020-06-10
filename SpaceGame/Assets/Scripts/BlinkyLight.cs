@@ -94,14 +94,14 @@ public class BlinkyLight : MonoBehaviour
         {
             case BlinkState.OFF:
                 UnBlink();
-                
+                Off();
                 break;
             case BlinkState.BLINKING:
                 Blink();
                 break;
             case BlinkState.ON:
                 UnBlink();
-               
+                On();
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(state), state, null);

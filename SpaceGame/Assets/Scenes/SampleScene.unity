@@ -2309,7 +2309,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_fillUp: {fileID: 8119748709384501485}
   emptyState:
-    BlinkState: 0
+    BlinkState: 2
     Color: {r: 0, g: 0, b: 0, a: 0}
   partiallyFilledState:
     BlinkState: 0
@@ -4863,7 +4863,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_fillUp: {fileID: 8119748708297148024}
   emptyState:
-    BlinkState: 0
+    BlinkState: 2
     Color: {r: 0, g: 0, b: 0, a: 0}
   partiallyFilledState:
     BlinkState: 0
@@ -5295,7 +5295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_fillUp: {fileID: 8119748708275394242}
   emptyState:
-    BlinkState: 0
+    BlinkState: 2
     Color: {r: 0, g: 0, b: 0, a: 0}
   partiallyFilledState:
     BlinkState: 0
@@ -8462,6 +8462,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1089170780}
   - component: {fileID: 1089170781}
+  - component: {fileID: 1089170782}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -8537,21 +8538,23 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1660827291}
-        m_MethodName: AdjustVolume
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &1089170782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089170779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca5b4403224662e4f96b6ca024464d92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalSetup: {fileID: 1660827285}
 --- !u!4 &1104146102 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3690235396288863035, guid: b83ad0314103d5e4b8bd722a25077f4e,
@@ -9247,7 +9250,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8119748709827247010}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1243337645
 MonoBehaviour:
@@ -9263,7 +9266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_fillUp: {fileID: 8119748709389775833}
   emptyState:
-    BlinkState: 0
+    BlinkState: 2
     Color: {r: 0, g: 0, b: 0, a: 0}
   partiallyFilledState:
     BlinkState: 0
@@ -11596,7 +11599,9 @@ GameObject:
   - component: {fileID: 1660827288}
   - component: {fileID: 1660827289}
   - component: {fileID: 1660827290}
+  - component: {fileID: 1660827292}
   - component: {fileID: 1660827291}
+  - component: {fileID: 1660827293}
   m_Layer: 0
   m_Name: Global Setup
   m_TagString: Untagged
@@ -11663,7 +11668,7 @@ MonoBehaviour:
   - Name: thrusters
     Sound: {fileID: 8300000, guid: a78eb98c3ae8a2244a7290a09aac2c6c, type: 3}
   - Name: ost
-    Sound: {fileID: 8300000, guid: 47ce303b6ce0f484ea0088a4ca7838ab, type: 3}
+    Sound: {fileID: 8300000, guid: 2dce9201cb5c3a44ebe57f09fbc4efb9, type: 3}
   - Name: debris-pickup
     Sound: {fileID: 8300000, guid: 665d6695af45f4e43a6531faa8f801dd, type: 3}
   - Name: debris-dropoff
@@ -11674,6 +11679,8 @@ MonoBehaviour:
     Sound: {fileID: 8300000, guid: 5eb46fa2c2de5e649a600104865460df, type: 3}
   - Name: powerup-shield
     Sound: {fileID: 8300000, guid: 007286c357a336348b65284c0eabdfb1, type: 3}
+  - Name: menu-ost
+    Sound: {fileID: 8300000, guid: 6dbba517b37b63c41bc86a0c6fac8715, type: 3}
 --- !u!114 &1660827290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11699,6 +11706,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Volume: 0
+  OstTrack: ost
+--- !u!114 &1660827292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660827285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9227700044e3f454ea3abae19e9b467f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Volume: 1
+  OstTrack: menu-ost
+--- !u!114 &1660827293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660827285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bfbd5ea17d98be418cd68ad5faed761, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ingame: {fileID: 1660827291}
+  m_menu: {fileID: 1660827292}
 --- !u!1001 &1664836777
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13386,7 +13422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_fillUp: {fileID: 8119748709508577253}
   emptyState:
-    BlinkState: 0
+    BlinkState: 2
     Color: {r: 0, g: 0, b: 0, a: 0}
   partiallyFilledState:
     BlinkState: 0
@@ -15605,7 +15641,7 @@ Transform:
   - {fileID: 8119748709556728681}
   - {fileID: 8119748710088749610}
   m_Father: {fileID: 8119748709827247010}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8119748708143194467
 GameObject:
@@ -18145,8 +18181,8 @@ Transform:
   m_LocalPosition: {x: 24.1, y: 107.8, z: 11.7}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
-  - {fileID: 1243337644}
   - {fileID: 8119748708143194466}
+  - {fileID: 1243337644}
   m_Father: {fileID: 8119748708506351685}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -90, y: 90, z: -90}
