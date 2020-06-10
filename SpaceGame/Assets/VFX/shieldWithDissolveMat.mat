@@ -32,12 +32,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Boolean_93462DB5: 1
-    - DISSOLVE: 0
-    - TIME: 0
-    - Vector1_6982DBAC: 0.22
+    - DISSOLVE: 1
+    - TIME: 1.31
+    - Vector1_6982DBAC: 0.17
     - Vector1_897DA3DD: 50
     - Vector1_907D3E96: 0.82
-    - Vector1_C1B6E87E: 1.58
+    - Vector1_C1B6E87E: 0.46
     - Vector1_EBF9C5F5: 1.59
     m_Colors:
     - Color_87B38A07: {r: 0.1179245, g: 0.9751102, b: 1, a: 1}
