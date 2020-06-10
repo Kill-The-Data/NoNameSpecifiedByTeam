@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 5651277791267774733}
   - component: {fileID: 2112705403041750516}
   - component: {fileID: 8524449071306962809}
-  - component: {fileID: 8524449071306962810}
   - component: {fileID: 8524449071306962808}
   - component: {fileID: 8524449071306962812}
   - component: {fileID: -3549450126563757710}
+  - component: {fileID: 8357605985305504890}
   m_Layer: 0
   m_Name: asteroids
   m_TagString: Untagged
@@ -100,19 +100,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!135 &8524449071306962810
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 390969096495704360}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 3.605917
-  m_Center: {x: -0.47335243, y: 0.12232542, z: 0.22402382}
 --- !u!114 &8524449071306962808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,3 +223,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!136 &8357605985305504890
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390969096495704360}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 3.39
+  m_Height: 9.77
+  m_Direction: 2
+  m_Center: {x: -0.3485161, y: 0.12232554, z: -0.02}
