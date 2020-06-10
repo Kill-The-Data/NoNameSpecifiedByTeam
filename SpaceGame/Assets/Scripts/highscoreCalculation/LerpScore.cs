@@ -26,7 +26,8 @@ public class LerpScore : MonoBehaviour
     [SerializeField] private float delay = 0.5f;
     [SerializeField] private float m_tweenSpeed = 1.0f;
     [Header("-horizontal distance between text fields type-")]
-    [SerializeField] private float m_distance = 50.0f;
+    [SerializeField] private float m_Distance = 50.0f;
+    private float m_actualDist = 0;
 
 
     [Header("---Assign Text objects---")]
@@ -50,8 +51,7 @@ public class LerpScore : MonoBehaviour
 
     public void Reset()
     {
-
-        m_distance= m_distance /1080 * Screen.height;
+        m_actualDist = m_Distance /1080 * Screen.height;
         ResetValues();
         if (m_ScoreText)
             m_ScoreText.text = m_currentScore.ToString();
@@ -157,7 +157,7 @@ public class LerpScore : MonoBehaviour
         LerpMainScore(scoreAdded);
         text?.gameObject.transform.parent.gameObject.SetActive(true);
         ScoreGainDisplay(scoreAdded);
-        LeanTween.moveY(text?.gameObject.transform.parent.gameObject, transform.position.y - m_distance * (int)m_currentState, m_tweenSpeed).setEase(m_type);
+        LeanTween.moveY(text?.gameObject.transform.parent.gameObject, transform.position.y - m_actualDist * (int)m_currentState, m_tweenSpeed).setEase(m_type);
         m_currentScore += scoreAdded;
     }
     //activates delay, sets score if done

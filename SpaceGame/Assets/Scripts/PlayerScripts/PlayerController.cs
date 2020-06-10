@@ -35,6 +35,9 @@ public class PlayerController : MonoBehaviour
 
     [Tooltip("The particles systems to disable when there is no thrust")]
     [SerializeField] private List<ParticleSystem> m_particles;
+
+    [Tooltip("The Radius in which player input is ignored")] 
+    [SerializeField] private float m_ignoreRadius = 0;
     
     private static AudioSource m_source = null;
     
@@ -102,35 +105,40 @@ public class PlayerController : MonoBehaviour
             wPos.z = pPos.z;
 
             //get the relative direction
-            var dir = wPos - pPos; 
+            var dir = wPos - pPos;
+            var magnitude = dir.magnitude;
+            
             dir.Normalize();
 
-            //accelerate towards the direction
-            m_speed += dir * (m_acceleration * Time.deltaTime);
-
-            //WOOP WOOP, BankAngle PullUP!
-            m_bankAngle = Mathf.Acos(Vector3.Dot(m_speed.normalized, dir.normalized));
-
-            m_bankAngle = Mathf.Max(m_bankAngle, 1) * m_bankingFactor;
-            
-            //add sign to bank-angle
-            if (Vector3.Dot(Vector3.forward,Vector3.Cross(m_speed, dir))< 0)
+            if (magnitude > m_ignoreRadius)
             {
-                m_bankAngle = -m_bankAngle;
-            }
-            
-            //lazy initialize rotation
-            if (m_spaceShipModelInitialRotation == Quaternion.identity)
-            {
-                m_spaceShipModelInitialRotation = m_spaceShipModel.localRotation;
-            }
-            
-            //assemble the quaternion for the new rotation
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            Quaternion rotation = Quaternion.AngleAxis(angle,Vector3.forward);
+                //accelerate towards the direction
+                m_speed += dir * (m_acceleration * Time.deltaTime);
+                
+                //WOOP WOOP, BankAngle PullUP!
+                m_bankAngle = Mathf.Acos(Vector3.Dot(m_speed.normalized, dir.normalized));
 
-            //rotate towards the look-direction
-            transform.rotation = Quaternion.Slerp(transform.rotation,rotation,Time.deltaTime * m_rotationSpeed);
+                m_bankAngle = Mathf.Max(m_bankAngle, 1) * m_bankingFactor;
+                
+                //add sign to bank-angle
+                if (Vector3.Dot(Vector3.forward,Vector3.Cross(m_speed, dir))< 0)
+                {
+                    m_bankAngle = -m_bankAngle;
+                }
+                
+                //lazy initialize rotation
+                if (m_spaceShipModelInitialRotation == Quaternion.identity)
+                {
+                    m_spaceShipModelInitialRotation = m_spaceShipModel.localRotation;
+                }
+                
+                //assemble the quaternion for the new rotation
+                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                Quaternion rotation = Quaternion.AngleAxis(angle,Vector3.forward);
+
+                //rotate towards the look-direction
+                transform.rotation = Quaternion.Slerp(transform.rotation,rotation,Time.deltaTime * m_rotationSpeed);
+            }
         }
         else
         {
@@ -174,6 +182,13 @@ public class PlayerController : MonoBehaviour
         var position = transform.position;
         UnityEditor.Handles.DrawLine(position,position+m_speed);
         UnityEditor.Handles.DrawWireDisc(position+m_speed,Vector3.back, 0.1f);
+        UnityEditor.Handles.DrawWireDisc(position,Vector3.back,m_ignoreRadius);
+        
+        if(mainCamera){
+            Vector2 mPos = Input.mousePosition;
+            Vector3 wPos = mainCamera.ScreenToWorldPoint(new Vector3(mPos.x,mPos.y,position.z));
+            UnityEditor.Handles.DrawLine(position,wPos);
+        }
     }
 
     #endif
