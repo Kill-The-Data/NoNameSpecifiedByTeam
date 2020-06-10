@@ -10193,8 +10193,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 42.0255, y: 6.695223, z: 68.156525}
-  m_Center: {x: -0.08585016, y: 1.0486746, z: -3.293452}
+  m_Size: {x: 42.0255, y: 34.52524, z: 68.156525}
+  m_Center: {x: -0.08585016, y: -2.3452396, z: -3.2934523}
 --- !u!1 &1479218547
 GameObject:
   m_ObjectHideFlags: 0
@@ -11120,6 +11120,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1306308144}
     m_Modifications:
+    - target: {fileID: 8132359190296221761, guid: ec09d4fbc853b7543b40b206414778cd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3d59841a6b7be414ba57b46d4488ab34, type: 2}
     - target: {fileID: 8132359190296221762, guid: ec09d4fbc853b7543b40b206414778cd,
         type: 3}
       propertyPath: m_Name
@@ -19064,22 +19069,22 @@ PrefabInstance:
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 1.01e-43
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: NaN
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 0
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 1.1311e-41
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8485707075902487550, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
