@@ -11,6 +11,10 @@ pool:
   vmImage: 'windows-2019'
 
 steps:
+
+  - checkout: self
+    lfs: true
+
   - task: UnityGetProjectVersionTask@1
     inputs:
       unityProjectPath: 'SpaceGame'

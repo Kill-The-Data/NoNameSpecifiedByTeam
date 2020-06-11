@@ -4,6 +4,9 @@ public class BuoyFillUp : MonoBehaviour
 {
     [Header(" --- Boy values setup ---")]
     [SerializeField] private int m_MaxFillUp;
+
+    [SerializeField] private bool NoWebConfig = false;
+    
     public int GetMaxFillUp() => m_MaxFillUp;
 
     [Header(" --- UI setup ---")]
@@ -22,7 +25,7 @@ public class BuoyFillUp : MonoBehaviour
     void Awake()
     {
         Init();
-        WebConfigHandler.OnFinishDownload(o =>
+        if(!NoWebConfig) WebConfigHandler.OnFinishDownload(o =>
         {
             o.ExtractInt("buoy_cargo", value => m_MaxFillUp = value);
         });
@@ -82,5 +85,25 @@ public class BuoyFillUp : MonoBehaviour
     {
         if (abort) return false;
         return m_currentFillUp >= m_MaxFillUp;
+    }
+
+    public bool Empty()
+    {
+        if (abort) return true;
+        return m_currentFillUp == 0;
+    }
+
+    public enum BuoyCargoState
+    {
+        FULL,
+        EMPTY,
+        PARTIAL
+    }
+
+    public BuoyCargoState GetState()
+    {
+        if (Full()) return BuoyCargoState.FULL;
+        if (Empty()) return BuoyCargoState.EMPTY;
+        return BuoyCargoState.PARTIAL;
     }
 }
