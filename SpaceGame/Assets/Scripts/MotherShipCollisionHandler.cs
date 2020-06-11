@@ -21,7 +21,9 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
     private FSM m_Fsm;
     private BuoyFillUp m_FillUp = null;
 
-    private List<IObserver> m_Observers = null;
+    public event Action<ISubject> trashCollected;
+    public event Action<ISubject> collision;
+    
 
     private AudioSource m_source;
 
@@ -72,16 +74,16 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
             m_source.clip = manager.GetSound(m_playerSound);
         });
         
-        m_Observers = new List<IObserver>();
         FindTaggedObjects();
     }
 
     //trys to find the object by its tag, please do not reuse the Tag, tag should be unique for this
     private void FindTaggedObjects()
     {
-        m_Observers = new List<IObserver>();
+        m_wasCargoAdded = false;
+        trashCollected = null;
         GameObject obj = GameObject.FindWithTag("ScoreUI");
-        m_Observers.Add(obj.GetComponent<ScoreUI>());
+        trashCollected += obj.GetComponent<ScoreUI>().GetUpdate;
         if (!m_Fsm)
             m_Fsm = GameObject.FindWithTag("FSM").GetComponent<FSM>();
 
@@ -95,13 +97,20 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
         //and you are healed
         m_source.volume = 0;
     }
+
+    private bool m_wasCargoAdded = false;
     
     public void OnTriggerEnter(Collider other)
     {
         //check if the Trigger Participant is the Player and if he has a PlayerCargo Component 
-        if (other.CompareTag("Player")
-            && other.transform.parent.GetComponentSafe(out PlayerCargo cargo))
+        if ((other.CompareTag("Player") || other.CompareTag("Player-Collector")) 
+            && other.transform.parent.GetComponentSafe(out PlayerCargo cargo)
+            && other.transform.parent.GetComponentSafe(out PlayerController playerController))
         {
+
+            playerController.Collide(1.5F);
+            collision?.Invoke(this);
+            
             if(m_FillUp.Full()) return;
 
             //get cargo
@@ -116,43 +125,29 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
             m_source.volume = 0.5f;
             m_source.Play();
             StartCoroutine(MuteAudio());
-            
-            if (!m_Observers.Contains(cargo))
-                m_Observers.Add(cargo);
 
+            if (!m_wasCargoAdded)
+            {
+                m_wasCargoAdded = true;
+                trashCollected += cargo.GetUpdate;
+            }
             ScoreGain = ((cargoAmount - LeftoverCargo) * m_scorePerCargo);
-            Notify();
+            trashCollected?.Invoke(this);
 
             if (m_Fsm.GetCurrentState() is TutorialState currentState)
                 currentState.FinishTutorial();
             
         }
     }
-    
+
     public void Notify()
     {
-
-        IObserver expiredObserver = null;
-        bool foundNullObserver =false;
-        foreach (IObserver observer in m_Observers)
-        {
-            if (observer != null)
-            {
-                observer.GetUpdate(this);
-            }
-            //remove null observers
-            else
-            {
-                expiredObserver = observer;
-                foundNullObserver=true;
-            }
-        }
-       if(foundNullObserver)
-            m_Observers.Remove(expiredObserver);
+        throw new NotImplementedException();
     }
 
+    [Obsolete("Please subscribe to the event directly in the future!")]
     public void Attach(IObserver observer)
     {
-        m_Observers.Add(observer);
+        trashCollected += observer.GetUpdate;
     }
 }

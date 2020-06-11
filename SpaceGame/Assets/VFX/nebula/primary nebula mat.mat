@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: nebula mat
+  m_Name: primary nebula mat
   m_Shader: {fileID: -6465566751694194690, guid: dfb476b99dbd63c4785689812a7b1564,
     type: 3}
   m_ShaderKeywords: 
@@ -31,5 +31,5 @@ Material:
     - Vector1_D9D24D29: -0.82
     - Vector1_FE13F022: 1.92
     m_Colors:
-    - Color_A5208024: {r: 0.3137254, g: 2.9960785, b: 1.7170227, a: 0}
-    - Color_E864261D: {r: 2.1689365, g: 0, b: 2.9960785, a: 0}
+    - Color_A5208024: {r: 8.574187, g: 4.169409, b: 0, a: 0}
+    - Color_E864261D: {r: 11.313708, g: 4.0374413, b: 4.0374413, a: 0}
