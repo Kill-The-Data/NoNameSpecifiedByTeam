@@ -49,6 +49,17 @@ steps:
       outputPath: '$(Build.BinariesDirectory)'
       outputFileName: 'drop'
     name: 'unitybuild'
+  - task: UnityBuildTask@3
+    inputs:
+      buildTarget: 'WebGL'
+      outputPath: '$(Build.BinariesDirectory)'
+      outputFileName: 'drop-webgl'
+    name: 'unitybuildwebgl'
+  - task: UnityBuildTask@3
+    inputs:
+      buildTarget: 'LinuxUniversal'
+      outputPath: '$(Build.BinariesDirectory)'
+      outputFileName: 'droplinux'
   - task: PublishBuildArtifacts@1
     inputs:
       PathtoPublish: '$(Build.BinariesDirectory)'
