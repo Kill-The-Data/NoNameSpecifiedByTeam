@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Release</title>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <script>
+        const fetchAzure = async () => {
+            const personalAccessToken = "vgznt6a7ka2t5vdzwn24vjkbkuefgxigtsdwvavyt2ntcsf5kgrq";
+            const response = await fetch(
+                "https://dev.azure.com/algo-ryth-mix/NoNameSpecifiedByTeam/_apis/build/latest/1?api-version=5.1-preview.1",
+                {
+                    method: 'GET',
+                    headers: new Headers({
+                        'Authorization':'Basic ' + btoa(""+":"+personalAccessToken)
+                    })
+                }
+            )
+            const azureJson = await response.json();
+            window.location.href = `https://dev.azure.com/algo-ryth-mix/NoNameSpecifiedByTeam/_build/results?buildId=${azureJson.id}&view=artifacts&type=publishedArtifacts`;
+        }
+    </script>
+</head>
+<body>
+    <div class="container" style="padding-top:10vh">
+        <h1> Latest Release </h1>
+            <a class="btn btn-success" onclick="fetchAzure()">Get Latest</a>
+    </div>
+</body>
+</html>
