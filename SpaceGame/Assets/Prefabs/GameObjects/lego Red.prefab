@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -6317529005420613013}
   - component: {fileID: 1743769600291093555}
   - component: {fileID: -8821148848684688798}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: lego Red
   m_TagString: Debris
   m_Icon: {fileID: 0}

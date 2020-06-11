@@ -95,13 +95,7 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
         //and you are healed
         m_source.volume = 0;
     }
-
-    private void Update()
-    {
-        if(m_source.isPlaying)
-            Debug.Log(this.transform.parent);
-    }
-
+    
     public void OnTriggerEnter(Collider other)
     {
         //check if the Trigger Participant is the Player and if he has a PlayerCargo Component 

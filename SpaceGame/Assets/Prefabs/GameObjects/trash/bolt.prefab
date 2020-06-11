@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7873847775801765423}
   - component: {fileID: 2153619779753889512}
   - component: {fileID: 6034140706017765319}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: bolt
   m_TagString: Debris
   m_Icon: {fileID: 0}
