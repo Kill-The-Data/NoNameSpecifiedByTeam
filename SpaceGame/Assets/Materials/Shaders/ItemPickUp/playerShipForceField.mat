@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: unlitMat
+  m_Name: playerShipForceField
   m_Shader: {fileID: -6465566751694194690, guid: 11df5ece3149ead4982a2f9522c47740,
     type: 3}
   m_ShaderKeywords: 
@@ -29,14 +29,14 @@ Material:
     m_Floats:
     - Vector1_17DA7C7E: 0.6
     - Vector1_22D6D0D2: 0
-    - Vector1_2B6F0677: 1.5
+    - Vector1_2B6F0677: 3.31
     - Vector1_321C4808: 1
     - Vector1_412CBA4E: 0.05
     - Vector1_83D57496: 0.75
-    - Vector1_8BC5670A: 0.22
+    - Vector1_8BC5670A: 0.74
     - Vector1_A7C6BE36: 0.51
-    - Vector1_B5A3F3BB: 2
+    - Vector1_B5A3F3BB: 1.65
     - Vector1_E5A60ACA: 0
-    - Vector1_F90E75D4: 0.93
+    - Vector1_F90E75D4: -0.02
     m_Colors:
-    - Color_78E6A635: {r: 0, g: 0.8862745, b: 1.4980392, a: 1}
+    - Color_78E6A635: {r: 0, g: 1.6538467, b: 2.79544, a: 1}
