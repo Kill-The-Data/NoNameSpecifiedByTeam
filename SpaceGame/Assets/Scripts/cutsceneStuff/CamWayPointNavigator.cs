@@ -18,7 +18,7 @@ public class CamWayPointNavigator : WaypointNavigator
             Move();
         }
     }
-    //disable cam controle scripts && set bool true
+    //disable cam controls scripts && set bool true
     public void StartRide()
     {
         m_current = m_start;
