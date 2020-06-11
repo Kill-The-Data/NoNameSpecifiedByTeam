@@ -9,8 +9,10 @@
 
     <script>
         const fetchAzure = async () => {
-            //this pat only has access to read the build status, no security risk involved here
+            //this pat only has access to read the build status
             const personalAccessToken = "vgznt6a7ka2t5vdzwn24vjkbkuefgxigtsdwvavyt2ntcsf5kgrq";
+            
+            //make request to azure api
             const response = await fetch(
                 "https://dev.azure.com/algo-ryth-mix/NoNameSpecifiedByTeam/_apis/build/latest/1?api-version=5.1-preview.1",
                 {
@@ -20,7 +22,11 @@
                     })
                 }
             )
+            
+            //parse response
             const azureJson = await response.json();
+            
+            //redirect to artifacts page
             window.location.href = `https://dev.azure.com/algo-ryth-mix/NoNameSpecifiedByTeam/_build/results?buildId=${azureJson.id}&view=artifacts&type=publishedArtifacts`;
         }
     </script>
