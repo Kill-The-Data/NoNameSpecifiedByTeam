@@ -46,19 +46,19 @@ steps:
     inputs:
       buildTarget: 'Win64'
       unityProjectPath: 'SpaceGame'
-      outputPath: '$(Build.BinariesDirectory)'
+      outputPath: '$(Build.BinariesDirectory)/win'
       outputFileName: 'drop-win'
     name: 'unitybuild'
   - task: UnityBuildTask@3
     inputs:
       buildTarget: 'WebGL'
-      outputPath: '$(Build.BinariesDirectory)'
+      outputPath: '$(Build.BinariesDirectory)/web'
       outputFileName: 'drop-webgl'
     name: 'unitybuildwebgl'
   - task: UnityBuildTask@3
     inputs:
       buildTarget: 'LinuxUniversal'
-      outputPath: '$(Build.BinariesDirectory)'
+      outputPath: '$(Build.BinariesDirectory)/linux'
       outputFileName: 'drop-linux'
   - task: PublishBuildArtifacts@1
     inputs:
