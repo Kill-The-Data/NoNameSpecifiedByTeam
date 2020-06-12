@@ -37,23 +37,25 @@ public class CinematicController : MonoBehaviour
     }
 
     //THIS DOES ONLY WORK FOR FIXED RESOLUTION 
-    private void LerpIn()
+    public void LerpIn()
     {
         m_stuffToDisable.ForEach(x => x.SetActive(false));
         m_playerController.InitCutscene();
         m_UpperBar.LeanMoveY(Screen.height - m_YPos, m_TweenSpeed).setEase(m_TweenType);
         m_LowerBar.LeanMoveY(m_YPos, m_TweenSpeed).setEase(m_TweenType);
     }
-    private void LerpOut()
+    public void LerpOut()
     {
         m_stuffToDisable.ForEach(x => x.SetActive(true));
         m_playerController.StopCutscene();
         m_UpperBar.LeanMoveY(Screen.height + m_YPos, m_TweenSpeed).setEase(m_TweenType);
         m_LowerBar.LeanMoveY(-m_YPos, m_TweenSpeed).setEase(m_TweenType);
     }
-    private void Reset()
+    public void Reset(bool restoreUI = false)
     {
         m_playerController.StopCutscene();
+        if(restoreUI)
+            m_stuffToDisable.ForEach(x => x.SetActive(true));
         m_YPos = m_offset * Screen.height / 1080;
       
         m_UpperBar.transform.position = new Vector3(Screen.width / 2, Screen.height + m_YPos, 0);
