@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7305540315324226348}
   - component: {fileID: 5549002395775623425}
   - component: {fileID: 7417058506870290829}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: wrench
   m_TagString: Debris
   m_Icon: {fileID: 0}

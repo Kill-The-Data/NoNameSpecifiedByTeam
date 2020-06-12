@@ -22,16 +22,16 @@ public class WinCondition : MonoBehaviour
     private void Init()
     {
         EventHandler e = GetComponent<EventHandler>();
-        e.GameStart += Reset;
+        e.GameStart += Begin;
         e.StationFilled += UpdateCount;
+        e.GameFinished += Finish;
     }
     //reset vars & text
-    private void Reset()
+    private void Begin()
     {
         GameObject[] buoys = GameObject.FindGameObjectsWithTag("Station");
         m_BuoysAmount = buoys.Length;
-        m_currentlyFilled = 0;
-        m_text.gameObject.SetActive(false);
+        UpdateCount();
         UpdateText();
     }
     //get filled stations, update & check if game finished
@@ -51,4 +51,11 @@ public class WinCondition : MonoBehaviour
         string textDisplay = "FILLED :" +  m_currentlyFilled.ToString() +" / " +  m_BuoysAmount.ToString();
         m_text?.SetText(textDisplay);
     }
+
+    private void Finish()
+    {
+        m_text.gameObject.SetActive(false);
+        m_text.SetText("FILLED : 0 / 0");
+    }
+    
 }

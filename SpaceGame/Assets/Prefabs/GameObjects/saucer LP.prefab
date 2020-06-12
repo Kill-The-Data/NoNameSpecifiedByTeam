@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1677083194375096125}
   - component: {fileID: 5679477120809643813}
   - component: {fileID: -2548713219300525408}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: saucer LP
   m_TagString: Debris
   m_Icon: {fileID: 0}

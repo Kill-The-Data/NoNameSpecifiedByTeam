@@ -6,6 +6,9 @@ public class TimeOutTimer : MonoBehaviour, IObserver
     private const float m_TimeOutDuration = 30.0f;
     private State m_ingameState = null;
     private Timer _timer;
+
+    public bool Disabled = false;
+    
     public void InitTimer(State currentState)
     {
         m_ingameState = currentState;
@@ -37,7 +40,7 @@ public class TimeOutTimer : MonoBehaviour, IObserver
         if (subject is Timer timer)
         {
 
-            if (timer.GetState() == Timer.TimerState.OUT_OF_TIME)
+            if (!Disabled && timer.GetState() == Timer.TimerState.OUT_OF_TIME)
             {
                 // when the timer exits set the time one last time to 0
                 if (m_ingameState is IngameState state) state.TimeOut();

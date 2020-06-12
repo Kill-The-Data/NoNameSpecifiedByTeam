@@ -29,20 +29,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.2199821, y: 1.1929168, z: 2.4694142}
   m_Center: {x: -0.00005942583, y: 0.37909195, z: 0.062436223}
---- !u!114 &-2678836017523453396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6205337384004650907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c8deb72f5affa1488524ea71dd0738c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_rotationAxis: {x: 0, y: 0, z: 0}
-  m_angle: 0
 --- !u!114 &-7094292635918455677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,6 +43,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Drag: 0.995
   Speed: {x: 0, y: 0, z: 0}
+--- !u!114 &-2678836017523453396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6205337384004650907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c8deb72f5affa1488524ea71dd0738c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_rotationAxis: {x: 0, y: 0, z: 0}
+  m_angle: 0
 --- !u!114 &-1994663231303181117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +146,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Debris
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 3374013b42f1d8e4482ebc7faf5f9c5f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3374013b42f1d8e4482ebc7faf5f9c5f, type: 3}

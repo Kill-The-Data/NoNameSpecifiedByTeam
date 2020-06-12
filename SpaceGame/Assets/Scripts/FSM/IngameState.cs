@@ -64,14 +64,13 @@ public class IngameState : StateWithView<IngameView>
         deathWatch.PlayerHealth = playerHealth;
         deathWatch.State = this;
         timerView.gameObject.GetComponent<Timer>()?.Attach(deathWatch);
-
+        
         EventSingleton.Instance?.EventHandler?.StartGame();
     }
     public void PlayerDied()
     {
         view.GetPerformance().StoreStatsInPlayerPrefs(0);
         view.GetItemSpawner().Deactivate();
-        Camera.main.GetComponent<CamBlurScript>().ActivateBlur();
         fsm.ChangeState<GameOverState>();
 
     }
@@ -79,7 +78,6 @@ public class IngameState : StateWithView<IngameView>
     {
         view.GetPerformance().StoreStatsInPlayerPrefs(1);
         view.GetItemSpawner().Deactivate();
-        Camera.main.GetComponent<CamBlurScript>().ActivateBlur();
         fsm.ChangeState<YouWonState>();
     }
 }

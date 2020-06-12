@@ -1,0 +1,67 @@
+# Starter pipeline
+
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-2019'
+
+steps:
+
+  - checkout: self
+    lfs: true
+
+  - task: UnityGetProjectVersionTask@1
+    inputs:
+      unityProjectPath: 'SpaceGame'
+    name: 'unitygetprojectversion'
+  - task: PowerShell@2
+    inputs:
+      targetType: 'inline'
+      script: 'Install-Module UnitySetup -AllowPrerelease -Scope CurrentUser -Force'
+      failOnStderr: true
+    name: 'installunityhub'
+
+  - task: PowerShell@2
+    inputs:
+      targetType: 'inline'
+      script: "Install-UnitySetupInstance -Installers (Find-UnitySetupInstaller -Version '$(unitygetprojectversion.projectVersion)' -Components Windows,Windows_IL2CPP) -Verbose"
+      failOnStderr: true
+    name: 'installunity'
+
+  - task: UnityActivateLicenseTask@1
+    inputs:
+      username: '$(unitylicense.username)'
+      password: '$(unitylicense.password)'
+      serial: '$(unitylicense.serial)'
+      unityEditorsPathMode: 'unityHub'
+      unityProjectPath: 'SpaceGame'
+    name: 'unityactivate'
+
+  - task: UnityBuildTask@3
+    inputs:
+      buildTarget: 'Win64'
+      unityProjectPath: 'SpaceGame'
+      outputPath: '$(Build.BinariesDirectory)/win'
+      outputFileName: 'drop-win'
+    name: 'unitybuild'
+  - task: UnityBuildTask@3
+    inputs:
+      buildTarget: 'WebGL'
+      outputPath: '$(Build.BinariesDirectory)/web'
+      outputFileName: 'drop-webgl'
+    name: 'unitybuildwebgl'
+  - task: UnityBuildTask@3
+    inputs:
+      buildTarget: 'LinuxUniversal'
+      outputPath: '$(Build.BinariesDirectory)/linux'
+      outputFileName: 'drop-linux'
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.BinariesDirectory)'
+      ArtifactName: 'drop'
+      publishLocation: 'Container'

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -20,12 +21,16 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
     private FSM m_Fsm;
     private BuoyFillUp m_FillUp = null;
 
-    private List<IObserver> m_Observers = null;
+    public event Action<ISubject> trashCollected;
+    public event Action<ISubject> collision;
+    
 
     private AudioSource m_source;
 
+    private static AudioSource m_cursedAudioSource;
+    
     //HACK:(Algo-ryth-mix): by all means try to change it
-    //numberOfHoursWastedWithThis = 2
+    //numberOfHoursWastedWithThis = 4
     private static int buoyNumber = 0;
     
     public int ScoreGain
@@ -43,15 +48,20 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
     {
         m_FillUp = GetComponent<BuoyFillUp>();
         m_source = gameObject.GetComponent<AudioSource>();
-        
+        /*
         //for whatever unholy reason the first audio-source does not want to play,
         //but we can cheat by making one of them play on awake
         if (buoyNumber != 0)
         {
             m_source.playOnAwake = false;
         }
-        ++buoyNumber;
+        else
+        {
+            m_cursedAudioSource = m_source;
+        }
         
+        ++buoyNumber;
+        */
         //also by some arcane dark ass magic,
         //this Start() is actually somehow called before Awake()
         //I do not know why, I do not question why, I just mentally noted it
@@ -59,31 +69,48 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
         
         
         //also this garbage ( yes I know this is my creation )
-        SoundManager.ExecuteOnAwake(() =>
+        SoundManager.ExecuteOnAwake(manager =>
         {
-            m_source.clip = SoundManager.Instance.GetSound(m_playerSound);
+            m_source.clip = manager.GetSound(m_playerSound);
         });
         
-        m_Observers = new List<IObserver>();
         FindTaggedObjects();
     }
 
     //trys to find the object by its tag, please do not reuse the Tag, tag should be unique for this
     private void FindTaggedObjects()
     {
-        m_Observers = new List<IObserver>();
+        m_wasCargoAdded = false;
+        trashCollected = null;
         GameObject obj = GameObject.FindWithTag("ScoreUI");
-        m_Observers.Add(obj.GetComponent<ScoreUI>());
+        trashCollected += obj.GetComponent<ScoreUI>().GetUpdate;
         if (!m_Fsm)
             m_Fsm = GameObject.FindWithTag("FSM").GetComponent<FSM>();
 
     }
+
+    private IEnumerator MuteAudio()
+    {
+        //as we all know exorcism takes some while
+        yield return new WaitForSeconds(3);
+
+        //and you are healed
+        m_source.volume = 0;
+    }
+
+    private bool m_wasCargoAdded = false;
+    
     public void OnTriggerEnter(Collider other)
     {
         //check if the Trigger Participant is the Player and if he has a PlayerCargo Component 
-        if (other.CompareTag("Player")
-            && other.transform.parent.GetComponentSafe(out PlayerCargo cargo))
+        if ((other.CompareTag("Player") || other.CompareTag("Player-Collector")) 
+            && other.transform.parent.GetComponentSafe(out PlayerCargo cargo)
+            && other.transform.parent.GetComponentSafe(out PlayerController playerController))
         {
+
+            playerController.Collide(1.5F);
+            collision?.Invoke(this);
+            
             if(m_FillUp.Full()) return;
 
             //get cargo
@@ -92,14 +119,20 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
             if (cargoAmount == 0) return;
             //drop off
             LeftoverCargo = m_FillUp.DropOff(cargoAmount);
+
+            
             //play audio
+            m_source.volume = 0.5f;
             m_source.Play();
+            StartCoroutine(MuteAudio());
 
-            if (!m_Observers.Contains(cargo))
-                m_Observers.Add(cargo);
-
+            if (!m_wasCargoAdded)
+            {
+                m_wasCargoAdded = true;
+                trashCollected += cargo.GetUpdate;
+            }
             ScoreGain = ((cargoAmount - LeftoverCargo) * m_scorePerCargo);
-            Notify();
+            trashCollected?.Invoke(this);
 
             if (m_Fsm.GetCurrentState() is TutorialState currentState)
                 currentState.FinishTutorial();
@@ -107,31 +140,14 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
         }
     }
 
-
     public void Notify()
     {
-
-        IObserver expiredObserver = null;
-        bool foundNullObserver =false;
-        foreach (IObserver observer in m_Observers)
-        {
-            if (observer != null)
-            {
-                observer.GetUpdate(this);
-            }
-            //remove null observers
-            else
-            {
-                expiredObserver = observer;
-                foundNullObserver=true;
-            }
-        }
-       if(foundNullObserver)
-            m_Observers.Remove(expiredObserver);
+        throw new NotImplementedException();
     }
 
+    [Obsolete("Please subscribe to the event directly in the future!")]
     public void Attach(IObserver observer)
     {
-        m_Observers.Add(observer);
+        trashCollected += observer.GetUpdate;
     }
 }

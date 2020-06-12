@@ -75,4 +75,13 @@ public static class WebConfigHandler
     {
         return m_deserializedData;
     }
+
+    public static void ExtractInt(this JObject j,string key, Action<int> surrogate)
+    {
+        if (int.TryParse(j[key].ToString(), out int value))
+        {
+            surrogate(value);
+        }
+    }
+    
 }
