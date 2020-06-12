@@ -7,6 +7,7 @@ public class GoalReachedHandler : MonoBehaviour, IObserver
     private bool m_animationTriggered = false;
     [SerializeField] private List<Animator> m_AnimationObjects = new List<Animator>();
     [SerializeField] private float m_cutsceneDuration = 2.0f;
+    [SerializeField] private CinematicController m_cinema;
     private void Start()
     {
         m_FSM = GameObject.FindGameObjectWithTag("FSM")?.GetComponent<FSM>();
@@ -35,6 +36,7 @@ public class GoalReachedHandler : MonoBehaviour, IObserver
         var timer = gameObject.AddComponent<Timer>();
         timer.Attach(this);
         timer.StartTimer(m_cutsceneDuration);
+        m_cinema.LerpIn();
 
     }
 
@@ -42,7 +44,9 @@ public class GoalReachedHandler : MonoBehaviour, IObserver
     {
         //reset script && change to game finished state
         Reset();
+        m_cinema.Reset(true);
         EndGameState();
+       
     }
     private void EndGameState()
     {
