@@ -31,11 +31,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - ROTATION: 45
     - Vector1_4A12A390: 2
     - Vector1_6A85C07: 25
     - Vector1_7BDD39B5: 0.124
-    - Vector1_7E22D68B: 0
+    - Vector1_7E22D68B: 0.315
     m_Colors:
-    - Color_CAD44985: {r: 0.7387708, g: 1.3333912, b: 3.4415908, a: 1}
+    - Color_CAD44985: {r: 0.8091644, g: 1.3945528, b: 3.3635857, a: 1}
     - Vector2_35D487F6: {r: -3, g: 0, b: 0, a: 0}
-    - Vector2_990CD72B: {r: -1.5, g: 0, b: 0, a: 0}
+    - Vector2_990CD72B: {r: 1, g: 0, b: 0, a: 0}

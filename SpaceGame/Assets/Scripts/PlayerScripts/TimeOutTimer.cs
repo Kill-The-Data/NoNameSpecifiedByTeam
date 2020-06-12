@@ -21,7 +21,7 @@ public class TimeOutTimer : MonoBehaviour, IObserver
             //attach self to the newly created timer
             _timer.Attach(this);
             //start the timer with the provided duration
-            _timer.StartTimer(m_TimeOutDuration);
+            _timer.StartTimer(m_TimeOutDuration+5);
         }
     }
     private void Update()
