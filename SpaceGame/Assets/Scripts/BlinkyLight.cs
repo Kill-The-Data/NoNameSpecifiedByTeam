@@ -15,11 +15,10 @@ public class BlinkyLight : MonoBehaviour
   {
     m_blinkyLight = GetComponent<Light>();
   }
+
+  public void Blink() => m_isBlinking = true;
+  public void UnBlink() => m_isBlinking = false;
   
-  public void Blink()
-  {
-    m_isBlinking = true;
-  }
 
   private float m_time;
   
@@ -48,6 +47,10 @@ public class BlinkyLight : MonoBehaviour
       {
         m_time = 0;
       }
+    }
+    else
+    {
+      m_blinkyLight.intensity = 1;
     }
   }
 }

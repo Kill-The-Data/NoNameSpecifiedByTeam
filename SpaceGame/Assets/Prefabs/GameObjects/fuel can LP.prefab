@@ -11,6 +11,10 @@ GameObject:
   - component: {fileID: 4056405266721389616}
   - component: {fileID: 4976540974399129094}
   - component: {fileID: 1597846364236511999}
+  - component: {fileID: 3237371344278065991}
+  - component: {fileID: 8719797472878447793}
+  - component: {fileID: 6974433368133002672}
+  - component: {fileID: 3956517360176302048}
   m_Layer: 0
   m_Name: fuel can LP
   m_TagString: Untagged
@@ -79,3 +83,61 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &3237371344278065991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013422898568056355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19f344734c38e2948a41211a696d358f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &8719797472878447793
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013422898568056355}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3880f577af4c60c4d9b6ab30343feae3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &6974433368133002672
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013422898568056355}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.596188, y: 2.1950958, z: 1.1333425}
+  m_Center: {x: 0.09481889, y: -0.059851885, z: 0.08234742}
+--- !u!114 &3956517360176302048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013422898568056355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19ccf80c8fb65bc4584b2e93f0d4096b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_pickupSound: 
+  m_timeGain: 10
