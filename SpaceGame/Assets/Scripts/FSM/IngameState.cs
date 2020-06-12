@@ -20,6 +20,8 @@ public class IngameState : StateWithView<IngameView>
     }
     private void InitGameState()
     {
+        view.GetAnimator().TriggerAnimation();
+
 
         var levelGen = view.GetLevelAlways();
         
