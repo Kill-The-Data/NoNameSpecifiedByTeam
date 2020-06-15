@@ -1,0 +1,620 @@
+fileFormatVersion: 2
+guid: a634b4b317a67b84bb1c09c7c91cd88a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4815594924589614181
+    second: buoys 1_0
+  - first:
+      213: 99898604236260357
+    second: buoys 1_1
+  - first:
+      213: -8036223346403307858
+    second: buoys 1_2
+  - first:
+      213: 3959973374809304813
+    second: buoys 1_3
+  - first:
+      213: -6775885205147857563
+    second: buoys 1_4
+  - first:
+      213: 7046844800556912162
+    second: buoys 1_5
+  - first:
+      213: -4518005655556700310
+    second: buoys 1_6
+  - first:
+      213: 2955867717656108562
+    second: buoys 1_7
+  - first:
+      213: -8389219472088564324
+    second: buoys 1_8
+  - first:
+      213: 7062856504071228471
+    second: buoys 1_9
+  - first:
+      213: 7237399362717023043
+    second: buoys 1_10
+  - first:
+      213: -4343370653700973212
+    second: buoys 1_11
+  - first:
+      213: -7865611843197833021
+    second: buoys 1_12
+  - first:
+      213: -3815070254542379978
+    second: buoys 1_13
+  - first:
+      213: 2820537232385041022
+    second: buoys 1_14
+  - first:
+      213: 2279242850784026529
+    second: buoys 1_15
+  - first:
+      213: -5900015394119901948
+    second: buoys 1_16
+  - first:
+      213: -1833423123161358985
+    second: buoys 1_17
+  - first:
+      213: 3612965649805205580
+    second: buoys 1_18
+  - first:
+      213: -5475060112798785284
+    second: buoys 1_19
+  - first:
+      213: 22830299110749827
+    second: buoys 1_20
+  - first:
+      213: -4512252009024302574
+    second: buoys 1_21
+  - first:
+      213: -7269366280520526353
+    second: buoys 1_22
+  - first:
+      213: -5810123172382179770
+    second: buoys 1_23
+  - first:
+      213: 6285925923155960148
+    second: buoys 1_24
+  - first:
+      213: -7963737415518665023
+    second: buoys 1_25
+  - first:
+      213: -5778676156254888647
+    second: buoys 1_26
+  - first:
+      213: 549300104907678514
+    second: buoys 1_27
+  - first:
+      213: 4312432022694947635
+    second: buoys 1_28
+  - first:
+      213: 5205424537413289649
+    second: buoys 1_29
+  - first:
+      213: 5650598022231797224
+    second: buoys 1_30
+  - first:
+      213: 7772340242331356140
+    second: buoys 1_31
+  - first:
+      213: -6281905450797519772
+    second: buoys 1_32
+  - first:
+      213: -123864469247707187
+    second: buoys 1_33
+  - first:
+      213: 7657540885831532028
+    second: buoys 1_34
+  - first:
+      213: 2465077852971923743
+    second: buoys 1_35
+  - first:
+      213: 801329961446410914
+    second: buoys 1_36
+  - first:
+      213: -3602200768267262864
+    second: buoys 1_37
+  - first:
+      213: -7853769412761723291
+    second: buoys 1_38
+  - first:
+      213: 7618813071463192269
+    second: buoys 1_39
+  - first:
+      213: 6648670362100868521
+    second: buoys 1_40
+  - first:
+      213: -1140231537184318306
+    second: buoys 1_41
+  - first:
+      213: -4934407366352744767
+    second: buoys 1_42
+  - first:
+      213: -1878398513654844759
+    second: buoys 1_43
+  - first:
+      213: -7380739845693664947
+    second: buoys 1_44
+  - first:
+      213: -2771697270238407235
+    second: buoys 1_45
+  - first:
+      213: 2459145264834062136
+    second: buoys 1_46
+  - first:
+      213: 2786095817168415785
+    second: buoys 1_47
+  - first:
+      213: 3467539715902990086
+    second: buoys 1_48
+  - first:
+      213: -5428915316366600554
+    second: buoys 1_49
+  - first:
+      213: 1403260603803583924
+    second: buoys 1_50
+  - first:
+      213: 255835999829456783
+    second: buoys 1_51
+  - first:
+      213: -2677142633630830727
+    second: buoys 1_52
+  - first:
+      213: -6896558968233664949
+    second: buoys 1_53
+  - first:
+      213: 1139225903502516458
+    second: buoys 1_54
+  - first:
+      213: -84344945230127620
+    second: buoys 1_55
+  - first:
+      213: 7149687094503363756
+    second: buoys 1_56
+  - first:
+      213: -4775838979976262959
+    second: buoys 1_57
+  - first:
+      213: 1048182372194727853
+    second: buoys 1_58
+  - first:
+      213: -3579218280552871241
+    second: buoys 1_59
+  - first:
+      213: 6555874737261583789
+    second: buoys 1_60
+  - first:
+      213: -33438942921018367
+    second: buoys 1_61
+  - first:
+      213: -6480993608469869937
+    second: buoys 1_62
+  - first:
+      213: 5957901635392905349
+    second: buoys 1_63
+  - first:
+      213: 6544149688754151354
+    second: buoys 1_64
+  - first:
+      213: -5368246094520305040
+    second: buoys 1_65
+  - first:
+      213: -1777519087370481600
+    second: buoys 1_66
+  - first:
+      213: 6725486605408639669
+    second: buoys 1_67
+  - first:
+      213: -8879370955347166925
+    second: buoys 1_68
+  - first:
+      213: -8460856630380959079
+    second: buoys 1_69
+  - first:
+      213: 1386503464100276631
+    second: buoys 1_70
+  - first:
+      213: -5654701674496044948
+    second: buoys 1_71
+  - first:
+      213: -2108836505544238442
+    second: buoys 1_72
+  - first:
+      213: -6981319569197316347
+    second: buoys 1_73
+  - first:
+      213: -1231604940653619411
+    second: buoys 1_74
+  - first:
+      213: -7040175865548109298
+    second: buoys 1_75
+  - first:
+      213: -2651294379130198477
+    second: buoys 1_76
+  - first:
+      213: 5005311438903562688
+    second: buoys 1_77
+  - first:
+      213: -3086856681716644690
+    second: buoys 1_78
+  - first:
+      213: 5071956391475897334
+    second: buoys 1_79
+  - first:
+      213: -3427657644944654651
+    second: buoys 1_80
+  - first:
+      213: 4802914521700212922
+    second: buoys 1_81
+  - first:
+      213: 3932965892481191833
+    second: buoys 1_82
+  - first:
+      213: -2197476803892351070
+    second: buoys 1_83
+  - first:
+      213: -155066257612522678
+    second: buoys 1_84
+  - first:
+      213: 1211167826806441332
+    second: buoys 1_85
+  - first:
+      213: -3815208186434677148
+    second: buoys 1_86
+  - first:
+      213: 8696758817998365943
+    second: buoys 1_87
+  - first:
+      213: 8165157814096605183
+    second: buoys 1_88
+  - first:
+      213: 5679830601405180437
+    second: buoys 1_89
+  - first:
+      213: 5983363517758108044
+    second: buoys 1_90
+  - first:
+      213: 4175657059485037187
+    second: buoys 1_91
+  - first:
+      213: 1582581018600401379
+    second: buoys 1_92
+  - first:
+      213: 806452008185233576
+    second: buoys 1_93
+  - first:
+      213: -7183328642561146677
+    second: buoys 1_94
+  - first:
+      213: -9219201927318479261
+    second: buoys 1_95
+  - first:
+      213: 1432105157225616781
+    second: buoys 1_96
+  - first:
+      213: 8663750670632512075
+    second: buoys 1_97
+  - first:
+      213: 362167944737660264
+    second: buoys 1_98
+  - first:
+      213: 3040087692488784341
+    second: buoys 1_99
+  - first:
+      213: -4534922888474658072
+    second: buoys 1_100
+  - first:
+      213: 486971282247027178
+    second: buoys 1_101
+  - first:
+      213: -5147683143400739571
+    second: buoys 1_102
+  - first:
+      213: -281026643121813026
+    second: buoys 1_103
+  - first:
+      213: 800359408549715365
+    second: buoys 1_104
+  - first:
+      213: -1236747505277310360
+    second: buoys 1_105
+  - first:
+      213: -72938673935419602
+    second: buoys 1_106
+  - first:
+      213: -4246045629110929154
+    second: buoys 1_107
+  - first:
+      213: -7603058458748354955
+    second: buoys 1_108
+  - first:
+      213: -5408021540327232570
+    second: buoys 1_109
+  - first:
+      213: -8771595285937443428
+    second: buoys 1_110
+  - first:
+      213: 3265521017919749626
+    second: buoys 1_111
+  - first:
+      213: 8664954778544255508
+    second: buoys 1_112
+  - first:
+      213: -935014536902631517
+    second: buoys 1_113
+  - first:
+      213: 7220271522950463275
+    second: buoys 1_114
+  - first:
+      213: 7817834636294293129
+    second: buoys 1_115
+  - first:
+      213: 8620379830917530740
+    second: buoys 1_116
+  - first:
+      213: -3247931124431966957
+    second: buoys 1_117
+  - first:
+      213: -8712996384500877077
+    second: buoys 1_118
+  - first:
+      213: -9000549814239586511
+    second: buoys 1_119
+  - first:
+      213: -5806241275788480731
+    second: buoys 1_120
+  - first:
+      213: -502557754027177205
+    second: buoys 1_121
+  - first:
+      213: -4777152471185728854
+    second: buoys 1_122
+  - first:
+      213: -6713528872200265015
+    second: buoys 1_123
+  - first:
+      213: 6430658959231786056
+    second: buoys 1_124
+  - first:
+      213: 5119137590242209847
+    second: buoys 1_125
+  - first:
+      213: -7530597793285455629
+    second: buoys 1_126
+  - first:
+      213: 1529709285293565312
+    second: buoys 1_127
+  - first:
+      213: 4089363724484988397
+    second: buoys 1_128
+  - first:
+      213: -4632454772686679869
+    second: buoys 1_129
+  - first:
+      213: -7250683583716232731
+    second: buoys 1_130
+  - first:
+      213: -239142228533838689
+    second: buoys 1_131
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: buoys 1_0
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 1134
+        width: 189
+        height: 283
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 564865ed11e64d240800000000000000
+      internalID: 4815594924589614181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buoys 1_1
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 787
+        width: 184
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5044f035049e26100800000000000000
+      internalID: 99898604236260357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buoys 1_2
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 355
+        width: 182
+        height: 354
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eae0ee5b179997090800000000000000
+      internalID: -8036223346403307858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buoys 1_3
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 1
+        width: 197
+        height: 354
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dee6385bdc6a4f630800000000000000
+      internalID: 3959973374809304813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: bb76a0e8252e1294985b6591e8b8e978
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

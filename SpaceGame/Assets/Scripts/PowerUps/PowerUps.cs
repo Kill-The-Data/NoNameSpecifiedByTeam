@@ -31,6 +31,7 @@ public abstract class SoundPowerUp : PowerUp
             m_audioPlayerChild = new GameObject();
             m_audioPlayerChild.transform.parent = pHandler.PlayerObject.transform;
             m_source = m_audioPlayerChild.AddComponent<AudioSource>();
+            m_source.playOnAwake = false;
         }
 
         m_source.clip = SoundManager.Instance.GetSound(m_pickupSound);

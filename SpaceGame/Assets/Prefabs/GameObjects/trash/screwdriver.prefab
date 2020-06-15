@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7566420507230714178}
   - component: {fileID: 6402929615458930070}
   - component: {fileID: 6631573915099153527}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: screwdriver
   m_TagString: Debris
   m_Icon: {fileID: 0}

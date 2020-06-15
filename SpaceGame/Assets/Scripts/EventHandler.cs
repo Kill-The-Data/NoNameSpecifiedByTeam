@@ -7,15 +7,21 @@ public sealed class EventSingleton
 {
     public EventHandler EventHandler = null;
 
+    [Obsolete("use EventHandler.Instance instead")]
     public static EventSingleton Instance { get; } = new EventSingleton();
 }
 
 public class EventHandler : MonoBehaviour
 {
+    public static EventHandler Instance;
+    
     //events
     public event Action StationFilled;
     public event Action GameStart;
     public event Action GameFinished;
+    public event Action TutorialStart;
+
+
     void Awake()
     {
         InitSingleton();
@@ -24,11 +30,12 @@ public class EventHandler : MonoBehaviour
     //set handler for singleton
     private void InitSingleton()
     {
+        Instance = this;
         EventSingleton.Instance.EventHandler = this;
     }
     private void Init()
     {
-        StationFilled = OnStationFilled;
+        StationFilled += OnStationFilled;
     }
 
     public void FinishGame()
@@ -45,6 +52,11 @@ public class EventHandler : MonoBehaviour
         PlayerPrefs.SetInt(("buoysFilled"), (PlayerPrefs.GetInt("buoysFilled") + 1));
     }
 
+    public void StartTutorial()
+    {
+        TutorialStart?.Invoke();
+    }
+    
     public void StartGame()
     {
         GameStart?.Invoke();

@@ -8,21 +8,21 @@ public class PlayerHealth : MonoBehaviour, ISubject
 {
 
     [Header(" --- Setup --- ")]
-   
-    
+
+
     [LabelOverride("Use Global Health")]
-    [Tooltip("Uses The Variable from the conf server instead")] 
+    [Tooltip("Uses The Variable from the conf server instead")]
     [SerializeField] private bool m_overrideHealthConf = false;
-    
+
     [Tooltip("The Maximum health of the player")]
     [SerializeField] private int m_maxHealth = 100;
-    
+
     [Tooltip("The text to display the health in")]
     [SerializeField] private TMP_Text m_text = null;
-    
+
     [Tooltip("The slider to display the remaining amount of health in")]
     [SerializeField] private Slider m_slider = null;
-    
+
     [Tooltip("the screenshake animation when the player takes damage")]
     [SerializeField] private ScreenShake m_shake = null;
 
@@ -32,6 +32,7 @@ public class PlayerHealth : MonoBehaviour, ISubject
     [Tooltip("The slider should never reach 0, only close to 0 so that it does not disappear")]
     [Range(0.01f, 0.2f)]
     [SerializeField] private float m_MinSliderValue = 0.1f;
+    [SerializeField] private OverlayManager m_OverlayManager;
 
     [Tooltip("Whether or not the Player can die currently")]
     [SerializeField] private bool m_canDie = true;
@@ -49,16 +50,18 @@ public class PlayerHealth : MonoBehaviour, ISubject
         private set
         {
             HealthImpl = value;
+            Notify();
             UpdateView();
         }
     }
     public int GetMaxHealth() => m_maxHealth;
-    private List<IObserver> observers;
+    private List<IObserver> observers = new List<IObserver>();
 
     //in the beginning update the text manually to avoid displaying "New Text"
     //and setup the slider ui variables
     private void Awake()
     {
+        EventHandler.Instance.TutorialStart += () => ResetPlayerHealth(false);
         ResetPlayerHealth(false);
     }
 
@@ -70,23 +73,24 @@ public class PlayerHealth : MonoBehaviour, ISubject
 
         if (m_overrideHealthConf && !is_awake)
         {
-            WebConfigHandler.OnFinishDownload(JO => {
-                if (int.TryParse(JO?["health"].ToString(), out int h))
+            WebConfigHandler.OnFinishDownload(o =>
+            {
+                o.ExtractInt("health", v =>
                 {
-                    m_maxHealth = h;
+                    m_maxHealth = v;
                     Health = m_maxHealth;
                     InitSlider();
                     UpdateView();
-                }
+                });
             });
         }
         Debug.Log("rest hp");
-        Health = m_maxHealth;
+        
         InitSlider();
-        UpdateView();
+        Health = m_maxHealth;
     }
 
-   
+
     //Initialize the Slider
     private void InitSlider()
     {
@@ -108,9 +112,9 @@ public class PlayerHealth : MonoBehaviour, ISubject
         else
         {
             Health = Mathf.Max(Health - amount, 0);
+
+            m_OverlayManager?.ActivateOverlay();
         }
-
-
         m_shake.TriggerShake();
     }
 
@@ -137,7 +141,6 @@ public class PlayerHealth : MonoBehaviour, ISubject
 
     public void UpdateView()
     {
-        Notify();
         UpdateText();
     }
 
@@ -150,7 +153,7 @@ public class PlayerHealth : MonoBehaviour, ISubject
     {
         foreach (IObserver observer in observers)
         {
-            observer.GetUpdate(this);
+            observer?.GetUpdate(this);
         }
     }
 

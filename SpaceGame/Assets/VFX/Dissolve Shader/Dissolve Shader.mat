@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Dissolve Shader
-  m_Shader: {fileID: -6465566751694194690, guid: 1087e9ad1823c3a47868e7b10f1ce53b,
+  m_Shader: {fileID: -6465566751694194690, guid: bda1bb07a7f350f4d8361573045fd6d5,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -64,8 +64,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_4841FD31: 30
-    - Vector1_C7364C76: 0.01
+    - Boolean_840E8DA8: 1
+    - DISSOLVE: 1
+    - TIME: 1.48
+    - Vector1_4841FD31: 36.32
+    - Vector1_A2A59D9E: 0.33
+    - Vector1_C7364C76: 0.25
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -88,7 +92,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_7BC1C74E: {r: 0.2353699, g: 0.8153885, b: 1.49628, a: 0}
+    - Color_7BC1C74E: {r: 0.2353699, g: 0.8153885, b: 1.49628, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

@@ -1,5 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerCargo : MonoBehaviour, IObserver
@@ -39,6 +40,11 @@ public class PlayerCargo : MonoBehaviour, IObserver
         }
     }
 
+    public void Start()
+    {
+        EventHandler.Instance.TutorialStart += ResetCargo;
+    }
+
     //in the beginning update the text manually to avoid displaying "New Text"
     //setup the slider ui variables
     //reset reset space occupied
@@ -48,10 +54,9 @@ public class PlayerCargo : MonoBehaviour, IObserver
         InitSlider();
 
         if (m_overrideMaxCargo)
-            WebConfigHandler.OnFinishDownload(JO =>
+            WebConfigHandler.OnFinishDownload(o =>
             {
-                if (int.TryParse(JO?["maxCargo"].ToString(), out int mCargo))
-                    m_cargoLimit = mCargo;
+                o.ExtractInt("max_cargo", value => m_cargoLimit = value);
             });
 
         SpaceOccupied = 0;
@@ -116,18 +121,11 @@ public class PlayerCargo : MonoBehaviour, IObserver
     }
     private void UpdateSlider()
     {
-        m_lerp.UpdateSlider(SpaceOccupied);
+        m_lerp?.UpdateSlider(SpaceOccupied);
     }
     private void UpdateText()
     {
-        if (SpaceOccupied != 0)
-        {
-            m_text.SetText($"{SpaceOccupied} / {m_cargoLimit}");
-        }
-        else
-        {
-            m_text.SetText("");
-        }
+        m_text.SetText($"{SpaceOccupied} / {m_cargoLimit}");
     }
 
     public void GetUpdate(ISubject subject)

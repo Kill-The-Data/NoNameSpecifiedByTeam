@@ -44,7 +44,7 @@ public class Timer : MonoBehaviour, ISubject
         m_TimeLeft = newDuration;
         m_state = TimerState.ACTIVE;
     }
-
+    public bool IsFinished() => m_state == TimerState.OUT_OF_TIME;
     public void IncreaseTimeLeft(float timeGained)
     {
         m_TimeLeft += timeGained;

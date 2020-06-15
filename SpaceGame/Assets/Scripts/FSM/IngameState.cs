@@ -2,6 +2,8 @@
 
 public class IngameState : StateWithView<IngameView>
 {
+
+    [SerializeField] private bool m_SkipCutScene = true;
     public override void EnterState()
     {
         base.EnterState();
@@ -11,7 +13,7 @@ public class IngameState : StateWithView<IngameView>
     public override void ExitState()
     {
         base.ExitState();
-        EventSingleton.Instance?.EventHandler?.FinishGame();
+        EventHandler.Instance.FinishGame();
     }
 
     public void TimeOut()
@@ -20,6 +22,9 @@ public class IngameState : StateWithView<IngameView>
     }
     private void InitGameState()
     {
+        if(!m_SkipCutScene)
+            view.GetAnimator().TriggerAnimation();
+
 
         var levelGen = view.GetLevelAlways();
         
@@ -64,14 +69,13 @@ public class IngameState : StateWithView<IngameView>
         deathWatch.PlayerHealth = playerHealth;
         deathWatch.State = this;
         timerView.gameObject.GetComponent<Timer>()?.Attach(deathWatch);
-
-        EventSingleton.Instance?.EventHandler?.StartGame();
+        
+        EventHandler.Instance.StartGame();
     }
     public void PlayerDied()
     {
         view.GetPerformance().StoreStatsInPlayerPrefs(0);
         view.GetItemSpawner().Deactivate();
-        Camera.main.GetComponent<CamBlurScript>().ActivateBlur();
         fsm.ChangeState<GameOverState>();
 
     }
@@ -79,7 +83,6 @@ public class IngameState : StateWithView<IngameView>
     {
         view.GetPerformance().StoreStatsInPlayerPrefs(1);
         view.GetItemSpawner().Deactivate();
-        Camera.main.GetComponent<CamBlurScript>().ActivateBlur();
         fsm.ChangeState<YouWonState>();
     }
 }

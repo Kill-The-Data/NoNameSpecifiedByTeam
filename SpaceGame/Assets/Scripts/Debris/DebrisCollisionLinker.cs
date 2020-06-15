@@ -21,7 +21,7 @@ public class DebrisCollisionLinker : AUnityObserver
     {
         if(m_nac.LastAdded.GetComponentSafe(out TrashCollisionHandler tch))
         {
-            tch.playerTakeDamageFilter.Attach(m_target);
+            tch.OnPlayerTakeDamage += m_target.GetUpdate;
         }
     }
 }

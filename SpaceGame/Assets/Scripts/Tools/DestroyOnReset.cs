@@ -6,6 +6,7 @@ public class DestroyOnReset : AReset
 {
     public override void Reset()
     {
+        base.Remove();
         Destroy(gameObject);
     }
 }
