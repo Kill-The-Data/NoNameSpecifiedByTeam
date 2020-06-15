@@ -6,7 +6,6 @@ public class BuoyFillUp : MonoBehaviour
     [SerializeField] private int m_MaxFillUp;
 
     [SerializeField] private bool NoWebConfig = false;
-    
     public int GetMaxFillUp() => m_MaxFillUp;
 
     [Header(" --- UI setup ---")]

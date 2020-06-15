@@ -9,6 +9,7 @@ using UnityEngine;
 [RequireComponent(typeof(WaypointNavigator))]
 public class GhostShipController : MonoBehaviour
 {
+    [SerializeField] private GameObject m_TouchIcon = null;
     private WaypointNavigator m_waypointNavigator = null;
     private MeshRenderer m_MR = null;
     private bool m_moving = false;
@@ -23,6 +24,8 @@ public class GhostShipController : MonoBehaviour
     {
         m_moving = false;
         m_MR.enabled = false;
+        m_TouchIcon.SetActive(true);
+
     }
     //check for input if we have not gotten any yet
     public void Update()
@@ -31,6 +34,7 @@ public class GhostShipController : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
+                m_TouchIcon.SetActive(false);
                 m_MR.enabled=true;
                 m_waypointNavigator?.StartMove();
                 m_moving = true;
