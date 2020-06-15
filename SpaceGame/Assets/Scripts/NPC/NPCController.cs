@@ -63,8 +63,4 @@ public class NPCController : MonoBehaviour
         transform.position += m_speed * Time.deltaTime;
 
     }
-
-    public void StopMovement()
-    {
-    }
 }
