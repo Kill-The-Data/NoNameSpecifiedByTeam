@@ -64,6 +64,7 @@ public class GoalReachedHandler : MonoBehaviour, IObserver
 
     public void FinishedGameCutScene()
     {
+        Debug.Log("finished Game cut scene");
         //reset script && change to game finished state
         Reset();
         m_cinema.Reset(true);

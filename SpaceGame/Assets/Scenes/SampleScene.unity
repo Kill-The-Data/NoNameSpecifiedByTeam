@@ -946,6 +946,7 @@ GameObject:
   - component: {fileID: 123532384}
   - component: {fileID: 123532383}
   - component: {fileID: 123532386}
+  - component: {fileID: 123532387}
   m_Layer: 0
   m_Name: Cinema Controller
   m_TagString: Untagged
@@ -1056,6 +1057,23 @@ MonoBehaviour:
   - {fileID: 1541003447}
   - {fileID: 66151303}
   - {fileID: 695660369}
+--- !u!114 &123532387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123532381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a543f52f6520d7458033ac75375bb3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AnimationObjects:
+  - {fileID: 2037610628}
+  m_cutsceneDuration: 11
+  m_cinema: {fileID: 123532386}
+  EndGameAfterTimeOut: 0
 --- !u!1 &124542237
 GameObject:
   m_ObjectHideFlags: 0
@@ -1069,7 +1087,6 @@ GameObject:
   - component: {fileID: 124542240}
   - component: {fileID: 124542241}
   - component: {fileID: 124542242}
-  - component: {fileID: 124542243}
   m_Layer: 0
   m_Name: IngameView
   m_TagString: Untagged
@@ -1095,6 +1112,7 @@ MonoBehaviour:
   m_Score: {fileID: 777676494}
   m_generator: {fileID: 1160042671}
   m_genLevelInTutorial: 0
+  m_animation: {fileID: 123532387}
 --- !u!4 &124542239
 Transform:
   m_ObjectHideFlags: 0
@@ -1179,23 +1197,6 @@ MonoBehaviour:
   m_spawnRate: 8
   m_pScripts: {fileID: 1991044476}
   m_debrisGen: {fileID: 1160042671}
---- !u!114 &124542243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 124542237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a543f52f6520d7458033ac75375bb3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AnimationObjects:
-  - {fileID: 2037610628}
-  m_cutsceneDuration: 6
-  m_cinema: {fileID: 123532386}
-  EndGameAfterTimeOut: 0
 --- !u!1 &133473566
 GameObject:
   m_ObjectHideFlags: 0
@@ -10922,8 +10923,8 @@ MonoBehaviour:
   - {fileID: 1523084240}
   - {fileID: 188863495}
   m_cutsceneDuration: 2
-  m_cinema: {fileID: 0}
-  EndGameAfterTimeOut: 0
+  m_cinema: {fileID: 123532386}
+  EndGameAfterTimeOut: 1
 --- !u!224 &1149030504 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2764872169706729290, guid: 7b173fc7392438746a80d01bf86c017c,
@@ -14977,6 +14978,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791766462540476870, guid: 90e39853afb669e43910a61c9ea09782,
+        type: 3}
+      propertyPath: m_Distance
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 8791766462864229632, guid: 90e39853afb669e43910a61c9ea09782,
         type: 3}
@@ -23118,17 +23124,17 @@ PrefabInstance:
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: -31.950195
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 4.67e-43
+      value: 4.871e-42
       objectReference: {fileID: 0}
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: -118.427
+      value: 5.9e-44
       objectReference: {fileID: 0}
     - target: {fileID: 8485707075902487549, guid: 4bce1fd0d756d0142a56b597623e7285,
         type: 3}
