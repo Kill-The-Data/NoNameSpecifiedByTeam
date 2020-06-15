@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BuoySway : MonoBehaviour 
 {
@@ -20,6 +17,7 @@ public class BuoySway : MonoBehaviour
     
     private void Awake()
     {
+
         m_collisionHandler.collision += Collide;
         m_initialRotation = transform.localRotation;
         m_direction *= m_heft;

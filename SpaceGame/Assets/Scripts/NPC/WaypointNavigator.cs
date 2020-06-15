@@ -13,15 +13,19 @@ public class WaypointNavigator : MonoBehaviour
     private NPCController m_controller = null;
     public bool IsMoving = false;
 
+
+    private void OnEnable()
+    {
+        if (!m_controller)
+            m_controller = GetComponent<NPCController>();
+        Reset();
+    }
+    
     private void Awake()
     {
         m_controller = GetComponent<NPCController>();
     }
 
-    void Start()
-    {
-        Reset();
-    }
     public void Reset()
     {
         m_controller.Destination = m_start.GetPosition();
