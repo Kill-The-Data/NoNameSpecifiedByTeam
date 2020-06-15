@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class CustomOsk : MonoBehaviour
 {
     [SerializeField] private TMP_InputField m_text;
+    [Range(1,2)]
+    [SerializeField] private float m_scale;
 
     private Button[] m_buttons;
     
@@ -25,6 +27,11 @@ public class CustomOsk : MonoBehaviour
     
     void Start()
     {
+        //if not unity webgl, make the keyboard a bit bigger
+        #if !UNITY_WEBGL
+            transform.localScale = new Vector3(m_scale,m_scale,1);
+        #endif
+        
         m_buttons = GetComponentsInChildren<Button>();
         foreach (var button in m_buttons)
         {

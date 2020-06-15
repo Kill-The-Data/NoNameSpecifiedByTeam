@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: b613b7f4cbf3e9f42a2f339a8725ccc1,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -9083,16 +9083,16 @@ PrefabInstance:
       propertyPath: m_Fsm
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2137485633, guid: a7ece3eee5d4b4a42946cdfda577b32d, type: 3}
+      propertyPath: m_collisionSound
+      value: collision-buoy
+      objectReference: {fileID: 0}
     - target: {fileID: 836802447057858450, guid: a7ece3eee5d4b4a42946cdfda577b32d,
         type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 8034776613121328539, guid: d479158907cdfda4fbf6bdc53697c2d1,
         type: 3}
-    - target: {fileID: 2137485633, guid: a7ece3eee5d4b4a42946cdfda577b32d, type: 3}
-      propertyPath: m_collisionSound
-      value: collision-buoy
-      objectReference: {fileID: 0}
     - target: {fileID: 893843195312121207, guid: a7ece3eee5d4b4a42946cdfda577b32d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15466,7 +15466,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_start: {fileID: 462453762}
   m_ResetStartToStartNode: 1
-  isMoving: 0
+  IsMoving: 0
 --- !u!114 &1788295934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15485,7 +15485,7 @@ MonoBehaviour:
   m_Rotate: 1
   boostDistThreshold: 100
   boostfactor: 5
-  isMoving: 1
+  IsMoving: 1
 --- !u!114 &1788295937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16300,7 +16300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_start: {fileID: 1752511933}
   m_ResetStartToStartNode: 0
-  isMoving: 0
+  IsMoving: 0
   m_camScroll: {fileID: 1306308147}
   m_camZoom: {fileID: 1306308154}
 --- !u!114 &2029923643
@@ -16321,7 +16321,7 @@ MonoBehaviour:
   m_Rotate: 0
   boostDistThreshold: 100
   boostfactor: 5
-  isMoving: 1
+  IsMoving: 1
 --- !u!4 &2029923644 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6169750887914496373, guid: abe42b99804d2ba4681e72c35a98ca6b,
@@ -19052,6 +19052,11 @@ PrefabInstance:
       propertyPath: m_text
       value: 
       objectReference: {fileID: 274229958}
+    - target: {fileID: 6116124206107737219, guid: 432ca7e3458642b499f666c53ab4b119,
+        type: 3}
+      propertyPath: m_scale
+      value: 1.45
+      objectReference: {fileID: 0}
     - target: {fileID: 6116124206631579245, guid: 432ca7e3458642b499f666c53ab4b119,
         type: 3}
       propertyPath: m_Material
