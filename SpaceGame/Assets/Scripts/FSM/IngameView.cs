@@ -23,13 +23,12 @@ public class IngameView : AbstractView
     [SerializeField] private VoronoiDebrisGen m_generator;
     [SerializeField] private bool m_genLevelInTutorial = false;
 
-    private GoalReachedHandler m_animation = null;
+    [SerializeField]private GoalReachedHandler m_animation = null;
     public GoalReachedHandler GetAnimator() => m_animation;
     void Awake()
     {
         m_Performance = GetComponent<PerformanceMeasure>();
         m_Ispawner = GetComponent<ItemSpawner>();
-        m_animation = GetComponent<GoalReachedHandler>();
     }
 
     public VoronoiDebrisGen GetLevelAlways() => m_generator;
