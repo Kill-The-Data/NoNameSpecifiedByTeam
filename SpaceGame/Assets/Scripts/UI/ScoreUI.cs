@@ -20,7 +20,7 @@ public class ScoreUI : MonoBehaviour, IObserver
 
     public int GetScore() => m_currentScore;
 
-    public void Awake()
+    public void start()
     {
         EventHandler.Instance.TutorialStart += Reset;
     }
