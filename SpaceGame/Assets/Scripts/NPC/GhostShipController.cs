@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
 /// Handles reseting ship on enable =>gets called on tutorial start
-/// activates movement && visability once we get the first input
+/// activates movement & visability once we get the first input
 /// </summary>
 [RequireComponent(typeof(NPCController))]
 [RequireComponent(typeof(WaypointNavigator))]
