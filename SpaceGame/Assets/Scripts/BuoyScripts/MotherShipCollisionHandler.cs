@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Collider))]
 [RequireComponent(typeof(BuoyFillUp))]
@@ -14,8 +15,13 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
     [Tooltip("How much the player gets for one piece of cargo")]
     [SerializeField] private int m_scorePerCargo = 10;
 
+
     [Tooltip("The Sound to play on player collision")]
-    [SerializeField] private string m_playerSound;
+    [SerializeField] private string m_collisionSound = "collision-buoy";
+    
+    [FormerlySerializedAs("m_playerSound")]
+    [Tooltip("The Sound to play on player dropoff")]
+    [SerializeField] private string m_dropOffSound;
 
 
     private FSM m_Fsm;
@@ -23,9 +29,10 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
 
     public event Action<ISubject> trashCollected;
     public event Action<ISubject> collision;
-    
 
-    private AudioSource m_source;
+
+    private AudioSource m_collisionSource;
+    private AudioSource m_dropOffSource;
 
     private static AudioSource m_cursedAudioSource;
     
@@ -47,7 +54,9 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
     void Start()
     {
         m_FillUp = GetComponent<BuoyFillUp>();
-        m_source = gameObject.GetComponent<AudioSource>();
+        m_dropOffSource = gameObject.GetComponent<AudioSource>();
+        m_collisionSource = gameObject.AddComponent<AudioSource>();
+        m_collisionSource.volume = 0;
         /*
         //for whatever unholy reason the first audio-source does not want to play,
         //but we can cheat by making one of them play on awake
@@ -71,7 +80,8 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
         //also this garbage ( yes I know this is my creation )
         SoundManager.ExecuteOnAwake(manager =>
         {
-            m_source.clip = manager.GetSound(m_playerSound);
+            m_dropOffSource.clip = manager.GetSound(m_dropOffSound);
+            m_collisionSource.clip = manager.GetSound(m_collisionSound);
         });
         
         FindTaggedObjects();
@@ -95,7 +105,8 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
         yield return new WaitForSeconds(3);
 
         //and you are healed
-        m_source.volume = 0;
+        m_dropOffSource.volume = 0;
+        m_collisionSource.volume = 0;
     }
 
     private bool m_wasCargoAdded = false;
@@ -111,6 +122,11 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
             playerController.Collide(1.5F);
             collision?.Invoke(this);
             
+            m_collisionSource.volume = 0.5f;
+            m_collisionSource.Play();
+            
+            StartCoroutine(MuteAudio());
+            
             if(m_FillUp.Full()) return;
 
             //get cargo
@@ -122,9 +138,9 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
 
             
             //play audio
-            m_source.volume = 0.5f;
-            m_source.Play();
-            StartCoroutine(MuteAudio());
+            m_dropOffSource.volume = 0.5f;
+            m_dropOffSource.Play();
+            
 
             if (!m_wasCargoAdded)
             {

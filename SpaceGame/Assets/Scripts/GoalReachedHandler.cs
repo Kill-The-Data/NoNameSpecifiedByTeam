@@ -8,6 +8,7 @@ public class GoalReachedHandler : MonoBehaviour, IObserver
     [SerializeField] private List<Animator> m_AnimationObjects = new List<Animator>();
     [SerializeField] private float m_cutsceneDuration = 2.0f;
     [SerializeField] private CinematicController m_cinema;
+    [SerializeField] private bool EndGameAfterTimeOut = false;
     private void Start()
     {
         m_FSM = GameObject.FindGameObjectWithTag("FSM")?.GetComponent<FSM>();
@@ -18,19 +19,40 @@ public class GoalReachedHandler : MonoBehaviour, IObserver
         //reset bool & animation trigger
         m_animationTriggered = false;
         foreach (Animator a in m_AnimationObjects)
+        {
+            a.gameObject.SetActive(false);
             a.ResetTrigger("AnimationTrigger");
+        }
         //remove timer if attached
         if (GetComponent<Timer>())
             Destroy(gameObject.GetComponent<Timer>());
     }
-
+    public void TriggerAnimation()
+    {
+        //activate all animations
+        if (!m_animationTriggered)
+            foreach (Animator a in m_AnimationObjects)
+            {
+                a.gameObject.SetActive(true);
+                a.SetTrigger("AnimationTrigger");
+            }
+        m_animationTriggered = true;
+        //set up timer 
+        var timer = gameObject.AddComponent<Timer>();
+        timer.Attach(this);
+        timer.StartTimer(m_cutsceneDuration);
+        m_cinema.LerpIn();
+    }
 
     public void OnGoalReached()
     {
         //activate all animations
         if (!m_animationTriggered)
             foreach (Animator a in m_AnimationObjects)
+            {
+                a.gameObject.SetActive(true);
                 a.SetTrigger("AnimationTrigger");
+            }
         m_animationTriggered = true;
         //set up timer 
         var timer = gameObject.AddComponent<Timer>();
@@ -45,7 +67,8 @@ public class GoalReachedHandler : MonoBehaviour, IObserver
         //reset script && change to game finished state
         Reset();
         m_cinema.Reset(true);
-        EndGameState();
+        if(EndGameAfterTimeOut)
+            EndGameState();
        
     }
     private void EndGameState()
