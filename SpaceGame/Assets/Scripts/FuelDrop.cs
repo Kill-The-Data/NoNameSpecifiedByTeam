@@ -16,7 +16,7 @@ public class FuelDrop : MonoBehaviour
     }
     private void DetachEvent()
     {
-        EventHandler e = EventSingleton.Instance?.EventHandler;
+        EventHandler e = EventHandler.Instance;
         if (e)
         {
             e.StationFilled -= StationFilled;
@@ -24,7 +24,7 @@ public class FuelDrop : MonoBehaviour
     }
     private void AttachEvent()
     {
-        EventHandler e = EventSingleton.Instance.EventHandler;
+        EventHandler e = EventHandler.Instance;
         if (e)
         {
             //listen to the station filled event
@@ -38,7 +38,7 @@ public class FuelDrop : MonoBehaviour
         BuoyFillUp fill = GetComponent<BuoyFillUp>();
         if (fill)
         {
-            if (fill.Full())
+            if (fill.GetState() == BuoyFillUp.BuoyCargoState.FULL)
                 SpawnFuel();
         }
     }

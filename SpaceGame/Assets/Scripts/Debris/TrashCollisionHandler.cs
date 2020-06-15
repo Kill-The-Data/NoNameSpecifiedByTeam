@@ -1,5 +1,4 @@
 ﻿using System;
-using SubjectFilters;
 using UnityEngine;
 
 [RequireComponent(typeof(TrashMovementController))]
@@ -11,23 +10,24 @@ public class TrashCollisionHandler : MonoBehaviour, ISubject
     private bool m_hasDealtDamage = false;
 
     private TrashMovementController m_controller;
-    public PlayerTakeDamageFilter playerTakeDamageFilter { get; private set; }
-    public PlayerPickUpTrashFilter playerPickUpTrashFilter { get; private set; }
+    
+    public event Action<ISubject> OnPlayerTakeDamage;
+    public event Action<ISubject> OnPlayerPickUpJunk;
+    
 
     private int m_damage = 10;
     
     public void Awake()
     {
-        playerTakeDamageFilter = new PlayerTakeDamageFilter();
-        Attach(playerTakeDamageFilter);
-
-        playerPickUpTrashFilter = new PlayerPickUpTrashFilter();
-        Attach(playerPickUpTrashFilter);
-
         m_controller = GetComponent<TrashMovementController>();
         if (m_controller == null) m_controller = gameObject.AddComponent<TrashMovementController>();
         
         WebConfigHandler.OnFinishDownload(o => o.ExtractInt("debris_damage", v => m_damage = v));
+
+        if (this.GetComponentSafe(out nextTutorialState tstate))
+        {
+            OnPlayerPickUpJunk += self => tstate.NextState();
+        }
     }
 
     public void OnTriggerEnter(Collider other)
@@ -74,16 +74,8 @@ public class TrashCollisionHandler : MonoBehaviour, ISubject
         playerCargo.AddCargo(this.gameObject);
 
         Notify(NotifyEvent.OnPlayerPickupTrash);
-
-        //TODO(kukash): I don't quite know how, but I am sure this can be improved
-        //TODO(cont.):  probably some ObserverPattern on the PlayerCargo with Notify()
-        //TODO(cont.):  on AddCargo() (and probably ClearCargo() as well)
-        if (m_IsTutorialTrash)
-        {
-            GetComponent<nextTutorialState>()?.NextState();
-        }
-        //only destroy if not tutorail trash
-        else
+        
+        if (!m_IsTutorialTrash)
         {
             Destroy(this.gameObject);
         }
@@ -163,6 +155,15 @@ public class TrashCollisionHandler : MonoBehaviour, ISubject
     }
     public void Notify(NotifyEvent evnt)
     {
+        switch (evnt)
+        {
+            case NotifyEvent.OnPlayerPickupTrash:
+                OnPlayerPickUpJunk?.Invoke(this);
+                break;
+            case NotifyEvent.OnPlayerTakeDamage:
+                OnPlayerTakeDamage?.Invoke(this);
+                break;
+        }
         State = evnt;
         Notify();
     }

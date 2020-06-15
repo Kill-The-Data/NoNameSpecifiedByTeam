@@ -1,5 +1,4 @@
 ﻿using System;
-using SubjectFilters;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -21,6 +20,7 @@ public class ObstacleCollisionHandler : MonoBehaviour , ISubject
         SoundManager.ExecuteOnAwake(manager =>
         {
             m_audioSource.clip = manager.GetSound(m_soundId);
+            m_audioSource.volume = manager.GetFxVolume();
         });
         
         WebConfigHandler.OnFinishDownload(o =>
@@ -44,7 +44,7 @@ public class ObstacleCollisionHandler : MonoBehaviour , ISubject
 
     public void OnTriggerStay(Collider other)
     {
-        //HandlePlayerStay(other);
+        HandlePlayerStay(other);
     }
 
     private float m_time = 0;
@@ -52,12 +52,13 @@ public class ObstacleCollisionHandler : MonoBehaviour , ISubject
     private void HandlePlayerStay(Collider other)
     {
         if ((other.CompareTag("Player") || other.CompareTag("Player-Collector"))
-            && other.transform.parent.GetComponentSafe(out PlayerHealth playerHealth))
+            && other.transform.parent.GetComponentSafe(out PlayerController playerController))
         {
             m_time += Time.deltaTime;
             if (m_time > 1)
             {
-                playerHealth.TakeDamage();
+                //make sure the player does not get stuck
+                playerController.Enable();
             }
         }
     }
