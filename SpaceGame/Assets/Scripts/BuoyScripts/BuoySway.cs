@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
+[RequireComponent(typeof(MotherShipCollisionHandler))]
 public class BuoySway : MonoBehaviour 
 {
     [SerializeField] private Vector2 m_direction;
@@ -20,6 +17,7 @@ public class BuoySway : MonoBehaviour
     
     private void Awake()
     {
+        m_collisionHandler = GetComponent<MotherShipCollisionHandler>();
         m_collisionHandler.collision += Collide;
         m_initialRotation = transform.localRotation;
         m_direction *= m_heft;

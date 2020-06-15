@@ -12,9 +12,10 @@ public class WaypointNavigator : MonoBehaviour
     private NPCController m_controller = null;
     public bool IsMoving = false;
 
-    void Start()
+    private void OnEnable()
     {
-        m_controller = GetComponent<NPCController>();
+        if (!m_controller)
+            m_controller = GetComponent<NPCController>();
         Reset();
     }
     public void Reset()

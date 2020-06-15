@@ -23,7 +23,6 @@ public class GhostShipController : MonoBehaviour
     {
         m_moving = false;
         m_MR.enabled = false;
-        m_waypointNavigator?.Reset();
     }
     //check for input if we have not gotten any yet
     public void Update()
