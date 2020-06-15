@@ -10,7 +10,7 @@ public class WaypointNavigator : MonoBehaviour
     protected Waypoint m_current;
 
     private NPCController m_controller = null;
-    public bool isMoving = false;
+    public bool IsMoving = false;
 
     void Start()
     {
@@ -45,15 +45,15 @@ public class WaypointNavigator : MonoBehaviour
     }
     protected virtual void Update()
     {
-        if (isMoving)
+        if (IsMoving)
             Move();
         else
             m_controller.isMoving = false;
     }
     public void StartMove()
     {
-        isMoving = true;
-        m_controller.isMoving = true;
+        IsMoving = true;
+        m_controller.IsMoving = true;
 
     }
 }
