@@ -4,7 +4,6 @@ public class BuoyFillUp : MonoBehaviour
 {
     [Header(" --- Boy values setup ---")]
     [SerializeField] private int m_MaxFillUp;
-
     [SerializeField] private bool NoWebConfig = false;
     public int GetMaxFillUp() => m_MaxFillUp;
 
@@ -20,7 +19,6 @@ public class BuoyFillUp : MonoBehaviour
 
     private int m_currentFillUp;
     private LerpSlider m_Lerper;
-    [SerializeField]private bool abort = false;
     void Awake()
     {
         Init();
@@ -33,7 +31,6 @@ public class BuoyFillUp : MonoBehaviour
     }
     public void Init()
     {
-        if (abort) return;
         if (!m_Lerper)
         {
             m_Lerper = m_TargetRenderer.gameObject.AddComponent<LerpSlider>();
@@ -47,7 +44,6 @@ public class BuoyFillUp : MonoBehaviour
 
     public int DropOff(int dropOffAmount)
     {
-        if (abort) return 0;
         //just return drop off if full
         if (Full())
         {
@@ -77,18 +73,15 @@ public class BuoyFillUp : MonoBehaviour
 
     private void FilledUp()
     {
-        if (abort) return;
-        EventSingleton.Instance?.EventHandler?.NewStationFilled();
+        EventHandler.Instance.NewStationFilled();
     }
-    public bool Full()
+    private bool Full()
     {
-        if (abort) return false;
         return m_currentFillUp >= m_MaxFillUp;
     }
 
-    public bool Empty()
+    private bool Empty()
     {
-        if (abort) return true;
         return m_currentFillUp == 0;
     }
 

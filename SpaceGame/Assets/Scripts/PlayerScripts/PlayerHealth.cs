@@ -50,6 +50,7 @@ public class PlayerHealth : MonoBehaviour, ISubject
         private set
         {
             HealthImpl = value;
+            Notify();
             UpdateView();
         }
     }
@@ -60,6 +61,7 @@ public class PlayerHealth : MonoBehaviour, ISubject
     //and setup the slider ui variables
     private void Awake()
     {
+        EventHandler.Instance.TutorialStart += () => ResetPlayerHealth(false);
         ResetPlayerHealth(false);
     }
 
@@ -83,9 +85,9 @@ public class PlayerHealth : MonoBehaviour, ISubject
             });
         }
         Debug.Log("rest hp");
-        Health = m_maxHealth;
+        
         InitSlider();
-        UpdateView();
+        Health = m_maxHealth;
     }
 
 
@@ -113,8 +115,6 @@ public class PlayerHealth : MonoBehaviour, ISubject
 
             m_OverlayManager?.ActivateOverlay();
         }
-
-
         m_shake.TriggerShake();
     }
 
@@ -141,7 +141,6 @@ public class PlayerHealth : MonoBehaviour, ISubject
 
     public void UpdateView()
     {
-        Notify();
         UpdateText();
     }
 

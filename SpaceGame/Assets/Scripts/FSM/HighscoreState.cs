@@ -13,7 +13,7 @@ public class HighscoreState : StateWithView<HighscoreView>
     }
     IEnumerator AdvanceFSM()
     {
-        Debug.Log($"Entered Corroutine to end GameOverScreen in {Timeout} seconds");
+        Debug.Log($"Entered Coroutine to end GameOverScreen in {Timeout} seconds");
         yield return new WaitForSeconds(Timeout);
         OnBackToMainMenu();
     }

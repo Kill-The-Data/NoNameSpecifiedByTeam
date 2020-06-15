@@ -17,7 +17,11 @@ class SoundEntry
 public class SoundManager : MonoBehaviour
 {
   [SerializeField] private List<SoundEntry> m_entries  = new List<SoundEntry>();
-
+  
+  [Range(0,1)]
+  [SerializeField] private float m_fxVolume = 1;
+  
+  
   private static Action<SoundManager> OnAwake = delegate {  };
   private static bool awoken = false;
   
@@ -64,5 +68,10 @@ public class SoundManager : MonoBehaviour
   public AudioClip GetSound(string name)
   {
       return  m_entries.FirstOrDefault(x => x.Name == name)?.Sound;
+  }
+
+  public float GetFxVolume()
+  {
+      return m_fxVolume;
   }
 }

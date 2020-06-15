@@ -9,13 +9,13 @@ public class CamWayPointNavigator : WaypointNavigator
 
     protected override void Update()
     {
-        //= is + on german keyboard layout
-#if UNITY_EDITOR
-        if (Input.GetKeyDown("3")) StartRide();
-#endif
+        
+        #if UNITY_EDITOR
+            if (Input.GetKeyDown("3")) StartRide();
+        #endif
         if (m_move)
         {
-            Move();
+            base.Move();
         }
     }
     //disable cam controls scripts && set bool true

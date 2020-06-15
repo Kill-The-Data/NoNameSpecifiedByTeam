@@ -18,6 +18,7 @@ public class InventoryFullSound : MonoBehaviour
         SoundManager.ExecuteOnAwake(manager =>
         {
             m_source.clip = manager.GetSound(m_sound);
+            m_source.volume = manager.GetFxVolume();
         });
     }
 

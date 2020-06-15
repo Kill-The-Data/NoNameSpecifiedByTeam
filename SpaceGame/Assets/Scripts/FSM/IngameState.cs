@@ -13,7 +13,7 @@ public class IngameState : StateWithView<IngameView>
     public override void ExitState()
     {
         base.ExitState();
-        EventSingleton.Instance?.EventHandler?.FinishGame();
+        EventHandler.Instance.FinishGame();
     }
 
     public void TimeOut()
@@ -70,7 +70,7 @@ public class IngameState : StateWithView<IngameView>
         deathWatch.State = this;
         timerView.gameObject.GetComponent<Timer>()?.Attach(deathWatch);
         
-        EventSingleton.Instance?.EventHandler?.StartGame();
+        EventHandler.Instance.StartGame();
     }
     public void PlayerDied()
     {

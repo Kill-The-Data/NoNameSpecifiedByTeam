@@ -20,7 +20,7 @@ public class DebrisPickupLinker : AUnityObserver
     {
         if(m_nac.LastAdded.GetComponentSafe(out TrashCollisionHandler tch))
         {
-            tch.playerPickUpTrashFilter.Attach(m_target);
+            tch.OnPlayerPickUpJunk += m_target.GetUpdate;
         }
     }
 }
