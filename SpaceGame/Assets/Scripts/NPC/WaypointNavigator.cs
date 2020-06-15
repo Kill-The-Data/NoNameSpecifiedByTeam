@@ -48,7 +48,7 @@ public class WaypointNavigator : MonoBehaviour
         if (IsMoving)
             Move();
         else
-            m_controller.isMoving = false;
+            m_controller.IsMoving = false;
     }
     public void StartMove()
     {
