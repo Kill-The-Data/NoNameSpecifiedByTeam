@@ -27,11 +27,11 @@ public class NPCController : MonoBehaviour
             DestinationImpl = value;
         }
     }
-    public bool isMoving = true;
+    public bool IsMoving = true;
 
     public void Update()
     {
-        if (!isMoving) return;
+        if (!IsMoving) return;
         if(Destination != Vector3.zero && !HasReachedDestination)
         {
             var currentPosition = transform.position;
