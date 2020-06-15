@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [RequireComponent(typeof(NPCController))]
 public class WaypointNavigator : MonoBehaviour
@@ -12,9 +13,13 @@ public class WaypointNavigator : MonoBehaviour
     private NPCController m_controller = null;
     public bool IsMoving = false;
 
-    void Start()
+    private void Awake()
     {
         m_controller = GetComponent<NPCController>();
+    }
+
+    void Start()
+    {
         Reset();
     }
     public void Reset()

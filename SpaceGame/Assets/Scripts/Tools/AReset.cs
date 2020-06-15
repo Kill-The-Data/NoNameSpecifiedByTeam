@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public abstract class AReset : MonoBehaviour
 {
@@ -12,6 +13,11 @@ public abstract class AReset : MonoBehaviour
     {
         EventHandler.Instance.TutorialStart -= Reset;
     }
-    
+
+    public void OnDestroy()
+    {
+       Remove();
+    }
+
     public abstract void Reset();
 }
