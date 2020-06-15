@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,6 +38,11 @@ public class PlayerCargo : MonoBehaviour, IObserver
             m_spaceOccupiedImpl = value;
             UpdateView();
         }
+    }
+
+    public void Start()
+    {
+        EventHandler.Instance.TutorialStart += ResetCargo;
     }
 
     //in the beginning update the text manually to avoid displaying "New Text"
@@ -115,7 +121,7 @@ public class PlayerCargo : MonoBehaviour, IObserver
     }
     private void UpdateSlider()
     {
-        m_lerp.UpdateSlider(SpaceOccupied);
+        m_lerp?.UpdateSlider(SpaceOccupied);
     }
     private void UpdateText()
     {

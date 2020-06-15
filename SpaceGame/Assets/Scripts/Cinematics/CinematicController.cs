@@ -27,33 +27,32 @@ public class CinematicController : MonoBehaviour
 
     void Update()
     {
-
-#if UNITY_EDITOR
-        if (Input.GetKeyDown("1"))
-            LerpIn();
-        if (Input.GetKeyDown("2"))
-            LerpOut();
-#endif
+        #if UNITY_EDITOR
+            if (Input.GetKeyDown("1"))
+                LowerBars();
+            if (Input.GetKeyDown("2"))
+                RaiseBars();
+        #endif
     }
 
     //THIS DOES ONLY WORK FOR FIXED RESOLUTION 
-    public void LerpIn()
+    public void LowerBars()
     {
         m_stuffToDisable.ForEach(x => x.SetActive(false));
-        m_playerController.InitCutscene();
+        m_playerController.BeginCutscene();
         m_UpperBar.LeanMoveY(Screen.height - m_YPos, m_TweenSpeed).setEase(m_TweenType);
         m_LowerBar.LeanMoveY(m_YPos, m_TweenSpeed).setEase(m_TweenType);
     }
-    public void LerpOut()
+    public void RaiseBars()
     {
         m_stuffToDisable.ForEach(x => x.SetActive(true));
-        m_playerController.StopCutscene();
+        m_playerController.FinishCutscene();
         m_UpperBar.LeanMoveY(Screen.height + m_YPos, m_TweenSpeed).setEase(m_TweenType);
         m_LowerBar.LeanMoveY(-m_YPos, m_TweenSpeed).setEase(m_TweenType);
     }
     public void Reset(bool restoreUI = false)
     {
-        m_playerController.StopCutscene();
+        m_playerController.FinishCutscene();
         if(restoreUI)
             m_stuffToDisable.ForEach(x => x.SetActive(true));
         m_YPos = m_offset * Screen.height / 1080;

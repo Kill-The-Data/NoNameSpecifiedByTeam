@@ -278,7 +278,6 @@ public class VoronoiDebrisGen : MonoBehaviour
     {
         foreach (var zone in m_debrisZones)
         {
-
             var radius = zone.Radius;
             if (inDeathZone)
             {

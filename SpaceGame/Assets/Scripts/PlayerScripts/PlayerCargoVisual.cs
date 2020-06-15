@@ -1,8 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class PlayerCargoVisual : MonoBehaviour
 {
     [SerializeField] private GameObject m_targetParent = null;
+
+    private void Start()
+    {
+        EventHandler.Instance.TutorialStart += Reset;
+    }
 
     public void InstantiateObj(GameObject obj)
     {
@@ -13,9 +19,6 @@ public class PlayerCargoVisual : MonoBehaviour
             newObj.transform.localScale = Vector3.one;
             newObj.transform.localPosition = Vector3.zero;
         }
-
-        
-        
         //since TrashCollisionHandler depends on TrashMovementController
         //it needs to be removed before everything else
         //

@@ -28,12 +28,15 @@ public class BuoySway : MonoBehaviour
     void Update()
     {
         m_time += Time.deltaTime;
-
-        var Zeta = Mathf.Sin(m_time) * m_impulse;
-
+        
+        //get angle
+        var Phi = Mathf.Sin(m_time) * m_impulse;
+        
+        //get rotation axis
         var Axis = Vector2.Perpendicular(m_direction.normalized);
         
-        transform.localRotation = m_initialRotation * Quaternion.AngleAxis(Zeta,new Vector3(Axis.x,0,Axis.y));
+        //rotate around axis
+        transform.localRotation = m_initialRotation * Quaternion.AngleAxis(Phi,new Vector3(Axis.x,0,Axis.y));
 
     }
 
