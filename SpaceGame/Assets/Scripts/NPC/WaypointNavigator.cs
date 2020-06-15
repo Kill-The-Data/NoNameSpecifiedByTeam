@@ -6,15 +6,22 @@ public class WaypointNavigator : MonoBehaviour
 
     [SerializeField] protected Waypoint m_start;
 
+    [SerializeField] private bool m_ResetStartToStartNode = false;
     protected Waypoint m_current;
 
-    private NPCController m_controller;
+    private NPCController m_controller = null;
+    public bool isMoving = false;
 
     void Start()
     {
         m_controller = GetComponent<NPCController>();
+        Reset();
+    }
+    public void Reset()
+    {
         m_controller.Destination = m_start.GetPosition();
         m_current = m_start;
+        if (m_ResetStartToStartNode) transform.position = m_start.GetPosition();
     }
     protected virtual void ReachedEnd()
     {
@@ -38,6 +45,15 @@ public class WaypointNavigator : MonoBehaviour
     }
     protected virtual void Update()
     {
-        Move();
+        if (isMoving)
+            Move();
+        else
+            m_controller.isMoving = false;
+    }
+    public void StartMove()
+    {
+        isMoving = true;
+        m_controller.isMoving = true;
+
     }
 }

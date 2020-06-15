@@ -27,10 +27,11 @@ public class NPCController : MonoBehaviour
             DestinationImpl = value;
         }
     }
-
+    public bool isMoving = true;
 
     public void Update()
     {
+        if (!isMoving) return;
         if(Destination != Vector3.zero && !HasReachedDestination)
         {
             var currentPosition = transform.position;
@@ -61,5 +62,9 @@ public class NPCController : MonoBehaviour
 
         transform.position += m_speed * Time.deltaTime;
 
+    }
+
+    public void StopMovement()
+    {
     }
 }
