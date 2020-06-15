@@ -2,6 +2,8 @@
 
 public class IngameState : StateWithView<IngameView>
 {
+
+    [SerializeField] private bool m_SkipCutScene = true;
     public override void EnterState()
     {
         base.EnterState();
@@ -20,6 +22,9 @@ public class IngameState : StateWithView<IngameView>
     }
     private void InitGameState()
     {
+        if(!m_SkipCutScene)
+            view.GetAnimator().TriggerAnimation();
+
 
         var levelGen = view.GetLevelAlways();
         
