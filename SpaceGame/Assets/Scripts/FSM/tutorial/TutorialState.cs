@@ -2,16 +2,27 @@
 
 public class TutorialState : StateWithView<IngameView>
 {
-
     [SerializeField] private TutorialFSM m_tutorialFSM = null;
     [SerializeField] private AbstractView m_TutorialFSMView = null;
+    [SerializeField] private int m_index = 2;
+    private int m_currentIndex = 0;
     //init tutorial fsm on state enter 
+    private void OnDestroy()
+    {
+        EventHandler.Instance.StationFilled -= StationFilled;
+
+    }
     public override void EnterState()
     {
+        EventHandler.Instance.StationFilled += StationFilled;
+        m_currentIndex = 0;
         base.EnterState();
         InitGameState();
         m_TutorialFSMView.EnableView();
         m_tutorialFSM.InitTutorial();
+    }
+    public void TrashCollected()
+    {
     }
     public void TimeOut()
     {
@@ -25,22 +36,22 @@ public class TutorialState : StateWithView<IngameView>
         view.GetTimer().gameObject.SetActive(false);
 
         var levelGen = view.GetLevelAlways();
-        
+
         //delete level and prewarm a new one
         levelGen.DeleteLevel();
         levelGen.Prewarm();
-        
+
         //apply the prewarm only if the tutorial is supposed to 
         view.GetLevelIfGenerator(this)?.ApplyPrewarm();
         InitPlayer();
-        
+
         EventHandler.Instance.StartTutorial();
     }
     private void InitPlayer()
     {
         //reset cargo & player pos
         GameObject player = view.GetPlayer();
-        
+
         var playerHealth = player.GetComponent<PlayerHealth>();
 
         //configure Death Watch
@@ -57,8 +68,14 @@ public class TutorialState : StateWithView<IngameView>
     }
     public void FinishTutorial()
     {
+        EventHandler.Instance.StationFilled -= StationFilled;
         m_TutorialFSMView.DisableView();
         fsm.ChangeState<IngameState>();
     }
-
+    public void StationFilled()
+    {
+        m_currentIndex++;
+        if (m_currentIndex == m_index)
+            FinishTutorial();
+    }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,7 +38,10 @@ public class PlayerCargo : MonoBehaviour, IObserver
             UpdateView();
         }
     }
-
+    public void OnEnable()
+    {
+        InitSlider();
+    }
     public void Start()
     {
         EventHandler.Instance.TutorialStart += ResetCargo;
@@ -51,13 +53,13 @@ public class PlayerCargo : MonoBehaviour, IObserver
     //gets executed on ingame state enter
     public void ResetCargo()
     {
-        InitSlider();
 
         if (m_overrideMaxCargo)
             WebConfigHandler.OnFinishDownload(o =>
             {
                 o.ExtractInt("max_cargo", value => m_cargoLimit = value);
             });
+        InitSlider();
 
         SpaceOccupied = 0;
     }
@@ -65,10 +67,14 @@ public class PlayerCargo : MonoBehaviour, IObserver
     //Initialize the Slider
     private void InitSlider()
     {
+        if (!m_lerp)
+            m_lerp = m_slider.gameObject.AddComponent<LerpSlider>();
+
         m_slider.maxValue = m_cargoLimit;
         m_slider.minValue = 0;
-        m_lerp = m_slider.gameObject.AddComponent<LerpSlider>();
         m_lerp.Init(m_slider, m_tweenSpeed, m_MinSliderValue);
+
+
     }
 
 
