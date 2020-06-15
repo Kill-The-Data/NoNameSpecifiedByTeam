@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class PlayerCargoVisual : MonoBehaviour
 {
@@ -7,6 +8,11 @@ public class PlayerCargoVisual : MonoBehaviour
     [SerializeField] private float m_TrashOffset = -1.75f;
     [SerializeField] private float m_MinScale = 0.5f;
     [SerializeField] private float m_MaxScale = 2.25f;
+
+    private void Start()
+    {
+        EventHandler.Instance.TutorialStart += Reset;
+    }
 
     private int m_amount = 0;
     private void OnEnable()

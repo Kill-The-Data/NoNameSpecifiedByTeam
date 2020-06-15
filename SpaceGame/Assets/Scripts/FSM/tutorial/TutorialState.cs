@@ -32,29 +32,16 @@ public class TutorialState : StateWithView<IngameView>
         
         //apply the prewarm only if the tutorial is supposed to 
         view.GetLevelIfGenerator(this)?.ApplyPrewarm();
-        
         InitPlayer();
-
-        //reset everything that is tagged with reset and has a reset script attached
-        GameObject[] resetObjs = GameObject.FindGameObjectsWithTag("Reset");
-        foreach (GameObject currentObj in resetObjs)
-        {
-            currentObj.GetComponent<AReset>()?.Reset();
-        }
         
-        EventSingleton.Instance.EventHandler.StartTutorial();
+        EventHandler.Instance.StartTutorial();
     }
     private void InitPlayer()
     {
         //reset cargo & player pos
         GameObject player = view.GetPlayer();
-        player.GetComponent<PlayerController>().ResetController();
-        player.GetComponent<PlayerCargo>().ResetCargo();
-        player.GetComponentInChildren<PlayerCargoVisual>().Reset();
-        view.GetScore().Reset();
-
+        
         var playerHealth = player.GetComponent<PlayerHealth>();
-        playerHealth.ResetPlayerHealth();
 
         //configure Death Watch
         var deathWatch = player.GetComponent<DeathWatch>();
@@ -66,7 +53,6 @@ public class TutorialState : StateWithView<IngameView>
     }
     public void PlayerDied()
     {
-        Debug.Log("Reseting player");
         InitPlayer();
     }
     public void FinishTutorial()

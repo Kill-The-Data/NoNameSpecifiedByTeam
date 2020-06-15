@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using System.Collections.Generic;
 using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Collider))]
@@ -34,6 +33,8 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
     private AudioSource m_collisionSource;
     private AudioSource m_dropOffSource;
 
+    private float m_returnVolume;
+    
     private static AudioSource m_cursedAudioSource;
     
     //HACK:(Algo-ryth-mix): by all means try to change it
@@ -82,6 +83,7 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
         {
             m_dropOffSource.clip = manager.GetSound(m_dropOffSound);
             m_collisionSource.clip = manager.GetSound(m_collisionSound);
+            m_returnVolume = manager.GetFxVolume();
         });
         
         FindTaggedObjects();
@@ -122,12 +124,12 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
             playerController.Collide(1.5F);
             collision?.Invoke(this);
             
-            m_collisionSource.volume = 0.5f;
+            m_collisionSource.volume = m_returnVolume;
             m_collisionSource.Play();
             
             StartCoroutine(MuteAudio());
             
-            if(m_FillUp.Full()) return;
+            if(m_FillUp.GetState() == BuoyFillUp.BuoyCargoState.FULL) return;
 
             //get cargo
             int cargoAmount = cargo.SpaceOccupied;
@@ -138,7 +140,7 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
 
             
             //play audio
-            m_dropOffSource.volume = 0.5f;
+            m_dropOffSource.volume = m_returnVolume;
             m_dropOffSource.Play();
             
 

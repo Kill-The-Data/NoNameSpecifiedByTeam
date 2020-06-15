@@ -10,7 +10,9 @@ public class MotherShipHomingDeviceUI : MonoBehaviour
     [SerializeField] private bool m_showGizmos = false;
 
     [Tooltip("The Motherships to home")]
-    [SerializeField] private List<BuoyFillUp> m_targets = new List<BuoyFillUp>(1);
+    [SerializeField] private List<GameObject> m_targets = new List<GameObject>(1);
+
+    [SerializeField] private List<(Transform, BuoyFillUp)> m_targetTuples = new List<(Transform, BuoyFillUp)>();
     [Tooltip("The child that should be the homing device")]
     [SerializeField]  Transform m_homingDeviceChild = null;
 
@@ -29,16 +31,27 @@ public class MotherShipHomingDeviceUI : MonoBehaviour
     void Start()
     {
         if(m_targets.Count == 0) Debug.LogError("homing device is homeless, pls give home");
+        foreach (GameObject obj in m_targets)
+        {
+            if (obj.GetComponentSafe(out BuoyFillUp bfp))
+            {
+                m_targetTuples.Add((obj.transform, bfp));
+            }
+            else 
+                m_targetTuples.Add((obj.transform,null));
+        }
     }
 
     void Update()
     {
         Vector3 closest = Vector3.positiveInfinity;
         
-        foreach (BuoyFillUp buoyFillUp in m_targets)
+        foreach (var (target, buoy)  in m_targetTuples)
         {
-            var dist = transform.position - buoyFillUp.transform.position;
-            if(buoyFillUp.Full()) continue;
+            var dist = transform.position - target.position;
+            
+            //don't draw if the buoy is full
+            if(buoy != null && buoy.GetState() == BuoyFillUp.BuoyCargoState.FULL) continue;
             
             if (dist.magnitude < closest.magnitude)
             {
@@ -81,10 +94,10 @@ public class MotherShipHomingDeviceUI : MonoBehaviour
         UnityEditor.Handles.Label(transform.position+m_direction.normalized*m_hideRadius,"Unaffected Area");
 
         //draw the target position
-        foreach (BuoyFillUp buoyFillUp in m_targets)
+        foreach (var (target, buoy) in m_targetTuples)
         {
             UnityEditor.Handles.color = Color.red;
-            UnityEditor.Handles.DrawWireDisc(buoyFillUp.transform.position,Vector3.forward,0.1f);
+            UnityEditor.Handles.DrawWireDisc(target.transform.position,Vector3.forward,0.1f);
         }
       
     }
