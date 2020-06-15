@@ -43,6 +43,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_rotationAxis: {x: 0, y: 0, z: 0}
   m_angle: 0
+--- !u!114 &-3741420090663368039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8970989272100361433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2228136b2b87874c9e45aa772707a16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsTutorialTrash: 0
 --- !u!114 &6272200380472951646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,19 +70,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Drag: 0.995
   Speed: {x: 0, y: 0, z: 0}
---- !u!114 &-3741420090663368039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8970989272100361433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2228136b2b87874c9e45aa772707a16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IsTutorialTrash: 0
 --- !u!1001 &1107522806958951888
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -146,6 +146,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Debris
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 3374013b42f1d8e4482ebc7faf5f9c5f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3374013b42f1d8e4482ebc7faf5f9c5f, type: 3}

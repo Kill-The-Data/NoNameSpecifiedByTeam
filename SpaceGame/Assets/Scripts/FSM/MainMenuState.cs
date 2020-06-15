@@ -18,7 +18,6 @@ public class MainMenuState : StateWithView<HighscoreView>
 
     public override void ExitState()
     {
-        Camera.main.GetComponent<CamBlurScript>()?.DeactivateBlur();
         base.ExitState();
     }
 

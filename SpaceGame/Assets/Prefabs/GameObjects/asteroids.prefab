@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5941179e66bd25641be383ea8f976d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_soundId: collision
+  m_soundId: collision-rock
 --- !u!114 &8524449071306962812
 MonoBehaviour:
   m_ObjectHideFlags: 0

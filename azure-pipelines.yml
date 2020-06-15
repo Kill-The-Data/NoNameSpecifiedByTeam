@@ -47,7 +47,7 @@ steps:
       buildTarget: 'Win64'
       unityProjectPath: 'SpaceGame'
       outputPath: '$(Build.BinariesDirectory)'
-      outputFileName: 'drop'
+      outputFileName: 'spacegame'
     name: 'unitybuild'
   - task: PublishBuildArtifacts@1
     inputs:

@@ -11,13 +11,13 @@ public abstract class State : MonoBehaviour
     }
     public virtual void EnterState()
     {
-        Debug.Log("Entering state : " + this);
+        Debug.Log("[FSM] Entering state : " + this);
         gameObject.SetActive(true);
     }
 
     public virtual void ExitState() 
     {
-        Debug.Log("leaving state : " + this);
+        Debug.Log("[FSM] leaving state : " + this);
         gameObject.SetActive(false);
     }
 }

@@ -80,6 +80,11 @@ public class LerpSlider : MonoBehaviour, IObserver
         {
             UpdateSlider(health.Health);
         }
+        if (subject is PlayerCargo cargo)
+        {
+            Debug.Log("update slider");
+            UpdateSlider(cargo.SpaceOccupied);
+        }
     }
 }
 

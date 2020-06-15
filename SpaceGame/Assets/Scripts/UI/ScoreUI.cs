@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using TMPro;
 
 public class ScoreUI : MonoBehaviour, IObserver
@@ -18,6 +19,13 @@ public class ScoreUI : MonoBehaviour, IObserver
     private int m_currentScore = 0;
 
     public int GetScore() => m_currentScore;
+
+    public void start()
+    {
+        EventHandler.Instance.TutorialStart += Reset;
+    }
+
+
     public void Reset()
     {
         m_currentScore = 0;

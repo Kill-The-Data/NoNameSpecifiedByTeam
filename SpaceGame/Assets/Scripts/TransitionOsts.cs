@@ -9,8 +9,8 @@ public class TransitionOsts : MonoBehaviour
 
     private void Start()
     {
-        EventSingleton.Instance.EventHandler.TutorialStart += MenuToIngame;
-        EventSingleton.Instance.EventHandler.GameFinished += IngameToMenu;
+        EventHandler.Instance.TutorialStart += MenuToIngame;
+        EventHandler.Instance.GameFinished += IngameToMenu;
     }
 
 
@@ -21,10 +21,6 @@ public class TransitionOsts : MonoBehaviour
         
         StartCoroutine(FadeVolume(0, m_menu.Volume, m_ingame,m_menu,true));
         StartCoroutine(FadeVolume(m_menu.Volume, 0, m_menu,m_ingame,false));
-        /*
-        m_ingame.Volume = m_menu.Volume;
-        m_menu.Volume = 0;
-        */
     }
 
     private void IngameToMenu()
@@ -33,10 +29,6 @@ public class TransitionOsts : MonoBehaviour
         
         StartCoroutine(FadeVolume(0, m_ingame.Volume, m_menu,m_ingame,true));
         StartCoroutine(FadeVolume(m_ingame.Volume, 0, m_ingame,m_menu,false));
-        /*
-        m_menu.Volume = m_ingame.Volume;
-        m_ingame.Volume = 0;
-        */
     }
 
     IEnumerator FadeVolume(float current, float target,OstPlayer player,OstPlayer foreign,bool stopOther)

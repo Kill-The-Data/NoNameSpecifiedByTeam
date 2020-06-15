@@ -76,12 +76,15 @@ public class PlayerController : MonoBehaviour
         {
             m_emitters.Add(psystem.emission);
         }
-        
+
+        EventHandler.Instance.TutorialStart += ResetController;
+
     }
 
     //gets called on state enter to reset player 
     public void ResetController()
     {
+        Enable();
         transform.position = new Vector3(0, 0, transform.position.z);
         m_speed = Vector3.zero;
     }
@@ -212,13 +215,13 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 GetVelocity() => m_speed;
 
-    public void InitCutscene()
+    public void BeginCutscene()
     {
         m_drag = 0.95f;
         Disable();
     }
 
-    public void StopCutscene()
+    public void FinishCutscene()
     {
         m_drag = m_setDrag;
         Enable();

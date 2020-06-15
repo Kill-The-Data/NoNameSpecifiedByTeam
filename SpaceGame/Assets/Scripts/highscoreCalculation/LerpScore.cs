@@ -99,14 +99,12 @@ public class LerpScore : MonoBehaviour
         m_filledUp = filledBoys;
         m_finished = reachedGoal;
         m_ScoreText.text = initialScore.ToString();
-
-
+        
         InitText(reachedGoal.ToString(), m_finishedText);
         InitText(filledBoys.ToString(), m_buoysFilledUp);
         InitText(m_timeLeft.ToString(), m_timeLeftText);
         InitText(m_healthLeft.ToString(), m_HealthLeftText);
-
-
+        
         AddTime();
 
     }

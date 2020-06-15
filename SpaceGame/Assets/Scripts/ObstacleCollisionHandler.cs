@@ -1,5 +1,4 @@
 ﻿using System;
-using SubjectFilters;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -21,6 +20,7 @@ public class ObstacleCollisionHandler : MonoBehaviour , ISubject
         SoundManager.ExecuteOnAwake(manager =>
         {
             m_audioSource.clip = manager.GetSound(m_soundId);
+            m_audioSource.volume = manager.GetFxVolume();
         });
         
         WebConfigHandler.OnFinishDownload(o =>
@@ -42,10 +42,31 @@ public class ObstacleCollisionHandler : MonoBehaviour , ISubject
         HandlePlayerExit(other);
     }
 
+    public void OnTriggerStay(Collider other)
+    {
+        HandlePlayerStay(other);
+    }
+
+    private float m_time = 0;
+    
+    private void HandlePlayerStay(Collider other)
+    {
+        if ((other.CompareTag("Player") || other.CompareTag("Player-Collector"))
+            && other.transform.parent.GetComponentSafe(out PlayerController playerController))
+        {
+            m_time += Time.deltaTime;
+            if (m_time > 1)
+            {
+                //make sure the player does not get stuck
+                playerController.Enable();
+            }
+        }
+    }
+
 
     private void HandlePlayerEnter(Collider other)
     {
-        if ((other.CompareTag("Player") || other.CompareTag("Player-Collector"))
+        if ( (other.CompareTag("Player") || other.CompareTag("Player-Collector"))
             && other.transform.parent.GetComponentSafe(out PlayerHealth playerHealth)
             && other.transform.parent.GetComponentSafe(out PlayerController playerController)
         )
@@ -66,13 +87,13 @@ public class ObstacleCollisionHandler : MonoBehaviour , ISubject
     private void DealDamage(PlayerHealth health, PlayerController controller)
     {
         if (health == null || controller == null) return;
-
         if (!m_hasDealtDamage)
         {
             health.TakeDamage(m_damage);
             
             //make the factor so big you actually bounce back
             controller.Collide(1.4f);
+            controller.Disable();
             
             m_hasDealtDamage = true;
             Notify();
@@ -81,9 +102,12 @@ public class ObstacleCollisionHandler : MonoBehaviour , ISubject
 
     private void HandlePlayerExit(Collider other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Player-Collector"))
+        if ( (other.CompareTag("Player") || other.CompareTag("Player-Collector"))
+        && other.transform.parent.GetComponentSafe(out PlayerController playerController))
         {
             m_hasDealtDamage = false;
+            playerController.Enable();
+            m_time = 0;
         }
     }
     

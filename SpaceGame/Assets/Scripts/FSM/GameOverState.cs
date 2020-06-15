@@ -14,7 +14,7 @@ public class GameOverState : StateWithView<BasicView>
 
     IEnumerator AdvanceFSM()
     {
-        Debug.Log($"Entered Corroutine to end GameOverScreen in {Timeout} seconds");
+        Debug.Log($"Entered Coroutine to end GameOverScreen in {Timeout} seconds");
         yield return new WaitForSeconds(Timeout);
         SelectView();
     }
