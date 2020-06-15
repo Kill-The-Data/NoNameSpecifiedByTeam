@@ -8999,6 +8999,10 @@ PrefabInstance:
       propertyPath: m_Fsm
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2137485633, guid: a7ece3eee5d4b4a42946cdfda577b32d, type: 3}
+      propertyPath: m_collisionSound
+      value: collision-buoy
+      objectReference: {fileID: 0}
     - target: {fileID: 893843195312121207, guid: a7ece3eee5d4b4a42946cdfda577b32d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12001,6 +12005,7 @@ GameObject:
   - component: {fileID: 1306308158}
   - component: {fileID: 1306308157}
   - component: {fileID: 1306308156}
+  - component: {fileID: 1306308159}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -12188,7 +12193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0adc69152b31264186d83223216552f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_sound: collision
+  m_sound: inventory-full-collision
   m_randomPitch: 1
   m_volume: 0.5
 --- !u!114 &1306308154
@@ -12275,6 +12280,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_target: {fileID: 1306308157}
   m_debrisField: {fileID: 1160042669}
+--- !u!114 &1306308159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306308143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aa016f580c102243851ea634f2b7ac0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_sound: inventory-full
+  m_cargo: {fileID: 1306308146}
 --- !u!1001 &1307156266
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14204,8 +14223,14 @@ MonoBehaviour:
     Sound: {fileID: 8300000, guid: 5eb46fa2c2de5e649a600104865460df, type: 3}
   - Name: powerup-shield
     Sound: {fileID: 8300000, guid: 007286c357a336348b65284c0eabdfb1, type: 3}
-  - Name: menu-ost
-    Sound: {fileID: 8300000, guid: 6dbba517b37b63c41bc86a0c6fac8715, type: 3}
+  - Name: inventory-full
+    Sound: {fileID: 8300000, guid: 5aaebab411da5624f87422dcfa6036c2, type: 3}
+  - Name: inventory-full-collision
+    Sound: {fileID: 8300000, guid: 9d3e7fd04d2597f47a9d8f9ab1b34de8, type: 3}
+  - Name: collision-rock
+    Sound: {fileID: 8300000, guid: 0bb997473c70f8342b59f93566356cd6, type: 3}
+  - Name: collision-buoy
+    Sound: {fileID: 8300000, guid: a4e9d775a41e23743a92b90d0803b1a1, type: 3}
 --- !u!114 &1660827290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18970,7 +18995,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_scorePerCargo: 10
-  m_playerSound: debris-dropoff
+  m_collisionSound: collision-buoy
+  m_dropOffSound: debris-dropoff
 --- !u!114 &8119748708143194469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19504,7 +19530,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_scorePerCargo: 10
-  m_playerSound: debris-dropoff
+  m_collisionSound: collision-buoy
+  m_dropOffSound: debris-dropoff
 --- !u!114 &8119748708276461613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21148,7 +21175,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_scorePerCargo: 10
-  m_playerSound: debris-dropoff
+  m_collisionSound: collision-buoy
+  m_dropOffSound: debris-dropoff
 --- !u!33 &8119748709645201018
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -21824,7 +21852,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_scorePerCargo: 10
-  m_playerSound: debris-dropoff
+  m_collisionSound: collision-buoy
+  m_dropOffSound: debris-dropoff
 --- !u!114 &8119748710004711555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22194,7 +22223,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_scorePerCargo: 10
-  m_playerSound: debris-dropoff
+  m_collisionSound: collision-buoy
+  m_dropOffSound: debris-dropoff
 --- !u!114 &8119748710095290153
 MonoBehaviour:
   m_ObjectHideFlags: 0
