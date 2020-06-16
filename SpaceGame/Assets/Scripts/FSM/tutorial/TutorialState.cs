@@ -53,6 +53,9 @@ public class TutorialState : StateWithView<IngameView>
         GameObject player = view.GetPlayer();
 
         var playerHealth = player.GetComponent<PlayerHealth>();
+        playerHealth.ResetPlayerHealth();
+        player.GetComponent<PlayerController>().ResetController();
+        player.GetComponent<PlayerCargo>().ResetCargo();
 
         //configure Death Watch
         var deathWatch = player.GetComponent<DeathWatch>();
