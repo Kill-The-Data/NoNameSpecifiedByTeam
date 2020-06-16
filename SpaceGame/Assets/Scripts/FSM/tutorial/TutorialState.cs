@@ -21,12 +21,17 @@ public class TutorialState : StateWithView<IngameView>
         m_TutorialFSMView.EnableView();
         m_tutorialFSM.InitTutorial();
     }
+    public override void ExitState()
+    {
+        EventHandler.Instance.StationFilled -= StationFilled;
+        base.ExitState();
+    }
     public void TrashCollected()
     {
     }
     public void TimeOut()
     {
-        ExitState();
+        EventHandler.Instance.FinishGame();
         fsm.ChangeState<MainMenuState>();
     }
     private void InitGameState()
@@ -53,6 +58,9 @@ public class TutorialState : StateWithView<IngameView>
         GameObject player = view.GetPlayer();
 
         var playerHealth = player.GetComponent<PlayerHealth>();
+        playerHealth.ResetPlayerHealth();
+        player.GetComponent<PlayerController>().ResetController();
+        player.GetComponent<PlayerCargo>().ResetCargo();
 
         //configure Death Watch
         var deathWatch = player.GetComponent<DeathWatch>();
