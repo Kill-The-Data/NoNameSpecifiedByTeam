@@ -18,6 +18,7 @@ public class IngameState : StateWithView<IngameView>
 
     public void TimeOut()
     {
+        EventHandler.Instance.FinishGame();
         fsm.ChangeState<MainMenuState>();
     }
     private void InitGameState()

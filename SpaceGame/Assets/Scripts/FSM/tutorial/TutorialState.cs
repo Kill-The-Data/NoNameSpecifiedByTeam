@@ -21,12 +21,17 @@ public class TutorialState : StateWithView<IngameView>
         m_TutorialFSMView.EnableView();
         m_tutorialFSM.InitTutorial();
     }
+    public override void ExitState()
+    {
+        EventHandler.Instance.StationFilled -= StationFilled;
+        base.ExitState();
+    }
     public void TrashCollected()
     {
     }
     public void TimeOut()
     {
-        ExitState();
+        EventHandler.Instance.FinishGame();
         fsm.ChangeState<MainMenuState>();
     }
     private void InitGameState()

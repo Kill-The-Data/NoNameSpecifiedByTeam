@@ -22,21 +22,33 @@ public class BuoyFillUp : MonoBehaviour
     void Awake()
     {
         Init();
-        if(!NoWebConfig) WebConfigHandler.OnFinishDownload(o =>
-        {
-            o.ExtractInt("buoy_cargo", value => m_MaxFillUp = value);
-        });
-        
-        
+        if (!NoWebConfig) WebConfigHandler.OnFinishDownload(o =>
+         {
+             o.ExtractInt("buoy_cargo", value => m_MaxFillUp = value);
+         });
+
+
     }
+
+    private void OnEnable()
+    {
+        EventHandler.Instance.TutorialStart += Init;
+        ;
+    }
+
+    private void OnDisable()
+    {
+        EventHandler.Instance.TutorialStart -= Init;
+    }
+
     public void Init()
     {
         if (!m_Lerper)
         {
             m_Lerper = m_TargetRenderer.gameObject.AddComponent<LerpSlider>();
+            Material mat = m_TargetRenderer.material;
+            m_Lerper.Init(mat, m_tweenSpeed, m_MinSliderValue);
         }
-        Material mat = m_TargetRenderer.material;
-        m_Lerper.Init(mat, m_tweenSpeed, m_MinSliderValue);
         m_currentFillUp = 0;
         m_Lerper.UpdateSlider(0.01f);
     }
@@ -58,7 +70,6 @@ public class BuoyFillUp : MonoBehaviour
         //set fill up to max if it exceeds max
         if (m_currentFillUp >= m_MaxFillUp)
         {
-
             remainingCargo = m_currentFillUp - m_MaxFillUp;
             m_currentFillUp = m_MaxFillUp;
             FilledUp();
