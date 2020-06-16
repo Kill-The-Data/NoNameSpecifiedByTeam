@@ -1424,6 +1424,7 @@ Transform:
   - {fileID: 123532382}
   - {fileID: 1933550604}
   - {fileID: 1113892699104160105}
+  - {fileID: 1992721038}
   m_Father: {fileID: 1516953127}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11748,63 +11749,80 @@ MonoBehaviour:
   position: {x: -25, y: -58}
   NoMansLandRadius: 400
   EasterEggDistance: 50
-  prefabs:
+  TrashList:
   - {fileID: 8328469310705865685, guid: e0aef02871ba57746a7f3cc8a8e60a52, type: 3}
   - {fileID: 5080322407252891567, guid: 7e29ff2e2d54cb046a8c4392c3af4069, type: 3}
   - {fileID: 112235712528659674, guid: 4d5e4cda620271944a004060c8230f69, type: 3}
-  - {fileID: 5274028647785834030, guid: 1cd3ebbf2322981468181e1d2a51f960, type: 3}
   - {fileID: 6582750916575378424, guid: 5baa027644fd42a47911679a35afc1c4, type: 3}
+  - {fileID: 5274028647785834030, guid: 1cd3ebbf2322981468181e1d2a51f960, type: 3}
   - {fileID: 4380982213710771776, guid: 608397ff028ed344bad32dcc9b2ea5af, type: 3}
-  obstacles:
+  AsteroidsList:
+  - {fileID: 390969096495704360, guid: b83ad0314103d5e4b8bd722a25077f4e, type: 3}
+  ObstaclesList:
+  - {fileID: 390969096495704360, guid: b83ad0314103d5e4b8bd722a25077f4e, type: 3}
   - {fileID: 2217897059841504406, guid: 0d0740601c8011949b05ee24938ca024, type: 3}
   - {fileID: 2985262068716217334, guid: baf16a2fdd7a572408469b9bbb8ffb7c, type: 3}
-  - {fileID: 390969096495704360, guid: b83ad0314103d5e4b8bd722a25077f4e, type: 3}
-  easterEggs:
-  - {fileID: 8970989272100361433, guid: 4774a5b34e5ed1b41868690a6770db7b, type: 3}
-  - {fileID: 6512097842701061201, guid: 57113823c130b844594001c107c0746f, type: 3}
+  EasterEggsList:
   - {fileID: 6205337384004650907, guid: 0a23c97a0a959f345a585994c248d91f, type: 3}
+  - {fileID: 6512097842701061201, guid: 57113823c130b844594001c107c0746f, type: 3}
+  - {fileID: 8970989272100361433, guid: 4774a5b34e5ed1b41868690a6770db7b, type: 3}
   - {fileID: 3192298957541809606, guid: 4441869eb21f69347b31856ed3ae84e4, type: 3}
   m_zones:
   - Target: {fileID: 13010560}
     Radius: 12
     OuterRadius: 12
     AmountTrash: 0
+    listType: 0
   - Target: {fileID: 1306308144}
     Radius: 13.7
     OuterRadius: 20.3
     AmountTrash: 10
+    listType: 0
   - Target: {fileID: 577936648}
     Radius: 12
     OuterRadius: 12
     AmountTrash: 4
+    listType: 0
   - Target: {fileID: 8119748709957475943}
     Radius: 20
     OuterRadius: 30
     AmountTrash: 6
+    listType: 0
   - Target: {fileID: 365627860}
     Radius: 13.7
     OuterRadius: 35.5
     AmountTrash: 10
+    listType: 0
   - Target: {fileID: 8119748708984470762}
     Radius: 20
     OuterRadius: 30
     AmountTrash: 6
+    listType: 0
   - Target: {fileID: 3535576680468957000}
     Radius: 13.7
     OuterRadius: 28.3
     AmountTrash: 10
+    listType: 0
   - Target: {fileID: 8119748708280729661}
     Radius: 20
     OuterRadius: 30
     AmountTrash: 4
+    listType: 0
   - Target: {fileID: 8119748709824023188}
     Radius: 20
     OuterRadius: 30
     AmountTrash: 6
+    listType: 0
   - Target: {fileID: 8119748709827247010}
     Radius: 20
     OuterRadius: 30
     AmountTrash: 6
+    listType: 0
+  - Target: {fileID: 1992721038}
+    Radius: 0
+    OuterRadius: 30
+    AmountTrash: 6
+    listType: 1
   m_showDebrisExclusions: 1
   m_exclusionZoneRadiusForNewDebris: 7
   m_exclusionZoneRadiusForNewObstacle: 25
@@ -17141,6 +17159,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_parentObject: {fileID: 1306308143}
   _timerView: {fileID: 5630395463428238593}
+--- !u!1 &1992721037
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1992721038}
+  m_Layer: 0
+  m_Name: ExampleAsteroidSpawner(element10)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1992721038
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1992721037}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 283.2, y: 56.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 124542239}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1994271016
 GameObject:
   m_ObjectHideFlags: 0
