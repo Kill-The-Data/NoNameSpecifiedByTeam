@@ -78,6 +78,10 @@ public class VoronoiDebrisGen : MonoBehaviour
         public int AmountTrash;
         public VoronoiDebrisGen.ListSelection listType;
         public int InitialTrash { get; set; }
+        public bool GeneratesTrash
+        {
+            get => listType == ListSelection.TRASH;
+        }
     }
 
     [Header(" --- Setup Exclusion Zones ---")]
@@ -196,7 +200,7 @@ public class VoronoiDebrisGen : MonoBehaviour
             //check if the trash has been spawned in the death zone
             bool inDeathZone = Vector3.Distance(center, pos) > NoMansLandRadius;
 
-            if (!MaximumDebrisCount.AddDebris()) continue;
+           
 
             //Gameobject to instantiate
             GameObject spawnPrefab = null;
@@ -204,10 +208,15 @@ public class VoronoiDebrisGen : MonoBehaviour
             if (!CheckNearbyDebris(pos, inDeathZone)) continue;
             if (!inDeathZone)
             {
-                var (success,prefab)  = CheckGenZones(pos);
+                var (success,prefab,zone)  = CheckGenZones(pos);
+                if (zone.GeneratesTrash)
+                {
+                    if (!MaximumDebrisCount.AddDebris()) continue;
+                }
                 if (!success) continue;
                 spawnPrefab = prefab;
             }
+            
 
 
             var exclusionRadius = m_exclusionZoneRadiusForNewDebris;
@@ -267,8 +276,10 @@ public class VoronoiDebrisGen : MonoBehaviour
 
     //checks if a zone is suitable
     //if suitable zone is found, it selects a random object for the zone
-    private (bool, GameObject) CheckGenZones(Vector3 pos)
+    private (bool, GameObject,ExclusionZone) CheckGenZones(Vector3 pos)
     {
+        ExclusionZone current = null;
+        
         bool can_gen = false;
         GameObject GameObjectToGen = null;
         foreach (var zone in m_zones)
@@ -285,7 +296,7 @@ public class VoronoiDebrisGen : MonoBehaviour
             //check if the trash is to close
             if (dist < zone.Radius)
             {
-                return (false, null);
+                return (false, null,null);
             }
 
             //check if the trash is just right
@@ -296,8 +307,10 @@ public class VoronoiDebrisGen : MonoBehaviour
 
                 if (!can_gen)
                 {
-                    return (false, null);
+                    return (false, null, null);
                 }
+
+                current = zone;
                 
                 //get Random gameobject
                 var collection = GetCollection(zone);
@@ -309,7 +322,7 @@ public class VoronoiDebrisGen : MonoBehaviour
         }
 
 
-        return (true, GameObjectToGen);
+        return (true, GameObjectToGen,current);
     }
 
     //takes in an exclusion zone and returns the associated spawn List, with list type
