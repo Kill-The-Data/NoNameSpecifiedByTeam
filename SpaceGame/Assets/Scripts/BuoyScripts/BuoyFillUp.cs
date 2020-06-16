@@ -26,14 +26,11 @@ public class BuoyFillUp : MonoBehaviour
          {
              o.ExtractInt("buoy_cargo", value => m_MaxFillUp = value);
          });
-
-
     }
 
     private void OnEnable()
     {
         EventHandler.Instance.TutorialStart += Init;
-        ;
     }
 
     private void OnDisable()
