@@ -16,6 +16,8 @@ public class TimerView : MonoBehaviour, IObserver
     [SerializeField] private float m_duration = 30F;
 
     private const float INITIAL_AMOUNT_OF_FUEL = 60;
+
+    private float time = INITIAL_AMOUNT_OF_FUEL;
     
     public Timer timer
     {
@@ -45,6 +47,8 @@ public class TimerView : MonoBehaviour, IObserver
         {
             timer?.Pause();
         }
+        
+        UpdateText(time);
     }
     public void AttachPerformanceMeasure(PerformanceMeasure performance)
     {
@@ -59,12 +63,12 @@ public class TimerView : MonoBehaviour, IObserver
             if (timer.GetState() == Timer.TimerState.ACTIVE)
             {
                 // update the text
-                UpdateText(timer.GetTime());
+                time = timer.GetTime();
             }
             else if (timer.GetState() == Timer.TimerState.OUT_OF_TIME)
             {
                 // when the timer exits set the time one last time to 0
-                UpdateText(0);
+                time = 0;
             }
         }
     }
