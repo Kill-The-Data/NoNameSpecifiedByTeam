@@ -8,6 +8,14 @@ using Random = UnityEngine.Random;
 
 public class VoronoiDebrisGen : MonoBehaviour
 {
+    public enum ListSelection
+    {
+        TRASH,
+        ASTEROIDS,
+        BIG_OBSTACLES
+    };
+
+
     //----------- Setup Variables
     [Header(" --- Setup ---")]
     [Tooltip("Whether or not to show the Gizmos for The Voronoi Params")]
@@ -45,15 +53,22 @@ public class VoronoiDebrisGen : MonoBehaviour
 
     //----------- Trash Setup Variables
     [Header(" --- Setup trash Prefabs --- ")]
-    public List<GameObject> prefabs;
-    
+    public List<GameObject> TrashList;
+
+    [Header(" --- Setup big Asteroids --- ")]
+
+    public List<GameObject> AsteroidsList;
+
     [Header(" --- Setup big Obstacles --- ")]
-    public List<GameObject> obstacles;
-    
+    public List<GameObject> ObstaclesList;
+
     [Header(" --- Easter eggs --- ")]
-    public List<GameObject> easterEggs;
+    public List<GameObject> EasterEggsList;
+
+
 
     //----------- Exclusion Zone Setup Variables
+    //----------- takes in a list type that correlates to the list of spawnable objects
     [Serializable]
     public class ExclusionZone
     {
@@ -61,6 +76,7 @@ public class VoronoiDebrisGen : MonoBehaviour
         public float Radius;
         public float OuterRadius;
         public int AmountTrash;
+        public VoronoiDebrisGen.ListSelection listType;
         public int InitialTrash { get; set; }
     }
 
@@ -140,14 +156,14 @@ public class VoronoiDebrisGen : MonoBehaviour
     private void GenerateEasterEggs()
     {
 
-        foreach (GameObject currentObj in easterEggs)
+        foreach (GameObject currentObj in EasterEggsList)
         {
             Vector2 randomRadial = Random.insideUnitCircle;
             randomRadial = randomRadial.normalized;
             randomRadial *= (NoMansLandRadius - EasterEggDistance);
 
             Vector3 pos = new Vector3(randomRadial.x + position.x + NoMansLandRadius / 2 + 10, randomRadial.y + NoMansLandRadius / 2 + position.y + 10, ZCoord);
-            GameObject obj= m_childAdder.AddChild(Instantiate(currentObj, pos, Quaternion.identity));
+            GameObject obj = m_childAdder.AddChild(Instantiate(currentObj, pos, Quaternion.identity));
             obj.SetActive(false);
             m_finalShow += () => obj.SetActive(true);
 
@@ -181,43 +197,49 @@ public class VoronoiDebrisGen : MonoBehaviour
             bool inDeathZone = Vector3.Distance(center, pos) > NoMansLandRadius;
 
             if (!MaximumDebrisCount.AddDebris()) continue;
-            //check all exclusion zones
 
+            //Gameobject to instantiate
+            GameObject spawnPrefab = null;
+            //check all exclusion zones
+            if (!CheckNearbyDebris(pos, inDeathZone)) continue;
             if (!inDeathZone)
             {
-                if (!CheckGenZones(pos)) continue;
+                Tuple<bool, GameObject> tuple = CheckGenZones(pos);
+                if (!tuple.Item1) continue;
+                spawnPrefab = tuple.Item2;
             }
-            if (!CheckNearbyDebris(pos, inDeathZone)) continue;
 
 
             var exclusionRadius = m_exclusionZoneRadiusForNewDebris;
-            var collection = prefabs;
+
+            var collection = TrashList;
 
             if (inDeathZone)
             {
                 if (Random.Range(0F, 1F) > 0.5F)
                 {
-                    collection = obstacles;
+                    collection = ObstaclesList;
                     exclusionRadius = m_exclusionZoneRadiusForNewObstacle;
                 }
             }
-            
-            //get a random piece of trash
-            int randomIndex = UnityEngine.Random.Range(0, collection.Count);
 
             //random trash orientation
             float randomFloat = UnityEngine.Random.Range(0, 360);
             Quaternion rotation = Quaternion.Euler(0, 0, randomFloat);
 
             //instantiate trash
-            GameObject trash = m_childAdder.AddChild(Instantiate(collection[randomIndex], pos, rotation));
-
-            if (do_prewarm && !inDeathZone)
+            //make sure Gamobject is not null
+            if (spawnPrefab != null)
             {
-                trash.SetActive(false);
-                m_finalShow += () => trash.SetActive(true);
+                GameObject trash = m_childAdder.AddChild(Instantiate(spawnPrefab, pos, rotation));
+
+                if (do_prewarm && !inDeathZone)
+                {
+                    trash.SetActive(false);
+                    m_finalShow += () => trash.SetActive(true);
+                }
+                m_debrisZones.Add(new ExclusionZone { Target = trash.transform, Radius = exclusionRadius });
             }
-            m_debrisZones.Add(new ExclusionZone { Target = trash.transform, Radius = exclusionRadius });
         }
     }
     public void DeleteLevel()
@@ -243,10 +265,12 @@ public class VoronoiDebrisGen : MonoBehaviour
         m_finalShow = null;
     }
 
-    private bool CheckGenZones(Vector3 pos)
+    //checks if a zone is suitable
+    //if suitable zone is found, it selects a random object for the zone
+    private Tuple<bool, GameObject> CheckGenZones(Vector3 pos)
     {
         bool can_gen = false;
-
+        GameObject GameObjectToGen = null;
         foreach (var zone in m_zones)
         {
             Vector3 test = pos;
@@ -261,7 +285,7 @@ public class VoronoiDebrisGen : MonoBehaviour
             //check if the trash is to close
             if (dist < zone.Radius)
             {
-                return false;
+                return new Tuple<bool, GameObject>(false, null);
             }
 
             //check if the trash is just right
@@ -269,11 +293,34 @@ public class VoronoiDebrisGen : MonoBehaviour
             {
                 //make sure this zone can gen any more trash
                 can_gen = zone.AmountTrash-- > 0;
+
+                //get Random gameobject
+                var collection = GetCollection(zone);
+                //get a random Object from the collection
+                int randomIndex = UnityEngine.Random.Range(0, collection.Count);
+                GameObjectToGen = collection[randomIndex];
+                if (GameObjectToGen == null) Debug.LogError("Debris Spawn Gameobject is null");
             }
         }
-        return can_gen;
+
+
+        return new Tuple<bool, GameObject>(can_gen, GameObjectToGen);
     }
 
+    //takes in an exclusion zone and returns the associated spawn List, with list type
+    private List<GameObject> GetCollection(ExclusionZone zone)
+    {
+        switch (zone.listType)
+        {
+            case ListSelection.ASTEROIDS:
+                return AsteroidsList;
+            case ListSelection.TRASH:
+                return TrashList;
+            case ListSelection.BIG_OBSTACLES:
+                return ObstaclesList;
+        }
+        return null;
+    }
     private bool CheckNearbyDebris(Vector3 pos, bool inDeathZone)
     {
         foreach (var zone in m_debrisZones)
@@ -363,18 +410,18 @@ public class VoronoiDebrisGen : MonoBehaviour
         }
 
         if (m_showDebrisExclusions && m_debrisZones != null) foreach (var zone in m_debrisZones)
-        {
-            if (!zone.Target) continue;
-            //draw the exclusion zone
-
-            var radius = zone.Radius;
-            if (Vector3.Distance(center, zone.Target.position) >= NoMansLandRadius)
             {
-                radius *= 0.5f;
+                if (!zone.Target) continue;
+                //draw the exclusion zone
+
+                var radius = zone.Radius;
+                if (Vector3.Distance(center, zone.Target.position) >= NoMansLandRadius)
+                {
+                    radius *= 0.5f;
+                }
+                UnityEditor.Handles.color = Color.yellow;
+                UnityEditor.Handles.DrawWireDisc(zone.Target.position, Vector3.forward, radius);
             }
-            UnityEditor.Handles.color = Color.yellow;
-            UnityEditor.Handles.DrawWireDisc(zone.Target.position, Vector3.forward, radius);
-        }
 
         UnityEditor.Handles.color = Color.red;
         //draw the bounding box
