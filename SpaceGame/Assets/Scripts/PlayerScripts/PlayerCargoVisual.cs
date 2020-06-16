@@ -19,11 +19,6 @@ public class PlayerCargoVisual : MonoBehaviour
     {
         Reset();
     }
-    private void Update()
-    {
-        Debug.Log(m_amount);
-
-    }
     public void InstantiateObj(GameObject obj)
     {
         GameObject newObj = Instantiate(obj);
