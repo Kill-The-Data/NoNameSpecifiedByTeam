@@ -204,9 +204,9 @@ public class VoronoiDebrisGen : MonoBehaviour
             if (!CheckNearbyDebris(pos, inDeathZone)) continue;
             if (!inDeathZone)
             {
-                Tuple<bool, GameObject> tuple = CheckGenZones(pos);
-                if (!tuple.Item1) continue;
-                spawnPrefab = tuple.Item2;
+                var (success,prefab)  = CheckGenZones(pos);
+                if (!success) continue;
+                spawnPrefab = prefab;
             }
 
 
@@ -267,7 +267,7 @@ public class VoronoiDebrisGen : MonoBehaviour
 
     //checks if a zone is suitable
     //if suitable zone is found, it selects a random object for the zone
-    private Tuple<bool, GameObject> CheckGenZones(Vector3 pos)
+    private (bool, GameObject) CheckGenZones(Vector3 pos)
     {
         bool can_gen = false;
         GameObject GameObjectToGen = null;
@@ -285,15 +285,20 @@ public class VoronoiDebrisGen : MonoBehaviour
             //check if the trash is to close
             if (dist < zone.Radius)
             {
-                return new Tuple<bool, GameObject>(false, null);
+                return (false, null);
             }
 
             //check if the trash is just right
             if (dist > zone.Radius && dist < zone.OuterRadius)
             {
                 //make sure this zone can gen any more trash
-                can_gen = zone.AmountTrash-- > 0;
+                can_gen = zone.AmountTrash --> 0;
 
+                if (!can_gen)
+                {
+                    return (false, null);
+                }
+                
                 //get Random gameobject
                 var collection = GetCollection(zone);
                 //get a random Object from the collection
@@ -304,7 +309,7 @@ public class VoronoiDebrisGen : MonoBehaviour
         }
 
 
-        return new Tuple<bool, GameObject>(can_gen, GameObjectToGen);
+        return (true, GameObjectToGen);
     }
 
     //takes in an exclusion zone and returns the associated spawn List, with list type
