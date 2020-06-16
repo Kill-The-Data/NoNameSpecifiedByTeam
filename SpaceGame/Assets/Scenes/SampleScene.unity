@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: b613b7f4cbf3e9f42a2f339a8725ccc1,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -13091,11 +13091,11 @@ MonoBehaviour:
   m_showGizmos: 0
   m_targets:
   - {fileID: 586008047}
-  - {fileID: 8119748708798253547}
-  - {fileID: 8119748710138879177}
-  - {fileID: 8119748708374937329}
-  - {fileID: 8119748708879402093}
-  - {fileID: 8119748708313463969}
+  - {fileID: 8119748710095290167}
+  - {fileID: 8119748709645200964}
+  - {fileID: 8119748708276461611}
+  - {fileID: 8119748708143194467}
+  - {fileID: 8119748710004711553}
   - {fileID: 13010564}
   m_homingDeviceChild: {fileID: 861739126}
   m_radius: 6.5
