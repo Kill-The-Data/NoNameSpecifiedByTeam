@@ -19,6 +19,11 @@ public class PlayerCargoVisual : MonoBehaviour
     {
         Reset();
     }
+    private void Update()
+    {
+        Debug.Log(m_amount);
+
+    }
     public void InstantiateObj(GameObject obj)
     {
         GameObject newObj = Instantiate(obj);
@@ -26,7 +31,7 @@ public class PlayerCargoVisual : MonoBehaviour
         {
             newObj.transform.parent = m_targetParent.transform;
             newObj.transform.localScale = Vector3.one;
-            newObj.transform.localPosition = new Vector3(0,m_amount * m_TrashOffset, 0);
+            newObj.transform.localPosition = new Vector3(0, m_amount * m_TrashOffset, 0);
 
         }
         m_amount++;
@@ -52,7 +57,7 @@ public class PlayerCargoVisual : MonoBehaviour
         }
         //get mesh bounds & scale object based on size
         Vector3 meshbounds = newObj.GetComponent<MeshFilter>().mesh.bounds.size;
-        float scale = Mathf.Clamp(newObj.transform.localScale.x * (m_ScaleFactor / meshbounds.magnitude),m_MinScale ,m_MaxScale);
+        float scale = Mathf.Clamp(newObj.transform.localScale.x * (m_ScaleFactor / meshbounds.magnitude), m_MinScale, m_MaxScale);
         newObj.transform.localScale = new Vector3(scale, scale, scale);
 
 
@@ -61,20 +66,24 @@ public class PlayerCargoVisual : MonoBehaviour
     public void RemoveObj(int amount)
     {
         for (int i = 0; i < m_targetParent.transform.childCount; ++i)
+        {
             if (amount <= i)
             {
                 Destroy(m_targetParent.transform.GetChild(i).gameObject);
                 m_amount--;
+                amount--;
             }
+        }
+        if (m_amount < 0) m_amount = 0;
     }
 
     public void Reset()
     {
         for (int i = 0; i < m_targetParent.transform.childCount; ++i)
-            {
-                Destroy(m_targetParent.transform.GetChild(i).gameObject);
-            }
-        m_amount=0;
+        {
+            Destroy(m_targetParent.transform.GetChild(i).gameObject);
+        }
+        m_amount = 0;
 
     }
 
