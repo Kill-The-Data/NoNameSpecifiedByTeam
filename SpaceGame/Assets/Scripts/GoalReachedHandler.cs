@@ -12,9 +12,9 @@ public class GoalReachedHandler : MonoBehaviour, IObserver
     [SerializeField] private CinematicController m_cinema;
     [FormerlySerializedAs("EndGameAfterTimeOut")] 
     [SerializeField] private bool m_endGameAfterTimeOut;
-    
+    [SerializeField] private bool m_SetActiveOnStart = false;
     //Setup
-    private void Start()
+    private void OnEnable()
     {
         m_FSM = GameObject.FindGameObjectWithTag("FSM")?.GetComponent<FSM>();
         Reset();
@@ -22,7 +22,7 @@ public class GoalReachedHandler : MonoBehaviour, IObserver
     private void Reset()
     {
         //reset bool & animation trigger
-        SetAnimation(false);
+        SetAnimation(m_SetActiveOnStart);
         //remove timer if attached
         if (this.GetComponentSafe(out Timer timer))
             Destroy(timer);

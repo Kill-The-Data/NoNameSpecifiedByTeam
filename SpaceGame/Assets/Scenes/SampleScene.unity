@@ -1363,6 +1363,7 @@ MonoBehaviour:
   m_cutsceneDuration: 11
   m_cinema: {fileID: 123532386}
   m_endGameAfterTimeOut: 0
+  m_SetActiveOnStart: 0
 --- !u!1 &124542237
 GameObject:
   m_ObjectHideFlags: 0
@@ -5763,12 +5764,12 @@ PrefabInstance:
     - target: {fileID: 895258948676774764, guid: cf02c66304ead144691c1a1fe756f3b0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 241
+      value: 423.8
       objectReference: {fileID: 0}
     - target: {fileID: 895258948676774764, guid: cf02c66304ead144691c1a1fe756f3b0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 523
+      value: 497.4
       objectReference: {fileID: 0}
     - target: {fileID: 895258948676774764, guid: cf02c66304ead144691c1a1fe756f3b0,
         type: 3}
@@ -11700,6 +11701,7 @@ MonoBehaviour:
   m_cutsceneDuration: 2
   m_cinema: {fileID: 123532386}
   m_endGameAfterTimeOut: 1
+  m_SetActiveOnStart: 1
 --- !u!224 &1149030504 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2764872169706729290, guid: 7b173fc7392438746a80d01bf86c017c,
