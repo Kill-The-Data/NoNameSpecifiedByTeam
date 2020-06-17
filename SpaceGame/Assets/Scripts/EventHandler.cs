@@ -20,7 +20,7 @@ public class EventHandler : MonoBehaviour
     public event Action GameStart;
     public event Action GameFinished;
     public event Action TutorialStart;
-
+    public event Action EasterEggPickedUp;
 
     void Awake()
     {
@@ -37,7 +37,10 @@ public class EventHandler : MonoBehaviour
     {
         StationFilled += OnStationFilled;
     }
-
+    public void PickUpEasterEgg() 
+    {
+        EasterEggPickedUp?.Invoke();
+    }
     public void FinishGame()
     {
         GameFinished?.Invoke();

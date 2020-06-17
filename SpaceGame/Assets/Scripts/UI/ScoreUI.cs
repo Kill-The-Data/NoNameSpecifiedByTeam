@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Jobs;
 
 public class ScoreUI : MonoBehaviour, IObserver
 {
@@ -15,17 +16,33 @@ public class ScoreUI : MonoBehaviour, IObserver
     [SerializeField] private float m_Yoffset = 10.0f;
     [SerializeField] private float m_tweenSpeed = 1.0f;
 
-
+    [SerializeField] private bool m_useConfigForEasterEggScore = true;
+    private int m_easterEggScoreGain = 100;
     private int m_currentScore = 0;
 
     public int GetScore() => m_currentScore;
 
     public void start()
     {
+        if (m_useConfigForEasterEggScore)
+            WebConfigHandler.OnFinishDownload(o =>
+            {
+                o.ExtractInt("Easter_Egg_Score", value => m_easterEggScoreGain = value);
+            });
         EventHandler.Instance.TutorialStart += Reset;
     }
-
-
+    private void OnEnable()
+    {
+        EventHandler.Instance.EasterEggPickedUp += OnEasterEggPickUp;
+    }
+    private void OnDisable()
+    {
+        EventHandler.Instance.EasterEggPickedUp -= OnEasterEggPickUp;
+    }
+    private void OnEasterEggPickUp() 
+    {
+        AddScore(m_easterEggScoreGain);
+    }
     public void Reset()
     {
         m_currentScore = 0;

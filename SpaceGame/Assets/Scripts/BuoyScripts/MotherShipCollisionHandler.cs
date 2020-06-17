@@ -21,7 +21,7 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
     [FormerlySerializedAs("m_playerSound")]
     [Tooltip("The Sound to play on player dropoff")]
     [SerializeField] private string m_dropOffSound;
-
+    [SerializeField] private bool m_UseConfigForScoreGain = true;
 
     private FSM m_Fsm;
     public BuoyFillUp m_FillUp = null;
@@ -58,6 +58,12 @@ public class MotherShipCollisionHandler : MonoBehaviour, ISubject
         m_dropOffSource = gameObject.GetComponent<AudioSource>();
         m_collisionSource = gameObject.AddComponent<AudioSource>();
         m_collisionSource.volume = 0;
+
+        if (m_UseConfigForScoreGain)
+            WebConfigHandler.OnFinishDownload(o =>
+            {
+                o.ExtractInt("Normal_Trash_Score", value => m_scorePerCargo = value);
+            });
         /*
         //for whatever unholy reason the first audio-source does not want to play,
         //but we can cheat by making one of them play on awake

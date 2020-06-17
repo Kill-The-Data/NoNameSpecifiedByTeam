@@ -13,18 +13,18 @@ public class TrashCollisionHandler : MonoBehaviour, ISubject
     private bool m_hasDealtDamage = false;
 
     private TrashMovementController m_controller;
-    
+
     public event Action<ISubject> OnPlayerTakeDamage;
     public event Action<ISubject> OnPlayerPickUpJunk;
-    
+
 
     private int m_damage = 10;
-    
+
     public void Awake()
     {
         m_controller = GetComponent<TrashMovementController>();
         if (m_controller == null) m_controller = gameObject.AddComponent<TrashMovementController>();
-        
+
         WebConfigHandler.OnFinishDownload(o => o.ExtractInt("debris_damage", v => m_damage = v));
 
         if (this.GetComponentSafe(out nextTutorialState tstate))
@@ -80,16 +80,23 @@ public class TrashCollisionHandler : MonoBehaviour, ISubject
         //add some to the cargo
         playerCargo.AddCargo(this.gameObject);
         PlayPickUpParticle();
+        CheckForEasterEgg();
         Notify(NotifyEvent.OnPlayerPickupTrash);
-        
+
         if (!m_IsTutorialTrash)
         {
             Destroy(this.gameObject);
         }
     }
-     private void PlayPickUpParticle() 
+    //checks if there is an easter egg child in the trash object
+    private void CheckForEasterEgg()
     {
-        if(m_pickupParticlePrefab)
+        foreach (Transform child in transform)
+            if (child.tag == "EasterEgg") EventHandler.Instance.PickUpEasterEgg();
+    }
+    private void PlayPickUpParticle()
+    {
+        if (m_pickupParticlePrefab)
             Instantiate(m_pickupParticlePrefab, transform.position, transform.rotation);
     }
     private void DealDamage(PlayerHealth playerHealth, PlayerController playerController)
