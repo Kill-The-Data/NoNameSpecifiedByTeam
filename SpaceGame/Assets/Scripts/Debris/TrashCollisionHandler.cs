@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(TrashMovementController))]
 public class TrashCollisionHandler : MonoBehaviour, ISubject
 {
+    [SerializeField] private GameObject particlePrefab = null;
     [SerializeField] private bool m_IsTutorialTrash = false;
     private bool m_destroyed = false;
 
@@ -72,13 +73,18 @@ public class TrashCollisionHandler : MonoBehaviour, ISubject
 
         //add some to the cargo
         playerCargo.AddCargo(this.gameObject);
-
+        TriggerParticle();
         Notify(NotifyEvent.OnPlayerPickupTrash);
         
         if (!m_IsTutorialTrash)
         {
             Destroy(this.gameObject);
         }
+    }
+    private void TriggerParticle() 
+    {
+        if(particlePrefab)
+            Instantiate(particlePrefab, transform.position, transform.rotation);
     }
     private void DealDamage(PlayerHealth playerHealth, PlayerController playerController)
     {

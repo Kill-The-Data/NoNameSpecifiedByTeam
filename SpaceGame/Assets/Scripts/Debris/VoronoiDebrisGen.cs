@@ -215,7 +215,6 @@ public class VoronoiDebrisGen : MonoBehaviour
                 {
                     if (!MaximumDebrisCount.AddDebris()) continue;
                 }
-                
                 spawnPrefab = prefab;
             }
             
