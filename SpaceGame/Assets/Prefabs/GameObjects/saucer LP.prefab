@@ -35,6 +35,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 6369827034154714836}
+  - {fileID: 6392332136715861637}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -154,7 +155,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2228136b2b87874c9e45aa772707a16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_pickupParticlePrefab: {fileID: 0}
+  m_dmgParticlePrefb: {fileID: 0}
   m_IsTutorialTrash: 0
+--- !u!1 &7917039802769388427
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6392332136715861637}
+  m_Layer: 0
+  m_Name: isEasterEgg
+  m_TagString: EasterEgg
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6392332136715861637
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7917039802769388427}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1879702151953379285}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &857756087147160075
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -225,17 +258,17 @@ PrefabInstance:
     - target: {fileID: 6017221889547379935, guid: 742160e5dfdef064887a0e0b1e555e40,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6017221889547379935, guid: 742160e5dfdef064887a0e0b1e555e40,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6017221889547379935, guid: 742160e5dfdef064887a0e0b1e555e40,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 742160e5dfdef064887a0e0b1e555e40, type: 3}
