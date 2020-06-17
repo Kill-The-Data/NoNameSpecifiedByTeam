@@ -136,7 +136,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_pickupSound: powerup-time
-  m_timeGain: 10
+  m_fuelGain: 10
+  NoWebConfig: 0
 --- !u!114 &-6408132786577565772
 MonoBehaviour:
   m_ObjectHideFlags: 0

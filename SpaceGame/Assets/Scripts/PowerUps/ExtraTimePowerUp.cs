@@ -8,11 +8,12 @@ public class ExtraTimePowerUp : SoundPowerUp
 {
     [FormerlySerializedAs("m_timeGain")]
     [SerializeField] private float m_fuelGain = 10.0f;
-    [SerializeField] private bool useWebConfig = false;
+    [FormerlySerializedAs("useWebConfig")] 
+    [SerializeField] private bool NoWebConfig = false;
 
     private void Awake()
     {
-        if (useWebConfig)
+        if (!NoWebConfig)
             WebConfigHandler.OnFinishDownload(o => o.ExtractInt("fuel_gain", v => m_fuelGain = v));
     }
 

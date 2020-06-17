@@ -200,8 +200,9 @@ public class VoronoiDebrisGen : MonoBehaviour
             //check if the trash has been spawned in the death zone
             bool inDeathZone = Vector3.Distance(center, pos) > NoMansLandRadius;
 
-           
 
+            bool silentAdd = false;
+            
             //Gameobject to instantiate
             GameObject spawnPrefab = null;
             //check all exclusion zones
@@ -213,6 +214,7 @@ public class VoronoiDebrisGen : MonoBehaviour
                 
                 if (zone != null && zone.GeneratesTrash)
                 {
+                    silentAdd = !zone.GeneratesTrash;
                     if (!MaximumDebrisCount.AddDebris()) continue;
                 }
                 spawnPrefab = prefab;
@@ -228,6 +230,7 @@ public class VoronoiDebrisGen : MonoBehaviour
                 {
                     spawnPrefab = ObstaclesList[Random.Range(0, ObstaclesList.Count)];
                     exclusionRadius = m_exclusionZoneRadiusForNewObstacle;
+                    silentAdd = true;
                 }
             }
 
