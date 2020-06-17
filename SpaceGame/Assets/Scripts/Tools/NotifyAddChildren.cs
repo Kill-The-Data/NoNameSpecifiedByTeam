@@ -7,7 +7,7 @@ namespace Tools
     {
         public GameObject LastAdded { get; private set; }
         
-        public GameObject AddChild(GameObject go)
+        public GameObject AddChild(GameObject go, bool silent = false)
         {
             go.transform.parent = this.transform;
             LastAdded = go;
