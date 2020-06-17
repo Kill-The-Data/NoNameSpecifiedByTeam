@@ -60,7 +60,7 @@ public class TutorialState : StateWithView<IngameView>
         var playerHealth = player.GetComponent<PlayerHealth>();
         playerHealth.ResetPlayerHealth();
         player.GetComponent<PlayerController>().ResetController();
-        player.GetComponent<PlayerCargo>().ResetCargo();
+        //player.GetComponent<PlayerCargo>().ResetCargo();
 
         //configure Death Watch
         var deathWatch = player.GetComponent<DeathWatch>();
