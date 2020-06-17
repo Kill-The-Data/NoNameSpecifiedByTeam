@@ -14,6 +14,24 @@ public class Timer : MonoBehaviour, ISubject
     private List<IObserver> m_Observers = new List<IObserver>();
     private float m_TimeLeft = 0;
     private float m_StartTime = 0;
+
+    private float m_maxImpl = 0;
+    
+    public float Max
+    {
+        get => m_maxImpl;
+        set
+        {
+            m_maxImpl = value;
+            if (m_TimeLeft > m_maxImpl && m_maxImpl > 0)
+            {
+                m_TimeLeft = value;
+            }
+        }
+    }
+
+    private void DisableMax() => Max = 0;
+    
     void Update()
     {
         if (m_state == TimerState.ACTIVE)
@@ -48,6 +66,11 @@ public class Timer : MonoBehaviour, ISubject
     public void IncreaseTimeLeft(float timeGained)
     {
         m_TimeLeft += timeGained;
+        if (m_TimeLeft > Max && Max > 0)
+        {
+            m_TimeLeft = Max;
+        }
+        
         Notify();
         // TO DO: text pop up to visualize increase in time
     }

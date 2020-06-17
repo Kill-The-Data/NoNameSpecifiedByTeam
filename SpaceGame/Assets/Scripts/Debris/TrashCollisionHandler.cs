@@ -4,24 +4,27 @@ using UnityEngine;
 [RequireComponent(typeof(TrashMovementController))]
 public class TrashCollisionHandler : MonoBehaviour, ISubject
 {
+    [SerializeField] private GameObject m_pickupParticlePrefab = null;
+    [SerializeField] private GameObject m_dmgParticlePrefb = null;
+
     [SerializeField] private bool m_IsTutorialTrash = false;
     private bool m_destroyed = false;
 
     private bool m_hasDealtDamage = false;
 
     private TrashMovementController m_controller;
-    
+
     public event Action<ISubject> OnPlayerTakeDamage;
     public event Action<ISubject> OnPlayerPickUpJunk;
-    
+
 
     private int m_damage = 10;
-    
+
     public void Awake()
     {
         m_controller = GetComponent<TrashMovementController>();
         if (m_controller == null) m_controller = gameObject.AddComponent<TrashMovementController>();
-        
+
         WebConfigHandler.OnFinishDownload(o => o.ExtractInt("debris_damage", v => m_damage = v));
 
         if (this.GetComponentSafe(out nextTutorialState tstate))
@@ -62,6 +65,10 @@ public class TrashCollisionHandler : MonoBehaviour, ISubject
             {
                 //otherwise take damage
                 DealDamage(playerHealth, playerController);
+                //get POI && play particle 
+                Vector3 POI = other.ClosestPoint(transform.position);
+                if (m_dmgParticlePrefb)
+                    Instantiate(m_dmgParticlePrefb, POI, transform.rotation);
             }
         }
     }
@@ -72,13 +79,25 @@ public class TrashCollisionHandler : MonoBehaviour, ISubject
 
         //add some to the cargo
         playerCargo.AddCargo(this.gameObject);
-
+        PlayPickUpParticle();
+        CheckForEasterEgg();
         Notify(NotifyEvent.OnPlayerPickupTrash);
-        
+
         if (!m_IsTutorialTrash)
         {
             Destroy(this.gameObject);
         }
+    }
+    //checks if there is an easter egg child in the trash object
+    private void CheckForEasterEgg()
+    {
+        foreach (Transform child in transform)
+            if (child.tag == "EasterEgg") EventHandler.Instance.PickUpEasterEgg();
+    }
+    private void PlayPickUpParticle()
+    {
+        if (m_pickupParticlePrefab)
+            Instantiate(m_pickupParticlePrefab, transform.position, transform.rotation);
     }
     private void DealDamage(PlayerHealth playerHealth, PlayerController playerController)
     {
@@ -87,7 +106,7 @@ public class TrashCollisionHandler : MonoBehaviour, ISubject
         if (!m_hasDealtDamage)
         {
             //deal damage to the player
-            playerHealth.TakeDamage();
+            playerHealth.TakeDamage(m_damage);
 
             //do some speed-transfer with the barrel.
             m_controller.Speed += playerController.Collide();

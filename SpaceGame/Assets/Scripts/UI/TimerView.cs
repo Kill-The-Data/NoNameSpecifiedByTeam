@@ -11,13 +11,14 @@ public class TimerView : MonoBehaviour, IObserver
 
     [Tooltip("The Needle of the Fuel Gauge")]
     [SerializeField] private FuelGaugeRotator m_rotator;
+    
+    [SerializeField] private bool NoWebConfig = false;
+    
+    [Tooltip("Initial Amount of Fuel")]
+    [SerializeField] private float m_initalAmountOfFuel = 60;
+    [SerializeField] private float m_maxAmountOfFuel = 60;
 
-    [Tooltip("How long the timer should tick for")]
-    [SerializeField] private float m_duration = 30F;
-
-    private const float INITIAL_AMOUNT_OF_FUEL = 60;
-
-    private float time = INITIAL_AMOUNT_OF_FUEL;
+    private float time;
     
     public Timer timer
     {
@@ -27,6 +28,7 @@ public class TimerView : MonoBehaviour, IObserver
     private List<IObserver> m_Observers;
     public void InitTimer()
     {
+       
         gameObject.SetActive(true);
         if (!timer)
         {
@@ -35,8 +37,24 @@ public class TimerView : MonoBehaviour, IObserver
             timer.Attach(this);
             //start the timer with the provided duration
         }
-        timer.StartTimer(m_duration);
+        
+        SetTimerValues();
+        
+        if(!NoWebConfig) WebConfigHandler.OnFinishDownload(o =>
+        {
+            o.ExtractInt("initial_fuel"  , v => m_initalAmountOfFuel=v);
+            o.ExtractInt("max_fuel", v => m_maxAmountOfFuel = v);
+            SetTimerValues();
+        });
     }
+
+    private void SetTimerValues()
+    {
+        time = m_initalAmountOfFuel;
+        timer.Max = m_maxAmountOfFuel;
+        timer.StartTimer(time);
+    }
+    
     public void Update()
     {
         if (Input.GetMouseButton(0))
@@ -77,6 +95,6 @@ public class TimerView : MonoBehaviour, IObserver
     private void UpdateText(float time)
     {
         m_text.SetText(Mathf.RoundToInt(time).ToString() + "L");
-        m_rotator.SetPercentage(time / INITIAL_AMOUNT_OF_FUEL);
+        m_rotator.SetPercentage(time / m_maxAmountOfFuel);
     }
 }

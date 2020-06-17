@@ -9,6 +9,7 @@ public class WinCondition : MonoBehaviour
 
     [SerializeField] private int m_BuoysAmount = 0;
     [SerializeField] private int m_currentlyFilled = 0;
+    [SerializeField] private bool m_winWithBuoysFilled = false;
     void Start()
     {
         Init();
@@ -37,6 +38,7 @@ public class WinCondition : MonoBehaviour
     //get filled stations, update & check if game finished
     private void UpdateCount()
     {
+        if (!m_winWithBuoysFilled) return;
         m_currentlyFilled = PlayerPrefs.GetInt("buoysFilled");
         UpdateText();
         if (m_currentlyFilled >= m_BuoysAmount)

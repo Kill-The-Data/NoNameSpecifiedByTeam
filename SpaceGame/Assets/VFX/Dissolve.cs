@@ -33,7 +33,6 @@ public class Dissolve : MonoBehaviour
         //increase value if reverse
         else if (m_currentState == State.REVERSE_DISSOLVE)
         {
-            Debug.Log(m_currentValue);
             m_currentValue += Time.deltaTime * m_dissolveSpeed;
             //disable if max is reached
             if (m_currentValue >= 1)
