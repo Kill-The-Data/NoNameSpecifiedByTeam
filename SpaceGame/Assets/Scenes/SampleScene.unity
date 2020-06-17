@@ -19277,6 +19277,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 8128f97f262885140af1e42c84b0bd0c, type: 2}
+    - target: {fileID: 503096580722540618, guid: 0d0740601c8011949b05ee24938ca024,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1840899376301647486, guid: 0d0740601c8011949b05ee24938ca024,
         type: 3}
       propertyPath: m_rotationAxis.x
@@ -19361,7 +19366,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 2082473868709343273, guid: a410e7753b6d1a144ac382bb656be53d,
+      objectReference: {fileID: 4623759662495348200, guid: a47419f57cc561041b5e502ed27adfc1,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d0740601c8011949b05ee24938ca024, type: 3}
