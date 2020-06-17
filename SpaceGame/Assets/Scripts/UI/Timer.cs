@@ -71,8 +71,6 @@ public class Timer : MonoBehaviour, ISubject
             m_TimeLeft = Max;
         }
         
-        Debug.Log($"IncreaseTimeLeftCalled time was {m_TimeLeft}");
-        
         Notify();
         // TO DO: text pop up to visualize increase in time
     }
