@@ -55,7 +55,7 @@ public class ObstacleCollisionHandler : MonoBehaviour , ISubject
             && other.transform.parent.GetComponentSafe(out PlayerController playerController))
         {
             m_time += Time.deltaTime;
-            if (m_time > 1)
+            if (m_time > 0.5F)
             {
                 //make sure the player does not get stuck
                 playerController.Enable();

@@ -209,11 +209,13 @@ public class VoronoiDebrisGen : MonoBehaviour
             if (!inDeathZone)
             {
                 var (success,prefab,zone)  = CheckGenZones(pos);
-                if (zone.GeneratesTrash)
+                if (!success) continue;
+                
+                if (zone != null && zone.GeneratesTrash)
                 {
                     if (!MaximumDebrisCount.AddDebris()) continue;
                 }
-                if (!success) continue;
+                
                 spawnPrefab = prefab;
             }
             

@@ -78,9 +78,13 @@ public static class WebConfigHandler
 
     public static void ExtractInt(this JObject j,string key, Action<int> surrogate)
     {
-        if (int.TryParse(j[key].ToString(), out int value))
+        if (j[key] != null && int.TryParse(j[key].ToString(), out int value))
         {
             surrogate(value);
+        }
+        else
+        {
+            Debug.LogWarning($"config does not contain: {key} or value was not int");
         }
     }
     

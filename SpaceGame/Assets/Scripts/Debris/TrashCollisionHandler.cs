@@ -87,7 +87,7 @@ public class TrashCollisionHandler : MonoBehaviour, ISubject
         if (!m_hasDealtDamage)
         {
             //deal damage to the player
-            playerHealth.TakeDamage();
+            playerHealth.TakeDamage(m_damage);
 
             //do some speed-transfer with the barrel.
             m_controller.Speed += playerController.Collide();
