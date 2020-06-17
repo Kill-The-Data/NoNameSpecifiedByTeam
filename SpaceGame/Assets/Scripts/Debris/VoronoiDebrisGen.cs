@@ -221,14 +221,12 @@ public class VoronoiDebrisGen : MonoBehaviour
 
 
             var exclusionRadius = m_exclusionZoneRadiusForNewDebris;
-
-            var collection = TrashList;
-
+            
             if (inDeathZone)
             {
                 if (Random.Range(0F, 1F) > 0.5F)
                 {
-                    collection = ObstaclesList;
+                    spawnPrefab = ObstaclesList[Random.Range(0, ObstaclesList.Count)];
                     exclusionRadius = m_exclusionZoneRadiusForNewObstacle;
                 }
             }
