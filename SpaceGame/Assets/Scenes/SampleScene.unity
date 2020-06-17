@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: b613b7f4cbf3e9f42a2f339a8725ccc1,
     type: 2}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -15477,7 +15477,7 @@ MonoBehaviour:
   - Name: inventory-full-collision
     Sound: {fileID: 8300000, guid: 9d3e7fd04d2597f47a9d8f9ab1b34de8, type: 3}
   - Name: collision-rock
-    Sound: {fileID: 8300000, guid: 0bb997473c70f8342b59f93566356cd6, type: 3}
+    Sound: {fileID: 8300000, guid: 004bea6e050b1264fb03d081d5ac9442, type: 3}
   - Name: collision-buoy
     Sound: {fileID: 8300000, guid: a4e9d775a41e23743a92b90d0803b1a1, type: 3}
   m_fxVolume: 1
@@ -19277,6 +19277,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 8128f97f262885140af1e42c84b0bd0c, type: 2}
+    - target: {fileID: 503096580722540618, guid: 0d0740601c8011949b05ee24938ca024,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1840899376301647486, guid: 0d0740601c8011949b05ee24938ca024,
         type: 3}
       propertyPath: m_rotationAxis.x
@@ -19361,7 +19366,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 2082473868709343273, guid: a410e7753b6d1a144ac382bb656be53d,
+      objectReference: {fileID: 4623759662495348200, guid: a47419f57cc561041b5e502ed27adfc1,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d0740601c8011949b05ee24938ca024, type: 3}
@@ -21647,7 +21652,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7148810408862306020
 Transform:
   m_ObjectHideFlags: 0
