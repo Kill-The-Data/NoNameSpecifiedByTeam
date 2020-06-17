@@ -1,37 +1,38 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Video;
 
 [RequireComponent(typeof(AudioSource))]
-public class ObstacleCollisionHandler : MonoBehaviour , ISubject
+public class ObstacleCollisionHandler : MonoBehaviour, ISubject
 {
-    
+
     [Tooltip("The Sound to play on Collision, checkout the GlobalSetup->SoundManager")]
     [LabelOverride("Sound on Collision")]
-    [SerializeField] private string m_soundId ="collision";
-
+    [SerializeField] private string m_soundId = "collision";
+    [SerializeField] private GameObject m_CollisionParticlePrefab = null;
     private int m_damage = 10;
-    
+
     private AudioSource m_audioSource;
-    
+
     public void Awake()
     {
         m_audioSource = gameObject.GetComponent<AudioSource>();
-        
+
         SoundManager.ExecuteOnAwake(manager =>
         {
             m_audioSource.clip = manager.GetSound(m_soundId);
             m_audioSource.volume = manager.GetFxVolume();
         });
-        
+
         WebConfigHandler.OnFinishDownload(o =>
         {
             o.ExtractInt("obstacle_damage", v => m_damage = v);
         });
-        
+
     }
 
 
-    private Action<ISubject> m_listeners = delegate {  };
+    private Action<ISubject> m_listeners = delegate { };
     private bool m_hasDealtDamage;
     public void OnTriggerEnter(Collider other)
     {
@@ -48,7 +49,7 @@ public class ObstacleCollisionHandler : MonoBehaviour , ISubject
     }
 
     private float m_time = 0;
-    
+
     private void HandlePlayerStay(Collider other)
     {
         if ((other.CompareTag("Player") || other.CompareTag("Player-Collector"))
@@ -66,13 +67,19 @@ public class ObstacleCollisionHandler : MonoBehaviour , ISubject
 
     private void HandlePlayerEnter(Collider other)
     {
-        if ( (other.CompareTag("Player") || other.CompareTag("Player-Collector"))
+        if ((other.CompareTag("Player") || other.CompareTag("Player-Collector"))
             && other.transform.parent.GetComponentSafe(out PlayerHealth playerHealth)
             && other.transform.parent.GetComponentSafe(out PlayerController playerController)
         )
         {
             PlaySound();
-            DealDamage(playerHealth,playerController);
+            DealDamage(playerHealth, playerController);
+
+            if (m_CollisionParticlePrefab)
+            {
+                Vector3 POI = other.ClosestPoint(transform.position);
+                Instantiate(m_CollisionParticlePrefab, POI, Quaternion.identity);
+            }
         }
     }
 
@@ -90,11 +97,11 @@ public class ObstacleCollisionHandler : MonoBehaviour , ISubject
         if (!m_hasDealtDamage)
         {
             health.TakeDamage(m_damage);
-            
+
             //make the factor so big you actually bounce back
             controller.Collide(1.4f);
             controller.Disable();
-            
+
             m_hasDealtDamage = true;
             Notify();
         }
@@ -102,7 +109,7 @@ public class ObstacleCollisionHandler : MonoBehaviour , ISubject
 
     private void HandlePlayerExit(Collider other)
     {
-        if ( (other.CompareTag("Player") || other.CompareTag("Player-Collector"))
+        if ((other.CompareTag("Player") || other.CompareTag("Player-Collector"))
         && other.transform.parent.GetComponentSafe(out PlayerController playerController))
         {
             m_hasDealtDamage = false;
@@ -110,16 +117,16 @@ public class ObstacleCollisionHandler : MonoBehaviour , ISubject
             m_time = 0;
         }
     }
-    
-    
+
+
     public void Attach(IObserver observer)
     {
         m_listeners += observer.GetUpdate;
     }
-    
+
     public void Notify()
     {
         m_listeners(this);
     }
-    
+
 }
