@@ -155,7 +155,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2228136b2b87874c9e45aa772707a16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particlePrefab: {fileID: 671545650274421172, guid: fc88ec21fb7fe0940afc463c132db535,
+  m_pickupParticlePrefab: {fileID: 671545650274421172, guid: fc88ec21fb7fe0940afc463c132db535,
+    type: 3}
+  m_dmgParticlePrefb: {fileID: 7733730358752294871, guid: c65616bf7417f3c41a69fc5a1928a616,
     type: 3}
   m_IsTutorialTrash: 0
 --- !u!114 &8380416042824551597

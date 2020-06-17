@@ -4,7 +4,9 @@ using UnityEngine;
 [RequireComponent(typeof(TrashMovementController))]
 public class TrashCollisionHandler : MonoBehaviour, ISubject
 {
-    [SerializeField] private GameObject particlePrefab = null;
+    [SerializeField] private GameObject m_pickupParticlePrefab = null;
+    [SerializeField] private GameObject m_dmgParticlePrefb = null;
+
     [SerializeField] private bool m_IsTutorialTrash = false;
     private bool m_destroyed = false;
 
@@ -63,6 +65,10 @@ public class TrashCollisionHandler : MonoBehaviour, ISubject
             {
                 //otherwise take damage
                 DealDamage(playerHealth, playerController);
+                //get POI && play particle 
+                Vector3 POI = other.ClosestPoint(transform.position);
+                if (m_dmgParticlePrefb)
+                    Instantiate(m_dmgParticlePrefb, POI, transform.rotation);
             }
         }
     }
@@ -73,7 +79,7 @@ public class TrashCollisionHandler : MonoBehaviour, ISubject
 
         //add some to the cargo
         playerCargo.AddCargo(this.gameObject);
-        TriggerParticle();
+        PlayPickUpParticle();
         Notify(NotifyEvent.OnPlayerPickupTrash);
         
         if (!m_IsTutorialTrash)
@@ -81,10 +87,10 @@ public class TrashCollisionHandler : MonoBehaviour, ISubject
             Destroy(this.gameObject);
         }
     }
-    private void TriggerParticle() 
+     private void PlayPickUpParticle() 
     {
-        if(particlePrefab)
-            Instantiate(particlePrefab, transform.position, transform.rotation);
+        if(m_pickupParticlePrefab)
+            Instantiate(m_pickupParticlePrefab, transform.position, transform.rotation);
     }
     private void DealDamage(PlayerHealth playerHealth, PlayerController playerController)
     {
