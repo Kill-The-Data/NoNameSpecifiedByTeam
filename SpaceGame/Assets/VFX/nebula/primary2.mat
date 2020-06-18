@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: secondary nebula mat 1
+  m_Name: primary2
   m_Shader: {fileID: -6465566751694194690, guid: dfb476b99dbd63c4785689812a7b1564,
     type: 3}
   m_ShaderKeywords: 
