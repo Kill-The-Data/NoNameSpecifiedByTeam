@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: primary nebula mat
+  m_Name: lighter1
   m_Shader: {fileID: -6465566751694194690, guid: dfb476b99dbd63c4785689812a7b1564,
     type: 3}
   m_ShaderKeywords: 
@@ -27,10 +27,10 @@ Material:
     - Vector1_8C3BC8B8: 17.35
     - Vector1_9E2929CB: -1.32
     - Vector1_A4930EA2: 0.21
-    - Vector1_AD7C14A5: 0.53
+    - Vector1_AD7C14A5: 0.7
     - Vector1_D1289F4F: 1.4
     - Vector1_D9D24D29: -0.82
-    - Vector1_F8BDA372: 0.47
+    - Vector1_F8BDA372: 0.9
     - Vector1_FE13F022: 1.92
     m_Colors:
     - Color_A5208024: {r: 8.574186, g: 0, b: 2.3448353, a: 0}
