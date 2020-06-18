@@ -143,7 +143,6 @@ public class SmartCamZoom : AUnityObserver
     public void StartZoom()
     {
         m_CurrentZoomOutLevel = m_OnStationFilledZoom;
-     //   m_CurrentZoomOutLevel = LeanTween.easeOutExpo(m_zoomDecreaseSpeed, 0, m_zoomDecreaseSpeed);
     }
     private void ApplyZoomOut()
     {
