@@ -33,12 +33,12 @@ public class MotherShipHomingDeviceUI : MonoBehaviour
         if(m_targets.Count == 0) Debug.LogError("homing device is homeless, pls give home");
         foreach (GameObject obj in m_targets)
         {
-            if (obj.GetComponentSafe(out BuoyFillUp bfp))
-            {
-                m_targetTuples.Add((obj.transform, bfp));
-            }
-            else 
-                m_targetTuples.Add((obj.transform,null));
+            var bfp = obj.GetComponent<BuoyFillUp>();
+            
+            if(bfp== null)
+                Debug.LogWarning("bfp was null");
+                
+            m_targetTuples.Add( (obj.transform,bfp != null ? bfp:null));
         }
     }
 
@@ -51,7 +51,13 @@ public class MotherShipHomingDeviceUI : MonoBehaviour
             var dist = transform.position - target.position;
             
             //don't draw if the buoy is full
-            if(buoy != null && buoy.GetState() == BuoyFillUp.BuoyCargoState.FULL) continue;
+            if (buoy != null)
+            {
+                if(buoy.GetState() == BuoyFillUp.BuoyCargoState.FULL)
+                {
+                    continue;
+                }
+            }
             
             if (dist.magnitude < closest.magnitude)
             {

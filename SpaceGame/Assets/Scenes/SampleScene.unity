@@ -13327,13 +13327,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_showGizmos: 0
   m_targets:
-  - {fileID: 586008047}
+  - {fileID: 1040379676}
   - {fileID: 8119748710095290167}
   - {fileID: 8119748709645200964}
   - {fileID: 8119748708276461611}
   - {fileID: 8119748708143194467}
   - {fileID: 8119748710004711553}
-  - {fileID: 13010564}
+  - {fileID: 13010562}
   m_homingDeviceChild: {fileID: 861739126}
   m_radius: 6.5
   m_hideRadius: 12
@@ -13622,6 +13622,7 @@ MonoBehaviour:
   m_state: {fileID: 1257071581}
   m_BuoysAmount: 6
   m_currentlyFilled: 0
+  m_winWithBuoysFilled: 0
 --- !u!114 &1368783920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21902,6 +21903,7 @@ MonoBehaviour:
   m_scorePerCargo: 10
   m_collisionSound: collision-buoy
   m_dropOffSound: debris-dropoff
+  m_UseConfigForScoreGain: 1
   m_FillUp: {fileID: 0}
 --- !u!114 &8119748708143194469
 MonoBehaviour:
@@ -22438,6 +22440,7 @@ MonoBehaviour:
   m_scorePerCargo: 10
   m_collisionSound: collision-buoy
   m_dropOffSound: debris-dropoff
+  m_UseConfigForScoreGain: 1
   m_FillUp: {fileID: 0}
 --- !u!114 &8119748708276461613
 MonoBehaviour:
@@ -24153,6 +24156,7 @@ MonoBehaviour:
   m_scorePerCargo: 10
   m_collisionSound: collision-buoy
   m_dropOffSound: debris-dropoff
+  m_UseConfigForScoreGain: 1
   m_FillUp: {fileID: 0}
 --- !u!33 &8119748709645201018
 MeshFilter:
@@ -24832,6 +24836,7 @@ MonoBehaviour:
   m_scorePerCargo: 10
   m_collisionSound: collision-buoy
   m_dropOffSound: debris-dropoff
+  m_UseConfigForScoreGain: 1
   m_FillUp: {fileID: 0}
 --- !u!114 &8119748710004711555
 MonoBehaviour:
@@ -25205,6 +25210,7 @@ MonoBehaviour:
   m_scorePerCargo: 10
   m_collisionSound: collision-buoy
   m_dropOffSound: debris-dropoff
+  m_UseConfigForScoreGain: 1
   m_FillUp: {fileID: 0}
 --- !u!114 &8119748710095290153
 MonoBehaviour:
