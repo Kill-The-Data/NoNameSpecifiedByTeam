@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: primary nebula mat
+  m_Name: secondary nebula mat 1
   m_Shader: {fileID: -6465566751694194690, guid: dfb476b99dbd63c4785689812a7b1564,
     type: 3}
   m_ShaderKeywords: 
@@ -23,15 +23,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
-    - Vector1_317A77EC: 0.21
-    - Vector1_8C3BC8B8: 17.35
-    - Vector1_9E2929CB: -1.32
-    - Vector1_A4930EA2: 0.21
-    - Vector1_AD7C14A5: 0.53
-    - Vector1_D1289F4F: 1.4
-    - Vector1_D9D24D29: -0.82
-    - Vector1_F8BDA372: 0.47
-    - Vector1_FE13F022: 1.92
+    - Vector1_317A77EC: 0
+    - Vector1_8C3BC8B8: 16.99
+    - Vector1_9E2929CB: -0.41
+    - Vector1_A4930EA2: 0.31
+    - Vector1_AD7C14A5: 0
+    - Vector1_D1289F4F: 0.05
+    - Vector1_D9D24D29: -5.62
+    - Vector1_F8BDA372: 0
+    - Vector1_FE13F022: -3.7
     m_Colors:
-    - Color_A5208024: {r: 8.574186, g: 0, b: 2.3448353, a: 0}
-    - Color_E864261D: {r: 11.313708, g: 4.0374413, b: 4.0374413, a: 0}
+    - Color_A5208024: {r: 0.8667452, g: 0.990566, b: 0, a: 0}
+    - Color_E864261D: {r: 0.3962264, g: 0, b: 0.33241686, a: 0}
