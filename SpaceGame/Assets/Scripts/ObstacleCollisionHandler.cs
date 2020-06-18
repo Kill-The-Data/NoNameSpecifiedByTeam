@@ -55,6 +55,8 @@ public class ObstacleCollisionHandler : MonoBehaviour, ISubject
         if ((other.CompareTag("Player") || other.CompareTag("Player-Collector"))
             && other.transform.parent.GetComponentSafe(out PlayerController playerController))
         {
+            playerController.ResolveCollision(other.transform.position-transform.position);
+            //playerController.ReplayCollision(m_time);
             m_time += Time.deltaTime;
             if (m_time > 0.5F)
             {
