@@ -26,7 +26,6 @@ public class AnimationEnd : StateMachineBehaviour
         {
             if (name.Length == 0) animator.ResetTrigger("TriggerAnimation");
             else animator.ResetTrigger(name);
-
         }
         IntroAnimationController.Instance.TriggerAnimation(TriggerOnStateExit);
     }

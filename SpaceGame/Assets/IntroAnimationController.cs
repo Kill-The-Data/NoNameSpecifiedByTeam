@@ -11,6 +11,12 @@ public class IntroAnimationController : MonoBehaviour
         TRASH_PICKUP,
         BUOY_ANIMATION,
         FUEL_DROP,
+        MARS_ANIMATION,
+        LID,
+        FLAG,
+        DAD,
+        MARS_ENDING,
+        RESTART,
         NONE
 
     }
@@ -34,10 +40,14 @@ public class IntroAnimationController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        StartAnimation();
+    }
+    private void StartAnimation() 
+    {
         foreach (AnimationObject currentObject in animationObjects)
         {
 
-            if (currentObject.State==AnimationStates.PlayOnStart)
+            if (currentObject.State == AnimationStates.PlayOnStart)
             {
                 ActivateAnimation(currentObject);
             }
@@ -47,6 +57,12 @@ public class IntroAnimationController : MonoBehaviour
 
     public void TriggerAnimation(AnimationStates animationToTrigger)
     {
+        if (animationToTrigger == AnimationStates.RESTART) 
+        {
+            Restart();
+            return;
+        }
+
 
         Debug.Log("triggering next animation : " + animationToTrigger);
         foreach (AnimationObject a in animationObjects)
@@ -60,7 +76,11 @@ public class IntroAnimationController : MonoBehaviour
 
     }
 
-
+    private void Restart()
+    {
+        Debug.Log("Restarting : ");
+        StartAnimation();
+    }
     private void ActivateAnimation(AnimationObject a)
     {
         string TriggerString;
