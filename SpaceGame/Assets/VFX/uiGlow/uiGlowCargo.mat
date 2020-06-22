@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: uiGlowHp
+  m_Shader: {fileID: -6465566751694194690, guid: bf60f802a87dbc140b795f1904a75898,
+    type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_E08AAA9D:
+        m_Texture: {fileID: 2800000, guid: 0a01e081589c3b14c8cbd262f8a983d7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_3C738DBD: 2.95
+    - Vector1_CDED17FF: 1
+    m_Colors:
+    - Color_B433BB88: {r: 0.5647059, g: 0.13862348, b: 0.10588236, a: 1}
