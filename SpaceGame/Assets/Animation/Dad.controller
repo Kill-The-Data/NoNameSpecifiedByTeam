@@ -114,7 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TriggerOnStateExit: 8
   TriggerNames:
-  - 
+  - TriggerAnimation
 --- !u!1102 &2962319104583086919
 AnimatorState:
   serializedVersion: 5

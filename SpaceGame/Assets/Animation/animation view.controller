@@ -102,7 +102,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PLayMArs
+  m_Name: PLayMars
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -160,9 +160,6 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 3942211135177732761}
     m_Position: {x: 400, y: -170, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 8982001522010543595}
-    m_Position: {x: 435, y: -105, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
