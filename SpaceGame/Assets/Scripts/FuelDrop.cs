@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using EventHandler = SpaceGame.EventHandler;
 using UnityEngine;
 [RequireComponent(typeof(BuoyFillUp))]
 public class FuelDrop : MonoBehaviour

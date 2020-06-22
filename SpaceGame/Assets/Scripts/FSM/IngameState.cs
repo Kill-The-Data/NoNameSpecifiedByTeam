@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using EventHandler = SpaceGame.EventHandler;
 public class IngameState : StateWithView<IngameView>
 {
 

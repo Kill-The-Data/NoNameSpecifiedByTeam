@@ -1,4 +1,4 @@
-﻿using System;
+﻿using EventHandler = SpaceGame.EventHandler;using System;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
