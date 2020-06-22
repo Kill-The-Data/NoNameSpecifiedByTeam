@@ -16,9 +16,10 @@ GameObject:
   - component: {fileID: 7647696268313577190}
   - component: {fileID: 2417698614611727837}
   - component: {fileID: -5352479254989840310}
+  - component: {fileID: -2402647952613047950}
   m_Layer: 0
   m_Name: satellite 2
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -240,3 +241,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-2402647952613047950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2985262068716217334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f917f75a2c8d7f419d780b08775c776, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: {x: 0, y: 0, z: 0}
+  Drag: 0.995

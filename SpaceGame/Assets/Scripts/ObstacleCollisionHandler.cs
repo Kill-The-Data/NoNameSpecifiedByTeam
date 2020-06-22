@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Video;
 
-[RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(AudioSource),typeof(ObstacleMover))]
 public class ObstacleCollisionHandler : MonoBehaviour, ISubject
 {
 
@@ -13,11 +13,13 @@ public class ObstacleCollisionHandler : MonoBehaviour, ISubject
     private int m_damage = 10;
 
     private AudioSource m_audioSource;
+    private ObstacleMover m_mover;
 
     public void Awake()
     {
         m_audioSource = gameObject.GetComponent<AudioSource>();
-
+        m_mover = gameObject.GetComponent<ObstacleMover>();
+        
         SoundManager.ExecuteOnAwake(manager =>
         {
             m_audioSource.clip = manager.GetSound(m_soundId);
@@ -37,6 +39,11 @@ public class ObstacleCollisionHandler : MonoBehaviour, ISubject
     public void OnTriggerEnter(Collider other)
     {
         HandlePlayerEnter(other);
+        
+        // technically working, makes the simulation incredibly unstable
+        // not recommended unless you like your universe "experimental"
+        //TODO:(algo-ryth-mix) wth is going on with this ?
+        //HandleObstacleEnter(other);
     }
     public void OnTriggerExit(Collider other)
     {
@@ -66,6 +73,18 @@ public class ObstacleCollisionHandler : MonoBehaviour, ISubject
         }
     }
 
+    private void HandleObstacleEnter(Collider other)
+    {
+        
+        if (other.CompareTag("Obstacles") &&
+            other.GetComponentSafe(out ObstacleMover mover))
+        {
+            var temp = m_mover.Speed;
+            m_mover.Speed = mover.Speed;
+            mover.Speed = temp;
+        }
+    }
+    
 
     private void HandlePlayerEnter(Collider other)
     {
@@ -101,6 +120,13 @@ public class ObstacleCollisionHandler : MonoBehaviour, ISubject
             health.TakeDamage(m_damage);
 
             //make the factor so big you actually bounce back
+            var velocity = controller.GetVelocity();
+
+            var direction = velocity.normalized;
+            var magnitude = Mathf.Min(velocity.magnitude, 1);
+
+            m_mover.Speed += direction * magnitude;
+            
             controller.Collide(1.4f);
             controller.Disable();
 
