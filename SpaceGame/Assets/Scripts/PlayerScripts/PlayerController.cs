@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 using Vector2 = UnityEngine.Vector2;
-
+using EventHandler = SpaceGame.EventHandler;
 public class PlayerController : MonoBehaviour
 {
     [Header(" --- Setup --- ")] 

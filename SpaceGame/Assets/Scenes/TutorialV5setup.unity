@@ -17731,7 +17731,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_showGizmos: 1
   m_drag: 0.995
-  m_acceleration: 15
+  m_acceleration: 10
   m_rotationSpeed: 4
   m_bankingFactor: 20
   m_spaceShipModel: {fileID: 1032644434}
