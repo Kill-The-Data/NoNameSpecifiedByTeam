@@ -1,0 +1,451 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7845970961976316418
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7845970961976316417}
+  - component: {fileID: 7845970961976316416}
+  - component: {fileID: 7845970961976316419}
+  m_Layer: 0
+  m_Name: Spline
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7845970961976316417
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7845970961976316418}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7845970961976316416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7845970961976316418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a85c5879d519aa4ab2ebbf42591149a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodes:
+  - position: {x: 243.81087, y: -17.854969, z: 0}
+    direction: {x: 242.45532, y: -21.639738, z: 0}
+    up: {x: 0, y: 1, z: 0}
+    scale: {x: 1, y: 1}
+    roll: 0
+  - position: {x: 234.77385, y: -43.086758, z: 0}
+    direction: {x: 229.5859, y: -51.32804, z: 0}
+    up: {x: 0, y: 1, z: 0}
+    scale: {x: 1, y: 1}
+    roll: 0
+  - position: {x: 207.9716, y: -70.19394, z: 0}
+    direction: {x: 194.0393, y: -75.98063, z: 0}
+    up: {x: 0, y: 1, z: 0}
+    scale: {x: 1, y: 1}
+    roll: 0
+  - position: {x: 145.51741, y: -69.96108, z: 0}
+    direction: {x: 130.64491, y: -62.979343, z: 0}
+    up: {x: 0, y: 1, z: 0}
+    scale: {x: 1, y: 1}
+    roll: 0
+  - position: {x: 115.3079, y: -33.855465, z: 0}
+    direction: {x: 109.93242, y: -25.896538, z: 0}
+    up: {x: 0, y: 1, z: 0}
+    scale: {x: 1, y: 1}
+    roll: 0
+  - position: {x: 107.31042, y: -18.90966, z: 0}
+    direction: {x: 102.26382, y: -15.668537, z: 0}
+    up: {x: 0, y: 1, z: 0}
+    scale: {x: 1, y: 1}
+    roll: 0
+  - position: {x: 84.32115, y: -17.474768, z: 0}
+    direction: {x: 78.38496, y: -19.916847, z: 0}
+    up: {x: 0, y: 1, z: 0}
+    scale: {x: 1, y: 1}
+    roll: 0
+  - position: {x: 71.17579, y: -32.22614, z: 0}
+    direction: {x: 63.00803, y: -36.75171, z: 0}
+    up: {x: 0, y: 1, z: 0}
+    scale: {x: 1, y: 1}
+    roll: 0
+  - position: {x: 29.28854, y: -39.37464, z: 0}
+    direction: {x: 16.127264, y: -37.361095, z: 0}
+    up: {x: 0, y: 1, z: 0}
+    scale: {x: 1, y: 1}
+    roll: 0
+  - position: {x: -11.908375, y: -18.310055, z: 0}
+    direction: {x: -18.65168, y: -7.6403627, z: 0}
+    up: {x: 0, y: 1, z: 0}
+    scale: {x: 1, y: 1}
+    roll: 0
+  - position: {x: -13.010599, y: 19.55058, z: 0}
+    direction: {x: -6.76335, y: 31.121908, z: 0}
+    up: {x: 0, y: 1, z: 0}
+    scale: {x: 1, y: 1}
+    roll: 0
+  - position: {x: 29.395304, y: 45.64302, z: 0}
+    direction: {x: 43.14911, y: 48.18651, z: 0}
+    up: {x: 0, y: 1, z: 0}
+    scale: {x: 1, y: 1}
+    roll: 0
+  - position: {x: 72.10325, y: 37.612316, z: 0}
+    direction: {x: 80.22746, y: 33.029778, z: 0}
+    up: {x: 0, y: 1, z: 0}
+    scale: {x: 1, y: 1}
+    roll: 0
+  - position: {x: 84.58497, y: 23.651417, z: 0}
+    direction: {x: 89.69653, y: 21.06201, z: 0}
+    up: {x: 0, y: 1, z: 0}
+    scale: {x: 1, y: 1}
+    roll: 0
+  - position: {x: 103.967476, y: 21.774912, z: 0}
+    direction: {x: 109.52913, y: 25.363375, z: 0}
+    up: {x: 0, y: 1, z: 0}
+    scale: {x: 1, y: 1}
+    roll: 0
+  - position: {x: 111.9157, y: 45.110954, z: 0}
+    direction: {x: 118.48645, y: 54.485466, z: 0}
+    up: {x: 0, y: 1, z: 0}
+    scale: {x: 1, y: 1}
+    roll: 0
+  - position: {x: 152.20781, y: 77.4538, z: 0}
+    direction: {x: 169.03041, y: 82.41849, z: 0}
+    up: {x: 0, y: 1, z: 0}
+    scale: {x: 1, y: 1}
+    roll: 0
+  - position: {x: 217.13095, y: 70.77956, z: 0}
+    direction: {x: 230.52333, y: 63.788696, z: 0}
+    up: {x: 0, y: 1, z: 0}
+    scale: {x: 1, y: 1}
+    roll: 0
+  - position: {x: 240.26628, y: 43.920326, z: 0}
+    direction: {x: 244.08717, y: 35.659992, z: 0}
+    up: {x: 0, y: 1, z: 0}
+    scale: {x: 1, y: 1}
+    roll: 0
+  - position: {x: 244.17174, y: 18.99908, z: 0}
+    direction: {x: 244.75755, y: 15.260894, z: 0}
+    up: {x: 0, y: 1, z: 0}
+    scale: {x: 1, y: 1}
+    roll: 0
+  curves:
+  - n1:
+      position: {x: 243.81087, y: -17.854969, z: 0}
+      direction: {x: 242.45532, y: -21.639738, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    n2:
+      position: {x: 234.77385, y: -43.086758, z: 0}
+      direction: {x: 229.5859, y: -51.32804, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    Changed:
+      m_PersistentCalls:
+        m_Calls: []
+  - n1:
+      position: {x: 234.77385, y: -43.086758, z: 0}
+      direction: {x: 229.5859, y: -51.32804, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    n2:
+      position: {x: 207.9716, y: -70.19394, z: 0}
+      direction: {x: 194.0393, y: -75.98063, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    Changed:
+      m_PersistentCalls:
+        m_Calls: []
+  - n1:
+      position: {x: 207.9716, y: -70.19394, z: 0}
+      direction: {x: 194.0393, y: -75.98063, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    n2:
+      position: {x: 145.51741, y: -69.96108, z: 0}
+      direction: {x: 130.64491, y: -62.979343, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    Changed:
+      m_PersistentCalls:
+        m_Calls: []
+  - n1:
+      position: {x: 145.51741, y: -69.96108, z: 0}
+      direction: {x: 130.64491, y: -62.979343, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    n2:
+      position: {x: 115.3079, y: -33.855465, z: 0}
+      direction: {x: 109.93242, y: -25.896538, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    Changed:
+      m_PersistentCalls:
+        m_Calls: []
+  - n1:
+      position: {x: 115.3079, y: -33.855465, z: 0}
+      direction: {x: 109.93242, y: -25.896538, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    n2:
+      position: {x: 107.31042, y: -18.90966, z: 0}
+      direction: {x: 102.26382, y: -15.668537, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    Changed:
+      m_PersistentCalls:
+        m_Calls: []
+  - n1:
+      position: {x: 107.31042, y: -18.90966, z: 0}
+      direction: {x: 102.26382, y: -15.668537, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    n2:
+      position: {x: 84.32115, y: -17.474768, z: 0}
+      direction: {x: 78.38496, y: -19.916847, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    Changed:
+      m_PersistentCalls:
+        m_Calls: []
+  - n1:
+      position: {x: 84.32115, y: -17.474768, z: 0}
+      direction: {x: 78.38496, y: -19.916847, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    n2:
+      position: {x: 71.17579, y: -32.22614, z: 0}
+      direction: {x: 63.00803, y: -36.75171, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    Changed:
+      m_PersistentCalls:
+        m_Calls: []
+  - n1:
+      position: {x: 71.17579, y: -32.22614, z: 0}
+      direction: {x: 63.00803, y: -36.75171, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    n2:
+      position: {x: 29.28854, y: -39.37464, z: 0}
+      direction: {x: 16.127264, y: -37.361095, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    Changed:
+      m_PersistentCalls:
+        m_Calls: []
+  - n1:
+      position: {x: 29.28854, y: -39.37464, z: 0}
+      direction: {x: 16.127264, y: -37.361095, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    n2:
+      position: {x: -11.908375, y: -18.310055, z: 0}
+      direction: {x: -18.65168, y: -7.6403627, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    Changed:
+      m_PersistentCalls:
+        m_Calls: []
+  - n1:
+      position: {x: -11.908375, y: -18.310055, z: 0}
+      direction: {x: -18.65168, y: -7.6403627, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    n2:
+      position: {x: -13.010599, y: 19.55058, z: 0}
+      direction: {x: -6.76335, y: 31.121908, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    Changed:
+      m_PersistentCalls:
+        m_Calls: []
+  - n1:
+      position: {x: -13.010599, y: 19.55058, z: 0}
+      direction: {x: -6.76335, y: 31.121908, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    n2:
+      position: {x: 29.395304, y: 45.64302, z: 0}
+      direction: {x: 43.14911, y: 48.18651, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    Changed:
+      m_PersistentCalls:
+        m_Calls: []
+  - n1:
+      position: {x: 29.395304, y: 45.64302, z: 0}
+      direction: {x: 43.14911, y: 48.18651, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    n2:
+      position: {x: 72.10325, y: 37.612316, z: 0}
+      direction: {x: 80.22746, y: 33.029778, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    Changed:
+      m_PersistentCalls:
+        m_Calls: []
+  - n1:
+      position: {x: 72.10325, y: 37.612316, z: 0}
+      direction: {x: 80.22746, y: 33.029778, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    n2:
+      position: {x: 84.58497, y: 23.651417, z: 0}
+      direction: {x: 89.69653, y: 21.06201, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    Changed:
+      m_PersistentCalls:
+        m_Calls: []
+  - n1:
+      position: {x: 84.58497, y: 23.651417, z: 0}
+      direction: {x: 89.69653, y: 21.06201, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    n2:
+      position: {x: 103.967476, y: 21.774912, z: 0}
+      direction: {x: 109.52913, y: 25.363375, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    Changed:
+      m_PersistentCalls:
+        m_Calls: []
+  - n1:
+      position: {x: 103.967476, y: 21.774912, z: 0}
+      direction: {x: 109.52913, y: 25.363375, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    n2:
+      position: {x: 111.9157, y: 45.110954, z: 0}
+      direction: {x: 118.48645, y: 54.485466, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    Changed:
+      m_PersistentCalls:
+        m_Calls: []
+  - n1:
+      position: {x: 111.9157, y: 45.110954, z: 0}
+      direction: {x: 118.48645, y: 54.485466, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    n2:
+      position: {x: 152.20781, y: 77.4538, z: 0}
+      direction: {x: 169.03041, y: 82.41849, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    Changed:
+      m_PersistentCalls:
+        m_Calls: []
+  - n1:
+      position: {x: 152.20781, y: 77.4538, z: 0}
+      direction: {x: 169.03041, y: 82.41849, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    n2:
+      position: {x: 217.13095, y: 70.77956, z: 0}
+      direction: {x: 230.52333, y: 63.788696, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    Changed:
+      m_PersistentCalls:
+        m_Calls: []
+  - n1:
+      position: {x: 217.13095, y: 70.77956, z: 0}
+      direction: {x: 230.52333, y: 63.788696, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    n2:
+      position: {x: 240.26628, y: 43.920326, z: 0}
+      direction: {x: 244.08717, y: 35.659992, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    Changed:
+      m_PersistentCalls:
+        m_Calls: []
+  - n1:
+      position: {x: 240.26628, y: 43.920326, z: 0}
+      direction: {x: 244.08717, y: 35.659992, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    n2:
+      position: {x: 244.17174, y: 18.99908, z: 0}
+      direction: {x: 244.75755, y: 15.260894, z: 0}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    Changed:
+      m_PersistentCalls:
+        m_Calls: []
+  Length: 707.66693
+  isLoop: 0
+  CurveChanged:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &7845970961976316419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7845970961976316418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3c62baecdb58fe4583d8f8283102e76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curvature: 0.3
