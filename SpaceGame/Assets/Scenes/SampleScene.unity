@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: b613b7f4cbf3e9f42a2f339a8725ccc1,
     type: 2}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -272,6 +272,7 @@ PrefabInstance:
       propertyPath: m_rotator
       value: 
       objectReference: {fileID: 67357087}
+    - target: {fileID: 1478705686, guid: a7ece3eee5d4b4a42946cdfda577b32d, type: 3}
       propertyPath: m_TargetRenderer
       value: 
       objectReference: {fileID: 947653868}
@@ -572,18 +573,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 13010559}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &13010565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 13010561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 428d087ee21ecec4c9d07975aa4465cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &13010566 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1478705686, guid: a7ece3eee5d4b4a42946cdfda577b32d,
@@ -6703,12 +6692,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!1 &438108814 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3459325492637033506, guid: a7ece3eee5d4b4a42946cdfda577b32d,
-    type: 3}
-  m_PrefabInstance: {fileID: 993829525}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &446419656
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13549,6 +13532,7 @@ PrefabInstance:
       propertyPath: m_MinSliderValue
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1478705686, guid: a7ece3eee5d4b4a42946cdfda577b32d, type: 3}
       propertyPath: m_TargetRenderer
       value: 
       objectReference: {fileID: 913805401}
@@ -14488,6 +14472,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8972156274804407235, guid: a6f62818e6959974e8d217320b5e3ff0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 154.90039
       objectReference: {fileID: 0}
     - target: {fileID: 8972156274990576927, guid: a6f62818e6959974e8d217320b5e3ff0,
         type: 3}
@@ -22015,7 +22004,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1710109051
 GameObject:
@@ -23146,8 +23135,7 @@ MonoBehaviour:
   m_maxSpeed: 13.4
   m_minDistanceToDestinations: 0.66
   m_Rotate: 1
-  boostDistThreshold: 100
-  boostfactor: 5
+  m_follower: {fileID: 0}
   IsMoving: 1
 --- !u!114 &1788295937
 MonoBehaviour:
@@ -24731,8 +24719,7 @@ MonoBehaviour:
   m_maxSpeed: 30
   m_minDistanceToDestinations: 0.578
   m_Rotate: 0
-  boostDistThreshold: 100
-  boostfactor: 5
+  m_follower: {fileID: 0}
   IsMoving: 1
 --- !u!4 &2029923644 stripped
 Transform:
