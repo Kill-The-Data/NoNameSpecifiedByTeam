@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using EventHandler = SpaceGame.EventHandler;
 public class TutorialState : StateWithView<IngameView>
 {
     [SerializeField] private TutorialFSM m_tutorialFSM = null;

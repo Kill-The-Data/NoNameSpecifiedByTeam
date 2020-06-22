@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using EventHandler = SpaceGame.EventHandler;
 public class BuoyFillUp : MonoBehaviour
 {
     [Header(" --- Boy values setup ---")]

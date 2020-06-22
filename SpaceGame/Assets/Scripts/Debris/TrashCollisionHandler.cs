@@ -1,6 +1,6 @@
 ﻿using System;
 using UnityEngine;
-
+using EventHandler = SpaceGame.EventHandler;
 [RequireComponent(typeof(TrashMovementController))]
 public class TrashCollisionHandler : MonoBehaviour, ISubject
 {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Tools;
 using UnityEngine;
-
+using EventHandler = SpaceGame.EventHandler;
 [Serializable]
 public class CameraSetting
 {
