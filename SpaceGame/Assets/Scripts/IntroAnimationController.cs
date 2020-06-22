@@ -33,7 +33,6 @@ public class IntroAnimationController : MonoBehaviour
     private void Init()
     {
         Instance = this;
-        IntroAnimationController.Instance = this;
     }
     public List<AnimationObject> animationObjects = new List<AnimationObject>(2);
 
