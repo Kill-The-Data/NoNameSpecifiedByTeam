@@ -18,6 +18,7 @@ public class LerpSlider : MonoBehaviour, IObserver
     //defines Fill type
     private bool m_IsRadialFillUp;
     //init for fill up bar
+    private RotateBuoyFillIndicator m_rotator = null;
     public void Init(Slider slider, float lerpTime = 1.0f, float minValue = 0.1f)
     {
         m_slider = slider;
@@ -27,13 +28,14 @@ public class LerpSlider : MonoBehaviour, IObserver
 
     }
     //init for radial fill up
-    public void Init(Material mat, float lerpTime = 1.0f, float minValue = 0.1f)
+    public void Init(Material mat, float lerpTime = 1.0f, float minValue = 0.1f, RotateBuoyFillIndicator r = null)
     {
         m_LastFIll = 0;
         m_targetFillUpRadial = mat;
         m_lerpTime = lerpTime;
         m_minSliderValue = minValue;
         m_IsRadialFillUp = true;
+        m_rotator = r;
     }
     //Update slider target value & reset lerp time
     public void UpdateSlider(float value)
@@ -65,6 +67,10 @@ public class LerpSlider : MonoBehaviour, IObserver
             float fill = Lerp(m_LastFIll);
             m_targetFillUpRadial.SetFloat("FILL", fill);
             m_LastFIll = fill;
+
+            if (m_rotator == null) return;
+            m_rotator?.UpdateRotation(Lerp(fill));
+
         }
         else if (m_slider)
         {

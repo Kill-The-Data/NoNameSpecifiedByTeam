@@ -2,27 +2,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class RotateBuoyFillIndicator : MonoBehaviour
 {
-
-    public float angle = 0;
-    public Transform center;
-    public Vector3 rotationCenter = new Vector3(0, 0, 0);
-    public void Update()
+    [SerializeField]private  UpdateBuoyText m_buoyText = null;
+    public void UpdateRotation(float fillAmount)
     {
-        if (Input.GetKeyDown("space"))
-        {
+        m_buoyText?.UpdateText(fillAmount);
 
-            angle = Mathf.Lerp(angle, angle + 10, 10);
-        }
-        //transform.RotateAround(Vector3.forward, angle);
-        transform.localRotation = Quaternion.EulerAngles(0, angle, 0);
+        var rotation = fillAmount * -360;
+        transform.localRotation = Quaternion.Euler(0, Mathf.Clamp(rotation, -360, 0), 0);
     }
-
-    public void UpdateRotation()
+    public void OnEnable()
     {
-
+        Reset();
     }
-
+    private void Reset()
+    {
+        transform.localRotation = Quaternion.Euler(0, 0, 0);
+     
+    }
 }
