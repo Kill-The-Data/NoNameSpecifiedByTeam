@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using EventHandler = SpaceGame.EventHandler;
 public class BuoyFillUp : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class BuoyFillUp : MonoBehaviour
 
     //[SerializeField] private GameObject m_TargetRadialFillUp = null;
     [SerializeField] private SpriteRenderer m_TargetRenderer = null;
+
+    public event Action<BuoyFillUp> onCargoFilled;
 
     private int m_currentFillUp;
     private LerpSlider m_Lerper;
@@ -70,6 +73,7 @@ public class BuoyFillUp : MonoBehaviour
             remainingCargo = m_currentFillUp - m_MaxFillUp;
             m_currentFillUp = m_MaxFillUp;
             FilledUp();
+            onCargoFilled?.Invoke(this);
 
         }
         //return leftover player cargo if not all cargo can be dropped off

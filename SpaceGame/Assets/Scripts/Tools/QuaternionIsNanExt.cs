@@ -14,3 +14,11 @@ public static class Vector3IsNanExt
         return float.IsNaN(v.x) || float.IsNaN(v.y) || float.IsNaN(v.z);
     }
 }
+
+public static class Vector2Promote
+{
+    public static Vector3 Promote(this Vector2 v)
+    {
+        return new Vector3(v.x,v.y);
+    }
+}
