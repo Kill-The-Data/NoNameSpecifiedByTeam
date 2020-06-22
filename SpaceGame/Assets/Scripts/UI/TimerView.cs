@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -18,7 +19,11 @@ public class TimerView : MonoBehaviour, IObserver
     [SerializeField] private float m_initalAmountOfFuel = 60;
     [SerializeField] private float m_maxAmountOfFuel = 60;
 
+    private Action<Timer> m_OnInitTimerEvent; 
+    
     private float time;
+
+    private bool m_timerWasInit = false;
     
     public Timer timer
     {
@@ -28,7 +33,8 @@ public class TimerView : MonoBehaviour, IObserver
     private List<IObserver> m_Observers;
     public void InitTimer()
     {
-       
+        
+        m_timerWasInit = false;
         gameObject.SetActive(true);
         if (!timer)
         {
@@ -46,6 +52,10 @@ public class TimerView : MonoBehaviour, IObserver
             o.ExtractInt("max_fuel", v => m_maxAmountOfFuel = v);
             SetTimerValues();
         });
+
+        m_OnInitTimerEvent?.Invoke(timer);
+        m_timerWasInit = true;
+        m_OnInitTimerEvent = null;
     }
 
     private void SetTimerValues()
@@ -96,5 +106,20 @@ public class TimerView : MonoBehaviour, IObserver
     {
         m_text.SetText(Mathf.RoundToInt(time).ToString() + "L");
         m_rotator.SetPercentage(time / m_maxAmountOfFuel);
+    }
+
+    public float GetMaxFuel()
+    {
+        return m_maxAmountOfFuel;
+    }
+
+    public void OnTimerInit(Action<Timer> action)
+    {
+        if (m_timerWasInit)
+        {
+            action(timer);
+        }
+
+        m_OnInitTimerEvent += action;
     }
 }
