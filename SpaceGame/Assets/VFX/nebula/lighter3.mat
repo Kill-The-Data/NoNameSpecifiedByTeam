@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: lighterShader2
+  m_Name: lighter3
   m_Shader: {fileID: -6465566751694194690, guid: dfb476b99dbd63c4785689812a7b1564,
     type: 3}
   m_ShaderKeywords: 
@@ -23,15 +23,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
-    - Vector1_317A77EC: 0
-    - Vector1_8C3BC8B8: 19.79
-    - Vector1_9E2929CB: -0.41
-    - Vector1_A4930EA2: 0.31
-    - Vector1_AD7C14A5: 0.7
-    - Vector1_D1289F4F: 0.05
-    - Vector1_D9D24D29: -5.62
-    - Vector1_F8BDA372: 0.9
-    - Vector1_FE13F022: -3.7
+    - Vector1_317A77EC: 0.21
+    - Vector1_8C3BC8B8: 14.93
+    - Vector1_9E2929CB: -1.32
+    - Vector1_A4930EA2: 0.21
+    - Vector1_AD7C14A5: 0.76
+    - Vector1_D1289F4F: 1.48
+    - Vector1_D9D24D29: -1.86
+    - Vector1_F8BDA372: 0.89
+    - Vector1_FE13F022: 2.11
     m_Colors:
-    - Color_A5208024: {r: 3.0951264, g: 3.9686277, b: 0, a: 0}
-    - Color_E864261D: {r: 1.584314, g: 0, b: 1.4930708, a: 0}
+    - Color_A5208024: {r: 0, g: 2.1435456, b: 0.9662254, a: 0}
+    - Color_E864261D: {r: 2.2588239, g: 0.50853103, b: 2.1642134, a: 0}
