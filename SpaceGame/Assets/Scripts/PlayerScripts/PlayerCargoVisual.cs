@@ -26,6 +26,9 @@ public class PlayerCargoVisual : MonoBehaviour
     public void InstantiateObj(GameObject obj)
     {
         GameObject newObj = Instantiate(obj);
+        //Destroy children off copy -> e.g. particles
+        foreach (Transform child in newObj.transform) Destroy(child.gameObject);
+
         if (m_targetParent)
         {
             newObj.transform.parent = m_targetParent.transform;
