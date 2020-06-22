@@ -1,6 +1,6 @@
 ﻿using System;
 using UnityEngine;
-
+using EventHandler = SpaceGame.EventHandler;
 public class EventHandlerDebugger : MonoBehaviour
 {
     void Start()

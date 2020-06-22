@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
+using EventHandler = SpaceGame.EventHandler;
 public class PlayerCargo : MonoBehaviour, IObserver
 {
 
