@@ -14,7 +14,7 @@ AnimatorStateMachine:
     m_Position: {x: 338.23212, y: 126.305756, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2962319104583086919}
-    m_Position: {x: 470, y: 10, z: 0}
+    m_Position: {x: 340, y: 10, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -86,7 +86,7 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -114,7 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TriggerOnStateExit: 8
   TriggerNames:
-  - 
+  - TriggerAnimation
 --- !u!1102 &2962319104583086919
 AnimatorState:
   serializedVersion: 5

@@ -7,7 +7,7 @@ public class IntroAnimationController : MonoBehaviour
 {
     public enum AnimationStates
     {
-        PlayOnStart,
+        PLAY_ON_START,
         TRASH_PICKUP,
         BUOY_ANIMATION,
         FUEL_DROP,
@@ -18,9 +18,7 @@ public class IntroAnimationController : MonoBehaviour
         MARS_ENDING,
         RESTART,
         NONE
-
     }
-
 
     public static IntroAnimationController Instance;
 
@@ -46,7 +44,7 @@ public class IntroAnimationController : MonoBehaviour
         foreach (AnimationObject currentObject in animationObjects)
         {
 
-            if (currentObject.State == AnimationStates.PlayOnStart)
+            if (currentObject.State == AnimationStates.PLAY_ON_START)
             {
                 ActivateAnimation(currentObject);
             }
@@ -63,10 +61,11 @@ public class IntroAnimationController : MonoBehaviour
         }
 
 
-        Debug.Log("triggering next animation : " + animationToTrigger);
+       // Debug.Log("triggering next animation : " + animationToTrigger);
         foreach (AnimationObject a in animationObjects)
         {
-            if (a.State == AnimationStates.PlayOnStart ||a.State==AnimationStates.NONE) continue;
+            //make sure to only trigger properly setup animations
+            if (a.State == AnimationStates.PLAY_ON_START || a.State==AnimationStates.NONE) continue;
             if (a.State == animationToTrigger)
             {
                 ActivateAnimation(a);
@@ -77,7 +76,7 @@ public class IntroAnimationController : MonoBehaviour
 
     private void Restart()
     {
-        Debug.Log("Restarting : ");
+       // Debug.Log("Restarting : ");
         StartAnimation();
     }
     private void ActivateAnimation(AnimationObject a)
