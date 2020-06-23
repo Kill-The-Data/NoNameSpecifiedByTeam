@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
+    //enable & disable ghost ships
+    [Header("---Ghost Ships---")]
+    [SerializeField] private GameObject m_firstGhostShip = null;
+    [SerializeField] private GameObject m_secondGhostShip = null;
+
     //prefabs to instantiate 
     [Header("---Door prefabs---")]
     [SerializeField] private GameObject m_firstDoorPrefab = null;
@@ -28,6 +33,11 @@ public class DoorController : MonoBehaviour
             OpenDoor(m_FirstDoor.transform);
             doorIndex++;
         }
+        if(m_secondGhostShip)
+            m_secondGhostShip.SetActive(true);
+        if (m_firstGhostShip)
+            m_firstGhostShip.SetActive(false);
+
     }
     //gets called by tutorial state on tutorial finished,
     //opens door & increases index for destroying the right door
@@ -38,6 +48,8 @@ public class DoorController : MonoBehaviour
             OpenDoor(m_SecondDoor.transform);
             doorIndex++;
         }
+        if(m_secondGhostShip)
+            m_secondGhostShip.SetActive(false);
     }
     //"opens" door => moves it, fades it out , destroys it on complete
     //pls make sure that door objects are positioned properly
@@ -82,5 +94,8 @@ public class DoorController : MonoBehaviour
             m_FirstDoor = Instantiate(m_firstDoorPrefab);
         if (m_secondDoorPrefab)
             m_SecondDoor = Instantiate(m_secondDoorPrefab);
+
+        if (m_firstGhostShip)
+            m_firstGhostShip.SetActive(true);
     }
 }
