@@ -34,7 +34,8 @@ public class WaypointNavigator : MonoBehaviour
     }
     protected virtual void ReachedEnd()
     {
-        m_current = m_start;
+        transform.position = m_start.GetPosition();
+        m_current = m_start.NextWaypoint;
     }
     protected void Move()
     {
