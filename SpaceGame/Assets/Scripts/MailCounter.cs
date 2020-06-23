@@ -29,7 +29,7 @@ public class MailCounter : MonoBehaviour
     private void Awake()
     {
         m_instance = this;
-        m_instanceCreatedActions(this);
+        m_instanceCreatedActions?.Invoke(this);
         m_instanceCreatedActions = null;
     }
 
