@@ -74,6 +74,7 @@ MonoBehaviour:
   m_tweenSpeed: 1
   m_MinSliderValue: 0.1
   m_TargetRenderer: {fileID: 0}
+  m_rotator: {fileID: 0}
 --- !u!114 &2137485633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,6 +90,7 @@ MonoBehaviour:
   m_scorePerCargo: 10
   m_collisionSound: collision-buoy
   m_dropOffSound: debris-dropoff
+  m_UseConfigForScoreGain: 1
   m_FillUp: {fileID: 0}
 --- !u!114 &2445845336909643696
 MonoBehaviour:
@@ -290,12 +292,12 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 3cb69fa796c094e42a5944d1d2129ad7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.25
+      value: 61.6
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3cb69fa796c094e42a5944d1d2129ad7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.63
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3cb69fa796c094e42a5944d1d2129ad7,
         type: 3}
