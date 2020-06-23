@@ -3,7 +3,6 @@ using EventHandler = SpaceGame.EventHandler;
 public class IngameState : StateWithView<IngameView>
 {
 
-    [SerializeField] private bool m_SkipCutScene = true;
     public override void EnterState()
     {
         base.EnterState();
@@ -23,10 +22,6 @@ public class IngameState : StateWithView<IngameView>
     }
     private void InitGameState()
     {
-        if(!m_SkipCutScene)
-            view.GetAnimator().TriggerAnimation();
-
-
         var levelGen = view.GetLevelAlways();
         
         //check if the level was prewarmed by the tutorial, if it was not (because the tutorial was skipped, or something simmilar)
