@@ -179,6 +179,7 @@ MonoBehaviour:
   m_soundId: collision
   m_CollisionParticlePrefab: {fileID: 8265045472626405232, guid: baaeaec40dfef0444a28dce544042389,
     type: 3}
+  m_doNoEvilCauseNoHarm: 1
 --- !u!114 &7084749271314188997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,6 +334,7 @@ MonoBehaviour:
   m_soundId: collision
   m_CollisionParticlePrefab: {fileID: 8265045472626405232, guid: baaeaec40dfef0444a28dce544042389,
     type: 3}
+  m_doNoEvilCauseNoHarm: 1
 --- !u!114 &2152584842303994900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -487,6 +489,7 @@ MonoBehaviour:
   m_soundId: collision
   m_CollisionParticlePrefab: {fileID: 8265045472626405232, guid: baaeaec40dfef0444a28dce544042389,
     type: 3}
+  m_doNoEvilCauseNoHarm: 1
 --- !u!114 &3834229966043713446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -655,6 +658,7 @@ MonoBehaviour:
   m_soundId: collision
   m_CollisionParticlePrefab: {fileID: 8265045472626405232, guid: baaeaec40dfef0444a28dce544042389,
     type: 3}
+  m_doNoEvilCauseNoHarm: 1
 --- !u!54 &909355361827618459
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -809,6 +813,7 @@ MonoBehaviour:
   m_soundId: collision
   m_CollisionParticlePrefab: {fileID: 8265045472626405232, guid: baaeaec40dfef0444a28dce544042389,
     type: 3}
+  m_doNoEvilCauseNoHarm: 1
 --- !u!54 &5036448835936336749
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -963,6 +968,7 @@ MonoBehaviour:
   m_soundId: collision
   m_CollisionParticlePrefab: {fileID: 8265045472626405232, guid: baaeaec40dfef0444a28dce544042389,
     type: 3}
+  m_doNoEvilCauseNoHarm: 1
 --- !u!54 &5359971160858685102
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1117,6 +1123,7 @@ MonoBehaviour:
   m_soundId: collision
   m_CollisionParticlePrefab: {fileID: 8265045472626405232, guid: baaeaec40dfef0444a28dce544042389,
     type: 3}
+  m_doNoEvilCauseNoHarm: 1
 --- !u!54 &8764378432855404618
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1271,6 +1278,7 @@ MonoBehaviour:
   m_soundId: collision
   m_CollisionParticlePrefab: {fileID: 8265045472626405232, guid: baaeaec40dfef0444a28dce544042389,
     type: 3}
+  m_doNoEvilCauseNoHarm: 1
 --- !u!54 &7500160179231436763
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1425,6 +1433,7 @@ MonoBehaviour:
   m_soundId: collision
   m_CollisionParticlePrefab: {fileID: 8265045472626405232, guid: baaeaec40dfef0444a28dce544042389,
     type: 3}
+  m_doNoEvilCauseNoHarm: 1
 --- !u!1001 &2354797667373966723
 PrefabInstance:
   m_ObjectHideFlags: 0
