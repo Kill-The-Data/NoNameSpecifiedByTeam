@@ -12,7 +12,9 @@ public class VoronoiDebrisGen : MonoBehaviour
     {
         TRASH,
         ASTEROIDS,
-        BIG_OBSTACLES
+        BIG_OBSTACLES,
+        BROKEN_SHIP,
+        BROKEN_SATELITE
     };
 
 
@@ -65,7 +67,12 @@ public class VoronoiDebrisGen : MonoBehaviour
     [Header(" --- Easter eggs --- ")]
     public List<GameObject> EasterEggsList;
 
+   
+    [Header(" --- Broken Ship parts --- ")]
+    public List<GameObject> BrokenShipList;
 
+    [Header(" --- Broken Satelite parts --- ")]
+    public List<GameObject> BrokenSateliteList;
 
     //----------- Exclusion Zone Setup Variables
     //----------- takes in a list type that correlates to the list of spawnable objects
@@ -338,6 +345,10 @@ public class VoronoiDebrisGen : MonoBehaviour
                 return TrashList;
             case ListSelection.BIG_OBSTACLES:
                 return ObstaclesList;
+            case ListSelection.BROKEN_SATELITE:
+                return BrokenSateliteList;
+            case ListSelection.BROKEN_SHIP:
+                return BrokenShipList;
         }
         return null;
     }

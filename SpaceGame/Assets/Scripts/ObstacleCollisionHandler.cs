@@ -10,6 +10,9 @@ public class ObstacleCollisionHandler : MonoBehaviour, ISubject
     [LabelOverride("Sound on Collision")]
     [SerializeField] private string m_soundId = "collision";
     [SerializeField] private GameObject m_CollisionParticlePrefab = null;
+
+    [SerializeField] private bool m_doNoEvilCauseNoHarm = false;
+    
     private int m_damage = 10;
 
     private AudioSource m_audioSource;
@@ -117,8 +120,9 @@ public class ObstacleCollisionHandler : MonoBehaviour, ISubject
         if (health == null || controller == null) return;
         if (!m_hasDealtDamage)
         {
-            health.TakeDamage(m_damage);
-
+            if(!m_doNoEvilCauseNoHarm){
+                health.TakeDamage(m_damage);
+            }
             //make the factor so big you actually bounce back
             var velocity = controller.GetVelocity();
 
