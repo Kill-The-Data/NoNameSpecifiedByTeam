@@ -18,6 +18,8 @@ public class SplinePrefabPlacer : MonoBehaviour
 
     [SerializeField] private bool m_yeet;
 
+    //where to generate all this nonesense
+    //make sure that gameobject absolutely has to exist
     public GameObject Generated
     {
         get
@@ -35,7 +37,7 @@ public class SplinePrefabPlacer : MonoBehaviour
         set => m_generated = value;
     }
 
-
+    //make sure our update loop is respected
     private void OnEnable()
     {
         m_spline = GetComponent<Spline>();
@@ -44,6 +46,7 @@ public class SplinePrefabPlacer : MonoBehaviour
 #endif
     }
 
+    //and discarded accordingly
     void OnDisable() {
 #if UNITY_EDITOR
         EditorApplication.update -= EditorUpdate;
@@ -52,6 +55,8 @@ public class SplinePrefabPlacer : MonoBehaviour
 
     private bool generated = false;
     
+    //check if we should regenerate by
+    //asking the user if he yote his stuff
     public void EditorUpdate()
     {
         if (!m_yeet && !generated)
@@ -66,6 +71,7 @@ public class SplinePrefabPlacer : MonoBehaviour
     }
 
     
+    //generate instances
     public void Generate()
     {
         for (float pos = 0; pos < m_spline.nodes.Count - 1; pos += m_sampleSize)
@@ -74,7 +80,8 @@ public class SplinePrefabPlacer : MonoBehaviour
             Instantiate(m_prefab, sample.location, sample.Rotation, Generated.transform);
         }
     }
-
+    
+    //give a visual indication of where the stuff is roughly going to be
     private void OnDrawGizmos()
     {
         if(m_spline)
