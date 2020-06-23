@@ -5,9 +5,15 @@ using UnityEngine;
 public class MailText : MonoBehaviour
 {
     private TMP_Text label;
+    private int max;
+    
     void Start()
     {
         label = GetComponent<TMP_Text>();
+        MailCounter.OnInstance(instance =>
+        {
+            max = instance.MaxMail;
+        });
     }
 
     private void OnEnable() => 
@@ -25,6 +31,6 @@ public class MailText : MonoBehaviour
 
     private void UpdateLabel(int value)
     {
-        label.text = $"Mail : {value}";
+        label.text = $"{value}/{max}";
     }
 }
