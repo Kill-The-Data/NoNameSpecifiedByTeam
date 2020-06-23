@@ -24,7 +24,10 @@ public class MailCounter : MonoBehaviour
         get => m_count;
         private set => SetCountAndUpdateEvents(value);
     }
-    
+
+    public int MaxMail => m_maxMail;
+
+
     //it is fucking guarded global static
     private void Awake()
     {
