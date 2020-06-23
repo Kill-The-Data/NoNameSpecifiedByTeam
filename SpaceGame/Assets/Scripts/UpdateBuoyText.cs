@@ -26,7 +26,6 @@ public class UpdateBuoyText : MonoBehaviour
 
     public void UpdateText(float fill)
     {
-        Debug.Log("updating text" + fill);
         int count = Mathf.RoundToInt(fill * m_MaxFill);
         string newText = count.ToString() + "/" + m_MaxFill.ToString();
 

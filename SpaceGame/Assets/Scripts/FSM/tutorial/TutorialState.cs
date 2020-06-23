@@ -6,11 +6,11 @@ public class TutorialState : StateWithView<IngameView>
     [SerializeField] private AbstractView m_TutorialFSMView = null;
     [SerializeField] private int m_index = 2;
     private int m_currentIndex = 0;
+    private DoorController m_doorController = null;
     //init tutorial fsm on state enter 
     private void OnDestroy()
     {
         EventHandler.Instance.StationFilled -= StationFilled;
-
     }
     public override void EnterState()
     {
@@ -18,6 +18,7 @@ public class TutorialState : StateWithView<IngameView>
         m_currentIndex = 0;
         base.EnterState();
         InitGameState();
+        InitTutorial();
         m_TutorialFSMView.EnableView();
         m_tutorialFSM.InitTutorial();
     }
@@ -25,9 +26,6 @@ public class TutorialState : StateWithView<IngameView>
     {
         EventHandler.Instance.StationFilled -= StationFilled;
         base.ExitState();
-    }
-    public void TrashCollected()
-    {
     }
     public void TimeOut()
     {
@@ -76,14 +74,29 @@ public class TutorialState : StateWithView<IngameView>
     }
     public void FinishTutorial()
     {
+        m_doorController?.OpenSecondDoor();
+
         EventHandler.Instance.StationFilled -= StationFilled;
         m_TutorialFSMView.DisableView();
         fsm.ChangeState<IngameState>();
     }
     public void StationFilled()
     {
-        m_currentIndex++;
+             m_currentIndex++;
+        if (m_currentIndex == 1)
+            m_doorController?.OpenFirstDoor();
         if (m_currentIndex == m_index)
             FinishTutorial();
     }
+
+    private void InitTutorial()
+    {
+        if (m_doorController == null)
+        {
+            m_doorController = GetComponent<DoorController>();
+        }
+        m_doorController?.InitDoors();
+
+    }
 }
+
