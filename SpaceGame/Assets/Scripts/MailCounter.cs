@@ -27,15 +27,21 @@ public class MailCounter : MonoBehaviour
 
     public int MaxMail => m_maxMail;
 
-
-    //it is fucking guarded global static
+    private void OnEnable()
+    {
+        Reset();
+    }
+        //it is fucking guarded global static
     private void Awake()
     {
         m_instance = this;
         m_instanceCreatedActions?.Invoke(this);
         m_instanceCreatedActions = null;
     }
-
+    private void Reset()
+    {
+        Count = 0;
+    }
     //and uses and action based instance subscription model
     public static void OnInstance(Action<MailCounter> o)
     {
