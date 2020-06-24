@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,37 +20,48 @@ public class IntroAnimationController : MonoBehaviour
     }
 
     public static IntroAnimationController Instance;
-
+    public List<AnimationObject> animationObjects = new List<AnimationObject>(2);
 
     void Awake()
     {
         Init();
+    }
+    private void OnEnable()
+    {
+        Restart();
     }
     //set handler for singleton
     private void Init()
     {
         Instance = this;
     }
-    public List<AnimationObject> animationObjects = new List<AnimationObject>(2);
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        StartAnimation();
-    }
     private void StartAnimation() 
     {
+        //play all on start animations & deactivate all other animations
         foreach (AnimationObject currentObject in animationObjects)
         {
-
             if (currentObject.State == AnimationStates.PLAY_ON_START)
             {
                 ActivateAnimation(currentObject);
             }
+            else 
+            {
+                DeactivateAnimation(currentObject);
+            }
         }
     }
 
+    private void DeactivateAnimation(AnimationObject animationObject) 
+    {
+        //reset trigger 
+        string TriggerString;
+        if (animationObject.Trigger.Length == 0) TriggerString = "TriggerAnimation";
+        else TriggerString = animationObject.Trigger;
+        animationObject.animator.ResetTrigger(TriggerString);
 
+        //reset to await state
+        animationObject.animator.Play("AwaitState", 0);
+    }
     public void TriggerAnimation(AnimationStates animationToTrigger)
     {
         if (animationToTrigger == AnimationStates.RESTART) 
@@ -73,10 +83,8 @@ public class IntroAnimationController : MonoBehaviour
         }
 
     }
-
     private void Restart()
     {
-       // Debug.Log("Restarting : ");
         StartAnimation();
     }
     private void ActivateAnimation(AnimationObject a)
@@ -86,7 +94,6 @@ public class IntroAnimationController : MonoBehaviour
         if (a.Trigger.Length == 0) TriggerString = "TriggerAnimation";
         else TriggerString = a.Trigger;
         a.animator.SetTrigger(TriggerString);
-
     }
 }
 [Serializable]
@@ -95,10 +102,4 @@ public class AnimationObject
     public Animator animator;
     public string Trigger;
     public IntroAnimationController.AnimationStates State;
-}
-
-public static class AnimationStates
-{
-  
-
 }
