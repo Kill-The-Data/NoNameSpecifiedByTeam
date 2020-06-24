@@ -40,7 +40,7 @@ public abstract class AbstractCollider : MonoBehaviour
             HandleObstacleStay(other);
         }
     }
-    private void OnTriggerLeave(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player") || other.CompareTag("Player-Collector"))
         {
