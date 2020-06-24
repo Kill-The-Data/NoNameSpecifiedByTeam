@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using EventHandler = SpaceGame.EventHandler;
@@ -7,9 +8,10 @@ using EventHandler = SpaceGame.EventHandler;
 public class PlayerHealth : MonoBehaviour, ISubject
 {
 
-    [Header(" --- Setup --- ")]
-
-
+    [Header(" --- Setup --- ")] 
+    [Tooltip("The health glow effect")]
+    [SerializeField] private GlowController m_glow;
+    
     [LabelOverride("Use Global Health")]
     [Tooltip("Uses The Variable from the conf server instead")]
     [SerializeField] private bool m_overrideHealthConf = false;
@@ -121,7 +123,10 @@ public class PlayerHealth : MonoBehaviour, ISubject
     public void Heal(int amount = 10)
     {
         if (amount > 0 && Health < m_maxHealth)
+        {
             Health = Mathf.Clamp(Health + amount, 0, m_maxHealth);
+            m_glow.Animate();
+        }
     }
 
     public bool IsDead()
