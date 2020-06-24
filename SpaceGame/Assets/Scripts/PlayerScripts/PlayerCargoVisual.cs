@@ -1,4 +1,5 @@
-﻿using EventHandler = SpaceGame.EventHandler;using System;
+﻿using EventHandler = SpaceGame.EventHandler;
+using System;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
@@ -19,10 +20,6 @@ public class PlayerCargoVisual : MonoBehaviour
     }
 
     private int m_amount = 0;
-    private void OnEnable()
-    {
-        Reset();
-    }
     public void InstantiateObj(GameObject obj)
     {
         GameObject newObj = Instantiate(obj);
@@ -78,13 +75,13 @@ public class PlayerCargoVisual : MonoBehaviour
     }
     public void RemoveObj(int amount)
     {
+        amount = m_MaxCount - amount;
         for (int i = 0; i < m_targetParent.transform.childCount; ++i)
         {
-            if (amount <= i)
+            if (amount > i)
             {
                 Destroy(m_targetParent.transform.GetChild(i).gameObject);
                 m_amount--;
-                amount--;
             }
         }
         if (m_amount < 0) m_amount = 0;
