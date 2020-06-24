@@ -1,19 +1,9 @@
 fileFormatVersion: 2
-guid: b269a355e42f91a48976103d1d247ae6
+guid: fe61cc8257275574cba7a1c97104abef
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: base Material
-    second: {fileID: 2100000, guid: e5d5f19b46702b54788282ac7f53d5e3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: solar pannel Material
-    second: {fileID: 2100000, guid: f142de74699acee4a867b5cb8ab2723f, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 1
     materialName: 0

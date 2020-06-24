@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8515628813795368714}
   - component: {fileID: 826008070698411324}
   - component: {fileID: 6361924488608504261}
+  - component: {fileID: 8612854577342022351}
   m_Layer: 0
   m_Name: arm fin left
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &8612854577342022351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4645127188831300889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c8deb72f5affa1488524ea71dd0738c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_rotationAxis: {x: 100, y: 100, z: 100}
+  m_angle: 5

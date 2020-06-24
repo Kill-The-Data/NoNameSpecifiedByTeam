@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6434708721996630337}
   - component: {fileID: 2600736161177056119}
   - component: {fileID: 8586995224523526030}
+  - component: {fileID: 6591193287110845890}
   m_Layer: 0
   m_Name: base
   m_TagString: Untagged
@@ -39,7 +40,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8005135854733458258}
-  m_Mesh: {fileID: -1388485733357891733, guid: b269a355e42f91a48976103d1d247ae6, type: 3}
+  m_Mesh: {fileID: -1388485733357891733, guid: a1dfd62ddc167b44c9de226e852e4e57, type: 3}
 --- !u!23 &8586995224523526030
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -80,3 +81,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &6591193287110845890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8005135854733458258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c8deb72f5affa1488524ea71dd0738c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_rotationAxis: {x: 1, y: 1, z: 100}
+  m_angle: 1
