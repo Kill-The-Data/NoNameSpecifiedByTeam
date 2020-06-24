@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Video;
 
 [RequireComponent(typeof(AudioSource),typeof(ObstacleMover))]
-public class ObstacleCollisionHandler : MonoBehaviour, ISubject
+public class ObstacleCollisionHandler : AbstractCollider, ISubject
 {
 
     [Tooltip("The Sound to play on Collision, checkout the GlobalSetup->SoundManager")]
@@ -39,28 +39,10 @@ public class ObstacleCollisionHandler : MonoBehaviour, ISubject
 
     private Action<ISubject> m_listeners = delegate { };
     private bool m_hasDealtDamage;
-    public void OnTriggerEnter(Collider other)
-    {
-        HandlePlayerEnter(other);
-        
-        // technically working, makes the simulation incredibly unstable
-        // not recommended unless you like your universe "experimental"
-        //TODO:(algo-ryth-mix) wth is going on with this ?
-        //HandleObstacleEnter(other);
-    }
-    public void OnTriggerExit(Collider other)
-    {
-        HandlePlayerExit(other);
-    }
-
-    public void OnTriggerStay(Collider other)
-    {
-        HandlePlayerStay(other);
-    }
-
+   
     private float m_time = 0;
 
-    private void HandlePlayerStay(Collider other)
+    protected override void HandlePlayerStay(Collider other)
     {
         if ((other.CompareTag("Player") || other.CompareTag("Player-Collector"))
             && other.transform.parent.GetComponentSafe(out PlayerController playerController))
@@ -76,9 +58,9 @@ public class ObstacleCollisionHandler : MonoBehaviour, ISubject
         }
     }
 
-    private void HandleObstacleEnter(Collider other)
+    protected override void HandleObstacleEnter(Collider other)
     {
-        
+        return;
         if (other.CompareTag("Obstacles") &&
             other.GetComponentSafe(out ObstacleMover mover))
         {
@@ -87,9 +69,9 @@ public class ObstacleCollisionHandler : MonoBehaviour, ISubject
             mover.Speed = temp;
         }
     }
-    
 
-    private void HandlePlayerEnter(Collider other)
+
+    protected override void HandlePlayerEnter(Collider other)
     {
         if ((other.CompareTag("Player") || other.CompareTag("Player-Collector"))
             && other.transform.parent.GetComponentSafe(out PlayerHealth playerHealth)
@@ -139,7 +121,7 @@ public class ObstacleCollisionHandler : MonoBehaviour, ISubject
         }
     }
 
-    private void HandlePlayerExit(Collider other)
+    protected override void HandlePlayerLeave(Collider other)
     {
         if ((other.CompareTag("Player") || other.CompareTag("Player-Collector"))
         && other.transform.parent.GetComponentSafe(out PlayerController playerController))
