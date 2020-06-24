@@ -25,6 +25,9 @@ public class PlayerCargo : MonoBehaviour, IObserver
     [SerializeField] private int m_cargoLimit = 3;
 
 
+    [Tooltip("The glow when you pick up cargo")]
+    [SerializeField] private GlowController m_glow;
+    
     private int m_spaceOccupiedImpl;
     private LerpSlider m_lerp = null;
 
@@ -84,15 +87,13 @@ public class PlayerCargo : MonoBehaviour, IObserver
     {
         if (SpaceAvailable(amount))
         {
+            m_glow.Animate();
             SpaceOccupied += amount;
         }
     }
     public void AddCargo(GameObject obj, int amount = 1)
     {
-        if (SpaceAvailable(amount))
-        {
-            SpaceOccupied += amount;
-        }
+        AddCargo(amount);
         m_cargoVis?.InstantiateObj(obj);
     }
 
