@@ -81,6 +81,7 @@ public class SplinePrefabPlacer : MonoBehaviour
         }
     }
     
+    #if UNITY_EDITOR
     //give a visual indication of where the stuff is roughly going to be
     private void OnDrawGizmos()
     {
@@ -91,4 +92,5 @@ public class SplinePrefabPlacer : MonoBehaviour
                 Handles.DrawWireDisc(sample.location, Vector3.back, 1F);
             }
     }
+    #endif
 }
