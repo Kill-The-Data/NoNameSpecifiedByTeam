@@ -2,7 +2,7 @@
 using UnityEngine;
 using EventHandler = SpaceGame.EventHandler;
 [RequireComponent(typeof(TrashMovementController))]
-public class TrashCollisionHandler : MonoBehaviour, ISubject
+public class TrashCollisionHandler : AbstractCollider, ISubject
 {
     [SerializeField] private GameObject m_pickupParticlePrefab = null;
     [SerializeField] private GameObject m_dmgParticlePrefb = null;
@@ -32,21 +32,9 @@ public class TrashCollisionHandler : MonoBehaviour, ISubject
             OnPlayerPickUpJunk += self => tstate.NextState();
         }
     }
-
-    public void OnTriggerEnter(Collider other)
-    {
-        HandlePlayerEnter(other);
-        HandleTrashEnter(other);
-    }
-
-    public void OnTriggerExit(Collider other)
-    {
-        HandlePlayerExit(other);
-        HandleTrashExit();
-    }
-
+    
     //Player Interaction
-    private void HandlePlayerEnter(Collider other)
+    protected override void HandlePlayerEnter(Collider other)
     {
         //check if other is connected to the player and get all the required components
         if ((other.CompareTag("Player-Collector") || other.CompareTag("Player"))
@@ -115,7 +103,7 @@ public class TrashCollisionHandler : MonoBehaviour, ISubject
         }
     }
 
-    private void HandlePlayerExit(Collider other)
+    protected override void HandlePlayerLeave(Collider other)
     {
         if (other.CompareTag("Player") || other.CompareTag("Player-Collector"))
         {
@@ -135,7 +123,7 @@ public class TrashCollisionHandler : MonoBehaviour, ISubject
 
 
     //Trash Interaction
-    private void HandleTrashEnter(Collider other)
+    protected override void HandleTrashEnter(Collider other)
     {
         if (other.CompareTag("Debris")
             && other.GetComponentSafe(out TrashMovementController trashController)
@@ -160,7 +148,7 @@ public class TrashCollisionHandler : MonoBehaviour, ISubject
         }
     }
 
-    private void HandleTrashExit()
+    protected override void HandleTrashLeave(Collider obstacle)
     {
         m_solution = false;
     }
