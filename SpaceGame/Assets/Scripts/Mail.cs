@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class Mail : MonoBehaviour
+public class Mail : AbstractCollider
 {
     private Action OnPickedUp;
     
@@ -13,12 +13,9 @@ public class Mail : MonoBehaviour
         });
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected override void HandlePlayerEnter(Collider other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Player-Collector"))
-        {
-            OnPickedUp?.Invoke();
-            Destroy(gameObject);
-        }
+        OnPickedUp?.Invoke();
+        Destroy(gameObject);
     }
 }
