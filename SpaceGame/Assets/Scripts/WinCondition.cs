@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
-
+using EventHandler = SpaceGame.EventHandler;
 [RequireComponent(typeof(EventHandler))]
 public class WinCondition : MonoBehaviour
 {

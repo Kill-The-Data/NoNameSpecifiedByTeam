@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 using Vector2 = UnityEngine.Vector2;
-
+using EventHandler = SpaceGame.EventHandler;
 public class PlayerController : MonoBehaviour
 {
     [Header(" --- Setup --- ")] 
@@ -206,12 +206,22 @@ public class PlayerController : MonoBehaviour
     }
 
     #endif
+    
+    
     public Vector3 Collide(float factor = 0.95f)
     {
         var transfer = m_speed * factor;
         m_speed *= 1 - factor;
+        if(m_speed.sqrMagnitude < 1 ) m_speed = m_speed.normalized * 2;
         return transfer;
     }
+    
+    public void ResolveCollision(Vector3 direction)
+    {
+        m_speed += direction.normalized * 10 * Time.deltaTime;
+    }
+    
+    
 
     public Vector3 GetVelocity() => m_speed;
 

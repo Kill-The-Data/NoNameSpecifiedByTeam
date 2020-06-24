@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
-
+using EventHandler = SpaceGame.EventHandler;
 public class TransitionOsts : MonoBehaviour
 {
     [SerializeField] private OstPlayer m_ingame;

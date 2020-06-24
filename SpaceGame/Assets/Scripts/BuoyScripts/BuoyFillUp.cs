@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-
+﻿using System;
+using UnityEngine;
+using EventHandler = SpaceGame.EventHandler;
 public class BuoyFillUp : MonoBehaviour
 {
     [Header(" --- Boy values setup ---")]
@@ -11,14 +12,17 @@ public class BuoyFillUp : MonoBehaviour
     [Range(0, 1.5f)]
     [SerializeField] private float m_tweenSpeed = 1.0f;
     [Tooltip("The slider should never reach 0, only close to 0 so that it does not disappear")]
-    [Range(0.01f, 0.2f)]
+    [Range(0, 0.2f)]
     [SerializeField] private float m_MinSliderValue = 0.1f;
 
     //[SerializeField] private GameObject m_TargetRadialFillUp = null;
     [SerializeField] private SpriteRenderer m_TargetRenderer = null;
+    [SerializeField] private RotateBuoyFillIndicator m_rotator = null;
+
+    public event Action<BuoyFillUp> onCargoFilled;
 
     private int m_currentFillUp;
-    private LerpSlider m_Lerper;
+    private LerpSlider m_Lerper=null;
     void Awake()
     {
         Init();
@@ -44,7 +48,7 @@ public class BuoyFillUp : MonoBehaviour
         {
             m_Lerper = m_TargetRenderer.gameObject.AddComponent<LerpSlider>();
             Material mat = m_TargetRenderer.material;
-            m_Lerper.Init(mat, m_tweenSpeed, m_MinSliderValue);
+            m_Lerper.Init(mat, m_tweenSpeed, m_MinSliderValue, m_rotator);
         }
         m_currentFillUp = 0;
         m_Lerper.UpdateSlider(0.01f);
@@ -70,11 +74,12 @@ public class BuoyFillUp : MonoBehaviour
             remainingCargo = m_currentFillUp - m_MaxFillUp;
             m_currentFillUp = m_MaxFillUp;
             FilledUp();
+            onCargoFilled?.Invoke(this);
 
         }
         //return leftover player cargo if not all cargo can be dropped off
         float fillUp = (float)m_currentFillUp / (float)m_MaxFillUp;
-        m_Lerper.UpdateSlider(fillUp + 0.05f);
+        m_Lerper.UpdateSlider(fillUp);
         return remainingCargo;
 
     }

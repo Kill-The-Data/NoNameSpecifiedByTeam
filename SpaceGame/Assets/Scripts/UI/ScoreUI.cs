@@ -2,7 +2,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.Jobs;
-
+using EventHandler = SpaceGame.EventHandler;
 public class ScoreUI : MonoBehaviour, IObserver
 {
     [Header("Setup")]

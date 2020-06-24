@@ -1,6 +1,6 @@
 ﻿using System;
 using UnityEngine;
-
+using EventHandler = SpaceGame.EventHandler;
 public abstract class AReset : MonoBehaviour
 {
     public void Start()

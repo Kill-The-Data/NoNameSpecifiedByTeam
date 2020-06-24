@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Video;
 
-[RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(AudioSource),typeof(ObstacleMover))]
 public class ObstacleCollisionHandler : MonoBehaviour, ISubject
 {
 
@@ -10,14 +10,19 @@ public class ObstacleCollisionHandler : MonoBehaviour, ISubject
     [LabelOverride("Sound on Collision")]
     [SerializeField] private string m_soundId = "collision";
     [SerializeField] private GameObject m_CollisionParticlePrefab = null;
+
+    [SerializeField] private bool m_doNoEvilCauseNoHarm = false;
+    
     private int m_damage = 10;
 
     private AudioSource m_audioSource;
+    private ObstacleMover m_mover;
 
     public void Awake()
     {
         m_audioSource = gameObject.GetComponent<AudioSource>();
-
+        m_mover = gameObject.GetComponent<ObstacleMover>();
+        
         SoundManager.ExecuteOnAwake(manager =>
         {
             m_audioSource.clip = manager.GetSound(m_soundId);
@@ -37,6 +42,11 @@ public class ObstacleCollisionHandler : MonoBehaviour, ISubject
     public void OnTriggerEnter(Collider other)
     {
         HandlePlayerEnter(other);
+        
+        // technically working, makes the simulation incredibly unstable
+        // not recommended unless you like your universe "experimental"
+        //TODO:(algo-ryth-mix) wth is going on with this ?
+        //HandleObstacleEnter(other);
     }
     public void OnTriggerExit(Collider other)
     {
@@ -55,6 +65,8 @@ public class ObstacleCollisionHandler : MonoBehaviour, ISubject
         if ((other.CompareTag("Player") || other.CompareTag("Player-Collector"))
             && other.transform.parent.GetComponentSafe(out PlayerController playerController))
         {
+            playerController.ResolveCollision(other.transform.position-transform.position);
+            //playerController.ReplayCollision(m_time);
             m_time += Time.deltaTime;
             if (m_time > 0.5F)
             {
@@ -64,6 +76,18 @@ public class ObstacleCollisionHandler : MonoBehaviour, ISubject
         }
     }
 
+    private void HandleObstacleEnter(Collider other)
+    {
+        
+        if (other.CompareTag("Obstacles") &&
+            other.GetComponentSafe(out ObstacleMover mover))
+        {
+            var temp = m_mover.Speed;
+            m_mover.Speed = mover.Speed;
+            mover.Speed = temp;
+        }
+    }
+    
 
     private void HandlePlayerEnter(Collider other)
     {
@@ -96,9 +120,17 @@ public class ObstacleCollisionHandler : MonoBehaviour, ISubject
         if (health == null || controller == null) return;
         if (!m_hasDealtDamage)
         {
-            health.TakeDamage(m_damage);
-
+            if(!m_doNoEvilCauseNoHarm){
+                health.TakeDamage(m_damage);
+            }
             //make the factor so big you actually bounce back
+            var velocity = controller.GetVelocity();
+
+            var direction = velocity.normalized;
+            var magnitude = Mathf.Min(velocity.magnitude, 1);
+
+            m_mover.Speed += direction * magnitude;
+            
             controller.Collide(1.4f);
             controller.Disable();
 

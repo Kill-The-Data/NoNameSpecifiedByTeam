@@ -2,7 +2,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
+using EventHandler = SpaceGame.EventHandler;
 [RequireComponent(typeof(ShieldState))]
 public class PlayerHealth : MonoBehaviour, ISubject
 {

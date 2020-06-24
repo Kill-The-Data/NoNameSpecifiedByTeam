@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: lighter1
+  m_Shader: {fileID: -6465566751694194690, guid: dfb476b99dbd63c4785689812a7b1564,
+    type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    MotionVector: User
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Floats:
+    - Vector1_317A77EC: 0.21
+    - Vector1_8C3BC8B8: 19.44
+    - Vector1_9E2929CB: -1.32
+    - Vector1_A4930EA2: 0.19
+    - Vector1_AD7C14A5: 0.68
+    - Vector1_D1289F4F: 1.48
+    - Vector1_D9D24D29: -1.86
+    - Vector1_F8BDA372: 0.89
+    - Vector1_FE13F022: 2.49
+    m_Colors:
+    - Color_A5208024: {r: 0, g: 9.157767, b: 17.148367, a: 0}
+    - Color_E864261D: {r: 9.0352955, g: 2.0341241, b: 8.656854, a: 0}
