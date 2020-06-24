@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7179289451626190543}
   - component: {fileID: 2232363784912792825}
   - component: {fileID: 5604301354712928256}
+  - component: {fileID: 2637814720755227682}
   m_Layer: 0
   m_Name: window frame
   m_TagString: Untagged
@@ -80,3 +81,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &2637814720755227682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6195453830419031260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c8deb72f5affa1488524ea71dd0738c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_rotationAxis: {x: 100, y: 1, z: 100}
+  m_angle: 1

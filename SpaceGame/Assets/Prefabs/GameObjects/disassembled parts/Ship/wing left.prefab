@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5656402382052868208}
   - component: {fileID: 3685234499188193862}
   - component: {fileID: 6924315399079823039}
+  - component: {fileID: 2131411999499882883}
   m_Layer: 0
   m_Name: wing left
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &2131411999499882883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8657266654972588643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c8deb72f5affa1488524ea71dd0738c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_rotationAxis: {x: 100, y: 100, z: 50}
+  m_angle: 4
