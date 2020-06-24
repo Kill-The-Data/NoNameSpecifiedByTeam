@@ -40,6 +40,9 @@ public class TutorialState : StateWithView<IngameView>
 
         var levelGen = view.GetLevelAlways();
 
+
+     
+
         //delete level and prewarm a new one
         levelGen.DeleteLevel();
         levelGen.Prewarm();
@@ -55,10 +58,18 @@ public class TutorialState : StateWithView<IngameView>
         //reset cargo & player pos
         GameObject player = view.GetPlayer();
 
+
+        PerformanceMeasure playerPerformance = view.GetPerformance();
+        //init ingame timer
+        TimerView timerView = view.GetTimer();
+        timerView.InitTimer();
+        timerView.AttachPerformanceMeasure(playerPerformance);
+
         var playerHealth = player.GetComponent<PlayerHealth>();
         playerHealth.ResetPlayerHealth();
         player.GetComponent<PlayerController>().ResetController();
         //player.GetComponent<PlayerCargo>().ResetCargo();
+        playerHealth.Attach(playerPerformance);
 
         //configure Death Watch
         var deathWatch = player.GetComponent<DeathWatch>();
@@ -67,6 +78,7 @@ public class TutorialState : StateWithView<IngameView>
 
         deathWatch.PlayerHealth = playerHealth;
         deathWatch.State = this;
+        timerView.gameObject.GetComponent<Timer>()?.Attach(deathWatch);
     }
     public void PlayerDied()
     {

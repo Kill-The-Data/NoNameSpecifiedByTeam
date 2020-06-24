@@ -34,7 +34,6 @@ public class IngameState : StateWithView<IngameView>
         //apply the prewarm, only if the state is also the state where the prewarm should be applied
         view.GetLevelIfGenerator(this)?.ApplyPrewarm();
         
-        PerformanceMeasure playerPerformance = view.GetPerformance();
 
         //init time out timer
         view.GetTimeOutTimer().InitTimer(this);
@@ -42,10 +41,7 @@ public class IngameState : StateWithView<IngameView>
         //init item spawn
         view.GetItemSpawner().Reset();
 
-        //init ingame timer
-        TimerView timerView = view.GetTimer();
-        timerView.InitTimer();
-        timerView.AttachPerformanceMeasure(playerPerformance);
+       
 
         //reset cargo & player pos
         GameObject player = view.GetPlayer();
@@ -55,7 +51,6 @@ public class IngameState : StateWithView<IngameView>
         var playerHealth = player.GetComponent<PlayerHealth>();
         playerHealth.ResetPlayerHealth();
         //attach performance measure
-        playerHealth.Attach(playerPerformance);
 
         //configure Death Watch
         var deathWatch = player.GetComponent<DeathWatch>();
@@ -64,7 +59,7 @@ public class IngameState : StateWithView<IngameView>
 
         deathWatch.PlayerHealth = playerHealth;
         deathWatch.State = this;
-        timerView.gameObject.GetComponent<Timer>()?.Attach(deathWatch);
+      //  timerView.gameObject.GetComponent<Timer>()?.Attach(deathWatch);
         
         EventHandler.Instance.StartGame();
     }
