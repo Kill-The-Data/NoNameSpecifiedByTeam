@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
 
 
@@ -20,7 +18,9 @@ public class SoundManager : MonoBehaviour
   
   [Range(0,1)]
   [SerializeField] private float m_fxVolume = 1;
-  
+
+
+  [SerializeField] private Transform m_audioRoot;
   
   private static Action<SoundManager> OnAwake = delegate {  };
   private static bool awoken = false;
@@ -63,6 +63,28 @@ public class SoundManager : MonoBehaviour
       }
   }
   
+  private AudioSource MakeMeAnOutput(string name)
+  {
+      AudioSource src = new GameObject(name,typeof(AudioSource)).GetComponent<AudioSource>();
+      src.transform.parent = m_audioRoot;
+      src.transform.localPosition = Vector3.zero;
+      src.playOnAwake = false;
+      return src;
+  }
+
+  private AudioSource GetMeAnOutput(string name)
+  {
+      var bearer = m_audioRoot.Find(name);
+      if (bearer == null) return null;
+      return bearer.GetComponent<AudioSource>();
+  }
+
+  public AudioSource FetchMeAnOutput(string name)
+  {
+      var src = GetMeAnOutput(name);
+      if (src == null) return MakeMeAnOutput(name);
+      else return src;
+  }
   
   
   public AudioClip GetSound(string name)
