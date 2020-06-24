@@ -5,7 +5,7 @@ public abstract class AReset : MonoBehaviour
 {
     public void Start()
     {
-        Debug.Log("[Abstract Reset] Reset");
+       // Debug.Log("[Abstract Reset] Reset");
         EventHandler.Instance.TutorialStart += Reset;
     }
 

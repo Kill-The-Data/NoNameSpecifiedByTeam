@@ -66,7 +66,7 @@ public class DoorController : MonoBehaviour
 
             //Fade alpha
             Renderer r = child.GetComponent<Renderer>();
-            LeanTween.value(child.gameObject, 1, 0, moveSpeed).setEase(m_TweenType).setOnUpdate((float val) =>
+            LeanTween.value(child.gameObject, 1, 0, moveSpeed).setEase(m_TweenType).setOnUpdate((float val)=>
             {
                 r.material.SetFloat("ALPHA", val);
             });
@@ -89,6 +89,7 @@ public class DoorController : MonoBehaviour
     //reset index && instantiate doors
     public void InitDoors()
     {
+        Debug.Log("initing doors");
         doorIndex = 0;
         if (m_firstDoorPrefab)
             m_FirstDoor = Instantiate(m_firstDoorPrefab);

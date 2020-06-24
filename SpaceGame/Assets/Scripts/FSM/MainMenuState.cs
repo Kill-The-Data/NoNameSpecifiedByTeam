@@ -2,9 +2,13 @@
 
 public class MainMenuState : StateWithView<HighscoreView>
 {
+    [SerializeField] private bool m_playLaunchAnimattion = true;
     public void EnterGameState()
     {
-        fsm.ChangeState<TutorialState>();
+        if (m_playLaunchAnimattion)
+            fsm.ChangeState<LaunchAnimationState>();
+        else
+            fsm.ChangeState<TutorialState>();
     }
 
     public override void EnterState()
@@ -31,14 +35,14 @@ public class MainMenuState : StateWithView<HighscoreView>
     {
         fsm.ChangeState<CreditsState>();
     }
-    
+
     private void ResetPlayerPrefs()
     {
         PlayerPrefs.SetInt("score", 0);
         PlayerPrefs.SetFloat("time", 0);
         PlayerPrefs.SetInt("health", 0);
-        PlayerPrefs.SetInt("goalReached",0);
-        PlayerPrefs.SetInt("buoysFilled",0);
+        PlayerPrefs.SetInt("goalReached", 0);
+        PlayerPrefs.SetInt("buoysFilled", 0);
     }
 
 }
