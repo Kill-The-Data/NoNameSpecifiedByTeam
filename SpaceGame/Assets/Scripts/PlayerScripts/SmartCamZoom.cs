@@ -31,9 +31,9 @@ public class SmartCamZoom : AUnityObserver
     [Tooltip("The individual camera settings, if the number of barrels is above the threshold the settings is used")]
     [SerializeField]
     private List<CameraSetting> m_cameraSettings = new List<CameraSetting>();
-    [SerializeField] private float m_OnStationFilledZoom=100;
+    [SerializeField] private float m_OnStationFilledZoom = 100;
     [SerializeField] private float m_zoomDecreaseSpeed = 5.0f;
-
+    [SerializeField] private float m_zoomOutSpeed = 2.0f;
 
 
     [Tooltip("the scan radius to check for barrels")]
@@ -67,7 +67,7 @@ public class SmartCamZoom : AUnityObserver
 
         m_cameraSettings = m_cameraSettings.OrderBy(setting => setting.BarrelThreshold).ToList();
         m_currentSetting = m_baseZoom;
-        EventHandler.Instance.StationFilled +=StartZoom;
+        EventHandler.Instance.StationFilled += StartZoom;
     }
 
     private float m_begin;
@@ -142,11 +142,14 @@ public class SmartCamZoom : AUnityObserver
 
     public void StartZoom()
     {
-        m_CurrentZoomOutLevel = m_OnStationFilledZoom;
+        LeanTween.value(gameObject, 0, m_OnStationFilledZoom, m_zoomOutSpeed).setEase(LeanTweenType.linear).setOnUpdate((float val) =>
+         {
+             m_CurrentZoomOutLevel = val;
+         });
     }
     private void ApplyZoomOut()
     {
-        m_CurrentZoomOutLevel -= m_zoomDecreaseSpeed*Time.deltaTime;
+        m_CurrentZoomOutLevel -= m_zoomDecreaseSpeed * Time.deltaTime;
         if (m_CurrentZoomOutLevel <= 0) m_CurrentZoomOutLevel = 0;
     }
     private void PositionCamera()
