@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7540548798685797482}
   - component: {fileID: 1584826788983694940}
   - component: {fileID: 5098891689941965477}
-  - component: {fileID: 7623396357804590489}
   m_Layer: 0
   m_Name: letter square
   m_TagString: Untagged
@@ -81,17 +80,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &7623396357804590489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6844962319500095097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c8deb72f5affa1488524ea71dd0738c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_rotationAxis: {x: 0, y: 0, z: 0}
-  m_angle: 0

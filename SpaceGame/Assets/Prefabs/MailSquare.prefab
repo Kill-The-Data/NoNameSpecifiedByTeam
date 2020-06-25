@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 892746542676703103}
   - component: {fileID: 892746542676703101}
   - component: {fileID: 4055141815205332447}
+  - component: {fileID: 8954583892244252671}
   m_Layer: 0
   m_Name: MailSquare
   m_TagString: Untagged
@@ -76,6 +77,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_rotationAxis: {x: 0, y: 0, z: 0}
   m_angle: 0
+--- !u!114 &8954583892244252671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892746542676703072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d712b8c2c6a144eaae8708fe209e1e2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_songOfMyPeople: mail-pickup
 --- !u!65 &8823663243197679374
 BoxCollider:
   m_ObjectHideFlags: 0
