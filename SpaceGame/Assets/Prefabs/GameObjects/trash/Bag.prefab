@@ -188,6 +188,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: pickUpTrash particle
       objectReference: {fileID: 0}
+    - target: {fileID: 4919502376218102700, guid: 708c7a2b344ee534d8225933161ef311,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.73333335
+      objectReference: {fileID: 0}
+    - target: {fileID: 4919502376218102700, guid: 708c7a2b344ee534d8225933161ef311,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.87058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 4919502376218102700, guid: 708c7a2b344ee534d8225933161ef311,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.9411765
+      objectReference: {fileID: 0}
     - target: {fileID: 6017221889547379935, guid: 708c7a2b344ee534d8225933161ef311,
         type: 3}
       propertyPath: m_LocalPosition.x
