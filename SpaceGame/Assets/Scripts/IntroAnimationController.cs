@@ -16,7 +16,8 @@ public class IntroAnimationController : MonoBehaviour
         DAD,
         MARS_ENDING,
         RESTART,
-        NONE
+        NONE,
+        PRESENT_PICK_UP
     }
 
     public static IntroAnimationController Instance;

@@ -41,3 +41,4 @@ Material:
     - Vector1_F90E75D4: 1
     m_Colors:
     - Color_78E6A635: {r: 0, g: 0.44705883, b: 0.7490196, a: 1}
+    - MAIN_COLOR: {r: 0, g: 1, b: 0.9024, a: 0}
