@@ -12,6 +12,7 @@ public class FadeController : MonoBehaviour
     private void Awake()
     {
         m_R = GetComponent<Renderer>();
+        m_R.enabled = false;
     }
     private void Update()
     {
@@ -19,6 +20,7 @@ public class FadeController : MonoBehaviour
     }
     public void Fade()
     {
+        m_R.enabled=true;
         Debug.Log("Fading");
         LeanTween.value(gameObject, 0, m_maxFade, m_speed).setEase(m_TweenType).setOnUpdate((float val) =>
         {
@@ -31,6 +33,8 @@ public class FadeController : MonoBehaviour
         LeanTween.value(gameObject, m_maxFade, 0, m_speed).setEase(m_TweenType).setOnUpdate((float val) =>
           {
               m_R.material.SetFloat("FADE", val);
+              if (val <= 0) m_R.enabled = false;
+
           });
     }
 }
