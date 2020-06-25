@@ -28,7 +28,7 @@ public class MailCounter : MonoBehaviour
     public int MaxMail => m_maxMail;
     private void OnDestroy()
     {
-        EventHandler.Instance.GameStart -= Reset;
+        EventHandler.Instance.TutorialStart -= Reset;
     }
     //it is fucking guarded global static
     private void Awake()
@@ -36,7 +36,7 @@ public class MailCounter : MonoBehaviour
         m_instance = this;
         m_instanceCreatedActions?.Invoke(this);
         m_instanceCreatedActions = null;
-        EventHandler.Instance.GameStart += Reset;
+        EventHandler.Instance.TutorialStart += Reset;
     }
 
     private void Reset()

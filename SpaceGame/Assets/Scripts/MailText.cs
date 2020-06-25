@@ -31,6 +31,7 @@ public class MailText : MonoBehaviour
 
     private void UpdateLabel(int value)
     {
-        label.text = $"{value}/{max}";
+        if(label)
+            label.text = $"{value}/{max}";
     }
 }
