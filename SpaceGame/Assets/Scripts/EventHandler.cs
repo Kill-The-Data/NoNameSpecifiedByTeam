@@ -23,7 +23,8 @@ namespace SpaceGame
         public event Action GameFinished;
         public event Action TutorialStart;
         public event Action EasterEggPickedUp;
-
+        public event Action IngameCutsceneStart;
+        public event Action IngameCutsceneEnd;
         void Awake()
         {
             InitSingleton();
@@ -56,7 +57,14 @@ namespace SpaceGame
         {
             PlayerPrefs.SetInt(("buoysFilled"), (PlayerPrefs.GetInt("buoysFilled") + 1));
         }
-
+        public void StartCutscene() 
+        {
+            IngameCutsceneStart?.Invoke();
+        }
+        public void EndCutscene() 
+        {
+            IngameCutsceneEnd?.Invoke();
+        }
         public void StartTutorial()
         {
             TutorialStart?.Invoke();

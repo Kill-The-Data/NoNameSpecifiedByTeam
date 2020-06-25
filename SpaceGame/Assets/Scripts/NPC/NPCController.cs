@@ -17,7 +17,7 @@ public class NPCController : MonoBehaviour
     [SerializeField] private bool m_Rotate=true;
 
     [SerializeField] private Transform m_follower;
-    
+    [SerializeField] private float m_speedModifier = 1.0f;
     public bool HasReachedDestination { get; private set; }
     private Vector3 DestinationImpl = Vector3.zero;
     public Vector3 Destination
@@ -57,6 +57,7 @@ public class NPCController : MonoBehaviour
                 float maxSpeed = m_maxSpeed / Mathf.Max(1,Vector3.Distance(m_follower.position, transform.position) / 10f);
                 m_speed += direction * m_acceleration;
                 if (m_speed.magnitude > maxSpeed) m_speed = m_speed.normalized * maxSpeed;
+                m_speed *= m_speedModifier;
             }
             else
             {
