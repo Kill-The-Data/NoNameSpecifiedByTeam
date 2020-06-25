@@ -50,6 +50,7 @@ public class PlayerCargoVisual : MonoBehaviour
                 || currentComponent is TrashMovementController
                 || currentComponent is DebrisInertia
                 || currentComponent is DebrisCollisionSound
+                || currentComponent is ReturnToBaseTrash
             )
             {
                 Destroy(currentComponent);
