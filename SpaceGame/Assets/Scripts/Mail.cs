@@ -14,9 +14,13 @@ public class Mail : AbstractCollider
         });
         EventHandler.Instance.TutorialStart += Reset;
     }
-    
-    
-    
+
+    private void OnDestroy()
+    {
+        EventHandler.Instance.TutorialStart -= Reset;
+    }
+
+
     void Reset()
     {
         gameObject.SetActive(true);
