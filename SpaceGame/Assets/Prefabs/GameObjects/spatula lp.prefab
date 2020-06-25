@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1867012455209460007}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: isEasterEgg
   m_TagString: EasterEgg
   m_Icon: {fileID: 0}
@@ -42,9 +42,11 @@ GameObject:
   - component: {fileID: 1176415791388010972}
   - component: {fileID: 4859382377205224741}
   - component: {fileID: 287408853305277763}
-  m_Layer: 0
+  - component: {fileID: -7825801758944638548}
+  - component: {fileID: -1010095916105296017}
+  m_Layer: 12
   m_Name: spatula lp
-  m_TagString: Untagged
+  m_TagString: Debris
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,6 +129,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_rotationAxis: {x: 0, y: 0, z: 0}
   m_angle: 0
+--- !u!114 &-7825801758944638548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6580648053966791161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd6c0903b1e4b274c96186218ec5c385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Drag: 0.995
+  Speed: {x: 0, y: 0, z: 0}
+--- !u!114 &-1010095916105296017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6580648053966791161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2228136b2b87874c9e45aa772707a16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_pickupParticlePrefab: {fileID: 671545650274421172, guid: fc88ec21fb7fe0940afc463c132db535,
+    type: 3}
+  m_dmgParticlePrefb: {fileID: 7733730358752294871, guid: c65616bf7417f3c41a69fc5a1928a616,
+    type: 3}
+  m_IsTutorialTrash: 0
 --- !u!1001 &5328217786815444169
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -138,6 +171,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pickup Particle
+      objectReference: {fileID: 0}
+    - target: {fileID: 677819384907643638, guid: 742160e5dfdef064887a0e0b1e555e40,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6017221889547379935, guid: 742160e5dfdef064887a0e0b1e555e40,
         type: 3}
@@ -208,6 +246,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7107183273058322587, guid: 742160e5dfdef064887a0e0b1e555e40,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7625347675282474526, guid: 742160e5dfdef064887a0e0b1e555e40,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 742160e5dfdef064887a0e0b1e555e40, type: 3}
