@@ -14,10 +14,6 @@ public class FadeController : MonoBehaviour
         m_R = GetComponent<Renderer>();
         m_R.enabled = false;
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown("space")) Fade();
-    }
     public void Fade()
     {
         m_R.enabled=true;
