@@ -11,4 +11,10 @@ public class TrashMovementController : MonoBehaviour
         transform.position += Speed * Time.deltaTime;
         Speed *= Drag;
     }
+
+
+    public void ingStop()
+    {
+        Speed = Vector3.zero;
+    }
 }
