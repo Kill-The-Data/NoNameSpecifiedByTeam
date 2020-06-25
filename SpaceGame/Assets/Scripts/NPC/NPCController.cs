@@ -10,7 +10,7 @@ public class NPCController : MonoBehaviour
     [Range(1,30)]
     [SerializeField] private float m_maxSpeed = 5f;
     
-    [Range(0.1f,1f)]
+    [Range(0.1f,10f)]
     [SerializeField] private float m_minDistanceToDestinations = 0.1f;
 
     private Vector3 m_speed;
