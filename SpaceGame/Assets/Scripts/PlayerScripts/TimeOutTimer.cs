@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using EventHandler = SpaceGame.EventHandler;
 
 public class TimeOutTimer : MonoBehaviour, IObserver
 {
@@ -9,7 +10,7 @@ public class TimeOutTimer : MonoBehaviour, IObserver
     [SerializeField] GameObject m_touchIcon = null;
     [SerializeField] private float m_TimeToDisplayIcon = 10.0f;
     public bool Disabled = false;
-    
+    private bool isInCutscene = false;
     public void InitTimer(State currentState)
     {
         m_ingameState = currentState;
@@ -25,9 +26,31 @@ public class TimeOutTimer : MonoBehaviour, IObserver
             _timer.StartTimer(m_TimeOutDuration+5);
         }
     }
+    private void OnEnable()
+    {
+        EventHandler.Instance.IngameCutsceneEnd += EndCutscene;
+        EventHandler.Instance.IngameCutsceneStart += StartCutscene;
+    }
+    private void OnDisable()
+    {
+        EventHandler.Instance.IngameCutsceneEnd -= EndCutscene;
+        EventHandler.Instance.IngameCutsceneStart -= StartCutscene;
+    }
+    public void StartCutscene() 
+    {
+        isInCutscene = true;
+    }
+    public void EndCutscene() 
+    {
+        isInCutscene = false;
+    }
     private void Update()
     {
         if (Input.GetMouseButton(0))
+        {
+            ResetTimer();
+        }
+        if (isInCutscene) 
         {
             ResetTimer();
         }

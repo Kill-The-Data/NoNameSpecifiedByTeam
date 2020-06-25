@@ -21,10 +21,12 @@ public class CamWayPointNavigator : WaypointNavigator
     //disable cam controls scripts && set bool true
     public void StartRide()
     {
+        Debug.Log("start");
         m_current = m_start;
         m_camScroll.enabled = false;
         m_camZoom.enabled = false;
         m_move = true;
+        GetComponent<NPCController>().IsMoving = true;
     }
     //disable bool && set cam scripts active again
     public void EndRide()
@@ -32,6 +34,7 @@ public class CamWayPointNavigator : WaypointNavigator
         m_camScroll.enabled = true;
         m_camZoom.enabled = true;
         m_move = false;
+        GetComponent<NPCController>().IsMoving = false;
     }
     protected override void ReachedEnd()
     {
