@@ -89,7 +89,6 @@ public class DoorController : MonoBehaviour
     //reset index && instantiate doors
     public void InitDoors()
     {
-        Debug.Log("initing doors");
         doorIndex = 0;
         if (m_firstDoorPrefab)
             m_FirstDoor = Instantiate(m_firstDoorPrefab);

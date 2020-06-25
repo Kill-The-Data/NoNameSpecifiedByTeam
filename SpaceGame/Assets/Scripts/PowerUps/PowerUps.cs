@@ -16,7 +16,7 @@ public abstract class SoundPowerUp : PowerUp
 
     private static GameObject m_audioPlayerChild;
     
-    private AudioSource m_source;
+    private static  AudioSource m_source;
 
     public void Start()
     {
@@ -33,7 +33,7 @@ public abstract class SoundPowerUp : PowerUp
             m_source = m_audioPlayerChild.AddComponent<AudioSource>();
             m_source.playOnAwake = false;
         }
-
+        
         m_source.clip = SoundManager.Instance.GetSound(m_pickupSound);
         m_source.Play();
     }
