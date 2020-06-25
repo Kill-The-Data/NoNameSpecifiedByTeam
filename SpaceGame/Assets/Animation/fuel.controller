@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6b3a186890442346918c9a351fe98b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TriggerOnStateExit: 5
+  TriggerOnStateExit: 10
   TriggerNames:
   - TriggerAnimation
 --- !u!1107 &3632014338427201827

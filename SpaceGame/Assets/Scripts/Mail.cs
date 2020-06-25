@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using EventHandler = SpaceGame.EventHandler;
 
 public class Mail : AbstractCollider
 {
@@ -11,11 +12,24 @@ public class Mail : AbstractCollider
         {
             OnPickedUp += instance.AddMail;
         });
+        EventHandler.Instance.TutorialStart += Reset;
+    }
+
+    private void OnDestroy()
+    {
+        EventHandler.Instance.TutorialStart -= Reset;
+    }
+
+
+    void Reset()
+    {
+        gameObject.SetActive(true);
     }
 
     protected override void HandlePlayerEnter(Collider other)
     {
-        OnPickedUp?.Invoke();
-        Destroy(gameObject);
+        if(gameObject.activeSelf)
+            OnPickedUp?.Invoke();
+        gameObject.SetActive(false);
     }
 }
