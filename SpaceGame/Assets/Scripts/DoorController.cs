@@ -66,7 +66,7 @@ public class DoorController : MonoBehaviour
 
             //Fade alpha
             Renderer r = child.GetComponent<Renderer>();
-            LeanTween.value(child.gameObject, 1, 0, moveSpeed).setEase(m_TweenType).setOnUpdate((float val) =>
+            LeanTween.value(child.gameObject, 1, 0, moveSpeed).setEase(m_TweenType).setOnUpdate((float val)=>
             {
                 r.material.SetFloat("ALPHA", val);
             });

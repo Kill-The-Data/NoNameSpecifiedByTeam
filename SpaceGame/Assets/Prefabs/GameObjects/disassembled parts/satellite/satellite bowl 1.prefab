@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8094533294878780361}
   - component: {fileID: 940840666837897727}
   - component: {fileID: 6787488624659574022}
+  - component: {fileID: 2730498170940813184}
   m_Layer: 0
   m_Name: satellite bowl 1
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &2730498170940813184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5048208618475002330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c8deb72f5affa1488524ea71dd0738c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_rotationAxis: {x: 20, y: 100, z: 100}
+  m_angle: 3

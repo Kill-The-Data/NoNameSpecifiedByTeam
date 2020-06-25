@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PresentCollisionHandler : AbstractCollider
 {
@@ -30,6 +28,9 @@ public class PresentCollisionHandler : AbstractCollider
         }
         if (m_Renderer)
             m_Renderer.enabled = doRender;
+
+        Collider c = GetComponent<Collider>();
+        if (c) c.enabled = doRender;
     }
     private void OnEnable()
     {

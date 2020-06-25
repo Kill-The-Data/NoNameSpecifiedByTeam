@@ -14,7 +14,8 @@ public class VoronoiDebrisGen : MonoBehaviour
         ASTEROIDS,
         BIG_OBSTACLES,
         BROKEN_SHIP,
-        BROKEN_SATELITE
+        BROKEN_SATELITE,
+        EASTER_EGGS
     };
 
 
@@ -67,7 +68,7 @@ public class VoronoiDebrisGen : MonoBehaviour
     [Header(" --- Easter eggs --- ")]
     public List<GameObject> EasterEggsList;
 
-   
+
     [Header(" --- Broken Ship parts --- ")]
     public List<GameObject> BrokenShipList;
 
@@ -209,16 +210,16 @@ public class VoronoiDebrisGen : MonoBehaviour
 
 
             bool silentAdd = false;
-            
+
             //Gameobject to instantiate
             GameObject spawnPrefab = null;
             //check all exclusion zones
             if (!CheckNearbyDebris(pos, inDeathZone)) continue;
             if (!inDeathZone)
             {
-                var (success,prefab,zone)  = CheckGenZones(pos);
+                var (success, prefab, zone) = CheckGenZones(pos);
                 if (!success) continue;
-                
+
                 if (zone != null && zone.GeneratesTrash)
                 {
                     silentAdd = !zone.GeneratesTrash;
@@ -226,11 +227,11 @@ public class VoronoiDebrisGen : MonoBehaviour
                 }
                 spawnPrefab = prefab;
             }
-            
+
 
 
             var exclusionRadius = m_exclusionZoneRadiusForNewDebris;
-            
+
             if (inDeathZone)
             {
                 if (Random.Range(0F, 1F) > 0.5F)
@@ -285,10 +286,10 @@ public class VoronoiDebrisGen : MonoBehaviour
 
     //checks if a zone is suitable
     //if suitable zone is found, it selects a random object for the zone
-    private (bool, GameObject,ExclusionZone) CheckGenZones(Vector3 pos)
+    private (bool, GameObject, ExclusionZone) CheckGenZones(Vector3 pos)
     {
         ExclusionZone current = null;
-        
+
         bool can_gen = false;
         GameObject GameObjectToGen = null;
         foreach (var zone in m_zones)
@@ -305,14 +306,14 @@ public class VoronoiDebrisGen : MonoBehaviour
             //check if the trash is to close
             if (dist < zone.Radius)
             {
-                return (false, null,null);
+                return (false, null, null);
             }
 
             //check if the trash is just right
             if (dist > zone.Radius && dist < zone.OuterRadius)
             {
                 //make sure this zone can gen any more trash
-                can_gen = zone.AmountTrash --> 0;
+                can_gen = zone.AmountTrash-- > 0;
 
                 if (!can_gen)
                 {
@@ -320,7 +321,7 @@ public class VoronoiDebrisGen : MonoBehaviour
                 }
 
                 current = zone;
-                
+
                 //get Random gameobject
                 var collection = GetCollection(zone);
                 //get a random Object from the collection
@@ -331,7 +332,7 @@ public class VoronoiDebrisGen : MonoBehaviour
         }
 
 
-        return (true, GameObjectToGen,current);
+        return (true, GameObjectToGen, current);
     }
 
     //takes in an exclusion zone and returns the associated spawn List, with list type
@@ -349,6 +350,8 @@ public class VoronoiDebrisGen : MonoBehaviour
                 return BrokenSateliteList;
             case ListSelection.BROKEN_SHIP:
                 return BrokenShipList;
+            case ListSelection.EASTER_EGGS:
+                return EasterEggsList;
         }
         return null;
     }

@@ -13,6 +13,7 @@ TagManager:
   - Station
   - Event
   - EasterEgg
+  - Obstacles
   layers:
   - Default
   - TransparentFX
@@ -32,8 +33,8 @@ TagManager:
   - Stars
   - PlayerLayer
   - IntroAnimation
-  - 
-  - 
+  - LaunchAnimation
+  - Effects2Layer
   - 
   - 
   - 

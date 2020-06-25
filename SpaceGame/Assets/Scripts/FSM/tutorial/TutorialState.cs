@@ -14,13 +14,14 @@ public class TutorialState : StateWithView<IngameView>
     }
     public override void EnterState()
     {
-        EventHandler.Instance.StationFilled += StationFilled;
         m_currentIndex = 0;
         base.EnterState();
+        EventHandler.Instance.StationFilled += StationFilled;
+        m_tutorialFSM.InitTutorial();
+
         InitGameState();
         InitTutorial();
         m_TutorialFSMView.EnableView();
-        m_tutorialFSM.InitTutorial();
     }
     public override void ExitState()
     {
@@ -41,7 +42,7 @@ public class TutorialState : StateWithView<IngameView>
         var levelGen = view.GetLevelAlways();
 
 
-     
+
 
         //delete level and prewarm a new one
         levelGen.DeleteLevel();
@@ -94,7 +95,7 @@ public class TutorialState : StateWithView<IngameView>
     }
     public void StationFilled()
     {
-             m_currentIndex++;
+        m_currentIndex++;
         if (m_currentIndex == 1)
             m_doorController?.OpenFirstDoor();
         if (m_currentIndex == m_index)
