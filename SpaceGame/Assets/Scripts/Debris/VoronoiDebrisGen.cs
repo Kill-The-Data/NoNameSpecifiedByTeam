@@ -160,7 +160,7 @@ public class VoronoiDebrisGen : MonoBehaviour
 
         m_childAdder = GetComponent<NotifyAddChildren>();
 
-        GenerateEasterEggs();
+      //  GenerateEasterEggs();
 
         Display(do_prewarm);
     }

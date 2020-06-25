@@ -44,6 +44,8 @@ GameObject:
   - component: {fileID: 287408853305277763}
   - component: {fileID: -7825801758944638548}
   - component: {fileID: -1010095916105296017}
+  - component: {fileID: 7549197558662112926}
+  - component: {fileID: 8774732741079177388}
   m_Layer: 12
   m_Name: spatula lp
   m_TagString: Debris
@@ -160,6 +162,35 @@ MonoBehaviour:
   m_dmgParticlePrefb: {fileID: 7733730358752294871, guid: c65616bf7417f3c41a69fc5a1928a616,
     type: 3}
   m_IsTutorialTrash: 0
+--- !u!65 &7549197558662112926
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6580648053966791161}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9179037, y: 0.076758996, z: 0.5042521}
+  m_Center: {x: -0.20185855, y: -0.00006908551, z: 0.0025032684}
+--- !u!54 &8774732741079177388
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6580648053966791161}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &5328217786815444169
 PrefabInstance:
   m_ObjectHideFlags: 0
