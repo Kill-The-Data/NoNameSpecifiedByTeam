@@ -142,10 +142,10 @@ public class SmartCamZoom : AUnityObserver
 
     public void StartZoom()
     {
-        LeanTween.value(gameObject, 0, m_OnStationFilledZoom, m_zoomOutSpeed).setEase(LeanTweenType.linear).setOnUpdate((float val) =>
-         {
-             m_CurrentZoomOutLevel = val;
-         });
+        //LeanTween.value(gameObject, 0, m_OnStationFilledZoom, m_zoomOutSpeed).setEase(LeanTweenType.linear).setOnUpdate((float val) =>
+        // {
+        //     m_CurrentZoomOutLevel = val;
+        // });
     }
     private void ApplyZoomOut()
     {

@@ -30,7 +30,9 @@ public class GoalReachedHandler : MonoBehaviour, IObserver
             m_CamNavigator.EndRide();
         m_finishedCameraRide = false;
         //reset bool & animation trigger
-        SetAnimation(m_SetActiveOnStart);
+        SetAnimation(false);
+        foreach (Animator a in m_AnimationObjects)
+            a.gameObject.SetActive(m_SetActiveOnStart);
         //remove timer if attached
         if (this.GetComponentSafe(out Timer timer))
             Destroy(timer);
